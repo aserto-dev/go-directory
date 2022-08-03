@@ -54,8 +54,8 @@ type DirectoryClient interface {
 	Loader(ctx context.Context, opts ...grpc.CallOption) (Directory_LoaderClient, error)
 	ListObjectGraph(ctx context.Context, in *ListObjectGraphRequest, opts ...grpc.CallOption) (*ListObjectGraphResponse, error)
 	Check(ctx context.Context, in *CheckRequest, opts ...grpc.CallOption) (*CheckResponse, error)
-	CheckR(ctx context.Context, in *CheckRRequest, opts ...grpc.CallOption) (*CheckRResponse, error)
-	CheckP(ctx context.Context, in *CheckPRequest, opts ...grpc.CallOption) (*CheckPResponse, error)
+	CheckRelation(ctx context.Context, in *CheckRelationRequest, opts ...grpc.CallOption) (*CheckRelationResponse, error)
+	CheckPermission(ctx context.Context, in *CheckPermissionRequest, opts ...grpc.CallOption) (*CheckPermissionResponse, error)
 	Info(ctx context.Context, in *InfoRequest, opts ...grpc.CallOption) (*InfoResponse, error)
 }
 
@@ -515,18 +515,18 @@ func (c *directoryClient) Check(ctx context.Context, in *CheckRequest, opts ...g
 	return out, nil
 }
 
-func (c *directoryClient) CheckR(ctx context.Context, in *CheckRRequest, opts ...grpc.CallOption) (*CheckRResponse, error) {
-	out := new(CheckRResponse)
-	err := c.cc.Invoke(ctx, "/aserto.directory.v2.Directory/CheckR", in, out, opts...)
+func (c *directoryClient) CheckRelation(ctx context.Context, in *CheckRelationRequest, opts ...grpc.CallOption) (*CheckRelationResponse, error) {
+	out := new(CheckRelationResponse)
+	err := c.cc.Invoke(ctx, "/aserto.directory.v2.Directory/CheckRelation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *directoryClient) CheckP(ctx context.Context, in *CheckPRequest, opts ...grpc.CallOption) (*CheckPResponse, error) {
-	out := new(CheckPResponse)
-	err := c.cc.Invoke(ctx, "/aserto.directory.v2.Directory/CheckP", in, out, opts...)
+func (c *directoryClient) CheckPermission(ctx context.Context, in *CheckPermissionRequest, opts ...grpc.CallOption) (*CheckPermissionResponse, error) {
+	out := new(CheckPermissionResponse)
+	err := c.cc.Invoke(ctx, "/aserto.directory.v2.Directory/CheckPermission", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -578,8 +578,8 @@ type DirectoryServer interface {
 	Loader(Directory_LoaderServer) error
 	ListObjectGraph(context.Context, *ListObjectGraphRequest) (*ListObjectGraphResponse, error)
 	Check(context.Context, *CheckRequest) (*CheckResponse, error)
-	CheckR(context.Context, *CheckRRequest) (*CheckRResponse, error)
-	CheckP(context.Context, *CheckPRequest) (*CheckPResponse, error)
+	CheckRelation(context.Context, *CheckRelationRequest) (*CheckRelationResponse, error)
+	CheckPermission(context.Context, *CheckPermissionRequest) (*CheckPermissionResponse, error)
 	Info(context.Context, *InfoRequest) (*InfoResponse, error)
 }
 
@@ -683,11 +683,11 @@ func (UnimplementedDirectoryServer) ListObjectGraph(context.Context, *ListObject
 func (UnimplementedDirectoryServer) Check(context.Context, *CheckRequest) (*CheckResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Check not implemented")
 }
-func (UnimplementedDirectoryServer) CheckR(context.Context, *CheckRRequest) (*CheckRResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CheckR not implemented")
+func (UnimplementedDirectoryServer) CheckRelation(context.Context, *CheckRelationRequest) (*CheckRelationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckRelation not implemented")
 }
-func (UnimplementedDirectoryServer) CheckP(context.Context, *CheckPRequest) (*CheckPResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CheckP not implemented")
+func (UnimplementedDirectoryServer) CheckPermission(context.Context, *CheckPermissionRequest) (*CheckPermissionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckPermission not implemented")
 }
 func (UnimplementedDirectoryServer) Info(context.Context, *InfoRequest) (*InfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Info not implemented")
@@ -1306,38 +1306,38 @@ func _Directory_Check_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Directory_CheckR_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CheckRRequest)
+func _Directory_CheckRelation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckRelationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DirectoryServer).CheckR(ctx, in)
+		return srv.(DirectoryServer).CheckRelation(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/aserto.directory.v2.Directory/CheckR",
+		FullMethod: "/aserto.directory.v2.Directory/CheckRelation",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DirectoryServer).CheckR(ctx, req.(*CheckRRequest))
+		return srv.(DirectoryServer).CheckRelation(ctx, req.(*CheckRelationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Directory_CheckP_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CheckPRequest)
+func _Directory_CheckPermission_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckPermissionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DirectoryServer).CheckP(ctx, in)
+		return srv.(DirectoryServer).CheckPermission(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/aserto.directory.v2.Directory/CheckP",
+		FullMethod: "/aserto.directory.v2.Directory/CheckPermission",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DirectoryServer).CheckP(ctx, req.(*CheckPRequest))
+		return srv.(DirectoryServer).CheckPermission(ctx, req.(*CheckPermissionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1468,12 +1468,12 @@ var Directory_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Directory_Check_Handler,
 		},
 		{
-			MethodName: "CheckR",
-			Handler:    _Directory_CheckR_Handler,
+			MethodName: "CheckRelation",
+			Handler:    _Directory_CheckRelation_Handler,
 		},
 		{
-			MethodName: "CheckP",
-			Handler:    _Directory_CheckP_Handler,
+			MethodName: "CheckPermission",
+			Handler:    _Directory_CheckPermission_Handler,
 		},
 		{
 			MethodName: "Info",
