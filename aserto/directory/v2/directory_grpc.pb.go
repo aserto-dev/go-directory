@@ -53,6 +53,7 @@ type DirectoryClient interface {
 	GetRel(ctx context.Context, in *GetRelRequest, opts ...grpc.CallOption) (*GetRelResponse, error)
 	Loader(ctx context.Context, opts ...grpc.CallOption) (Directory_LoaderClient, error)
 	ListObjectGraph(ctx context.Context, in *ListObjectGraphRequest, opts ...grpc.CallOption) (*ListObjectGraphResponse, error)
+	GetGraph(ctx context.Context, in *GetGraphRequest, opts ...grpc.CallOption) (*GetGraphResponse, error)
 	Check(ctx context.Context, in *CheckRequest, opts ...grpc.CallOption) (*CheckResponse, error)
 	CheckRelation(ctx context.Context, in *CheckRelationRequest, opts ...grpc.CallOption) (*CheckRelationResponse, error)
 	CheckPermission(ctx context.Context, in *CheckPermissionRequest, opts ...grpc.CallOption) (*CheckPermissionResponse, error)
@@ -506,6 +507,15 @@ func (c *directoryClient) ListObjectGraph(ctx context.Context, in *ListObjectGra
 	return out, nil
 }
 
+func (c *directoryClient) GetGraph(ctx context.Context, in *GetGraphRequest, opts ...grpc.CallOption) (*GetGraphResponse, error) {
+	out := new(GetGraphResponse)
+	err := c.cc.Invoke(ctx, "/aserto.directory.v2.Directory/GetGraph", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *directoryClient) Check(ctx context.Context, in *CheckRequest, opts ...grpc.CallOption) (*CheckResponse, error) {
 	out := new(CheckResponse)
 	err := c.cc.Invoke(ctx, "/aserto.directory.v2.Directory/Check", in, out, opts...)
@@ -577,6 +587,7 @@ type DirectoryServer interface {
 	GetRel(context.Context, *GetRelRequest) (*GetRelResponse, error)
 	Loader(Directory_LoaderServer) error
 	ListObjectGraph(context.Context, *ListObjectGraphRequest) (*ListObjectGraphResponse, error)
+	GetGraph(context.Context, *GetGraphRequest) (*GetGraphResponse, error)
 	Check(context.Context, *CheckRequest) (*CheckResponse, error)
 	CheckRelation(context.Context, *CheckRelationRequest) (*CheckRelationResponse, error)
 	CheckPermission(context.Context, *CheckPermissionRequest) (*CheckPermissionResponse, error)
@@ -679,6 +690,9 @@ func (UnimplementedDirectoryServer) Loader(Directory_LoaderServer) error {
 }
 func (UnimplementedDirectoryServer) ListObjectGraph(context.Context, *ListObjectGraphRequest) (*ListObjectGraphResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListObjectGraph not implemented")
+}
+func (UnimplementedDirectoryServer) GetGraph(context.Context, *GetGraphRequest) (*GetGraphResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGraph not implemented")
 }
 func (UnimplementedDirectoryServer) Check(context.Context, *CheckRequest) (*CheckResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Check not implemented")
@@ -1288,6 +1302,24 @@ func _Directory_ListObjectGraph_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Directory_GetGraph_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetGraphRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DirectoryServer).GetGraph(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/aserto.directory.v2.Directory/GetGraph",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DirectoryServer).GetGraph(ctx, req.(*GetGraphRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Directory_Check_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CheckRequest)
 	if err := dec(in); err != nil {
@@ -1462,6 +1494,10 @@ var Directory_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListObjectGraph",
 			Handler:    _Directory_ListObjectGraph_Handler,
+		},
+		{
+			MethodName: "GetGraph",
+			Handler:    _Directory_GetGraph_Handler,
 		},
 		{
 			MethodName: "Check",
