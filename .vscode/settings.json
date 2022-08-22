@@ -1,0 +1,24 @@
+{
+    "cSpell.words": [
+        "aserto",
+        "berr",
+        "cerr",
+        "emptypb",
+        "extendee",
+        "genproto",
+        "googleapis",
+        "grpclog",
+        "idxs",
+        "infof",
+        "oneof",
+        "openapi",
+        "openapiv2",
+        "protobuf",
+        "protoc",
+        "protoimpl",
+        "protoreflect",
+        "rctx",
+        "structpb",
+        "timestamppb"
+    ]
+}
