@@ -25,10 +25,10 @@ const (
 type Flag int32
 
 const (
-	Flag_FLAG_UNKNOWN  Flag = 0
-	Flag_FLAG_HIDDEN   Flag = 1
-	Flag_FLAG_READONLY Flag = 2
-	Flag_FLAG_SYSTEM   Flag = 4
+	Flag_FLAG_UNKNOWN  Flag = 0 // default, no special object behavior
+	Flag_FLAG_HIDDEN   Flag = 1 // hidden object
+	Flag_FLAG_READONLY Flag = 2 // read-only object
+	Flag_FLAG_SYSTEM   Flag = 4 // system object
 )
 
 // Enum value maps for Flag.

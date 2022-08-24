@@ -11,7 +11,6 @@ import (
 	v1 "github.com/aserto-dev/go-grpc/aserto/common/info/v1"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
-	status "google.golang.org/genproto/googleapis/rpc/status"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
@@ -118,7 +117,7 @@ type InfoResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Build *v1.BuildInfo `protobuf:"bytes,3,opt,name=build,proto3" json:"build,omitempty"` //
+	Build *v1.BuildInfo `protobuf:"bytes,3,opt,name=build,proto3" json:"build,omitempty"` // service info
 }
 
 func (x *InfoResponse) Reset() {
@@ -160,197 +159,6 @@ func (x *InfoResponse) GetBuild() *v1.BuildInfo {
 	return nil
 }
 
-type LoaderRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	OpCode Opcode `protobuf:"varint,1,opt,name=op_code,json=opCode,proto3,enum=aserto.directory.v2.Opcode" json:"op_code,omitempty"` //
-	// Types that are assignable to MsgOneof:
-	//	*LoaderRequest_Object
-	//	*LoaderRequest_ObjectType
-	//	*LoaderRequest_Relation
-	//	*LoaderRequest_RelationType
-	//	*LoaderRequest_Permission
-	//	*LoaderRequest_RelationTypePermission
-	MsgOneof isLoaderRequest_MsgOneof `protobuf_oneof:"msg_oneof"`
-}
-
-func (x *LoaderRequest) Reset() {
-	*x = LoaderRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[2]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *LoaderRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*LoaderRequest) ProtoMessage() {}
-
-func (x *LoaderRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[2]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use LoaderRequest.ProtoReflect.Descriptor instead.
-func (*LoaderRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *LoaderRequest) GetOpCode() Opcode {
-	if x != nil {
-		return x.OpCode
-	}
-	return Opcode_OPCODE_UNKNOWN
-}
-
-func (m *LoaderRequest) GetMsgOneof() isLoaderRequest_MsgOneof {
-	if m != nil {
-		return m.MsgOneof
-	}
-	return nil
-}
-
-func (x *LoaderRequest) GetObject() *Object {
-	if x, ok := x.GetMsgOneof().(*LoaderRequest_Object); ok {
-		return x.Object
-	}
-	return nil
-}
-
-func (x *LoaderRequest) GetObjectType() *ObjectType {
-	if x, ok := x.GetMsgOneof().(*LoaderRequest_ObjectType); ok {
-		return x.ObjectType
-	}
-	return nil
-}
-
-func (x *LoaderRequest) GetRelation() *Relation {
-	if x, ok := x.GetMsgOneof().(*LoaderRequest_Relation); ok {
-		return x.Relation
-	}
-	return nil
-}
-
-func (x *LoaderRequest) GetRelationType() *RelationType {
-	if x, ok := x.GetMsgOneof().(*LoaderRequest_RelationType); ok {
-		return x.RelationType
-	}
-	return nil
-}
-
-func (x *LoaderRequest) GetPermission() *Permission {
-	if x, ok := x.GetMsgOneof().(*LoaderRequest_Permission); ok {
-		return x.Permission
-	}
-	return nil
-}
-
-func (x *LoaderRequest) GetRelationTypePermission() *RelationTypePermission {
-	if x, ok := x.GetMsgOneof().(*LoaderRequest_RelationTypePermission); ok {
-		return x.RelationTypePermission
-	}
-	return nil
-}
-
-type isLoaderRequest_MsgOneof interface {
-	isLoaderRequest_MsgOneof()
-}
-
-type LoaderRequest_Object struct {
-	Object *Object `protobuf:"bytes,2,opt,name=object,proto3,oneof"` //
-}
-
-type LoaderRequest_ObjectType struct {
-	ObjectType *ObjectType `protobuf:"bytes,3,opt,name=object_type,json=objectType,proto3,oneof"` //
-}
-
-type LoaderRequest_Relation struct {
-	Relation *Relation `protobuf:"bytes,4,opt,name=relation,proto3,oneof"` //
-}
-
-type LoaderRequest_RelationType struct {
-	RelationType *RelationType `protobuf:"bytes,5,opt,name=relation_type,json=relationType,proto3,oneof"` //
-}
-
-type LoaderRequest_Permission struct {
-	Permission *Permission `protobuf:"bytes,6,opt,name=permission,proto3,oneof"` //
-}
-
-type LoaderRequest_RelationTypePermission struct {
-	RelationTypePermission *RelationTypePermission `protobuf:"bytes,7,opt,name=relation_type_permission,json=relationTypePermission,proto3,oneof"`
-}
-
-func (*LoaderRequest_Object) isLoaderRequest_MsgOneof() {}
-
-func (*LoaderRequest_ObjectType) isLoaderRequest_MsgOneof() {}
-
-func (*LoaderRequest_Relation) isLoaderRequest_MsgOneof() {}
-
-func (*LoaderRequest_RelationType) isLoaderRequest_MsgOneof() {}
-
-func (*LoaderRequest_Permission) isLoaderRequest_MsgOneof() {}
-
-func (*LoaderRequest_RelationTypePermission) isLoaderRequest_MsgOneof() {}
-
-type LoaderResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Error *status.Status `protobuf:"bytes,1,opt,name=error,proto3" json:"error,omitempty"` //
-}
-
-func (x *LoaderResponse) Reset() {
-	*x = LoaderResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[3]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *LoaderResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*LoaderResponse) ProtoMessage() {}
-
-func (x *LoaderResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[3]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use LoaderResponse.ProtoReflect.Descriptor instead.
-func (*LoaderResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *LoaderResponse) GetError() *status.Status {
-	if x != nil {
-		return x.Error
-	}
-	return nil
-}
-
 type GetObjectTypeRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -365,7 +173,7 @@ type GetObjectTypeRequest struct {
 func (x *GetObjectTypeRequest) Reset() {
 	*x = GetObjectTypeRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[4]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -378,7 +186,7 @@ func (x *GetObjectTypeRequest) String() string {
 func (*GetObjectTypeRequest) ProtoMessage() {}
 
 func (x *GetObjectTypeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[4]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -391,7 +199,7 @@ func (x *GetObjectTypeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetObjectTypeRequest.ProtoReflect.Descriptor instead.
 func (*GetObjectTypeRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{4}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{2}
 }
 
 func (m *GetObjectTypeRequest) GetParam() isGetObjectTypeRequest_Param {
@@ -436,13 +244,13 @@ type GetObjectTypeResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Results []*ObjectType `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` //
+	Results []*ObjectType `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` // array of object types
 }
 
 func (x *GetObjectTypeResponse) Reset() {
 	*x = GetObjectTypeResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[5]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -455,7 +263,7 @@ func (x *GetObjectTypeResponse) String() string {
 func (*GetObjectTypeResponse) ProtoMessage() {}
 
 func (x *GetObjectTypeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[5]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -468,7 +276,7 @@ func (x *GetObjectTypeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetObjectTypeResponse.ProtoReflect.Descriptor instead.
 func (*GetObjectTypeResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{5}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *GetObjectTypeResponse) GetResults() []*ObjectType {
@@ -483,13 +291,13 @@ type SetObjectTypeRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ObjectType *ObjectType `protobuf:"bytes,1,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"` //
+	ObjectType *ObjectType `protobuf:"bytes,1,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"` // object type instance
 }
 
 func (x *SetObjectTypeRequest) Reset() {
 	*x = SetObjectTypeRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[6]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -502,7 +310,7 @@ func (x *SetObjectTypeRequest) String() string {
 func (*SetObjectTypeRequest) ProtoMessage() {}
 
 func (x *SetObjectTypeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[6]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -515,7 +323,7 @@ func (x *SetObjectTypeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetObjectTypeRequest.ProtoReflect.Descriptor instead.
 func (*SetObjectTypeRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{6}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *SetObjectTypeRequest) GetObjectType() *ObjectType {
@@ -530,13 +338,13 @@ type SetObjectTypeResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Results []*ObjectType `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` //
+	Results []*ObjectType `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` // array of object types
 }
 
 func (x *SetObjectTypeResponse) Reset() {
 	*x = SetObjectTypeResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[7]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -549,7 +357,7 @@ func (x *SetObjectTypeResponse) String() string {
 func (*SetObjectTypeResponse) ProtoMessage() {}
 
 func (x *SetObjectTypeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[7]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -562,7 +370,7 @@ func (x *SetObjectTypeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetObjectTypeResponse.ProtoReflect.Descriptor instead.
 func (*SetObjectTypeResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{7}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *SetObjectTypeResponse) GetResults() []*ObjectType {
@@ -586,7 +394,7 @@ type DeleteObjectTypeRequest struct {
 func (x *DeleteObjectTypeRequest) Reset() {
 	*x = DeleteObjectTypeRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[8]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -599,7 +407,7 @@ func (x *DeleteObjectTypeRequest) String() string {
 func (*DeleteObjectTypeRequest) ProtoMessage() {}
 
 func (x *DeleteObjectTypeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[8]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -612,7 +420,7 @@ func (x *DeleteObjectTypeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteObjectTypeRequest.ProtoReflect.Descriptor instead.
 func (*DeleteObjectTypeRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{8}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{6}
 }
 
 func (m *DeleteObjectTypeRequest) GetParam() isDeleteObjectTypeRequest_Param {
@@ -657,13 +465,13 @@ type DeleteObjectTypeResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *emptypb.Empty `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"` //
+	Result *emptypb.Empty `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"` // empty result
 }
 
 func (x *DeleteObjectTypeResponse) Reset() {
 	*x = DeleteObjectTypeResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[9]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -676,7 +484,7 @@ func (x *DeleteObjectTypeResponse) String() string {
 func (*DeleteObjectTypeResponse) ProtoMessage() {}
 
 func (x *DeleteObjectTypeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[9]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -689,7 +497,7 @@ func (x *DeleteObjectTypeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteObjectTypeResponse.ProtoReflect.Descriptor instead.
 func (*DeleteObjectTypeResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{9}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *DeleteObjectTypeResponse) GetResult() *emptypb.Empty {
@@ -710,7 +518,7 @@ type ListObjectTypesRequest struct {
 func (x *ListObjectTypesRequest) Reset() {
 	*x = ListObjectTypesRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[10]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -723,7 +531,7 @@ func (x *ListObjectTypesRequest) String() string {
 func (*ListObjectTypesRequest) ProtoMessage() {}
 
 func (x *ListObjectTypesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[10]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -736,7 +544,7 @@ func (x *ListObjectTypesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListObjectTypesRequest.ProtoReflect.Descriptor instead.
 func (*ListObjectTypesRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{10}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *ListObjectTypesRequest) GetPage() *v11.PaginationRequest {
@@ -758,7 +566,7 @@ type ListObjectTypesResponse struct {
 func (x *ListObjectTypesResponse) Reset() {
 	*x = ListObjectTypesResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[11]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -771,7 +579,7 @@ func (x *ListObjectTypesResponse) String() string {
 func (*ListObjectTypesResponse) ProtoMessage() {}
 
 func (x *ListObjectTypesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[11]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -784,7 +592,7 @@ func (x *ListObjectTypesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListObjectTypesResponse.ProtoReflect.Descriptor instead.
 func (*ListObjectTypesResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{11}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *ListObjectTypesResponse) GetResults() []*ObjectType {
@@ -812,7 +620,7 @@ type GetObjTypeRequest struct {
 func (x *GetObjTypeRequest) Reset() {
 	*x = GetObjTypeRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[12]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -825,7 +633,7 @@ func (x *GetObjTypeRequest) String() string {
 func (*GetObjTypeRequest) ProtoMessage() {}
 
 func (x *GetObjTypeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[12]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -838,7 +646,7 @@ func (x *GetObjTypeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetObjTypeRequest.ProtoReflect.Descriptor instead.
 func (*GetObjTypeRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{12}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *GetObjTypeRequest) GetName() string {
@@ -859,7 +667,7 @@ type GetObjTypeResponse struct {
 func (x *GetObjTypeResponse) Reset() {
 	*x = GetObjTypeResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[13]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -872,7 +680,7 @@ func (x *GetObjTypeResponse) String() string {
 func (*GetObjTypeResponse) ProtoMessage() {}
 
 func (x *GetObjTypeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[13]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -885,7 +693,7 @@ func (x *GetObjTypeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetObjTypeResponse.ProtoReflect.Descriptor instead.
 func (*GetObjTypeResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{13}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *GetObjTypeResponse) GetId() int32 {
@@ -909,7 +717,7 @@ type GetRelationTypeRequest struct {
 func (x *GetRelationTypeRequest) Reset() {
 	*x = GetRelationTypeRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[14]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -922,7 +730,7 @@ func (x *GetRelationTypeRequest) String() string {
 func (*GetRelationTypeRequest) ProtoMessage() {}
 
 func (x *GetRelationTypeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[14]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -935,7 +743,7 @@ func (x *GetRelationTypeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRelationTypeRequest.ProtoReflect.Descriptor instead.
 func (*GetRelationTypeRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{14}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{12}
 }
 
 func (m *GetRelationTypeRequest) GetParam() isGetRelationTypeRequest_Param {
@@ -980,13 +788,13 @@ type GetRelationTypeResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Results []*RelationType `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` //
+	Results []*RelationType `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` // array of relation types
 }
 
 func (x *GetRelationTypeResponse) Reset() {
 	*x = GetRelationTypeResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[15]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -999,7 +807,7 @@ func (x *GetRelationTypeResponse) String() string {
 func (*GetRelationTypeResponse) ProtoMessage() {}
 
 func (x *GetRelationTypeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[15]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1012,7 +820,7 @@ func (x *GetRelationTypeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRelationTypeResponse.ProtoReflect.Descriptor instead.
 func (*GetRelationTypeResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{15}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *GetRelationTypeResponse) GetResults() []*RelationType {
@@ -1027,13 +835,13 @@ type SetRelationTypeRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	RelationType *RelationType `protobuf:"bytes,1,opt,name=relation_type,json=relationType,proto3" json:"relation_type,omitempty"` //
+	RelationType *RelationType `protobuf:"bytes,1,opt,name=relation_type,json=relationType,proto3" json:"relation_type,omitempty"` // relation type instance
 }
 
 func (x *SetRelationTypeRequest) Reset() {
 	*x = SetRelationTypeRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[16]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1046,7 +854,7 @@ func (x *SetRelationTypeRequest) String() string {
 func (*SetRelationTypeRequest) ProtoMessage() {}
 
 func (x *SetRelationTypeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[16]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1059,7 +867,7 @@ func (x *SetRelationTypeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetRelationTypeRequest.ProtoReflect.Descriptor instead.
 func (*SetRelationTypeRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{16}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *SetRelationTypeRequest) GetRelationType() *RelationType {
@@ -1074,13 +882,13 @@ type SetRelationTypeResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Results []*RelationType `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` //
+	Results []*RelationType `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` // array of relation types
 }
 
 func (x *SetRelationTypeResponse) Reset() {
 	*x = SetRelationTypeResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[17]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1093,7 +901,7 @@ func (x *SetRelationTypeResponse) String() string {
 func (*SetRelationTypeResponse) ProtoMessage() {}
 
 func (x *SetRelationTypeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[17]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1106,7 +914,7 @@ func (x *SetRelationTypeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetRelationTypeResponse.ProtoReflect.Descriptor instead.
 func (*SetRelationTypeResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{17}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *SetRelationTypeResponse) GetResults() []*RelationType {
@@ -1130,7 +938,7 @@ type DeleteRelationTypeRequest struct {
 func (x *DeleteRelationTypeRequest) Reset() {
 	*x = DeleteRelationTypeRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[18]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1143,7 +951,7 @@ func (x *DeleteRelationTypeRequest) String() string {
 func (*DeleteRelationTypeRequest) ProtoMessage() {}
 
 func (x *DeleteRelationTypeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[18]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1156,7 +964,7 @@ func (x *DeleteRelationTypeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRelationTypeRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRelationTypeRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{18}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{16}
 }
 
 func (m *DeleteRelationTypeRequest) GetParam() isDeleteRelationTypeRequest_Param {
@@ -1201,13 +1009,13 @@ type DeleteRelationTypeResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *emptypb.Empty `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"` //
+	Result *emptypb.Empty `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"` // empty result
 }
 
 func (x *DeleteRelationTypeResponse) Reset() {
 	*x = DeleteRelationTypeResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[19]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1220,7 +1028,7 @@ func (x *DeleteRelationTypeResponse) String() string {
 func (*DeleteRelationTypeResponse) ProtoMessage() {}
 
 func (x *DeleteRelationTypeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[19]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1233,7 +1041,7 @@ func (x *DeleteRelationTypeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRelationTypeResponse.ProtoReflect.Descriptor instead.
 func (*DeleteRelationTypeResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{19}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *DeleteRelationTypeResponse) GetResult() *emptypb.Empty {
@@ -1255,7 +1063,7 @@ type ListRelationTypesRequest struct {
 func (x *ListRelationTypesRequest) Reset() {
 	*x = ListRelationTypesRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[20]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1268,7 +1076,7 @@ func (x *ListRelationTypesRequest) String() string {
 func (*ListRelationTypesRequest) ProtoMessage() {}
 
 func (x *ListRelationTypesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[20]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1281,7 +1089,7 @@ func (x *ListRelationTypesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListRelationTypesRequest.ProtoReflect.Descriptor instead.
 func (*ListRelationTypesRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{20}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *ListRelationTypesRequest) GetObjectType() int32 {
@@ -1310,7 +1118,7 @@ type ListRelationTypesResponse struct {
 func (x *ListRelationTypesResponse) Reset() {
 	*x = ListRelationTypesResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[21]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1323,7 +1131,7 @@ func (x *ListRelationTypesResponse) String() string {
 func (*ListRelationTypesResponse) ProtoMessage() {}
 
 func (x *ListRelationTypesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[21]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1336,7 +1144,7 @@ func (x *ListRelationTypesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListRelationTypesResponse.ProtoReflect.Descriptor instead.
 func (*ListRelationTypesResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{21}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *ListRelationTypesResponse) GetResults() []*RelationType {
@@ -1365,7 +1173,7 @@ type GetRelTypeRequest struct {
 func (x *GetRelTypeRequest) Reset() {
 	*x = GetRelTypeRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[22]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1378,7 +1186,7 @@ func (x *GetRelTypeRequest) String() string {
 func (*GetRelTypeRequest) ProtoMessage() {}
 
 func (x *GetRelTypeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[22]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1391,7 +1199,7 @@ func (x *GetRelTypeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRelTypeRequest.ProtoReflect.Descriptor instead.
 func (*GetRelTypeRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{22}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *GetRelTypeRequest) GetName() string {
@@ -1413,13 +1221,13 @@ type GetRelTypeResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id int32 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"` //
+	Id int32 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"` // relation type ID (int32)
 }
 
 func (x *GetRelTypeResponse) Reset() {
 	*x = GetRelTypeResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[23]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1432,7 +1240,7 @@ func (x *GetRelTypeResponse) String() string {
 func (*GetRelTypeResponse) ProtoMessage() {}
 
 func (x *GetRelTypeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[23]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1445,7 +1253,7 @@ func (x *GetRelTypeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRelTypeResponse.ProtoReflect.Descriptor instead.
 func (*GetRelTypeResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{23}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *GetRelTypeResponse) GetId() int32 {
@@ -1469,7 +1277,7 @@ type GetObjectRequest struct {
 func (x *GetObjectRequest) Reset() {
 	*x = GetObjectRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[24]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1482,7 +1290,7 @@ func (x *GetObjectRequest) String() string {
 func (*GetObjectRequest) ProtoMessage() {}
 
 func (x *GetObjectRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[24]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1495,7 +1303,7 @@ func (x *GetObjectRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetObjectRequest.ProtoReflect.Descriptor instead.
 func (*GetObjectRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{24}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{22}
 }
 
 func (m *GetObjectRequest) GetParam() isGetObjectRequest_Param {
@@ -1540,13 +1348,13 @@ type GetObjectResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Results []*Object `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` //
+	Results []*Object `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` // array of object instances
 }
 
 func (x *GetObjectResponse) Reset() {
 	*x = GetObjectResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[25]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1559,7 +1367,7 @@ func (x *GetObjectResponse) String() string {
 func (*GetObjectResponse) ProtoMessage() {}
 
 func (x *GetObjectResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[25]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1572,7 +1380,7 @@ func (x *GetObjectResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetObjectResponse.ProtoReflect.Descriptor instead.
 func (*GetObjectResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{25}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *GetObjectResponse) GetResults() []*Object {
@@ -1587,13 +1395,13 @@ type SetObjectRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Object *Object `protobuf:"bytes,1,opt,name=object,proto3" json:"object,omitempty"` //
+	Object *Object `protobuf:"bytes,1,opt,name=object,proto3" json:"object,omitempty"` // object instance
 }
 
 func (x *SetObjectRequest) Reset() {
 	*x = SetObjectRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[26]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[24]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1606,7 +1414,7 @@ func (x *SetObjectRequest) String() string {
 func (*SetObjectRequest) ProtoMessage() {}
 
 func (x *SetObjectRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[26]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[24]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1619,7 +1427,7 @@ func (x *SetObjectRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetObjectRequest.ProtoReflect.Descriptor instead.
 func (*SetObjectRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{26}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *SetObjectRequest) GetObject() *Object {
@@ -1634,13 +1442,13 @@ type SetObjectResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Results []*Object `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` //
+	Results []*Object `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` // array of object instances
 }
 
 func (x *SetObjectResponse) Reset() {
 	*x = SetObjectResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[27]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[25]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1653,7 +1461,7 @@ func (x *SetObjectResponse) String() string {
 func (*SetObjectResponse) ProtoMessage() {}
 
 func (x *SetObjectResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[27]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[25]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1666,7 +1474,7 @@ func (x *SetObjectResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetObjectResponse.ProtoReflect.Descriptor instead.
 func (*SetObjectResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{27}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *SetObjectResponse) GetResults() []*Object {
@@ -1690,7 +1498,7 @@ type DeleteObjectRequest struct {
 func (x *DeleteObjectRequest) Reset() {
 	*x = DeleteObjectRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[28]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[26]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1703,7 +1511,7 @@ func (x *DeleteObjectRequest) String() string {
 func (*DeleteObjectRequest) ProtoMessage() {}
 
 func (x *DeleteObjectRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[28]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[26]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1716,7 +1524,7 @@ func (x *DeleteObjectRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteObjectRequest.ProtoReflect.Descriptor instead.
 func (*DeleteObjectRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{28}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{26}
 }
 
 func (m *DeleteObjectRequest) GetParam() isDeleteObjectRequest_Param {
@@ -1761,13 +1569,13 @@ type DeleteObjectResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *emptypb.Empty `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"` //
+	Result *emptypb.Empty `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"` // empty result
 }
 
 func (x *DeleteObjectResponse) Reset() {
 	*x = DeleteObjectResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[29]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[27]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1780,7 +1588,7 @@ func (x *DeleteObjectResponse) String() string {
 func (*DeleteObjectResponse) ProtoMessage() {}
 
 func (x *DeleteObjectResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[29]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[27]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1793,7 +1601,7 @@ func (x *DeleteObjectResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteObjectResponse.ProtoReflect.Descriptor instead.
 func (*DeleteObjectResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{29}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *DeleteObjectResponse) GetResult() *emptypb.Empty {
@@ -1808,14 +1616,14 @@ type ListObjectsRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Type *int32                 `protobuf:"varint,1,opt,name=type,proto3,oneof" json:"type,omitempty"` // object tyoe filter (OPTIONAL)
+	Type *int32                 `protobuf:"varint,1,opt,name=type,proto3,oneof" json:"type,omitempty"` // object type filter (OPTIONAL)
 	Page *v11.PaginationRequest `protobuf:"bytes,9,opt,name=page,proto3" json:"page,omitempty"`        // pagination request
 }
 
 func (x *ListObjectsRequest) Reset() {
 	*x = ListObjectsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[30]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[28]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1828,7 +1636,7 @@ func (x *ListObjectsRequest) String() string {
 func (*ListObjectsRequest) ProtoMessage() {}
 
 func (x *ListObjectsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[30]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[28]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1841,7 +1649,7 @@ func (x *ListObjectsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListObjectsRequest.ProtoReflect.Descriptor instead.
 func (*ListObjectsRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{30}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *ListObjectsRequest) GetType() int32 {
@@ -1863,13 +1671,14 @@ type ListObjectsResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Results *Object `protobuf:"bytes,1,opt,name=results,proto3" json:"results,omitempty"` //
+	Results []*Object               `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` // arat of object instances
+	Page    *v11.PaginationResponse `protobuf:"bytes,9,opt,name=page,proto3" json:"page,omitempty"`       // pagination response
 }
 
 func (x *ListObjectsResponse) Reset() {
 	*x = ListObjectsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[31]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[29]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1882,7 +1691,7 @@ func (x *ListObjectsResponse) String() string {
 func (*ListObjectsResponse) ProtoMessage() {}
 
 func (x *ListObjectsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[31]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[29]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1895,12 +1704,19 @@ func (x *ListObjectsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListObjectsResponse.ProtoReflect.Descriptor instead.
 func (*ListObjectsResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{31}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{29}
 }
 
-func (x *ListObjectsResponse) GetResults() *Object {
+func (x *ListObjectsResponse) GetResults() []*Object {
 	if x != nil {
 		return x.Results
+	}
+	return nil
+}
+
+func (x *ListObjectsResponse) GetPage() *v11.PaginationResponse {
+	if x != nil {
+		return x.Page
 	}
 	return nil
 }
@@ -1917,7 +1733,7 @@ type GetObjRequest struct {
 func (x *GetObjRequest) Reset() {
 	*x = GetObjRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[32]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[30]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1930,7 +1746,7 @@ func (x *GetObjRequest) String() string {
 func (*GetObjRequest) ProtoMessage() {}
 
 func (x *GetObjRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[32]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[30]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1943,7 +1759,7 @@ func (x *GetObjRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetObjRequest.ProtoReflect.Descriptor instead.
 func (*GetObjRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{32}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *GetObjRequest) GetTypeName() string {
@@ -1965,13 +1781,13 @@ type GetObjResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Results []*Object `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` //
+	Results []*Object `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` // array of object instances
 }
 
 func (x *GetObjResponse) Reset() {
 	*x = GetObjResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[33]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[31]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1984,7 +1800,7 @@ func (x *GetObjResponse) String() string {
 func (*GetObjResponse) ProtoMessage() {}
 
 func (x *GetObjResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[33]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[31]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1997,7 +1813,7 @@ func (x *GetObjResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetObjResponse.ProtoReflect.Descriptor instead.
 func (*GetObjResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{33}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *GetObjResponse) GetResults() []*Object {
@@ -2022,7 +1838,7 @@ type GetRelationRequest struct {
 func (x *GetRelationRequest) Reset() {
 	*x = GetRelationRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[34]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[32]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2035,7 +1851,7 @@ func (x *GetRelationRequest) String() string {
 func (*GetRelationRequest) ProtoMessage() {}
 
 func (x *GetRelationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[34]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[32]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2048,7 +1864,7 @@ func (x *GetRelationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRelationRequest.ProtoReflect.Descriptor instead.
 func (*GetRelationRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{34}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *GetRelationRequest) GetSourceType() int32 {
@@ -2091,13 +1907,13 @@ type GetRelationResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Results []*Relation `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` //
+	Results []*Relation `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` // array of relation instances
 }
 
 func (x *GetRelationResponse) Reset() {
 	*x = GetRelationResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[35]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[33]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2110,7 +1926,7 @@ func (x *GetRelationResponse) String() string {
 func (*GetRelationResponse) ProtoMessage() {}
 
 func (x *GetRelationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[35]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[33]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2123,7 +1939,7 @@ func (x *GetRelationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRelationResponse.ProtoReflect.Descriptor instead.
 func (*GetRelationResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{35}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *GetRelationResponse) GetResults() []*Relation {
@@ -2138,13 +1954,13 @@ type SetRelationRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Relation *Relation `protobuf:"bytes,1,opt,name=relation,proto3" json:"relation,omitempty"` //
+	Relation *Relation `protobuf:"bytes,1,opt,name=relation,proto3" json:"relation,omitempty"` // relation instance
 }
 
 func (x *SetRelationRequest) Reset() {
 	*x = SetRelationRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[36]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[34]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2157,7 +1973,7 @@ func (x *SetRelationRequest) String() string {
 func (*SetRelationRequest) ProtoMessage() {}
 
 func (x *SetRelationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[36]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[34]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2170,7 +1986,7 @@ func (x *SetRelationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetRelationRequest.ProtoReflect.Descriptor instead.
 func (*SetRelationRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{36}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *SetRelationRequest) GetRelation() *Relation {
@@ -2185,13 +2001,13 @@ type SetRelationResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Results []*Relation `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` //
+	Results []*Relation `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` // array of relation instances
 }
 
 func (x *SetRelationResponse) Reset() {
 	*x = SetRelationResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[37]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[35]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2204,7 +2020,7 @@ func (x *SetRelationResponse) String() string {
 func (*SetRelationResponse) ProtoMessage() {}
 
 func (x *SetRelationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[37]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[35]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2217,7 +2033,7 @@ func (x *SetRelationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetRelationResponse.ProtoReflect.Descriptor instead.
 func (*SetRelationResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{37}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *SetRelationResponse) GetResults() []*Relation {
@@ -2242,7 +2058,7 @@ type DeleteRelationRequest struct {
 func (x *DeleteRelationRequest) Reset() {
 	*x = DeleteRelationRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[38]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[36]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2255,7 +2071,7 @@ func (x *DeleteRelationRequest) String() string {
 func (*DeleteRelationRequest) ProtoMessage() {}
 
 func (x *DeleteRelationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[38]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[36]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2268,7 +2084,7 @@ func (x *DeleteRelationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRelationRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRelationRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{38}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *DeleteRelationRequest) GetSourceType() int32 {
@@ -2311,13 +2127,13 @@ type DeleteRelationResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *emptypb.Empty `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"` //
+	Result *emptypb.Empty `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"` // empty result
 }
 
 func (x *DeleteRelationResponse) Reset() {
 	*x = DeleteRelationResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[39]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[37]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2330,7 +2146,7 @@ func (x *DeleteRelationResponse) String() string {
 func (*DeleteRelationResponse) ProtoMessage() {}
 
 func (x *DeleteRelationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[39]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[37]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2343,7 +2159,7 @@ func (x *DeleteRelationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRelationResponse.ProtoReflect.Descriptor instead.
 func (*DeleteRelationResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{39}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *DeleteRelationResponse) GetResult() *emptypb.Empty {
@@ -2369,7 +2185,7 @@ type ListRelationsRequest struct {
 func (x *ListRelationsRequest) Reset() {
 	*x = ListRelationsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[40]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[38]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2382,7 +2198,7 @@ func (x *ListRelationsRequest) String() string {
 func (*ListRelationsRequest) ProtoMessage() {}
 
 func (x *ListRelationsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[40]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[38]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2395,7 +2211,7 @@ func (x *ListRelationsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListRelationsRequest.ProtoReflect.Descriptor instead.
 func (*ListRelationsRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{40}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *ListRelationsRequest) GetSourceType() int32 {
@@ -2452,7 +2268,7 @@ type ListRelationsResponse struct {
 func (x *ListRelationsResponse) Reset() {
 	*x = ListRelationsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[41]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[39]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2465,7 +2281,7 @@ func (x *ListRelationsResponse) String() string {
 func (*ListRelationsResponse) ProtoMessage() {}
 
 func (x *ListRelationsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[41]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[39]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2478,7 +2294,7 @@ func (x *ListRelationsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListRelationsResponse.ProtoReflect.Descriptor instead.
 func (*ListRelationsResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{41}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *ListRelationsResponse) GetResults() []*Relation {
@@ -2510,7 +2326,7 @@ type GetRelRequest struct {
 func (x *GetRelRequest) Reset() {
 	*x = GetRelRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[42]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[40]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2523,7 +2339,7 @@ func (x *GetRelRequest) String() string {
 func (*GetRelRequest) ProtoMessage() {}
 
 func (x *GetRelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[42]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[40]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2536,7 +2352,7 @@ func (x *GetRelRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRelRequest.ProtoReflect.Descriptor instead.
 func (*GetRelRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{42}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *GetRelRequest) GetSourceType() string {
@@ -2579,13 +2395,13 @@ type GetRelResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Results []*Relation `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` //
+	Results []*Relation `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` // array of relation instances
 }
 
 func (x *GetRelResponse) Reset() {
 	*x = GetRelResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[43]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[41]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2598,7 +2414,7 @@ func (x *GetRelResponse) String() string {
 func (*GetRelResponse) ProtoMessage() {}
 
 func (x *GetRelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[43]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[41]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2611,7 +2427,7 @@ func (x *GetRelResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRelResponse.ProtoReflect.Descriptor instead.
 func (*GetRelResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{43}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *GetRelResponse) GetResults() []*Relation {
@@ -2635,7 +2451,7 @@ type GetPermissionRequest struct {
 func (x *GetPermissionRequest) Reset() {
 	*x = GetPermissionRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[44]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[42]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2648,7 +2464,7 @@ func (x *GetPermissionRequest) String() string {
 func (*GetPermissionRequest) ProtoMessage() {}
 
 func (x *GetPermissionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[44]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[42]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2661,7 +2477,7 @@ func (x *GetPermissionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetPermissionRequest.ProtoReflect.Descriptor instead.
 func (*GetPermissionRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{44}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{42}
 }
 
 func (m *GetPermissionRequest) GetParam() isGetPermissionRequest_Param {
@@ -2706,13 +2522,13 @@ type GetPermissionResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Results []*Permission `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` //
+	Results []*Permission `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` // array of permision instances
 }
 
 func (x *GetPermissionResponse) Reset() {
 	*x = GetPermissionResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[45]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[43]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2725,7 +2541,7 @@ func (x *GetPermissionResponse) String() string {
 func (*GetPermissionResponse) ProtoMessage() {}
 
 func (x *GetPermissionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[45]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[43]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2738,7 +2554,7 @@ func (x *GetPermissionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetPermissionResponse.ProtoReflect.Descriptor instead.
 func (*GetPermissionResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{45}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *GetPermissionResponse) GetResults() []*Permission {
@@ -2753,13 +2569,13 @@ type SetPermissionRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Permission *Permission `protobuf:"bytes,1,opt,name=permission,proto3" json:"permission,omitempty"` //
+	Permission *Permission `protobuf:"bytes,1,opt,name=permission,proto3" json:"permission,omitempty"` // permission instance
 }
 
 func (x *SetPermissionRequest) Reset() {
 	*x = SetPermissionRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[46]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[44]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2772,7 +2588,7 @@ func (x *SetPermissionRequest) String() string {
 func (*SetPermissionRequest) ProtoMessage() {}
 
 func (x *SetPermissionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[46]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[44]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2785,7 +2601,7 @@ func (x *SetPermissionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetPermissionRequest.ProtoReflect.Descriptor instead.
 func (*SetPermissionRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{46}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *SetPermissionRequest) GetPermission() *Permission {
@@ -2800,13 +2616,13 @@ type SetPermissionResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Results []*Permission `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` //
+	Results []*Permission `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` // array of permision instances
 }
 
 func (x *SetPermissionResponse) Reset() {
 	*x = SetPermissionResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[47]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[45]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2819,7 +2635,7 @@ func (x *SetPermissionResponse) String() string {
 func (*SetPermissionResponse) ProtoMessage() {}
 
 func (x *SetPermissionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[47]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[45]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2832,7 +2648,7 @@ func (x *SetPermissionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetPermissionResponse.ProtoReflect.Descriptor instead.
 func (*SetPermissionResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{47}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{45}
 }
 
 func (x *SetPermissionResponse) GetResults() []*Permission {
@@ -2856,7 +2672,7 @@ type DeletePermissionRequest struct {
 func (x *DeletePermissionRequest) Reset() {
 	*x = DeletePermissionRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[48]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[46]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2869,7 +2685,7 @@ func (x *DeletePermissionRequest) String() string {
 func (*DeletePermissionRequest) ProtoMessage() {}
 
 func (x *DeletePermissionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[48]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[46]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2882,7 +2698,7 @@ func (x *DeletePermissionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeletePermissionRequest.ProtoReflect.Descriptor instead.
 func (*DeletePermissionRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{48}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{46}
 }
 
 func (m *DeletePermissionRequest) GetParam() isDeletePermissionRequest_Param {
@@ -2927,13 +2743,13 @@ type DeletePermissionResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *emptypb.Empty `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"` //
+	Result *emptypb.Empty `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"` // empty result
 }
 
 func (x *DeletePermissionResponse) Reset() {
 	*x = DeletePermissionResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[49]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[47]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2946,7 +2762,7 @@ func (x *DeletePermissionResponse) String() string {
 func (*DeletePermissionResponse) ProtoMessage() {}
 
 func (x *DeletePermissionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[49]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[47]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2959,7 +2775,7 @@ func (x *DeletePermissionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeletePermissionResponse.ProtoReflect.Descriptor instead.
 func (*DeletePermissionResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{49}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{47}
 }
 
 func (x *DeletePermissionResponse) GetResult() *emptypb.Empty {
@@ -2980,7 +2796,7 @@ type ListPermissionsRequest struct {
 func (x *ListPermissionsRequest) Reset() {
 	*x = ListPermissionsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[50]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[48]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2993,7 +2809,7 @@ func (x *ListPermissionsRequest) String() string {
 func (*ListPermissionsRequest) ProtoMessage() {}
 
 func (x *ListPermissionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[50]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[48]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3006,7 +2822,7 @@ func (x *ListPermissionsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPermissionsRequest.ProtoReflect.Descriptor instead.
 func (*ListPermissionsRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{50}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{48}
 }
 
 func (x *ListPermissionsRequest) GetPage() *v11.PaginationRequest {
@@ -3028,7 +2844,7 @@ type ListPermissionsResponse struct {
 func (x *ListPermissionsResponse) Reset() {
 	*x = ListPermissionsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[51]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[49]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3041,7 +2857,7 @@ func (x *ListPermissionsResponse) String() string {
 func (*ListPermissionsResponse) ProtoMessage() {}
 
 func (x *ListPermissionsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[51]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[49]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3054,7 +2870,7 @@ func (x *ListPermissionsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPermissionsResponse.ProtoReflect.Descriptor instead.
 func (*ListPermissionsResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{51}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{49}
 }
 
 func (x *ListPermissionsResponse) GetResults() []*Permission {
@@ -3082,7 +2898,7 @@ type GetPermRequest struct {
 func (x *GetPermRequest) Reset() {
 	*x = GetPermRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[52]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[50]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3095,7 +2911,7 @@ func (x *GetPermRequest) String() string {
 func (*GetPermRequest) ProtoMessage() {}
 
 func (x *GetPermRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[52]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[50]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3108,7 +2924,7 @@ func (x *GetPermRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetPermRequest.ProtoReflect.Descriptor instead.
 func (*GetPermRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{52}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{50}
 }
 
 func (x *GetPermRequest) GetName() string {
@@ -3129,7 +2945,7 @@ type GetPermResponse struct {
 func (x *GetPermResponse) Reset() {
 	*x = GetPermResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[53]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[51]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3142,7 +2958,7 @@ func (x *GetPermResponse) String() string {
 func (*GetPermResponse) ProtoMessage() {}
 
 func (x *GetPermResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[53]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[51]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3155,7 +2971,7 @@ func (x *GetPermResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetPermResponse.ProtoReflect.Descriptor instead.
 func (*GetPermResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{53}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{51}
 }
 
 func (x *GetPermResponse) GetId() string {
@@ -3177,7 +2993,7 @@ type GetRelationTypePermissionRequest struct {
 func (x *GetRelationTypePermissionRequest) Reset() {
 	*x = GetRelationTypePermissionRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[54]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[52]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3190,7 +3006,7 @@ func (x *GetRelationTypePermissionRequest) String() string {
 func (*GetRelationTypePermissionRequest) ProtoMessage() {}
 
 func (x *GetRelationTypePermissionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[54]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[52]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3203,7 +3019,7 @@ func (x *GetRelationTypePermissionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRelationTypePermissionRequest.ProtoReflect.Descriptor instead.
 func (*GetRelationTypePermissionRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{54}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *GetRelationTypePermissionRequest) GetRelationId() int32 {
@@ -3225,13 +3041,13 @@ type GetRelationTypePermissionResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Results []*RelationTypePermission `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
+	Results []*RelationTypePermission `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` //
 }
 
 func (x *GetRelationTypePermissionResponse) Reset() {
 	*x = GetRelationTypePermissionResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[55]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[53]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3244,7 +3060,7 @@ func (x *GetRelationTypePermissionResponse) String() string {
 func (*GetRelationTypePermissionResponse) ProtoMessage() {}
 
 func (x *GetRelationTypePermissionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[55]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[53]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3257,7 +3073,7 @@ func (x *GetRelationTypePermissionResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use GetRelationTypePermissionResponse.ProtoReflect.Descriptor instead.
 func (*GetRelationTypePermissionResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{55}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{53}
 }
 
 func (x *GetRelationTypePermissionResponse) GetResults() []*RelationTypePermission {
@@ -3272,13 +3088,13 @@ type SetRelationTypePermissionRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	RelationTypePermission *RelationTypePermission `protobuf:"bytes,1,opt,name=relation_type_permission,json=relationTypePermission,proto3" json:"relation_type_permission,omitempty"`
+	RelationTypePermission *RelationTypePermission `protobuf:"bytes,1,opt,name=relation_type_permission,json=relationTypePermission,proto3" json:"relation_type_permission,omitempty"` //
 }
 
 func (x *SetRelationTypePermissionRequest) Reset() {
 	*x = SetRelationTypePermissionRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[56]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[54]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3291,7 +3107,7 @@ func (x *SetRelationTypePermissionRequest) String() string {
 func (*SetRelationTypePermissionRequest) ProtoMessage() {}
 
 func (x *SetRelationTypePermissionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[56]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[54]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3304,7 +3120,7 @@ func (x *SetRelationTypePermissionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetRelationTypePermissionRequest.ProtoReflect.Descriptor instead.
 func (*SetRelationTypePermissionRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{56}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *SetRelationTypePermissionRequest) GetRelationTypePermission() *RelationTypePermission {
@@ -3319,13 +3135,13 @@ type SetRelationTypePermissionResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Results []*RelationTypePermission `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
+	Results []*RelationTypePermission `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` //
 }
 
 func (x *SetRelationTypePermissionResponse) Reset() {
 	*x = SetRelationTypePermissionResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[57]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[55]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3338,7 +3154,7 @@ func (x *SetRelationTypePermissionResponse) String() string {
 func (*SetRelationTypePermissionResponse) ProtoMessage() {}
 
 func (x *SetRelationTypePermissionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[57]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[55]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3351,7 +3167,7 @@ func (x *SetRelationTypePermissionResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use SetRelationTypePermissionResponse.ProtoReflect.Descriptor instead.
 func (*SetRelationTypePermissionResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{57}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{55}
 }
 
 func (x *SetRelationTypePermissionResponse) GetResults() []*RelationTypePermission {
@@ -3373,7 +3189,7 @@ type DeleteRelationTypePermissionRequest struct {
 func (x *DeleteRelationTypePermissionRequest) Reset() {
 	*x = DeleteRelationTypePermissionRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[58]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[56]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3386,7 +3202,7 @@ func (x *DeleteRelationTypePermissionRequest) String() string {
 func (*DeleteRelationTypePermissionRequest) ProtoMessage() {}
 
 func (x *DeleteRelationTypePermissionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[58]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[56]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3399,7 +3215,7 @@ func (x *DeleteRelationTypePermissionRequest) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use DeleteRelationTypePermissionRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRelationTypePermissionRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{58}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{56}
 }
 
 func (x *DeleteRelationTypePermissionRequest) GetRelationId() int32 {
@@ -3427,7 +3243,7 @@ type DeleteRelationTypePermissionResponse struct {
 func (x *DeleteRelationTypePermissionResponse) Reset() {
 	*x = DeleteRelationTypePermissionResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[59]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[57]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3440,7 +3256,7 @@ func (x *DeleteRelationTypePermissionResponse) String() string {
 func (*DeleteRelationTypePermissionResponse) ProtoMessage() {}
 
 func (x *DeleteRelationTypePermissionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[59]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[57]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3453,7 +3269,7 @@ func (x *DeleteRelationTypePermissionResponse) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use DeleteRelationTypePermissionResponse.ProtoReflect.Descriptor instead.
 func (*DeleteRelationTypePermissionResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{59}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{57}
 }
 
 func (x *DeleteRelationTypePermissionResponse) GetResult() *emptypb.Empty {
@@ -3474,7 +3290,7 @@ type ListRelationTypePermissionsRequest struct {
 func (x *ListRelationTypePermissionsRequest) Reset() {
 	*x = ListRelationTypePermissionsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[60]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[58]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3487,7 +3303,7 @@ func (x *ListRelationTypePermissionsRequest) String() string {
 func (*ListRelationTypePermissionsRequest) ProtoMessage() {}
 
 func (x *ListRelationTypePermissionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[60]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[58]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3500,7 +3316,7 @@ func (x *ListRelationTypePermissionsRequest) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use ListRelationTypePermissionsRequest.ProtoReflect.Descriptor instead.
 func (*ListRelationTypePermissionsRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{60}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{58}
 }
 
 func (x *ListRelationTypePermissionsRequest) GetPage() *v11.PaginationRequest {
@@ -3522,7 +3338,7 @@ type ListRelationTypePermissionsResponse struct {
 func (x *ListRelationTypePermissionsResponse) Reset() {
 	*x = ListRelationTypePermissionsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[61]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[59]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3535,7 +3351,7 @@ func (x *ListRelationTypePermissionsResponse) String() string {
 func (*ListRelationTypePermissionsResponse) ProtoMessage() {}
 
 func (x *ListRelationTypePermissionsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[61]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[59]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3548,7 +3364,7 @@ func (x *ListRelationTypePermissionsResponse) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use ListRelationTypePermissionsResponse.ProtoReflect.Descriptor instead.
 func (*ListRelationTypePermissionsResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{61}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{59}
 }
 
 func (x *ListRelationTypePermissionsResponse) GetResults() []*RelationTypePermission {
@@ -3582,7 +3398,7 @@ type CheckRequest struct {
 func (x *CheckRequest) Reset() {
 	*x = CheckRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[62]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[60]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3595,7 +3411,7 @@ func (x *CheckRequest) String() string {
 func (*CheckRequest) ProtoMessage() {}
 
 func (x *CheckRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[62]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[60]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3608,7 +3424,7 @@ func (x *CheckRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckRequest.ProtoReflect.Descriptor instead.
 func (*CheckRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{62}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{60}
 }
 
 func (x *CheckRequest) GetSubjectId() string {
@@ -3681,7 +3497,7 @@ type CheckResponse struct {
 func (x *CheckResponse) Reset() {
 	*x = CheckResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[63]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[61]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3694,7 +3510,7 @@ func (x *CheckResponse) String() string {
 func (*CheckResponse) ProtoMessage() {}
 
 func (x *CheckResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[63]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[61]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3707,7 +3523,7 @@ func (x *CheckResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckResponse.ProtoReflect.Descriptor instead.
 func (*CheckResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{63}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{61}
 }
 
 func (x *CheckResponse) GetCheck() bool {
@@ -3739,7 +3555,7 @@ type CheckRelationRequest struct {
 func (x *CheckRelationRequest) Reset() {
 	*x = CheckRelationRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[64]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[62]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3752,7 +3568,7 @@ func (x *CheckRelationRequest) String() string {
 func (*CheckRelationRequest) ProtoMessage() {}
 
 func (x *CheckRelationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[64]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[62]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3765,7 +3581,7 @@ func (x *CheckRelationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckRelationRequest.ProtoReflect.Descriptor instead.
 func (*CheckRelationRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{64}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{62}
 }
 
 func (x *CheckRelationRequest) GetObjectId() string {
@@ -3815,7 +3631,7 @@ type CheckRelationResponse struct {
 func (x *CheckRelationResponse) Reset() {
 	*x = CheckRelationResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[65]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[63]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3828,7 +3644,7 @@ func (x *CheckRelationResponse) String() string {
 func (*CheckRelationResponse) ProtoMessage() {}
 
 func (x *CheckRelationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[65]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[63]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3841,7 +3657,7 @@ func (x *CheckRelationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckRelationResponse.ProtoReflect.Descriptor instead.
 func (*CheckRelationResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{65}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{63}
 }
 
 func (x *CheckRelationResponse) GetCheck() bool {
@@ -3873,7 +3689,7 @@ type CheckPermissionRequest struct {
 func (x *CheckPermissionRequest) Reset() {
 	*x = CheckPermissionRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[66]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[64]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3886,7 +3702,7 @@ func (x *CheckPermissionRequest) String() string {
 func (*CheckPermissionRequest) ProtoMessage() {}
 
 func (x *CheckPermissionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[66]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[64]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3899,7 +3715,7 @@ func (x *CheckPermissionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckPermissionRequest.ProtoReflect.Descriptor instead.
 func (*CheckPermissionRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{66}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{64}
 }
 
 func (x *CheckPermissionRequest) GetObjectId() string {
@@ -3949,7 +3765,7 @@ type CheckPermissionResponse struct {
 func (x *CheckPermissionResponse) Reset() {
 	*x = CheckPermissionResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[67]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[65]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3962,7 +3778,7 @@ func (x *CheckPermissionResponse) String() string {
 func (*CheckPermissionResponse) ProtoMessage() {}
 
 func (x *CheckPermissionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[67]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[65]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3975,7 +3791,7 @@ func (x *CheckPermissionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckPermissionResponse.ProtoReflect.Descriptor instead.
 func (*CheckPermissionResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{67}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{65}
 }
 
 func (x *CheckPermissionResponse) GetCheck() bool {
@@ -4008,7 +3824,7 @@ type ListObjectGraphRequest struct {
 func (x *ListObjectGraphRequest) Reset() {
 	*x = ListObjectGraphRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[68]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[66]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4021,7 +3837,7 @@ func (x *ListObjectGraphRequest) String() string {
 func (*ListObjectGraphRequest) ProtoMessage() {}
 
 func (x *ListObjectGraphRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[68]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[66]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4034,7 +3850,7 @@ func (x *ListObjectGraphRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListObjectGraphRequest.ProtoReflect.Descriptor instead.
 func (*ListObjectGraphRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{68}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{66}
 }
 
 func (x *ListObjectGraphRequest) GetAnchorId() string {
@@ -4090,7 +3906,7 @@ type ListObjectGraphResponse struct {
 func (x *ListObjectGraphResponse) Reset() {
 	*x = ListObjectGraphResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[69]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[67]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4103,7 +3919,7 @@ func (x *ListObjectGraphResponse) String() string {
 func (*ListObjectGraphResponse) ProtoMessage() {}
 
 func (x *ListObjectGraphResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[69]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[67]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4116,7 +3932,7 @@ func (x *ListObjectGraphResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListObjectGraphResponse.ProtoReflect.Descriptor instead.
 func (*ListObjectGraphResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{69}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{67}
 }
 
 func (x *ListObjectGraphResponse) GetResults() []*ObjectDependency {
@@ -4142,7 +3958,7 @@ type GetGraphRequest struct {
 func (x *GetGraphRequest) Reset() {
 	*x = GetGraphRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[70]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[68]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4155,7 +3971,7 @@ func (x *GetGraphRequest) String() string {
 func (*GetGraphRequest) ProtoMessage() {}
 
 func (x *GetGraphRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[70]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[68]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4168,7 +3984,7 @@ func (x *GetGraphRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGraphRequest.ProtoReflect.Descriptor instead.
 func (*GetGraphRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{70}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{68}
 }
 
 func (x *GetGraphRequest) GetAnchorId() string {
@@ -4224,7 +4040,7 @@ type GetGraphResponse struct {
 func (x *GetGraphResponse) Reset() {
 	*x = GetGraphResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[71]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[69]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4237,7 +4053,7 @@ func (x *GetGraphResponse) String() string {
 func (*GetGraphResponse) ProtoMessage() {}
 
 func (x *GetGraphResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[71]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[69]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4250,7 +4066,7 @@ func (x *GetGraphResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGraphResponse.ProtoReflect.Descriptor instead.
 func (*GetGraphResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{71}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{69}
 }
 
 func (x *GetGraphResponse) GetResults() []*ObjectDependency {
@@ -4270,214 +4086,180 @@ var file_aserto_directory_v2_directory_proto_rawDesc = []byte{
 	0x6c, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x61, 0x74, 0x69, 0x6f,
 	0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1b, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65,
 	0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x65, 0x6d, 0x70, 0x74, 0x79, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x17, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x72, 0x70,
-	0x63, 0x2f, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x2d, 0x67, 0x65, 0x6e, 0x2d, 0x6f, 0x70, 0x65, 0x6e, 0x61,
-	0x70, 0x69, 0x76, 0x32, 0x2f, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2f, 0x61, 0x6e, 0x6e,
-	0x6f, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x20,
-	0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2f, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2f, 0x69, 0x6e,
-	0x66, 0x6f, 0x2f, 0x76, 0x31, 0x2f, 0x69, 0x6e, 0x66, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x1a, 0x1e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x76, 0x31, 0x2f,
-	0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x1a, 0x20, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2f, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f,
-	0x72, 0x79, 0x2f, 0x76, 0x32, 0x2f, 0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x2e, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x1a, 0x22, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2f, 0x64, 0x69, 0x72, 0x65, 0x63,
-	0x74, 0x6f, 0x72, 0x79, 0x2f, 0x76, 0x32, 0x2f, 0x72, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x0d, 0x0a, 0x0b, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x46, 0x0a, 0x0c, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x36, 0x0a, 0x05, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x18, 0x03,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x63, 0x6f,
-	0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x69, 0x6e, 0x66, 0x6f, 0x2e, 0x76, 0x31, 0x2e, 0x42, 0x75, 0x69,
-	0x6c, 0x64, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x05, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x22, 0x80, 0x04,
-	0x0a, 0x0d, 0x4c, 0x6f, 0x61, 0x64, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
-	0x34, 0x0a, 0x07, 0x6f, 0x70, 0x5f, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e,
-	0x32, 0x1b, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74,
-	0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x4f, 0x70, 0x63, 0x6f, 0x64, 0x65, 0x52, 0x06, 0x6f,
-	0x70, 0x43, 0x6f, 0x64, 0x65, 0x12, 0x35, 0x0a, 0x06, 0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x2d, 0x67, 0x65,
+	0x6e, 0x2d, 0x6f, 0x70, 0x65, 0x6e, 0x61, 0x70, 0x69, 0x76, 0x32, 0x2f, 0x6f, 0x70, 0x74, 0x69,
+	0x6f, 0x6e, 0x73, 0x2f, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2e,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x20, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2f, 0x63, 0x6f,
+	0x6d, 0x6d, 0x6f, 0x6e, 0x2f, 0x69, 0x6e, 0x66, 0x6f, 0x2f, 0x76, 0x31, 0x2f, 0x69, 0x6e, 0x66,
+	0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2f,
+	0x61, 0x70, 0x69, 0x2f, 0x76, 0x31, 0x2f, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f,
+	0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x20, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2f,
+	0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2f, 0x76, 0x32, 0x2f, 0x6f, 0x62, 0x6a,
+	0x65, 0x63, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x22, 0x61, 0x73, 0x65, 0x72, 0x74,
+	0x6f, 0x2f, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2f, 0x76, 0x32, 0x2f, 0x72,
+	0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x0d, 0x0a,
+	0x0b, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x46, 0x0a, 0x0c,
+	0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x36, 0x0a, 0x05,
+	0x62, 0x75, 0x69, 0x6c, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x61, 0x73,
+	0x65, 0x72, 0x74, 0x6f, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x69, 0x6e, 0x66, 0x6f,
+	0x2e, 0x76, 0x31, 0x2e, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x05, 0x62,
+	0x75, 0x69, 0x6c, 0x64, 0x22, 0x47, 0x0a, 0x14, 0x47, 0x65, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63,
+	0x74, 0x54, 0x79, 0x70, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x10, 0x0a, 0x02,
+	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x48, 0x00, 0x52, 0x02, 0x69, 0x64, 0x12, 0x14,
+	0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x48, 0x00, 0x52, 0x04,
+	0x6e, 0x61, 0x6d, 0x65, 0x42, 0x07, 0x0a, 0x05, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x22, 0x52, 0x0a,
+	0x15, 0x47, 0x65, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x54, 0x79, 0x70, 0x65, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x39, 0x0a, 0x07, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74,
+	0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f,
+	0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x4f, 0x62,
+	0x6a, 0x65, 0x63, 0x74, 0x54, 0x79, 0x70, 0x65, 0x52, 0x07, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74,
+	0x73, 0x22, 0x58, 0x0a, 0x14, 0x53, 0x65, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x54, 0x79,
+	0x70, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x40, 0x0a, 0x0b, 0x6f, 0x62, 0x6a,
+	0x65, 0x63, 0x74, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1f,
+	0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72,
+	0x79, 0x2e, 0x76, 0x32, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x54, 0x79, 0x70, 0x65, 0x52,
+	0x0a, 0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x54, 0x79, 0x70, 0x65, 0x22, 0x52, 0x0a, 0x15, 0x53,
+	0x65, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x54, 0x79, 0x70, 0x65, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x39, 0x0a, 0x07, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x73, 0x18,
+	0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64,
 	0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x4f, 0x62, 0x6a, 0x65,
-	0x63, 0x74, 0x48, 0x00, 0x52, 0x06, 0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x12, 0x42, 0x0a, 0x0b,
-	0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28,
-	0x0b, 0x32, 0x1f, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63,
-	0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x54, 0x79,
-	0x70, 0x65, 0x48, 0x00, 0x52, 0x0a, 0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x54, 0x79, 0x70, 0x65,
-	0x12, 0x3b, 0x0a, 0x08, 0x72, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x04, 0x20, 0x01,
-	0x28, 0x0b, 0x32, 0x1d, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65,
-	0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x52, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f,
-	0x6e, 0x48, 0x00, 0x52, 0x08, 0x72, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x48, 0x0a,
-	0x0d, 0x72, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x05,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x21, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69,
-	0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x52, 0x65, 0x6c, 0x61, 0x74,
-	0x69, 0x6f, 0x6e, 0x54, 0x79, 0x70, 0x65, 0x48, 0x00, 0x52, 0x0c, 0x72, 0x65, 0x6c, 0x61, 0x74,
-	0x69, 0x6f, 0x6e, 0x54, 0x79, 0x70, 0x65, 0x12, 0x41, 0x0a, 0x0a, 0x70, 0x65, 0x72, 0x6d, 0x69,
-	0x73, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x06, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x61, 0x73,
-	0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76,
-	0x32, 0x2e, 0x50, 0x65, 0x72, 0x6d, 0x69, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x48, 0x00, 0x52, 0x0a,
-	0x70, 0x65, 0x72, 0x6d, 0x69, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x67, 0x0a, 0x18, 0x72, 0x65,
-	0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x5f, 0x70, 0x65, 0x72, 0x6d,
-	0x69, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x07, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x2b, 0x2e, 0x61,
-	0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e,
-	0x76, 0x32, 0x2e, 0x52, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x54, 0x79, 0x70, 0x65, 0x50,
-	0x65, 0x72, 0x6d, 0x69, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x48, 0x00, 0x52, 0x16, 0x72, 0x65, 0x6c,
-	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x54, 0x79, 0x70, 0x65, 0x50, 0x65, 0x72, 0x6d, 0x69, 0x73, 0x73,
-	0x69, 0x6f, 0x6e, 0x42, 0x0b, 0x0a, 0x09, 0x6d, 0x73, 0x67, 0x5f, 0x6f, 0x6e, 0x65, 0x6f, 0x66,
-	0x22, 0x3a, 0x0a, 0x0e, 0x4c, 0x6f, 0x61, 0x64, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x12, 0x28, 0x0a, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x0b, 0x32, 0x12, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x72, 0x70, 0x63, 0x2e, 0x53,
-	0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x22, 0x47, 0x0a, 0x14,
-	0x47, 0x65, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x54, 0x79, 0x70, 0x65, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x12, 0x10, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05,
-	0x48, 0x00, 0x52, 0x02, 0x69, 0x64, 0x12, 0x14, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02,
-	0x20, 0x01, 0x28, 0x09, 0x48, 0x00, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x42, 0x07, 0x0a, 0x05,
-	0x70, 0x61, 0x72, 0x61, 0x6d, 0x22, 0x52, 0x0a, 0x15, 0x47, 0x65, 0x74, 0x4f, 0x62, 0x6a, 0x65,
-	0x63, 0x74, 0x54, 0x79, 0x70, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x39,
-	0x0a, 0x07, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32,
-	0x1f, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f,
-	0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x54, 0x79, 0x70, 0x65,
-	0x52, 0x07, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x73, 0x22, 0x58, 0x0a, 0x14, 0x53, 0x65, 0x74,
-	0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x54, 0x79, 0x70, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x12, 0x40, 0x0a, 0x0b, 0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x5f, 0x74, 0x79, 0x70, 0x65,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e,
-	0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x4f, 0x62, 0x6a,
-	0x65, 0x63, 0x74, 0x54, 0x79, 0x70, 0x65, 0x52, 0x0a, 0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x54,
-	0x79, 0x70, 0x65, 0x22, 0x52, 0x0a, 0x15, 0x53, 0x65, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74,
-	0x54, 0x79, 0x70, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x39, 0x0a, 0x07,
-	0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1f, 0x2e,
-	0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79,
-	0x2e, 0x76, 0x32, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x54, 0x79, 0x70, 0x65, 0x52, 0x07,
-	0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x73, 0x22, 0x4a, 0x0a, 0x17, 0x44, 0x65, 0x6c, 0x65, 0x74,
-	0x65, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x54, 0x79, 0x70, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x12, 0x10, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x48, 0x00,
-	0x52, 0x02, 0x69, 0x64, 0x12, 0x14, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01,
-	0x28, 0x09, 0x48, 0x00, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x42, 0x07, 0x0a, 0x05, 0x70, 0x61,
-	0x72, 0x61, 0x6d, 0x22, 0x4a, 0x0a, 0x18, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4f, 0x62, 0x6a,
-	0x65, 0x63, 0x74, 0x54, 0x79, 0x70, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
-	0x2e, 0x0a, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
-	0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
-	0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x52, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x22,
-	0x4e, 0x0a, 0x16, 0x4c, 0x69, 0x73, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x54, 0x79, 0x70,
-	0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x34, 0x0a, 0x04, 0x70, 0x61, 0x67,
-	0x65, 0x18, 0x09, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f,
-	0x2e, 0x61, 0x70, 0x69, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69,
-	0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x04, 0x70, 0x61, 0x67, 0x65, 0x22,
-	0x8b, 0x01, 0x0a, 0x17, 0x4c, 0x69, 0x73, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x54, 0x79,
-	0x70, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x39, 0x0a, 0x07, 0x72,
-	0x65, 0x73, 0x75, 0x6c, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x61,
-	0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e,
-	0x76, 0x32, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x54, 0x79, 0x70, 0x65, 0x52, 0x07, 0x72,
-	0x65, 0x73, 0x75, 0x6c, 0x74, 0x73, 0x12, 0x35, 0x0a, 0x04, 0x70, 0x61, 0x67, 0x65, 0x18, 0x09,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x21, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x61, 0x70,
-	0x69, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x52, 0x04, 0x70, 0x61, 0x67, 0x65, 0x22, 0x27, 0x0a,
-	0x11, 0x47, 0x65, 0x74, 0x4f, 0x62, 0x6a, 0x54, 0x79, 0x70, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x24, 0x0a, 0x12, 0x47, 0x65, 0x74, 0x4f, 0x62, 0x6a,
-	0x54, 0x79, 0x70, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x0e, 0x0a, 0x02,
-	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x02, 0x69, 0x64, 0x22, 0x6d, 0x0a, 0x16,
-	0x47, 0x65, 0x74, 0x52, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x54, 0x79, 0x70, 0x65, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x10, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x05, 0x48, 0x00, 0x52, 0x02, 0x69, 0x64, 0x12, 0x38, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18,
-	0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x24, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64,
-	0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x52, 0x65, 0x6c, 0x61,
-	0x74, 0x69, 0x6f, 0x6e, 0x54, 0x79, 0x70, 0x65, 0x4b, 0x65, 0x79, 0x48, 0x00, 0x52, 0x03, 0x6b,
-	0x65, 0x79, 0x42, 0x07, 0x0a, 0x05, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x22, 0x56, 0x0a, 0x17, 0x47,
-	0x65, 0x74, 0x52, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x54, 0x79, 0x70, 0x65, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3b, 0x0a, 0x07, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74,
-	0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x21, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f,
-	0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x52, 0x65,
-	0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x54, 0x79, 0x70, 0x65, 0x52, 0x07, 0x72, 0x65, 0x73, 0x75,
-	0x6c, 0x74, 0x73, 0x22, 0x60, 0x0a, 0x16, 0x53, 0x65, 0x74, 0x52, 0x65, 0x6c, 0x61, 0x74, 0x69,
-	0x6f, 0x6e, 0x54, 0x79, 0x70, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x46, 0x0a,
-	0x0d, 0x72, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x21, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69,
-	0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x52, 0x65, 0x6c, 0x61, 0x74,
-	0x69, 0x6f, 0x6e, 0x54, 0x79, 0x70, 0x65, 0x52, 0x0c, 0x72, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f,
-	0x6e, 0x54, 0x79, 0x70, 0x65, 0x22, 0x56, 0x0a, 0x17, 0x53, 0x65, 0x74, 0x52, 0x65, 0x6c, 0x61,
-	0x74, 0x69, 0x6f, 0x6e, 0x54, 0x79, 0x70, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x12, 0x3b, 0x0a, 0x07, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28,
-	0x0b, 0x32, 0x21, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63,
-	0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x52, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e,
-	0x54, 0x79, 0x70, 0x65, 0x52, 0x07, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x73, 0x22, 0x70, 0x0a,
-	0x19, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x54,
+	0x63, 0x74, 0x54, 0x79, 0x70, 0x65, 0x52, 0x07, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x73, 0x22,
+	0x4a, 0x0a, 0x17, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x54,
 	0x79, 0x70, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x10, 0x0a, 0x02, 0x69, 0x64,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x48, 0x00, 0x52, 0x02, 0x69, 0x64, 0x12, 0x38, 0x0a, 0x03,
-	0x6b, 0x65, 0x79, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x24, 0x2e, 0x61, 0x73, 0x65, 0x72,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x48, 0x00, 0x52, 0x02, 0x69, 0x64, 0x12, 0x14, 0x0a, 0x04,
+	0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x48, 0x00, 0x52, 0x04, 0x6e, 0x61,
+	0x6d, 0x65, 0x42, 0x07, 0x0a, 0x05, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x22, 0x4a, 0x0a, 0x18, 0x44,
+	0x65, 0x6c, 0x65, 0x74, 0x65, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x54, 0x79, 0x70, 0x65, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2e, 0x0a, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c,
+	0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x52,
+	0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x22, 0x4e, 0x0a, 0x16, 0x4c, 0x69, 0x73, 0x74, 0x4f,
+	0x62, 0x6a, 0x65, 0x63, 0x74, 0x54, 0x79, 0x70, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x34, 0x0a, 0x04, 0x70, 0x61, 0x67, 0x65, 0x18, 0x09, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x20, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x76, 0x31, 0x2e,
+	0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x52, 0x04, 0x70, 0x61, 0x67, 0x65, 0x22, 0x8b, 0x01, 0x0a, 0x17, 0x4c, 0x69, 0x73, 0x74,
+	0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x54, 0x79, 0x70, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x39, 0x0a, 0x07, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x73, 0x18, 0x01,
+	0x20, 0x03, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69,
+	0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63,
+	0x74, 0x54, 0x79, 0x70, 0x65, 0x52, 0x07, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x73, 0x12, 0x35,
+	0x0a, 0x04, 0x70, 0x61, 0x67, 0x65, 0x18, 0x09, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x21, 0x2e, 0x61,
+	0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x61, 0x67,
+	0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x52,
+	0x04, 0x70, 0x61, 0x67, 0x65, 0x22, 0x27, 0x0a, 0x11, 0x47, 0x65, 0x74, 0x4f, 0x62, 0x6a, 0x54,
+	0x79, 0x70, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61,
+	0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x24,
+	0x0a, 0x12, 0x47, 0x65, 0x74, 0x4f, 0x62, 0x6a, 0x54, 0x79, 0x70, 0x65, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05,
+	0x52, 0x02, 0x69, 0x64, 0x22, 0x6d, 0x0a, 0x16, 0x47, 0x65, 0x74, 0x52, 0x65, 0x6c, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x54, 0x79, 0x70, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x10,
+	0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x48, 0x00, 0x52, 0x02, 0x69, 0x64,
+	0x12, 0x38, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x24, 0x2e,
+	0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79,
+	0x2e, 0x76, 0x32, 0x2e, 0x52, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x54, 0x79, 0x70, 0x65,
+	0x4b, 0x65, 0x79, 0x48, 0x00, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x42, 0x07, 0x0a, 0x05, 0x70, 0x61,
+	0x72, 0x61, 0x6d, 0x22, 0x56, 0x0a, 0x17, 0x47, 0x65, 0x74, 0x52, 0x65, 0x6c, 0x61, 0x74, 0x69,
+	0x6f, 0x6e, 0x54, 0x79, 0x70, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3b,
+	0x0a, 0x07, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32,
+	0x21, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f,
+	0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x52, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x54, 0x79,
+	0x70, 0x65, 0x52, 0x07, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x73, 0x22, 0x60, 0x0a, 0x16, 0x53,
+	0x65, 0x74, 0x52, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x54, 0x79, 0x70, 0x65, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x46, 0x0a, 0x0d, 0x72, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f,
+	0x6e, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x21, 0x2e, 0x61,
+	0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e,
+	0x76, 0x32, 0x2e, 0x52, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x54, 0x79, 0x70, 0x65, 0x52,
+	0x0c, 0x72, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x54, 0x79, 0x70, 0x65, 0x22, 0x56, 0x0a,
+	0x17, 0x53, 0x65, 0x74, 0x52, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x54, 0x79, 0x70, 0x65,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3b, 0x0a, 0x07, 0x72, 0x65, 0x73, 0x75,
+	0x6c, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x21, 0x2e, 0x61, 0x73, 0x65, 0x72,
 	0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e,
-	0x52, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x54, 0x79, 0x70, 0x65, 0x4b, 0x65, 0x79, 0x48,
-	0x00, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x42, 0x07, 0x0a, 0x05, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x22,
-	0x4c, 0x0a, 0x1a, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f,
-	0x6e, 0x54, 0x79, 0x70, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2e, 0x0a,
-	0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e,
-	0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e,
-	0x45, 0x6d, 0x70, 0x74, 0x79, 0x52, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x22, 0x86, 0x01,
-	0x0a, 0x18, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x54, 0x79,
-	0x70, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x24, 0x0a, 0x0b, 0x6f, 0x62,
-	0x6a, 0x65, 0x63, 0x74, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x48,
-	0x00, 0x52, 0x0a, 0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x54, 0x79, 0x70, 0x65, 0x88, 0x01, 0x01,
-	0x12, 0x34, 0x0a, 0x04, 0x70, 0x61, 0x67, 0x65, 0x18, 0x09, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x20,
-	0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x76, 0x31, 0x2e, 0x50,
-	0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x52, 0x04, 0x70, 0x61, 0x67, 0x65, 0x42, 0x0e, 0x0a, 0x0c, 0x5f, 0x6f, 0x62, 0x6a, 0x65, 0x63,
-	0x74, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x22, 0x8f, 0x01, 0x0a, 0x19, 0x4c, 0x69, 0x73, 0x74, 0x52,
-	0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x54, 0x79, 0x70, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3b, 0x0a, 0x07, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x73, 0x18,
-	0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x21, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64,
-	0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x52, 0x65, 0x6c, 0x61,
-	0x74, 0x69, 0x6f, 0x6e, 0x54, 0x79, 0x70, 0x65, 0x52, 0x07, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74,
-	0x73, 0x12, 0x35, 0x0a, 0x04, 0x70, 0x61, 0x67, 0x65, 0x18, 0x09, 0x20, 0x01, 0x28, 0x0b, 0x32,
-	0x21, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x76, 0x31, 0x2e,
-	0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x52, 0x04, 0x70, 0x61, 0x67, 0x65, 0x22, 0x48, 0x0a, 0x11, 0x47, 0x65, 0x74, 0x52,
-	0x65, 0x6c, 0x54, 0x79, 0x70, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a,
-	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d,
-	0x65, 0x12, 0x1f, 0x0a, 0x0b, 0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x5f, 0x74, 0x79, 0x70, 0x65,
-	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x54, 0x79,
-	0x70, 0x65, 0x22, 0x24, 0x0a, 0x12, 0x47, 0x65, 0x74, 0x52, 0x65, 0x6c, 0x54, 0x79, 0x70, 0x65,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x05, 0x52, 0x02, 0x69, 0x64, 0x22, 0x61, 0x0a, 0x10, 0x47, 0x65, 0x74, 0x4f,
-	0x62, 0x6a, 0x65, 0x63, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x10, 0x0a, 0x02,
-	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x48, 0x00, 0x52, 0x02, 0x69, 0x64, 0x12, 0x32,
-	0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1e, 0x2e, 0x61, 0x73,
-	0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76,
-	0x32, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x4b, 0x65, 0x79, 0x48, 0x00, 0x52, 0x03, 0x6b,
-	0x65, 0x79, 0x42, 0x07, 0x0a, 0x05, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x22, 0x4a, 0x0a, 0x11, 0x47,
-	0x65, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x12, 0x35, 0x0a, 0x07, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28,
-	0x0b, 0x32, 0x1b, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63,
-	0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x52, 0x07,
-	0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x73, 0x22, 0x47, 0x0a, 0x10, 0x53, 0x65, 0x74, 0x4f, 0x62,
-	0x6a, 0x65, 0x63, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x33, 0x0a, 0x06, 0x6f,
-	0x62, 0x6a, 0x65, 0x63, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x61, 0x73,
-	0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76,
-	0x32, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x52, 0x06, 0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74,
-	0x22, 0x4a, 0x0a, 0x11, 0x53, 0x65, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x35, 0x0a, 0x07, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x73,
-	0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e,
-	0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x4f, 0x62, 0x6a,
-	0x65, 0x63, 0x74, 0x52, 0x07, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x73, 0x22, 0x64, 0x0a, 0x13,
-	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x12, 0x10, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x48,
-	0x00, 0x52, 0x02, 0x69, 0x64, 0x12, 0x32, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x04, 0x20, 0x01,
-	0x28, 0x0b, 0x32, 0x1e, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65,
-	0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x4b,
-	0x65, 0x79, 0x48, 0x00, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x42, 0x07, 0x0a, 0x05, 0x70, 0x61, 0x72,
-	0x61, 0x6d, 0x22, 0x46, 0x0a, 0x14, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4f, 0x62, 0x6a, 0x65,
-	0x63, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2e, 0x0a, 0x06, 0x72, 0x65,
-	0x73, 0x75, 0x6c, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x67, 0x6f, 0x6f,
-	0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70,
-	0x74, 0x79, 0x52, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x22, 0x6c, 0x0a, 0x12, 0x4c, 0x69,
-	0x73, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x12, 0x17, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x48, 0x00,
-	0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x88, 0x01, 0x01, 0x12, 0x34, 0x0a, 0x04, 0x70, 0x61, 0x67,
-	0x65, 0x18, 0x09, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f,
+	0x52, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x54, 0x79, 0x70, 0x65, 0x52, 0x07, 0x72, 0x65,
+	0x73, 0x75, 0x6c, 0x74, 0x73, 0x22, 0x70, 0x0a, 0x19, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52,
+	0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x54, 0x79, 0x70, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x12, 0x10, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x48, 0x00,
+	0x52, 0x02, 0x69, 0x64, 0x12, 0x38, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x24, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63,
+	0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x52, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x54, 0x79, 0x70, 0x65, 0x4b, 0x65, 0x79, 0x48, 0x00, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x42, 0x07,
+	0x0a, 0x05, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x22, 0x4c, 0x0a, 0x1a, 0x44, 0x65, 0x6c, 0x65, 0x74,
+	0x65, 0x52, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x54, 0x79, 0x70, 0x65, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2e, 0x0a, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x52, 0x06, 0x72,
+	0x65, 0x73, 0x75, 0x6c, 0x74, 0x22, 0x86, 0x01, 0x0a, 0x18, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65,
+	0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x54, 0x79, 0x70, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x12, 0x24, 0x0a, 0x0b, 0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x5f, 0x74, 0x79, 0x70,
+	0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x48, 0x00, 0x52, 0x0a, 0x6f, 0x62, 0x6a, 0x65, 0x63,
+	0x74, 0x54, 0x79, 0x70, 0x65, 0x88, 0x01, 0x01, 0x12, 0x34, 0x0a, 0x04, 0x70, 0x61, 0x67, 0x65,
+	0x18, 0x09, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e,
+	0x61, 0x70, 0x69, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f,
+	0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x04, 0x70, 0x61, 0x67, 0x65, 0x42, 0x0e,
+	0x0a, 0x0c, 0x5f, 0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x22, 0x8f,
+	0x01, 0x0a, 0x19, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x54,
+	0x79, 0x70, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3b, 0x0a, 0x07,
+	0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x21, 0x2e,
+	0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79,
+	0x2e, 0x76, 0x32, 0x2e, 0x52, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x54, 0x79, 0x70, 0x65,
+	0x52, 0x07, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x73, 0x12, 0x35, 0x0a, 0x04, 0x70, 0x61, 0x67,
+	0x65, 0x18, 0x09, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x21, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f,
 	0x2e, 0x61, 0x70, 0x69, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69,
-	0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x04, 0x70, 0x61, 0x67, 0x65, 0x42,
-	0x07, 0x0a, 0x05, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x22, 0x4c, 0x0a, 0x13, 0x4c, 0x69, 0x73, 0x74,
-	0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
-	0x35, 0x0a, 0x07, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
-	0x32, 0x1b, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74,
-	0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x52, 0x07, 0x72,
-	0x65, 0x73, 0x75, 0x6c, 0x74, 0x73, 0x22, 0x42, 0x0a, 0x0d, 0x47, 0x65, 0x74, 0x4f, 0x62, 0x6a,
+	0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x52, 0x04, 0x70, 0x61, 0x67, 0x65,
+	0x22, 0x48, 0x0a, 0x11, 0x47, 0x65, 0x74, 0x52, 0x65, 0x6c, 0x54, 0x79, 0x70, 0x65, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x1f, 0x0a, 0x0b, 0x6f, 0x62, 0x6a,
+	0x65, 0x63, 0x74, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a,
+	0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x54, 0x79, 0x70, 0x65, 0x22, 0x24, 0x0a, 0x12, 0x47, 0x65,
+	0x74, 0x52, 0x65, 0x6c, 0x54, 0x79, 0x70, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x02, 0x69, 0x64,
+	0x22, 0x61, 0x0a, 0x10, 0x47, 0x65, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x10, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x48, 0x00, 0x52, 0x02, 0x69, 0x64, 0x12, 0x32, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x04, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x1e, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72,
+	0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74,
+	0x4b, 0x65, 0x79, 0x48, 0x00, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x42, 0x07, 0x0a, 0x05, 0x70, 0x61,
+	0x72, 0x61, 0x6d, 0x22, 0x4a, 0x0a, 0x11, 0x47, 0x65, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x35, 0x0a, 0x07, 0x72, 0x65, 0x73, 0x75,
+	0x6c, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x61, 0x73, 0x65, 0x72,
+	0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e,
+	0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x52, 0x07, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x73, 0x22,
+	0x47, 0x0a, 0x10, 0x53, 0x65, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x12, 0x33, 0x0a, 0x06, 0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72,
+	0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74,
+	0x52, 0x06, 0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x22, 0x4a, 0x0a, 0x11, 0x53, 0x65, 0x74, 0x4f,
+	0x62, 0x6a, 0x65, 0x63, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x35, 0x0a,
+	0x07, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1b,
+	0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72,
+	0x79, 0x2e, 0x76, 0x32, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x52, 0x07, 0x72, 0x65, 0x73,
+	0x75, 0x6c, 0x74, 0x73, 0x22, 0x64, 0x0a, 0x13, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4f, 0x62,
+	0x6a, 0x65, 0x63, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x10, 0x0a, 0x02, 0x69,
+	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x48, 0x00, 0x52, 0x02, 0x69, 0x64, 0x12, 0x32, 0x0a,
+	0x03, 0x6b, 0x65, 0x79, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1e, 0x2e, 0x61, 0x73, 0x65,
+	0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32,
+	0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x4b, 0x65, 0x79, 0x48, 0x00, 0x52, 0x03, 0x6b, 0x65,
+	0x79, 0x42, 0x07, 0x0a, 0x05, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x22, 0x46, 0x0a, 0x14, 0x44, 0x65,
+	0x6c, 0x65, 0x74, 0x65, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x2e, 0x0a, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x52, 0x06, 0x72, 0x65, 0x73, 0x75,
+	0x6c, 0x74, 0x22, 0x6c, 0x0a, 0x12, 0x4c, 0x69, 0x73, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74,
+	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x48, 0x00, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x88, 0x01,
+	0x01, 0x12, 0x34, 0x0a, 0x04, 0x70, 0x61, 0x67, 0x65, 0x18, 0x09, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x20, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x76, 0x31, 0x2e,
+	0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x52, 0x04, 0x70, 0x61, 0x67, 0x65, 0x42, 0x07, 0x0a, 0x05, 0x5f, 0x74, 0x79, 0x70, 0x65,
+	0x22, 0x83, 0x01, 0x0a, 0x13, 0x4c, 0x69, 0x73, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x73,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x35, 0x0a, 0x07, 0x72, 0x65, 0x73, 0x75,
+	0x6c, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x61, 0x73, 0x65, 0x72,
+	0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e,
+	0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x52, 0x07, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x73, 0x12,
+	0x35, 0x0a, 0x04, 0x70, 0x61, 0x67, 0x65, 0x18, 0x09, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x21, 0x2e,
+	0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x61,
+	0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x52, 0x04, 0x70, 0x61, 0x67, 0x65, 0x22, 0x42, 0x0a, 0x0d, 0x47, 0x65, 0x74, 0x4f, 0x62, 0x6a,
 	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1b, 0x0a, 0x09, 0x74, 0x79, 0x70, 0x65, 0x5f,
 	0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x74, 0x79, 0x70, 0x65,
 	0x4e, 0x61, 0x6d, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x03, 0x20,
@@ -5026,230 +4808,220 @@ func file_aserto_directory_v2_directory_proto_rawDescGZIP() []byte {
 }
 
 var file_aserto_directory_v2_directory_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_aserto_directory_v2_directory_proto_msgTypes = make([]protoimpl.MessageInfo, 72)
+var file_aserto_directory_v2_directory_proto_msgTypes = make([]protoimpl.MessageInfo, 70)
 var file_aserto_directory_v2_directory_proto_goTypes = []interface{}{
 	(Opcode)(0),                                  // 0: aserto.directory.v2.Opcode
 	(*InfoRequest)(nil),                          // 1: aserto.directory.v2.InfoRequest
 	(*InfoResponse)(nil),                         // 2: aserto.directory.v2.InfoResponse
-	(*LoaderRequest)(nil),                        // 3: aserto.directory.v2.LoaderRequest
-	(*LoaderResponse)(nil),                       // 4: aserto.directory.v2.LoaderResponse
-	(*GetObjectTypeRequest)(nil),                 // 5: aserto.directory.v2.GetObjectTypeRequest
-	(*GetObjectTypeResponse)(nil),                // 6: aserto.directory.v2.GetObjectTypeResponse
-	(*SetObjectTypeRequest)(nil),                 // 7: aserto.directory.v2.SetObjectTypeRequest
-	(*SetObjectTypeResponse)(nil),                // 8: aserto.directory.v2.SetObjectTypeResponse
-	(*DeleteObjectTypeRequest)(nil),              // 9: aserto.directory.v2.DeleteObjectTypeRequest
-	(*DeleteObjectTypeResponse)(nil),             // 10: aserto.directory.v2.DeleteObjectTypeResponse
-	(*ListObjectTypesRequest)(nil),               // 11: aserto.directory.v2.ListObjectTypesRequest
-	(*ListObjectTypesResponse)(nil),              // 12: aserto.directory.v2.ListObjectTypesResponse
-	(*GetObjTypeRequest)(nil),                    // 13: aserto.directory.v2.GetObjTypeRequest
-	(*GetObjTypeResponse)(nil),                   // 14: aserto.directory.v2.GetObjTypeResponse
-	(*GetRelationTypeRequest)(nil),               // 15: aserto.directory.v2.GetRelationTypeRequest
-	(*GetRelationTypeResponse)(nil),              // 16: aserto.directory.v2.GetRelationTypeResponse
-	(*SetRelationTypeRequest)(nil),               // 17: aserto.directory.v2.SetRelationTypeRequest
-	(*SetRelationTypeResponse)(nil),              // 18: aserto.directory.v2.SetRelationTypeResponse
-	(*DeleteRelationTypeRequest)(nil),            // 19: aserto.directory.v2.DeleteRelationTypeRequest
-	(*DeleteRelationTypeResponse)(nil),           // 20: aserto.directory.v2.DeleteRelationTypeResponse
-	(*ListRelationTypesRequest)(nil),             // 21: aserto.directory.v2.ListRelationTypesRequest
-	(*ListRelationTypesResponse)(nil),            // 22: aserto.directory.v2.ListRelationTypesResponse
-	(*GetRelTypeRequest)(nil),                    // 23: aserto.directory.v2.GetRelTypeRequest
-	(*GetRelTypeResponse)(nil),                   // 24: aserto.directory.v2.GetRelTypeResponse
-	(*GetObjectRequest)(nil),                     // 25: aserto.directory.v2.GetObjectRequest
-	(*GetObjectResponse)(nil),                    // 26: aserto.directory.v2.GetObjectResponse
-	(*SetObjectRequest)(nil),                     // 27: aserto.directory.v2.SetObjectRequest
-	(*SetObjectResponse)(nil),                    // 28: aserto.directory.v2.SetObjectResponse
-	(*DeleteObjectRequest)(nil),                  // 29: aserto.directory.v2.DeleteObjectRequest
-	(*DeleteObjectResponse)(nil),                 // 30: aserto.directory.v2.DeleteObjectResponse
-	(*ListObjectsRequest)(nil),                   // 31: aserto.directory.v2.ListObjectsRequest
-	(*ListObjectsResponse)(nil),                  // 32: aserto.directory.v2.ListObjectsResponse
-	(*GetObjRequest)(nil),                        // 33: aserto.directory.v2.GetObjRequest
-	(*GetObjResponse)(nil),                       // 34: aserto.directory.v2.GetObjResponse
-	(*GetRelationRequest)(nil),                   // 35: aserto.directory.v2.GetRelationRequest
-	(*GetRelationResponse)(nil),                  // 36: aserto.directory.v2.GetRelationResponse
-	(*SetRelationRequest)(nil),                   // 37: aserto.directory.v2.SetRelationRequest
-	(*SetRelationResponse)(nil),                  // 38: aserto.directory.v2.SetRelationResponse
-	(*DeleteRelationRequest)(nil),                // 39: aserto.directory.v2.DeleteRelationRequest
-	(*DeleteRelationResponse)(nil),               // 40: aserto.directory.v2.DeleteRelationResponse
-	(*ListRelationsRequest)(nil),                 // 41: aserto.directory.v2.ListRelationsRequest
-	(*ListRelationsResponse)(nil),                // 42: aserto.directory.v2.ListRelationsResponse
-	(*GetRelRequest)(nil),                        // 43: aserto.directory.v2.GetRelRequest
-	(*GetRelResponse)(nil),                       // 44: aserto.directory.v2.GetRelResponse
-	(*GetPermissionRequest)(nil),                 // 45: aserto.directory.v2.GetPermissionRequest
-	(*GetPermissionResponse)(nil),                // 46: aserto.directory.v2.GetPermissionResponse
-	(*SetPermissionRequest)(nil),                 // 47: aserto.directory.v2.SetPermissionRequest
-	(*SetPermissionResponse)(nil),                // 48: aserto.directory.v2.SetPermissionResponse
-	(*DeletePermissionRequest)(nil),              // 49: aserto.directory.v2.DeletePermissionRequest
-	(*DeletePermissionResponse)(nil),             // 50: aserto.directory.v2.DeletePermissionResponse
-	(*ListPermissionsRequest)(nil),               // 51: aserto.directory.v2.ListPermissionsRequest
-	(*ListPermissionsResponse)(nil),              // 52: aserto.directory.v2.ListPermissionsResponse
-	(*GetPermRequest)(nil),                       // 53: aserto.directory.v2.GetPermRequest
-	(*GetPermResponse)(nil),                      // 54: aserto.directory.v2.GetPermResponse
-	(*GetRelationTypePermissionRequest)(nil),     // 55: aserto.directory.v2.GetRelationTypePermissionRequest
-	(*GetRelationTypePermissionResponse)(nil),    // 56: aserto.directory.v2.GetRelationTypePermissionResponse
-	(*SetRelationTypePermissionRequest)(nil),     // 57: aserto.directory.v2.SetRelationTypePermissionRequest
-	(*SetRelationTypePermissionResponse)(nil),    // 58: aserto.directory.v2.SetRelationTypePermissionResponse
-	(*DeleteRelationTypePermissionRequest)(nil),  // 59: aserto.directory.v2.DeleteRelationTypePermissionRequest
-	(*DeleteRelationTypePermissionResponse)(nil), // 60: aserto.directory.v2.DeleteRelationTypePermissionResponse
-	(*ListRelationTypePermissionsRequest)(nil),   // 61: aserto.directory.v2.ListRelationTypePermissionsRequest
-	(*ListRelationTypePermissionsResponse)(nil),  // 62: aserto.directory.v2.ListRelationTypePermissionsResponse
-	(*CheckRequest)(nil),                         // 63: aserto.directory.v2.CheckRequest
-	(*CheckResponse)(nil),                        // 64: aserto.directory.v2.CheckResponse
-	(*CheckRelationRequest)(nil),                 // 65: aserto.directory.v2.CheckRelationRequest
-	(*CheckRelationResponse)(nil),                // 66: aserto.directory.v2.CheckRelationResponse
-	(*CheckPermissionRequest)(nil),               // 67: aserto.directory.v2.CheckPermissionRequest
-	(*CheckPermissionResponse)(nil),              // 68: aserto.directory.v2.CheckPermissionResponse
-	(*ListObjectGraphRequest)(nil),               // 69: aserto.directory.v2.ListObjectGraphRequest
-	(*ListObjectGraphResponse)(nil),              // 70: aserto.directory.v2.ListObjectGraphResponse
-	(*GetGraphRequest)(nil),                      // 71: aserto.directory.v2.GetGraphRequest
-	(*GetGraphResponse)(nil),                     // 72: aserto.directory.v2.GetGraphResponse
-	(*v1.BuildInfo)(nil),                         // 73: aserto.common.info.v1.BuildInfo
-	(*Object)(nil),                               // 74: aserto.directory.v2.Object
-	(*ObjectType)(nil),                           // 75: aserto.directory.v2.ObjectType
-	(*Relation)(nil),                             // 76: aserto.directory.v2.Relation
+	(*GetObjectTypeRequest)(nil),                 // 3: aserto.directory.v2.GetObjectTypeRequest
+	(*GetObjectTypeResponse)(nil),                // 4: aserto.directory.v2.GetObjectTypeResponse
+	(*SetObjectTypeRequest)(nil),                 // 5: aserto.directory.v2.SetObjectTypeRequest
+	(*SetObjectTypeResponse)(nil),                // 6: aserto.directory.v2.SetObjectTypeResponse
+	(*DeleteObjectTypeRequest)(nil),              // 7: aserto.directory.v2.DeleteObjectTypeRequest
+	(*DeleteObjectTypeResponse)(nil),             // 8: aserto.directory.v2.DeleteObjectTypeResponse
+	(*ListObjectTypesRequest)(nil),               // 9: aserto.directory.v2.ListObjectTypesRequest
+	(*ListObjectTypesResponse)(nil),              // 10: aserto.directory.v2.ListObjectTypesResponse
+	(*GetObjTypeRequest)(nil),                    // 11: aserto.directory.v2.GetObjTypeRequest
+	(*GetObjTypeResponse)(nil),                   // 12: aserto.directory.v2.GetObjTypeResponse
+	(*GetRelationTypeRequest)(nil),               // 13: aserto.directory.v2.GetRelationTypeRequest
+	(*GetRelationTypeResponse)(nil),              // 14: aserto.directory.v2.GetRelationTypeResponse
+	(*SetRelationTypeRequest)(nil),               // 15: aserto.directory.v2.SetRelationTypeRequest
+	(*SetRelationTypeResponse)(nil),              // 16: aserto.directory.v2.SetRelationTypeResponse
+	(*DeleteRelationTypeRequest)(nil),            // 17: aserto.directory.v2.DeleteRelationTypeRequest
+	(*DeleteRelationTypeResponse)(nil),           // 18: aserto.directory.v2.DeleteRelationTypeResponse
+	(*ListRelationTypesRequest)(nil),             // 19: aserto.directory.v2.ListRelationTypesRequest
+	(*ListRelationTypesResponse)(nil),            // 20: aserto.directory.v2.ListRelationTypesResponse
+	(*GetRelTypeRequest)(nil),                    // 21: aserto.directory.v2.GetRelTypeRequest
+	(*GetRelTypeResponse)(nil),                   // 22: aserto.directory.v2.GetRelTypeResponse
+	(*GetObjectRequest)(nil),                     // 23: aserto.directory.v2.GetObjectRequest
+	(*GetObjectResponse)(nil),                    // 24: aserto.directory.v2.GetObjectResponse
+	(*SetObjectRequest)(nil),                     // 25: aserto.directory.v2.SetObjectRequest
+	(*SetObjectResponse)(nil),                    // 26: aserto.directory.v2.SetObjectResponse
+	(*DeleteObjectRequest)(nil),                  // 27: aserto.directory.v2.DeleteObjectRequest
+	(*DeleteObjectResponse)(nil),                 // 28: aserto.directory.v2.DeleteObjectResponse
+	(*ListObjectsRequest)(nil),                   // 29: aserto.directory.v2.ListObjectsRequest
+	(*ListObjectsResponse)(nil),                  // 30: aserto.directory.v2.ListObjectsResponse
+	(*GetObjRequest)(nil),                        // 31: aserto.directory.v2.GetObjRequest
+	(*GetObjResponse)(nil),                       // 32: aserto.directory.v2.GetObjResponse
+	(*GetRelationRequest)(nil),                   // 33: aserto.directory.v2.GetRelationRequest
+	(*GetRelationResponse)(nil),                  // 34: aserto.directory.v2.GetRelationResponse
+	(*SetRelationRequest)(nil),                   // 35: aserto.directory.v2.SetRelationRequest
+	(*SetRelationResponse)(nil),                  // 36: aserto.directory.v2.SetRelationResponse
+	(*DeleteRelationRequest)(nil),                // 37: aserto.directory.v2.DeleteRelationRequest
+	(*DeleteRelationResponse)(nil),               // 38: aserto.directory.v2.DeleteRelationResponse
+	(*ListRelationsRequest)(nil),                 // 39: aserto.directory.v2.ListRelationsRequest
+	(*ListRelationsResponse)(nil),                // 40: aserto.directory.v2.ListRelationsResponse
+	(*GetRelRequest)(nil),                        // 41: aserto.directory.v2.GetRelRequest
+	(*GetRelResponse)(nil),                       // 42: aserto.directory.v2.GetRelResponse
+	(*GetPermissionRequest)(nil),                 // 43: aserto.directory.v2.GetPermissionRequest
+	(*GetPermissionResponse)(nil),                // 44: aserto.directory.v2.GetPermissionResponse
+	(*SetPermissionRequest)(nil),                 // 45: aserto.directory.v2.SetPermissionRequest
+	(*SetPermissionResponse)(nil),                // 46: aserto.directory.v2.SetPermissionResponse
+	(*DeletePermissionRequest)(nil),              // 47: aserto.directory.v2.DeletePermissionRequest
+	(*DeletePermissionResponse)(nil),             // 48: aserto.directory.v2.DeletePermissionResponse
+	(*ListPermissionsRequest)(nil),               // 49: aserto.directory.v2.ListPermissionsRequest
+	(*ListPermissionsResponse)(nil),              // 50: aserto.directory.v2.ListPermissionsResponse
+	(*GetPermRequest)(nil),                       // 51: aserto.directory.v2.GetPermRequest
+	(*GetPermResponse)(nil),                      // 52: aserto.directory.v2.GetPermResponse
+	(*GetRelationTypePermissionRequest)(nil),     // 53: aserto.directory.v2.GetRelationTypePermissionRequest
+	(*GetRelationTypePermissionResponse)(nil),    // 54: aserto.directory.v2.GetRelationTypePermissionResponse
+	(*SetRelationTypePermissionRequest)(nil),     // 55: aserto.directory.v2.SetRelationTypePermissionRequest
+	(*SetRelationTypePermissionResponse)(nil),    // 56: aserto.directory.v2.SetRelationTypePermissionResponse
+	(*DeleteRelationTypePermissionRequest)(nil),  // 57: aserto.directory.v2.DeleteRelationTypePermissionRequest
+	(*DeleteRelationTypePermissionResponse)(nil), // 58: aserto.directory.v2.DeleteRelationTypePermissionResponse
+	(*ListRelationTypePermissionsRequest)(nil),   // 59: aserto.directory.v2.ListRelationTypePermissionsRequest
+	(*ListRelationTypePermissionsResponse)(nil),  // 60: aserto.directory.v2.ListRelationTypePermissionsResponse
+	(*CheckRequest)(nil),                         // 61: aserto.directory.v2.CheckRequest
+	(*CheckResponse)(nil),                        // 62: aserto.directory.v2.CheckResponse
+	(*CheckRelationRequest)(nil),                 // 63: aserto.directory.v2.CheckRelationRequest
+	(*CheckRelationResponse)(nil),                // 64: aserto.directory.v2.CheckRelationResponse
+	(*CheckPermissionRequest)(nil),               // 65: aserto.directory.v2.CheckPermissionRequest
+	(*CheckPermissionResponse)(nil),              // 66: aserto.directory.v2.CheckPermissionResponse
+	(*ListObjectGraphRequest)(nil),               // 67: aserto.directory.v2.ListObjectGraphRequest
+	(*ListObjectGraphResponse)(nil),              // 68: aserto.directory.v2.ListObjectGraphResponse
+	(*GetGraphRequest)(nil),                      // 69: aserto.directory.v2.GetGraphRequest
+	(*GetGraphResponse)(nil),                     // 70: aserto.directory.v2.GetGraphResponse
+	(*v1.BuildInfo)(nil),                         // 71: aserto.common.info.v1.BuildInfo
+	(*ObjectType)(nil),                           // 72: aserto.directory.v2.ObjectType
+	(*emptypb.Empty)(nil),                        // 73: google.protobuf.Empty
+	(*v11.PaginationRequest)(nil),                // 74: aserto.api.v1.PaginationRequest
+	(*v11.PaginationResponse)(nil),               // 75: aserto.api.v1.PaginationResponse
+	(*RelationTypeKey)(nil),                      // 76: aserto.directory.v2.RelationTypeKey
 	(*RelationType)(nil),                         // 77: aserto.directory.v2.RelationType
-	(*Permission)(nil),                           // 78: aserto.directory.v2.Permission
-	(*RelationTypePermission)(nil),               // 79: aserto.directory.v2.RelationTypePermission
-	(*status.Status)(nil),                        // 80: google.rpc.Status
-	(*emptypb.Empty)(nil),                        // 81: google.protobuf.Empty
-	(*v11.PaginationRequest)(nil),                // 82: aserto.api.v1.PaginationRequest
-	(*v11.PaginationResponse)(nil),               // 83: aserto.api.v1.PaginationResponse
-	(*RelationTypeKey)(nil),                      // 84: aserto.directory.v2.RelationTypeKey
-	(*ObjectKey)(nil),                            // 85: aserto.directory.v2.ObjectKey
-	(*ObjectDependency)(nil),                     // 86: aserto.directory.v2.ObjectDependency
+	(*ObjectKey)(nil),                            // 78: aserto.directory.v2.ObjectKey
+	(*Object)(nil),                               // 79: aserto.directory.v2.Object
+	(*Relation)(nil),                             // 80: aserto.directory.v2.Relation
+	(*Permission)(nil),                           // 81: aserto.directory.v2.Permission
+	(*RelationTypePermission)(nil),               // 82: aserto.directory.v2.RelationTypePermission
+	(*ObjectDependency)(nil),                     // 83: aserto.directory.v2.ObjectDependency
 }
 var file_aserto_directory_v2_directory_proto_depIdxs = []int32{
-	73, // 0: aserto.directory.v2.InfoResponse.build:type_name -> aserto.common.info.v1.BuildInfo
-	0,  // 1: aserto.directory.v2.LoaderRequest.op_code:type_name -> aserto.directory.v2.Opcode
-	74, // 2: aserto.directory.v2.LoaderRequest.object:type_name -> aserto.directory.v2.Object
-	75, // 3: aserto.directory.v2.LoaderRequest.object_type:type_name -> aserto.directory.v2.ObjectType
-	76, // 4: aserto.directory.v2.LoaderRequest.relation:type_name -> aserto.directory.v2.Relation
-	77, // 5: aserto.directory.v2.LoaderRequest.relation_type:type_name -> aserto.directory.v2.RelationType
-	78, // 6: aserto.directory.v2.LoaderRequest.permission:type_name -> aserto.directory.v2.Permission
-	79, // 7: aserto.directory.v2.LoaderRequest.relation_type_permission:type_name -> aserto.directory.v2.RelationTypePermission
-	80, // 8: aserto.directory.v2.LoaderResponse.error:type_name -> google.rpc.Status
-	75, // 9: aserto.directory.v2.GetObjectTypeResponse.results:type_name -> aserto.directory.v2.ObjectType
-	75, // 10: aserto.directory.v2.SetObjectTypeRequest.object_type:type_name -> aserto.directory.v2.ObjectType
-	75, // 11: aserto.directory.v2.SetObjectTypeResponse.results:type_name -> aserto.directory.v2.ObjectType
-	81, // 12: aserto.directory.v2.DeleteObjectTypeResponse.result:type_name -> google.protobuf.Empty
-	82, // 13: aserto.directory.v2.ListObjectTypesRequest.page:type_name -> aserto.api.v1.PaginationRequest
-	75, // 14: aserto.directory.v2.ListObjectTypesResponse.results:type_name -> aserto.directory.v2.ObjectType
-	83, // 15: aserto.directory.v2.ListObjectTypesResponse.page:type_name -> aserto.api.v1.PaginationResponse
-	84, // 16: aserto.directory.v2.GetRelationTypeRequest.key:type_name -> aserto.directory.v2.RelationTypeKey
-	77, // 17: aserto.directory.v2.GetRelationTypeResponse.results:type_name -> aserto.directory.v2.RelationType
-	77, // 18: aserto.directory.v2.SetRelationTypeRequest.relation_type:type_name -> aserto.directory.v2.RelationType
-	77, // 19: aserto.directory.v2.SetRelationTypeResponse.results:type_name -> aserto.directory.v2.RelationType
-	84, // 20: aserto.directory.v2.DeleteRelationTypeRequest.key:type_name -> aserto.directory.v2.RelationTypeKey
-	81, // 21: aserto.directory.v2.DeleteRelationTypeResponse.result:type_name -> google.protobuf.Empty
-	82, // 22: aserto.directory.v2.ListRelationTypesRequest.page:type_name -> aserto.api.v1.PaginationRequest
-	77, // 23: aserto.directory.v2.ListRelationTypesResponse.results:type_name -> aserto.directory.v2.RelationType
-	83, // 24: aserto.directory.v2.ListRelationTypesResponse.page:type_name -> aserto.api.v1.PaginationResponse
-	85, // 25: aserto.directory.v2.GetObjectRequest.key:type_name -> aserto.directory.v2.ObjectKey
-	74, // 26: aserto.directory.v2.GetObjectResponse.results:type_name -> aserto.directory.v2.Object
-	74, // 27: aserto.directory.v2.SetObjectRequest.object:type_name -> aserto.directory.v2.Object
-	74, // 28: aserto.directory.v2.SetObjectResponse.results:type_name -> aserto.directory.v2.Object
-	85, // 29: aserto.directory.v2.DeleteObjectRequest.key:type_name -> aserto.directory.v2.ObjectKey
-	81, // 30: aserto.directory.v2.DeleteObjectResponse.result:type_name -> google.protobuf.Empty
-	82, // 31: aserto.directory.v2.ListObjectsRequest.page:type_name -> aserto.api.v1.PaginationRequest
-	74, // 32: aserto.directory.v2.ListObjectsResponse.results:type_name -> aserto.directory.v2.Object
-	74, // 33: aserto.directory.v2.GetObjResponse.results:type_name -> aserto.directory.v2.Object
-	76, // 34: aserto.directory.v2.GetRelationResponse.results:type_name -> aserto.directory.v2.Relation
-	76, // 35: aserto.directory.v2.SetRelationRequest.relation:type_name -> aserto.directory.v2.Relation
-	76, // 36: aserto.directory.v2.SetRelationResponse.results:type_name -> aserto.directory.v2.Relation
-	81, // 37: aserto.directory.v2.DeleteRelationResponse.result:type_name -> google.protobuf.Empty
-	82, // 38: aserto.directory.v2.ListRelationsRequest.page:type_name -> aserto.api.v1.PaginationRequest
-	76, // 39: aserto.directory.v2.ListRelationsResponse.results:type_name -> aserto.directory.v2.Relation
-	83, // 40: aserto.directory.v2.ListRelationsResponse.page:type_name -> aserto.api.v1.PaginationResponse
-	76, // 41: aserto.directory.v2.GetRelResponse.results:type_name -> aserto.directory.v2.Relation
-	78, // 42: aserto.directory.v2.GetPermissionResponse.results:type_name -> aserto.directory.v2.Permission
-	78, // 43: aserto.directory.v2.SetPermissionRequest.permission:type_name -> aserto.directory.v2.Permission
-	78, // 44: aserto.directory.v2.SetPermissionResponse.results:type_name -> aserto.directory.v2.Permission
-	81, // 45: aserto.directory.v2.DeletePermissionResponse.result:type_name -> google.protobuf.Empty
-	82, // 46: aserto.directory.v2.ListPermissionsRequest.page:type_name -> aserto.api.v1.PaginationRequest
-	78, // 47: aserto.directory.v2.ListPermissionsResponse.results:type_name -> aserto.directory.v2.Permission
-	83, // 48: aserto.directory.v2.ListPermissionsResponse.page:type_name -> aserto.api.v1.PaginationResponse
-	79, // 49: aserto.directory.v2.GetRelationTypePermissionResponse.results:type_name -> aserto.directory.v2.RelationTypePermission
-	79, // 50: aserto.directory.v2.SetRelationTypePermissionRequest.relation_type_permission:type_name -> aserto.directory.v2.RelationTypePermission
-	79, // 51: aserto.directory.v2.SetRelationTypePermissionResponse.results:type_name -> aserto.directory.v2.RelationTypePermission
-	81, // 52: aserto.directory.v2.DeleteRelationTypePermissionResponse.result:type_name -> google.protobuf.Empty
-	82, // 53: aserto.directory.v2.ListRelationTypePermissionsRequest.page:type_name -> aserto.api.v1.PaginationRequest
-	79, // 54: aserto.directory.v2.ListRelationTypePermissionsResponse.results:type_name -> aserto.directory.v2.RelationTypePermission
-	83, // 55: aserto.directory.v2.ListRelationTypePermissionsResponse.page:type_name -> aserto.api.v1.PaginationResponse
-	86, // 56: aserto.directory.v2.ListObjectGraphResponse.results:type_name -> aserto.directory.v2.ObjectDependency
-	86, // 57: aserto.directory.v2.GetGraphResponse.results:type_name -> aserto.directory.v2.ObjectDependency
-	5,  // 58: aserto.directory.v2.Directory.GetObjectType:input_type -> aserto.directory.v2.GetObjectTypeRequest
-	7,  // 59: aserto.directory.v2.Directory.SetObjectType:input_type -> aserto.directory.v2.SetObjectTypeRequest
-	9,  // 60: aserto.directory.v2.Directory.DeleteObjectType:input_type -> aserto.directory.v2.DeleteObjectTypeRequest
-	11, // 61: aserto.directory.v2.Directory.ListObjectTypes:input_type -> aserto.directory.v2.ListObjectTypesRequest
-	13, // 62: aserto.directory.v2.Directory.GetObjType:input_type -> aserto.directory.v2.GetObjTypeRequest
-	15, // 63: aserto.directory.v2.Directory.GetRelationType:input_type -> aserto.directory.v2.GetRelationTypeRequest
-	17, // 64: aserto.directory.v2.Directory.SetRelationType:input_type -> aserto.directory.v2.SetRelationTypeRequest
-	19, // 65: aserto.directory.v2.Directory.DeleteRelationType:input_type -> aserto.directory.v2.DeleteRelationTypeRequest
-	21, // 66: aserto.directory.v2.Directory.ListRelationTypes:input_type -> aserto.directory.v2.ListRelationTypesRequest
-	23, // 67: aserto.directory.v2.Directory.GetRelType:input_type -> aserto.directory.v2.GetRelTypeRequest
-	45, // 68: aserto.directory.v2.Directory.GetPermission:input_type -> aserto.directory.v2.GetPermissionRequest
-	47, // 69: aserto.directory.v2.Directory.SetPermission:input_type -> aserto.directory.v2.SetPermissionRequest
-	49, // 70: aserto.directory.v2.Directory.DeletePermission:input_type -> aserto.directory.v2.DeletePermissionRequest
-	51, // 71: aserto.directory.v2.Directory.ListPermissions:input_type -> aserto.directory.v2.ListPermissionsRequest
-	53, // 72: aserto.directory.v2.Directory.GetPerm:input_type -> aserto.directory.v2.GetPermRequest
-	55, // 73: aserto.directory.v2.Directory.GetRelationTypePermission:input_type -> aserto.directory.v2.GetRelationTypePermissionRequest
-	57, // 74: aserto.directory.v2.Directory.SetRelationTypePermission:input_type -> aserto.directory.v2.SetRelationTypePermissionRequest
-	59, // 75: aserto.directory.v2.Directory.DeleteRelationTypePermission:input_type -> aserto.directory.v2.DeleteRelationTypePermissionRequest
-	61, // 76: aserto.directory.v2.Directory.ListRelationTypePermissions:input_type -> aserto.directory.v2.ListRelationTypePermissionsRequest
-	25, // 77: aserto.directory.v2.Directory.GetObject:input_type -> aserto.directory.v2.GetObjectRequest
-	27, // 78: aserto.directory.v2.Directory.SetObject:input_type -> aserto.directory.v2.SetObjectRequest
-	29, // 79: aserto.directory.v2.Directory.DeleteObject:input_type -> aserto.directory.v2.DeleteObjectRequest
-	31, // 80: aserto.directory.v2.Directory.ListObjects:input_type -> aserto.directory.v2.ListObjectsRequest
-	33, // 81: aserto.directory.v2.Directory.GetObj:input_type -> aserto.directory.v2.GetObjRequest
-	35, // 82: aserto.directory.v2.Directory.GetRelation:input_type -> aserto.directory.v2.GetRelationRequest
-	37, // 83: aserto.directory.v2.Directory.SetRelation:input_type -> aserto.directory.v2.SetRelationRequest
-	39, // 84: aserto.directory.v2.Directory.DeleteRelation:input_type -> aserto.directory.v2.DeleteRelationRequest
-	41, // 85: aserto.directory.v2.Directory.ListRelations:input_type -> aserto.directory.v2.ListRelationsRequest
-	43, // 86: aserto.directory.v2.Directory.GetRel:input_type -> aserto.directory.v2.GetRelRequest
-	69, // 87: aserto.directory.v2.Directory.ListObjectGraph:input_type -> aserto.directory.v2.ListObjectGraphRequest
-	71, // 88: aserto.directory.v2.Directory.GetGraph:input_type -> aserto.directory.v2.GetGraphRequest
-	63, // 89: aserto.directory.v2.Directory.Check:input_type -> aserto.directory.v2.CheckRequest
-	65, // 90: aserto.directory.v2.Directory.CheckRelation:input_type -> aserto.directory.v2.CheckRelationRequest
-	67, // 91: aserto.directory.v2.Directory.CheckPermission:input_type -> aserto.directory.v2.CheckPermissionRequest
-	1,  // 92: aserto.directory.v2.Directory.Info:input_type -> aserto.directory.v2.InfoRequest
-	6,  // 93: aserto.directory.v2.Directory.GetObjectType:output_type -> aserto.directory.v2.GetObjectTypeResponse
-	8,  // 94: aserto.directory.v2.Directory.SetObjectType:output_type -> aserto.directory.v2.SetObjectTypeResponse
-	10, // 95: aserto.directory.v2.Directory.DeleteObjectType:output_type -> aserto.directory.v2.DeleteObjectTypeResponse
-	12, // 96: aserto.directory.v2.Directory.ListObjectTypes:output_type -> aserto.directory.v2.ListObjectTypesResponse
-	14, // 97: aserto.directory.v2.Directory.GetObjType:output_type -> aserto.directory.v2.GetObjTypeResponse
-	16, // 98: aserto.directory.v2.Directory.GetRelationType:output_type -> aserto.directory.v2.GetRelationTypeResponse
-	18, // 99: aserto.directory.v2.Directory.SetRelationType:output_type -> aserto.directory.v2.SetRelationTypeResponse
-	20, // 100: aserto.directory.v2.Directory.DeleteRelationType:output_type -> aserto.directory.v2.DeleteRelationTypeResponse
-	22, // 101: aserto.directory.v2.Directory.ListRelationTypes:output_type -> aserto.directory.v2.ListRelationTypesResponse
-	24, // 102: aserto.directory.v2.Directory.GetRelType:output_type -> aserto.directory.v2.GetRelTypeResponse
-	46, // 103: aserto.directory.v2.Directory.GetPermission:output_type -> aserto.directory.v2.GetPermissionResponse
-	48, // 104: aserto.directory.v2.Directory.SetPermission:output_type -> aserto.directory.v2.SetPermissionResponse
-	50, // 105: aserto.directory.v2.Directory.DeletePermission:output_type -> aserto.directory.v2.DeletePermissionResponse
-	52, // 106: aserto.directory.v2.Directory.ListPermissions:output_type -> aserto.directory.v2.ListPermissionsResponse
-	54, // 107: aserto.directory.v2.Directory.GetPerm:output_type -> aserto.directory.v2.GetPermResponse
-	56, // 108: aserto.directory.v2.Directory.GetRelationTypePermission:output_type -> aserto.directory.v2.GetRelationTypePermissionResponse
-	58, // 109: aserto.directory.v2.Directory.SetRelationTypePermission:output_type -> aserto.directory.v2.SetRelationTypePermissionResponse
-	60, // 110: aserto.directory.v2.Directory.DeleteRelationTypePermission:output_type -> aserto.directory.v2.DeleteRelationTypePermissionResponse
-	62, // 111: aserto.directory.v2.Directory.ListRelationTypePermissions:output_type -> aserto.directory.v2.ListRelationTypePermissionsResponse
-	26, // 112: aserto.directory.v2.Directory.GetObject:output_type -> aserto.directory.v2.GetObjectResponse
-	28, // 113: aserto.directory.v2.Directory.SetObject:output_type -> aserto.directory.v2.SetObjectResponse
-	30, // 114: aserto.directory.v2.Directory.DeleteObject:output_type -> aserto.directory.v2.DeleteObjectResponse
-	32, // 115: aserto.directory.v2.Directory.ListObjects:output_type -> aserto.directory.v2.ListObjectsResponse
-	34, // 116: aserto.directory.v2.Directory.GetObj:output_type -> aserto.directory.v2.GetObjResponse
-	36, // 117: aserto.directory.v2.Directory.GetRelation:output_type -> aserto.directory.v2.GetRelationResponse
-	38, // 118: aserto.directory.v2.Directory.SetRelation:output_type -> aserto.directory.v2.SetRelationResponse
-	40, // 119: aserto.directory.v2.Directory.DeleteRelation:output_type -> aserto.directory.v2.DeleteRelationResponse
-	42, // 120: aserto.directory.v2.Directory.ListRelations:output_type -> aserto.directory.v2.ListRelationsResponse
-	44, // 121: aserto.directory.v2.Directory.GetRel:output_type -> aserto.directory.v2.GetRelResponse
-	70, // 122: aserto.directory.v2.Directory.ListObjectGraph:output_type -> aserto.directory.v2.ListObjectGraphResponse
-	72, // 123: aserto.directory.v2.Directory.GetGraph:output_type -> aserto.directory.v2.GetGraphResponse
-	64, // 124: aserto.directory.v2.Directory.Check:output_type -> aserto.directory.v2.CheckResponse
-	66, // 125: aserto.directory.v2.Directory.CheckRelation:output_type -> aserto.directory.v2.CheckRelationResponse
-	68, // 126: aserto.directory.v2.Directory.CheckPermission:output_type -> aserto.directory.v2.CheckPermissionResponse
-	2,  // 127: aserto.directory.v2.Directory.Info:output_type -> aserto.directory.v2.InfoResponse
-	93, // [93:128] is the sub-list for method output_type
-	58, // [58:93] is the sub-list for method input_type
-	58, // [58:58] is the sub-list for extension type_name
-	58, // [58:58] is the sub-list for extension extendee
-	0,  // [0:58] is the sub-list for field type_name
+	71, // 0: aserto.directory.v2.InfoResponse.build:type_name -> aserto.common.info.v1.BuildInfo
+	72, // 1: aserto.directory.v2.GetObjectTypeResponse.results:type_name -> aserto.directory.v2.ObjectType
+	72, // 2: aserto.directory.v2.SetObjectTypeRequest.object_type:type_name -> aserto.directory.v2.ObjectType
+	72, // 3: aserto.directory.v2.SetObjectTypeResponse.results:type_name -> aserto.directory.v2.ObjectType
+	73, // 4: aserto.directory.v2.DeleteObjectTypeResponse.result:type_name -> google.protobuf.Empty
+	74, // 5: aserto.directory.v2.ListObjectTypesRequest.page:type_name -> aserto.api.v1.PaginationRequest
+	72, // 6: aserto.directory.v2.ListObjectTypesResponse.results:type_name -> aserto.directory.v2.ObjectType
+	75, // 7: aserto.directory.v2.ListObjectTypesResponse.page:type_name -> aserto.api.v1.PaginationResponse
+	76, // 8: aserto.directory.v2.GetRelationTypeRequest.key:type_name -> aserto.directory.v2.RelationTypeKey
+	77, // 9: aserto.directory.v2.GetRelationTypeResponse.results:type_name -> aserto.directory.v2.RelationType
+	77, // 10: aserto.directory.v2.SetRelationTypeRequest.relation_type:type_name -> aserto.directory.v2.RelationType
+	77, // 11: aserto.directory.v2.SetRelationTypeResponse.results:type_name -> aserto.directory.v2.RelationType
+	76, // 12: aserto.directory.v2.DeleteRelationTypeRequest.key:type_name -> aserto.directory.v2.RelationTypeKey
+	73, // 13: aserto.directory.v2.DeleteRelationTypeResponse.result:type_name -> google.protobuf.Empty
+	74, // 14: aserto.directory.v2.ListRelationTypesRequest.page:type_name -> aserto.api.v1.PaginationRequest
+	77, // 15: aserto.directory.v2.ListRelationTypesResponse.results:type_name -> aserto.directory.v2.RelationType
+	75, // 16: aserto.directory.v2.ListRelationTypesResponse.page:type_name -> aserto.api.v1.PaginationResponse
+	78, // 17: aserto.directory.v2.GetObjectRequest.key:type_name -> aserto.directory.v2.ObjectKey
+	79, // 18: aserto.directory.v2.GetObjectResponse.results:type_name -> aserto.directory.v2.Object
+	79, // 19: aserto.directory.v2.SetObjectRequest.object:type_name -> aserto.directory.v2.Object
+	79, // 20: aserto.directory.v2.SetObjectResponse.results:type_name -> aserto.directory.v2.Object
+	78, // 21: aserto.directory.v2.DeleteObjectRequest.key:type_name -> aserto.directory.v2.ObjectKey
+	73, // 22: aserto.directory.v2.DeleteObjectResponse.result:type_name -> google.protobuf.Empty
+	74, // 23: aserto.directory.v2.ListObjectsRequest.page:type_name -> aserto.api.v1.PaginationRequest
+	79, // 24: aserto.directory.v2.ListObjectsResponse.results:type_name -> aserto.directory.v2.Object
+	75, // 25: aserto.directory.v2.ListObjectsResponse.page:type_name -> aserto.api.v1.PaginationResponse
+	79, // 26: aserto.directory.v2.GetObjResponse.results:type_name -> aserto.directory.v2.Object
+	80, // 27: aserto.directory.v2.GetRelationResponse.results:type_name -> aserto.directory.v2.Relation
+	80, // 28: aserto.directory.v2.SetRelationRequest.relation:type_name -> aserto.directory.v2.Relation
+	80, // 29: aserto.directory.v2.SetRelationResponse.results:type_name -> aserto.directory.v2.Relation
+	73, // 30: aserto.directory.v2.DeleteRelationResponse.result:type_name -> google.protobuf.Empty
+	74, // 31: aserto.directory.v2.ListRelationsRequest.page:type_name -> aserto.api.v1.PaginationRequest
+	80, // 32: aserto.directory.v2.ListRelationsResponse.results:type_name -> aserto.directory.v2.Relation
+	75, // 33: aserto.directory.v2.ListRelationsResponse.page:type_name -> aserto.api.v1.PaginationResponse
+	80, // 34: aserto.directory.v2.GetRelResponse.results:type_name -> aserto.directory.v2.Relation
+	81, // 35: aserto.directory.v2.GetPermissionResponse.results:type_name -> aserto.directory.v2.Permission
+	81, // 36: aserto.directory.v2.SetPermissionRequest.permission:type_name -> aserto.directory.v2.Permission
+	81, // 37: aserto.directory.v2.SetPermissionResponse.results:type_name -> aserto.directory.v2.Permission
+	73, // 38: aserto.directory.v2.DeletePermissionResponse.result:type_name -> google.protobuf.Empty
+	74, // 39: aserto.directory.v2.ListPermissionsRequest.page:type_name -> aserto.api.v1.PaginationRequest
+	81, // 40: aserto.directory.v2.ListPermissionsResponse.results:type_name -> aserto.directory.v2.Permission
+	75, // 41: aserto.directory.v2.ListPermissionsResponse.page:type_name -> aserto.api.v1.PaginationResponse
+	82, // 42: aserto.directory.v2.GetRelationTypePermissionResponse.results:type_name -> aserto.directory.v2.RelationTypePermission
+	82, // 43: aserto.directory.v2.SetRelationTypePermissionRequest.relation_type_permission:type_name -> aserto.directory.v2.RelationTypePermission
+	82, // 44: aserto.directory.v2.SetRelationTypePermissionResponse.results:type_name -> aserto.directory.v2.RelationTypePermission
+	73, // 45: aserto.directory.v2.DeleteRelationTypePermissionResponse.result:type_name -> google.protobuf.Empty
+	74, // 46: aserto.directory.v2.ListRelationTypePermissionsRequest.page:type_name -> aserto.api.v1.PaginationRequest
+	82, // 47: aserto.directory.v2.ListRelationTypePermissionsResponse.results:type_name -> aserto.directory.v2.RelationTypePermission
+	75, // 48: aserto.directory.v2.ListRelationTypePermissionsResponse.page:type_name -> aserto.api.v1.PaginationResponse
+	83, // 49: aserto.directory.v2.ListObjectGraphResponse.results:type_name -> aserto.directory.v2.ObjectDependency
+	83, // 50: aserto.directory.v2.GetGraphResponse.results:type_name -> aserto.directory.v2.ObjectDependency
+	3,  // 51: aserto.directory.v2.Directory.GetObjectType:input_type -> aserto.directory.v2.GetObjectTypeRequest
+	5,  // 52: aserto.directory.v2.Directory.SetObjectType:input_type -> aserto.directory.v2.SetObjectTypeRequest
+	7,  // 53: aserto.directory.v2.Directory.DeleteObjectType:input_type -> aserto.directory.v2.DeleteObjectTypeRequest
+	9,  // 54: aserto.directory.v2.Directory.ListObjectTypes:input_type -> aserto.directory.v2.ListObjectTypesRequest
+	11, // 55: aserto.directory.v2.Directory.GetObjType:input_type -> aserto.directory.v2.GetObjTypeRequest
+	13, // 56: aserto.directory.v2.Directory.GetRelationType:input_type -> aserto.directory.v2.GetRelationTypeRequest
+	15, // 57: aserto.directory.v2.Directory.SetRelationType:input_type -> aserto.directory.v2.SetRelationTypeRequest
+	17, // 58: aserto.directory.v2.Directory.DeleteRelationType:input_type -> aserto.directory.v2.DeleteRelationTypeRequest
+	19, // 59: aserto.directory.v2.Directory.ListRelationTypes:input_type -> aserto.directory.v2.ListRelationTypesRequest
+	21, // 60: aserto.directory.v2.Directory.GetRelType:input_type -> aserto.directory.v2.GetRelTypeRequest
+	43, // 61: aserto.directory.v2.Directory.GetPermission:input_type -> aserto.directory.v2.GetPermissionRequest
+	45, // 62: aserto.directory.v2.Directory.SetPermission:input_type -> aserto.directory.v2.SetPermissionRequest
+	47, // 63: aserto.directory.v2.Directory.DeletePermission:input_type -> aserto.directory.v2.DeletePermissionRequest
+	49, // 64: aserto.directory.v2.Directory.ListPermissions:input_type -> aserto.directory.v2.ListPermissionsRequest
+	51, // 65: aserto.directory.v2.Directory.GetPerm:input_type -> aserto.directory.v2.GetPermRequest
+	53, // 66: aserto.directory.v2.Directory.GetRelationTypePermission:input_type -> aserto.directory.v2.GetRelationTypePermissionRequest
+	55, // 67: aserto.directory.v2.Directory.SetRelationTypePermission:input_type -> aserto.directory.v2.SetRelationTypePermissionRequest
+	57, // 68: aserto.directory.v2.Directory.DeleteRelationTypePermission:input_type -> aserto.directory.v2.DeleteRelationTypePermissionRequest
+	59, // 69: aserto.directory.v2.Directory.ListRelationTypePermissions:input_type -> aserto.directory.v2.ListRelationTypePermissionsRequest
+	23, // 70: aserto.directory.v2.Directory.GetObject:input_type -> aserto.directory.v2.GetObjectRequest
+	25, // 71: aserto.directory.v2.Directory.SetObject:input_type -> aserto.directory.v2.SetObjectRequest
+	27, // 72: aserto.directory.v2.Directory.DeleteObject:input_type -> aserto.directory.v2.DeleteObjectRequest
+	29, // 73: aserto.directory.v2.Directory.ListObjects:input_type -> aserto.directory.v2.ListObjectsRequest
+	31, // 74: aserto.directory.v2.Directory.GetObj:input_type -> aserto.directory.v2.GetObjRequest
+	33, // 75: aserto.directory.v2.Directory.GetRelation:input_type -> aserto.directory.v2.GetRelationRequest
+	35, // 76: aserto.directory.v2.Directory.SetRelation:input_type -> aserto.directory.v2.SetRelationRequest
+	37, // 77: aserto.directory.v2.Directory.DeleteRelation:input_type -> aserto.directory.v2.DeleteRelationRequest
+	39, // 78: aserto.directory.v2.Directory.ListRelations:input_type -> aserto.directory.v2.ListRelationsRequest
+	41, // 79: aserto.directory.v2.Directory.GetRel:input_type -> aserto.directory.v2.GetRelRequest
+	67, // 80: aserto.directory.v2.Directory.ListObjectGraph:input_type -> aserto.directory.v2.ListObjectGraphRequest
+	69, // 81: aserto.directory.v2.Directory.GetGraph:input_type -> aserto.directory.v2.GetGraphRequest
+	61, // 82: aserto.directory.v2.Directory.Check:input_type -> aserto.directory.v2.CheckRequest
+	63, // 83: aserto.directory.v2.Directory.CheckRelation:input_type -> aserto.directory.v2.CheckRelationRequest
+	65, // 84: aserto.directory.v2.Directory.CheckPermission:input_type -> aserto.directory.v2.CheckPermissionRequest
+	1,  // 85: aserto.directory.v2.Directory.Info:input_type -> aserto.directory.v2.InfoRequest
+	4,  // 86: aserto.directory.v2.Directory.GetObjectType:output_type -> aserto.directory.v2.GetObjectTypeResponse
+	6,  // 87: aserto.directory.v2.Directory.SetObjectType:output_type -> aserto.directory.v2.SetObjectTypeResponse
+	8,  // 88: aserto.directory.v2.Directory.DeleteObjectType:output_type -> aserto.directory.v2.DeleteObjectTypeResponse
+	10, // 89: aserto.directory.v2.Directory.ListObjectTypes:output_type -> aserto.directory.v2.ListObjectTypesResponse
+	12, // 90: aserto.directory.v2.Directory.GetObjType:output_type -> aserto.directory.v2.GetObjTypeResponse
+	14, // 91: aserto.directory.v2.Directory.GetRelationType:output_type -> aserto.directory.v2.GetRelationTypeResponse
+	16, // 92: aserto.directory.v2.Directory.SetRelationType:output_type -> aserto.directory.v2.SetRelationTypeResponse
+	18, // 93: aserto.directory.v2.Directory.DeleteRelationType:output_type -> aserto.directory.v2.DeleteRelationTypeResponse
+	20, // 94: aserto.directory.v2.Directory.ListRelationTypes:output_type -> aserto.directory.v2.ListRelationTypesResponse
+	22, // 95: aserto.directory.v2.Directory.GetRelType:output_type -> aserto.directory.v2.GetRelTypeResponse
+	44, // 96: aserto.directory.v2.Directory.GetPermission:output_type -> aserto.directory.v2.GetPermissionResponse
+	46, // 97: aserto.directory.v2.Directory.SetPermission:output_type -> aserto.directory.v2.SetPermissionResponse
+	48, // 98: aserto.directory.v2.Directory.DeletePermission:output_type -> aserto.directory.v2.DeletePermissionResponse
+	50, // 99: aserto.directory.v2.Directory.ListPermissions:output_type -> aserto.directory.v2.ListPermissionsResponse
+	52, // 100: aserto.directory.v2.Directory.GetPerm:output_type -> aserto.directory.v2.GetPermResponse
+	54, // 101: aserto.directory.v2.Directory.GetRelationTypePermission:output_type -> aserto.directory.v2.GetRelationTypePermissionResponse
+	56, // 102: aserto.directory.v2.Directory.SetRelationTypePermission:output_type -> aserto.directory.v2.SetRelationTypePermissionResponse
+	58, // 103: aserto.directory.v2.Directory.DeleteRelationTypePermission:output_type -> aserto.directory.v2.DeleteRelationTypePermissionResponse
+	60, // 104: aserto.directory.v2.Directory.ListRelationTypePermissions:output_type -> aserto.directory.v2.ListRelationTypePermissionsResponse
+	24, // 105: aserto.directory.v2.Directory.GetObject:output_type -> aserto.directory.v2.GetObjectResponse
+	26, // 106: aserto.directory.v2.Directory.SetObject:output_type -> aserto.directory.v2.SetObjectResponse
+	28, // 107: aserto.directory.v2.Directory.DeleteObject:output_type -> aserto.directory.v2.DeleteObjectResponse
+	30, // 108: aserto.directory.v2.Directory.ListObjects:output_type -> aserto.directory.v2.ListObjectsResponse
+	32, // 109: aserto.directory.v2.Directory.GetObj:output_type -> aserto.directory.v2.GetObjResponse
+	34, // 110: aserto.directory.v2.Directory.GetRelation:output_type -> aserto.directory.v2.GetRelationResponse
+	36, // 111: aserto.directory.v2.Directory.SetRelation:output_type -> aserto.directory.v2.SetRelationResponse
+	38, // 112: aserto.directory.v2.Directory.DeleteRelation:output_type -> aserto.directory.v2.DeleteRelationResponse
+	40, // 113: aserto.directory.v2.Directory.ListRelations:output_type -> aserto.directory.v2.ListRelationsResponse
+	42, // 114: aserto.directory.v2.Directory.GetRel:output_type -> aserto.directory.v2.GetRelResponse
+	68, // 115: aserto.directory.v2.Directory.ListObjectGraph:output_type -> aserto.directory.v2.ListObjectGraphResponse
+	70, // 116: aserto.directory.v2.Directory.GetGraph:output_type -> aserto.directory.v2.GetGraphResponse
+	62, // 117: aserto.directory.v2.Directory.Check:output_type -> aserto.directory.v2.CheckResponse
+	64, // 118: aserto.directory.v2.Directory.CheckRelation:output_type -> aserto.directory.v2.CheckRelationResponse
+	66, // 119: aserto.directory.v2.Directory.CheckPermission:output_type -> aserto.directory.v2.CheckPermissionResponse
+	2,  // 120: aserto.directory.v2.Directory.Info:output_type -> aserto.directory.v2.InfoResponse
+	86, // [86:121] is the sub-list for method output_type
+	51, // [51:86] is the sub-list for method input_type
+	51, // [51:51] is the sub-list for extension type_name
+	51, // [51:51] is the sub-list for extension extendee
+	0,  // [0:51] is the sub-list for field type_name
 }
 
 func init() { file_aserto_directory_v2_directory_proto_init() }
@@ -5285,30 +5057,6 @@ func file_aserto_directory_v2_directory_proto_init() {
 			}
 		}
 		file_aserto_directory_v2_directory_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*LoaderRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_aserto_directory_v2_directory_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*LoaderResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_aserto_directory_v2_directory_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetObjectTypeRequest); i {
 			case 0:
 				return &v.state
@@ -5320,7 +5068,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetObjectTypeResponse); i {
 			case 0:
 				return &v.state
@@ -5332,7 +5080,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SetObjectTypeRequest); i {
 			case 0:
 				return &v.state
@@ -5344,7 +5092,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SetObjectTypeResponse); i {
 			case 0:
 				return &v.state
@@ -5356,7 +5104,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DeleteObjectTypeRequest); i {
 			case 0:
 				return &v.state
@@ -5368,7 +5116,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DeleteObjectTypeResponse); i {
 			case 0:
 				return &v.state
@@ -5380,7 +5128,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListObjectTypesRequest); i {
 			case 0:
 				return &v.state
@@ -5392,7 +5140,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListObjectTypesResponse); i {
 			case 0:
 				return &v.state
@@ -5404,7 +5152,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetObjTypeRequest); i {
 			case 0:
 				return &v.state
@@ -5416,7 +5164,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetObjTypeResponse); i {
 			case 0:
 				return &v.state
@@ -5428,7 +5176,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetRelationTypeRequest); i {
 			case 0:
 				return &v.state
@@ -5440,7 +5188,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetRelationTypeResponse); i {
 			case 0:
 				return &v.state
@@ -5452,7 +5200,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SetRelationTypeRequest); i {
 			case 0:
 				return &v.state
@@ -5464,7 +5212,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SetRelationTypeResponse); i {
 			case 0:
 				return &v.state
@@ -5476,7 +5224,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DeleteRelationTypeRequest); i {
 			case 0:
 				return &v.state
@@ -5488,7 +5236,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DeleteRelationTypeResponse); i {
 			case 0:
 				return &v.state
@@ -5500,7 +5248,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListRelationTypesRequest); i {
 			case 0:
 				return &v.state
@@ -5512,7 +5260,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListRelationTypesResponse); i {
 			case 0:
 				return &v.state
@@ -5524,7 +5272,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetRelTypeRequest); i {
 			case 0:
 				return &v.state
@@ -5536,7 +5284,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetRelTypeResponse); i {
 			case 0:
 				return &v.state
@@ -5548,7 +5296,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetObjectRequest); i {
 			case 0:
 				return &v.state
@@ -5560,7 +5308,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetObjectResponse); i {
 			case 0:
 				return &v.state
@@ -5572,7 +5320,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SetObjectRequest); i {
 			case 0:
 				return &v.state
@@ -5584,7 +5332,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SetObjectResponse); i {
 			case 0:
 				return &v.state
@@ -5596,7 +5344,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DeleteObjectRequest); i {
 			case 0:
 				return &v.state
@@ -5608,7 +5356,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DeleteObjectResponse); i {
 			case 0:
 				return &v.state
@@ -5620,7 +5368,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListObjectsRequest); i {
 			case 0:
 				return &v.state
@@ -5632,7 +5380,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListObjectsResponse); i {
 			case 0:
 				return &v.state
@@ -5644,7 +5392,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetObjRequest); i {
 			case 0:
 				return &v.state
@@ -5656,7 +5404,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetObjResponse); i {
 			case 0:
 				return &v.state
@@ -5668,7 +5416,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetRelationRequest); i {
 			case 0:
 				return &v.state
@@ -5680,7 +5428,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[35].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetRelationResponse); i {
 			case 0:
 				return &v.state
@@ -5692,7 +5440,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[36].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SetRelationRequest); i {
 			case 0:
 				return &v.state
@@ -5704,7 +5452,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[37].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[35].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SetRelationResponse); i {
 			case 0:
 				return &v.state
@@ -5716,7 +5464,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[38].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[36].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DeleteRelationRequest); i {
 			case 0:
 				return &v.state
@@ -5728,7 +5476,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[39].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[37].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DeleteRelationResponse); i {
 			case 0:
 				return &v.state
@@ -5740,7 +5488,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[40].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[38].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListRelationsRequest); i {
 			case 0:
 				return &v.state
@@ -5752,7 +5500,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[41].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[39].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListRelationsResponse); i {
 			case 0:
 				return &v.state
@@ -5764,7 +5512,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[42].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[40].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetRelRequest); i {
 			case 0:
 				return &v.state
@@ -5776,7 +5524,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[43].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[41].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetRelResponse); i {
 			case 0:
 				return &v.state
@@ -5788,7 +5536,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[44].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[42].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetPermissionRequest); i {
 			case 0:
 				return &v.state
@@ -5800,7 +5548,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[45].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[43].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetPermissionResponse); i {
 			case 0:
 				return &v.state
@@ -5812,7 +5560,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[46].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[44].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SetPermissionRequest); i {
 			case 0:
 				return &v.state
@@ -5824,7 +5572,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[47].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[45].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SetPermissionResponse); i {
 			case 0:
 				return &v.state
@@ -5836,7 +5584,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[48].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[46].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DeletePermissionRequest); i {
 			case 0:
 				return &v.state
@@ -5848,7 +5596,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[49].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[47].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DeletePermissionResponse); i {
 			case 0:
 				return &v.state
@@ -5860,7 +5608,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[50].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[48].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListPermissionsRequest); i {
 			case 0:
 				return &v.state
@@ -5872,7 +5620,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[51].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[49].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListPermissionsResponse); i {
 			case 0:
 				return &v.state
@@ -5884,7 +5632,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[52].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[50].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetPermRequest); i {
 			case 0:
 				return &v.state
@@ -5896,7 +5644,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[53].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[51].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetPermResponse); i {
 			case 0:
 				return &v.state
@@ -5908,7 +5656,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[54].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[52].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetRelationTypePermissionRequest); i {
 			case 0:
 				return &v.state
@@ -5920,7 +5668,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[55].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[53].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetRelationTypePermissionResponse); i {
 			case 0:
 				return &v.state
@@ -5932,7 +5680,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[56].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[54].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SetRelationTypePermissionRequest); i {
 			case 0:
 				return &v.state
@@ -5944,7 +5692,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[57].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[55].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SetRelationTypePermissionResponse); i {
 			case 0:
 				return &v.state
@@ -5956,7 +5704,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[58].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[56].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DeleteRelationTypePermissionRequest); i {
 			case 0:
 				return &v.state
@@ -5968,7 +5716,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[59].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[57].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DeleteRelationTypePermissionResponse); i {
 			case 0:
 				return &v.state
@@ -5980,7 +5728,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[60].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[58].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListRelationTypePermissionsRequest); i {
 			case 0:
 				return &v.state
@@ -5992,7 +5740,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[61].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[59].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListRelationTypePermissionsResponse); i {
 			case 0:
 				return &v.state
@@ -6004,7 +5752,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[62].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[60].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CheckRequest); i {
 			case 0:
 				return &v.state
@@ -6016,7 +5764,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[63].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[61].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CheckResponse); i {
 			case 0:
 				return &v.state
@@ -6028,7 +5776,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[64].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[62].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CheckRelationRequest); i {
 			case 0:
 				return &v.state
@@ -6040,7 +5788,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[65].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[63].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CheckRelationResponse); i {
 			case 0:
 				return &v.state
@@ -6052,7 +5800,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[66].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[64].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CheckPermissionRequest); i {
 			case 0:
 				return &v.state
@@ -6064,7 +5812,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[67].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[65].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CheckPermissionResponse); i {
 			case 0:
 				return &v.state
@@ -6076,7 +5824,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[68].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[66].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListObjectGraphRequest); i {
 			case 0:
 				return &v.state
@@ -6088,7 +5836,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[69].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[67].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListObjectGraphResponse); i {
 			case 0:
 				return &v.state
@@ -6100,7 +5848,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[70].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[68].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetGraphRequest); i {
 			case 0:
 				return &v.state
@@ -6112,7 +5860,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 				return nil
 			}
 		}
-		file_aserto_directory_v2_directory_proto_msgTypes[71].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_v2_directory_proto_msgTypes[69].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetGraphResponse); i {
 			case 0:
 				return &v.state
@@ -6126,48 +5874,40 @@ func file_aserto_directory_v2_directory_proto_init() {
 		}
 	}
 	file_aserto_directory_v2_directory_proto_msgTypes[2].OneofWrappers = []interface{}{
-		(*LoaderRequest_Object)(nil),
-		(*LoaderRequest_ObjectType)(nil),
-		(*LoaderRequest_Relation)(nil),
-		(*LoaderRequest_RelationType)(nil),
-		(*LoaderRequest_Permission)(nil),
-		(*LoaderRequest_RelationTypePermission)(nil),
-	}
-	file_aserto_directory_v2_directory_proto_msgTypes[4].OneofWrappers = []interface{}{
 		(*GetObjectTypeRequest_Id)(nil),
 		(*GetObjectTypeRequest_Name)(nil),
 	}
-	file_aserto_directory_v2_directory_proto_msgTypes[8].OneofWrappers = []interface{}{
+	file_aserto_directory_v2_directory_proto_msgTypes[6].OneofWrappers = []interface{}{
 		(*DeleteObjectTypeRequest_Id)(nil),
 		(*DeleteObjectTypeRequest_Name)(nil),
 	}
-	file_aserto_directory_v2_directory_proto_msgTypes[14].OneofWrappers = []interface{}{
+	file_aserto_directory_v2_directory_proto_msgTypes[12].OneofWrappers = []interface{}{
 		(*GetRelationTypeRequest_Id)(nil),
 		(*GetRelationTypeRequest_Key)(nil),
 	}
-	file_aserto_directory_v2_directory_proto_msgTypes[18].OneofWrappers = []interface{}{
+	file_aserto_directory_v2_directory_proto_msgTypes[16].OneofWrappers = []interface{}{
 		(*DeleteRelationTypeRequest_Id)(nil),
 		(*DeleteRelationTypeRequest_Key)(nil),
 	}
-	file_aserto_directory_v2_directory_proto_msgTypes[20].OneofWrappers = []interface{}{}
-	file_aserto_directory_v2_directory_proto_msgTypes[24].OneofWrappers = []interface{}{
+	file_aserto_directory_v2_directory_proto_msgTypes[18].OneofWrappers = []interface{}{}
+	file_aserto_directory_v2_directory_proto_msgTypes[22].OneofWrappers = []interface{}{
 		(*GetObjectRequest_Id)(nil),
 		(*GetObjectRequest_Key)(nil),
 	}
-	file_aserto_directory_v2_directory_proto_msgTypes[28].OneofWrappers = []interface{}{
+	file_aserto_directory_v2_directory_proto_msgTypes[26].OneofWrappers = []interface{}{
 		(*DeleteObjectRequest_Id)(nil),
 		(*DeleteObjectRequest_Key)(nil),
 	}
-	file_aserto_directory_v2_directory_proto_msgTypes[30].OneofWrappers = []interface{}{}
-	file_aserto_directory_v2_directory_proto_msgTypes[44].OneofWrappers = []interface{}{
+	file_aserto_directory_v2_directory_proto_msgTypes[28].OneofWrappers = []interface{}{}
+	file_aserto_directory_v2_directory_proto_msgTypes[42].OneofWrappers = []interface{}{
 		(*GetPermissionRequest_Id)(nil),
 		(*GetPermissionRequest_Permission)(nil),
 	}
-	file_aserto_directory_v2_directory_proto_msgTypes[48].OneofWrappers = []interface{}{
+	file_aserto_directory_v2_directory_proto_msgTypes[46].OneofWrappers = []interface{}{
 		(*DeletePermissionRequest_Id)(nil),
 		(*DeletePermissionRequest_Permission)(nil),
 	}
-	file_aserto_directory_v2_directory_proto_msgTypes[62].OneofWrappers = []interface{}{
+	file_aserto_directory_v2_directory_proto_msgTypes[60].OneofWrappers = []interface{}{
 		(*CheckRequest_RelationId)(nil),
 		(*CheckRequest_PermissionId)(nil),
 	}
@@ -6177,7 +5917,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_aserto_directory_v2_directory_proto_rawDesc,
 			NumEnums:      1,
-			NumMessages:   72,
+			NumMessages:   70,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
