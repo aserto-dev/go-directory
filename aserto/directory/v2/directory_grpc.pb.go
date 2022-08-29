@@ -40,11 +40,6 @@ type DirectoryClient interface {
 	DeletePermission(ctx context.Context, in *DeletePermissionRequest, opts ...grpc.CallOption) (*DeletePermissionResponse, error)
 	ListPermissions(ctx context.Context, in *ListPermissionsRequest, opts ...grpc.CallOption) (*ListPermissionsResponse, error)
 	GetPerm(ctx context.Context, in *GetPermRequest, opts ...grpc.CallOption) (*GetPermResponse, error)
-	// relation-permission methods
-	GetRelationTypePermission(ctx context.Context, in *GetRelationTypePermissionRequest, opts ...grpc.CallOption) (*GetRelationTypePermissionResponse, error)
-	SetRelationTypePermission(ctx context.Context, in *SetRelationTypePermissionRequest, opts ...grpc.CallOption) (*SetRelationTypePermissionResponse, error)
-	DeleteRelationTypePermission(ctx context.Context, in *DeleteRelationTypePermissionRequest, opts ...grpc.CallOption) (*DeleteRelationTypePermissionResponse, error)
-	ListRelationTypePermissions(ctx context.Context, in *ListRelationTypePermissionsRequest, opts ...grpc.CallOption) (*ListRelationTypePermissionsResponse, error)
 	// object methods
 	GetObject(ctx context.Context, in *GetObjectRequest, opts ...grpc.CallOption) (*GetObjectResponse, error)
 	SetObject(ctx context.Context, in *SetObjectRequest, opts ...grpc.CallOption) (*SetObjectResponse, error)
@@ -205,42 +200,6 @@ func (c *directoryClient) ListPermissions(ctx context.Context, in *ListPermissio
 func (c *directoryClient) GetPerm(ctx context.Context, in *GetPermRequest, opts ...grpc.CallOption) (*GetPermResponse, error) {
 	out := new(GetPermResponse)
 	err := c.cc.Invoke(ctx, "/aserto.directory.v2.Directory/GetPerm", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *directoryClient) GetRelationTypePermission(ctx context.Context, in *GetRelationTypePermissionRequest, opts ...grpc.CallOption) (*GetRelationTypePermissionResponse, error) {
-	out := new(GetRelationTypePermissionResponse)
-	err := c.cc.Invoke(ctx, "/aserto.directory.v2.Directory/GetRelationTypePermission", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *directoryClient) SetRelationTypePermission(ctx context.Context, in *SetRelationTypePermissionRequest, opts ...grpc.CallOption) (*SetRelationTypePermissionResponse, error) {
-	out := new(SetRelationTypePermissionResponse)
-	err := c.cc.Invoke(ctx, "/aserto.directory.v2.Directory/SetRelationTypePermission", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *directoryClient) DeleteRelationTypePermission(ctx context.Context, in *DeleteRelationTypePermissionRequest, opts ...grpc.CallOption) (*DeleteRelationTypePermissionResponse, error) {
-	out := new(DeleteRelationTypePermissionResponse)
-	err := c.cc.Invoke(ctx, "/aserto.directory.v2.Directory/DeleteRelationTypePermission", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *directoryClient) ListRelationTypePermissions(ctx context.Context, in *ListRelationTypePermissionsRequest, opts ...grpc.CallOption) (*ListRelationTypePermissionsResponse, error) {
-	out := new(ListRelationTypePermissionsResponse)
-	err := c.cc.Invoke(ctx, "/aserto.directory.v2.Directory/ListRelationTypePermissions", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -413,11 +372,6 @@ type DirectoryServer interface {
 	DeletePermission(context.Context, *DeletePermissionRequest) (*DeletePermissionResponse, error)
 	ListPermissions(context.Context, *ListPermissionsRequest) (*ListPermissionsResponse, error)
 	GetPerm(context.Context, *GetPermRequest) (*GetPermResponse, error)
-	// relation-permission methods
-	GetRelationTypePermission(context.Context, *GetRelationTypePermissionRequest) (*GetRelationTypePermissionResponse, error)
-	SetRelationTypePermission(context.Context, *SetRelationTypePermissionRequest) (*SetRelationTypePermissionResponse, error)
-	DeleteRelationTypePermission(context.Context, *DeleteRelationTypePermissionRequest) (*DeleteRelationTypePermissionResponse, error)
-	ListRelationTypePermissions(context.Context, *ListRelationTypePermissionsRequest) (*ListRelationTypePermissionsResponse, error)
 	// object methods
 	GetObject(context.Context, *GetObjectRequest) (*GetObjectResponse, error)
 	SetObject(context.Context, *SetObjectRequest) (*SetObjectResponse, error)
@@ -489,18 +443,6 @@ func (UnimplementedDirectoryServer) ListPermissions(context.Context, *ListPermis
 }
 func (UnimplementedDirectoryServer) GetPerm(context.Context, *GetPermRequest) (*GetPermResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPerm not implemented")
-}
-func (UnimplementedDirectoryServer) GetRelationTypePermission(context.Context, *GetRelationTypePermissionRequest) (*GetRelationTypePermissionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetRelationTypePermission not implemented")
-}
-func (UnimplementedDirectoryServer) SetRelationTypePermission(context.Context, *SetRelationTypePermissionRequest) (*SetRelationTypePermissionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SetRelationTypePermission not implemented")
-}
-func (UnimplementedDirectoryServer) DeleteRelationTypePermission(context.Context, *DeleteRelationTypePermissionRequest) (*DeleteRelationTypePermissionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteRelationTypePermission not implemented")
-}
-func (UnimplementedDirectoryServer) ListRelationTypePermissions(context.Context, *ListRelationTypePermissionsRequest) (*ListRelationTypePermissionsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListRelationTypePermissions not implemented")
 }
 func (UnimplementedDirectoryServer) GetObject(context.Context, *GetObjectRequest) (*GetObjectResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetObject not implemented")
@@ -828,78 +770,6 @@ func _Directory_GetPerm_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DirectoryServer).GetPerm(ctx, req.(*GetPermRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Directory_GetRelationTypePermission_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetRelationTypePermissionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DirectoryServer).GetRelationTypePermission(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/aserto.directory.v2.Directory/GetRelationTypePermission",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DirectoryServer).GetRelationTypePermission(ctx, req.(*GetRelationTypePermissionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Directory_SetRelationTypePermission_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SetRelationTypePermissionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DirectoryServer).SetRelationTypePermission(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/aserto.directory.v2.Directory/SetRelationTypePermission",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DirectoryServer).SetRelationTypePermission(ctx, req.(*SetRelationTypePermissionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Directory_DeleteRelationTypePermission_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteRelationTypePermissionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DirectoryServer).DeleteRelationTypePermission(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/aserto.directory.v2.Directory/DeleteRelationTypePermission",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DirectoryServer).DeleteRelationTypePermission(ctx, req.(*DeleteRelationTypePermissionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Directory_ListRelationTypePermissions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListRelationTypePermissionsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DirectoryServer).ListRelationTypePermissions(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/aserto.directory.v2.Directory/ListRelationTypePermissions",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DirectoryServer).ListRelationTypePermissions(ctx, req.(*ListRelationTypePermissionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1258,22 +1128,6 @@ var Directory_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPerm",
 			Handler:    _Directory_GetPerm_Handler,
-		},
-		{
-			MethodName: "GetRelationTypePermission",
-			Handler:    _Directory_GetRelationTypePermission_Handler,
-		},
-		{
-			MethodName: "SetRelationTypePermission",
-			Handler:    _Directory_SetRelationTypePermission_Handler,
-		},
-		{
-			MethodName: "DeleteRelationTypePermission",
-			Handler:    _Directory_DeleteRelationTypePermission_Handler,
-		},
-		{
-			MethodName: "ListRelationTypePermissions",
-			Handler:    _Directory_ListRelationTypePermissions_Handler,
 		},
 		{
 			MethodName: "GetObject",
