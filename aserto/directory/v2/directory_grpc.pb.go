@@ -27,36 +27,29 @@ type DirectoryClient interface {
 	SetObjectType(ctx context.Context, in *SetObjectTypeRequest, opts ...grpc.CallOption) (*SetObjectTypeResponse, error)
 	DeleteObjectType(ctx context.Context, in *DeleteObjectTypeRequest, opts ...grpc.CallOption) (*DeleteObjectTypeResponse, error)
 	ListObjectTypes(ctx context.Context, in *ListObjectTypesRequest, opts ...grpc.CallOption) (*ListObjectTypesResponse, error)
-	// rpc GetObjType(GetObjTypeRequest) returns (GetObjTypeResponse) {};
 	// relation type metadata methods
 	GetRelationType(ctx context.Context, in *GetRelationTypeRequest, opts ...grpc.CallOption) (*GetRelationTypeResponse, error)
 	SetRelationType(ctx context.Context, in *SetRelationTypeRequest, opts ...grpc.CallOption) (*SetRelationTypeResponse, error)
 	DeleteRelationType(ctx context.Context, in *DeleteRelationTypeRequest, opts ...grpc.CallOption) (*DeleteRelationTypeResponse, error)
 	ListRelationTypes(ctx context.Context, in *ListRelationTypesRequest, opts ...grpc.CallOption) (*ListRelationTypesResponse, error)
-	// rpc GetRelType(GetRelTypeRequest) returns (GetRelTypeResponse) {};
 	// permission metadata methods
 	GetPermission(ctx context.Context, in *GetPermissionRequest, opts ...grpc.CallOption) (*GetPermissionResponse, error)
 	SetPermission(ctx context.Context, in *SetPermissionRequest, opts ...grpc.CallOption) (*SetPermissionResponse, error)
 	DeletePermission(ctx context.Context, in *DeletePermissionRequest, opts ...grpc.CallOption) (*DeletePermissionResponse, error)
 	ListPermissions(ctx context.Context, in *ListPermissionsRequest, opts ...grpc.CallOption) (*ListPermissionsResponse, error)
-	// rpc GetPerm(GetPermRequest) returns (GetPermResponse) {};
 	// object methods
 	GetObject(ctx context.Context, in *GetObjectRequest, opts ...grpc.CallOption) (*GetObjectResponse, error)
 	SetObject(ctx context.Context, in *SetObjectRequest, opts ...grpc.CallOption) (*SetObjectResponse, error)
 	DeleteObject(ctx context.Context, in *DeleteObjectRequest, opts ...grpc.CallOption) (*DeleteObjectResponse, error)
 	ListObjects(ctx context.Context, in *ListObjectsRequest, opts ...grpc.CallOption) (*ListObjectsResponse, error)
-	// rpc GetObj(GetObjRequest) returns (GetObjResponse) {};
 	// relation methods
 	GetRelation(ctx context.Context, in *GetRelationRequest, opts ...grpc.CallOption) (*GetRelationResponse, error)
 	SetRelation(ctx context.Context, in *SetRelationRequest, opts ...grpc.CallOption) (*SetRelationResponse, error)
 	DeleteRelation(ctx context.Context, in *DeleteRelationRequest, opts ...grpc.CallOption) (*DeleteRelationResponse, error)
 	ListRelations(ctx context.Context, in *ListRelationsRequest, opts ...grpc.CallOption) (*ListRelationsResponse, error)
-	// rpc GetRel(GetRelRequest) returns (GetRelResponse) {};
 	// graph methods
-	// rpc ListObjectGraph(ListObjectGraphRequest) returns (ListObjectGraphResponse) {};
 	GetGraph(ctx context.Context, in *GetGraphRequest, opts ...grpc.CallOption) (*GetGraphResponse, error)
 	// check methods
-	// rpc Check(CheckRequest) returns (CheckResponse) {};
 	CheckRelation(ctx context.Context, in *CheckRelationRequest, opts ...grpc.CallOption) (*CheckRelationResponse, error)
 	CheckPermission(ctx context.Context, in *CheckPermissionRequest, opts ...grpc.CallOption) (*CheckPermissionResponse, error)
 	// misc methods
@@ -296,36 +289,29 @@ type DirectoryServer interface {
 	SetObjectType(context.Context, *SetObjectTypeRequest) (*SetObjectTypeResponse, error)
 	DeleteObjectType(context.Context, *DeleteObjectTypeRequest) (*DeleteObjectTypeResponse, error)
 	ListObjectTypes(context.Context, *ListObjectTypesRequest) (*ListObjectTypesResponse, error)
-	// rpc GetObjType(GetObjTypeRequest) returns (GetObjTypeResponse) {};
 	// relation type metadata methods
 	GetRelationType(context.Context, *GetRelationTypeRequest) (*GetRelationTypeResponse, error)
 	SetRelationType(context.Context, *SetRelationTypeRequest) (*SetRelationTypeResponse, error)
 	DeleteRelationType(context.Context, *DeleteRelationTypeRequest) (*DeleteRelationTypeResponse, error)
 	ListRelationTypes(context.Context, *ListRelationTypesRequest) (*ListRelationTypesResponse, error)
-	// rpc GetRelType(GetRelTypeRequest) returns (GetRelTypeResponse) {};
 	// permission metadata methods
 	GetPermission(context.Context, *GetPermissionRequest) (*GetPermissionResponse, error)
 	SetPermission(context.Context, *SetPermissionRequest) (*SetPermissionResponse, error)
 	DeletePermission(context.Context, *DeletePermissionRequest) (*DeletePermissionResponse, error)
 	ListPermissions(context.Context, *ListPermissionsRequest) (*ListPermissionsResponse, error)
-	// rpc GetPerm(GetPermRequest) returns (GetPermResponse) {};
 	// object methods
 	GetObject(context.Context, *GetObjectRequest) (*GetObjectResponse, error)
 	SetObject(context.Context, *SetObjectRequest) (*SetObjectResponse, error)
 	DeleteObject(context.Context, *DeleteObjectRequest) (*DeleteObjectResponse, error)
 	ListObjects(context.Context, *ListObjectsRequest) (*ListObjectsResponse, error)
-	// rpc GetObj(GetObjRequest) returns (GetObjResponse) {};
 	// relation methods
 	GetRelation(context.Context, *GetRelationRequest) (*GetRelationResponse, error)
 	SetRelation(context.Context, *SetRelationRequest) (*SetRelationResponse, error)
 	DeleteRelation(context.Context, *DeleteRelationRequest) (*DeleteRelationResponse, error)
 	ListRelations(context.Context, *ListRelationsRequest) (*ListRelationsResponse, error)
-	// rpc GetRel(GetRelRequest) returns (GetRelResponse) {};
 	// graph methods
-	// rpc ListObjectGraph(ListObjectGraphRequest) returns (ListObjectGraphResponse) {};
 	GetGraph(context.Context, *GetGraphRequest) (*GetGraphResponse, error)
 	// check methods
-	// rpc Check(CheckRequest) returns (CheckResponse) {};
 	CheckRelation(context.Context, *CheckRelationRequest) (*CheckRelationResponse, error)
 	CheckPermission(context.Context, *CheckPermissionRequest) (*CheckPermissionResponse, error)
 	// misc methods
