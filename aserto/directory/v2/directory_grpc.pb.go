@@ -27,36 +27,36 @@ type DirectoryClient interface {
 	SetObjectType(ctx context.Context, in *SetObjectTypeRequest, opts ...grpc.CallOption) (*SetObjectTypeResponse, error)
 	DeleteObjectType(ctx context.Context, in *DeleteObjectTypeRequest, opts ...grpc.CallOption) (*DeleteObjectTypeResponse, error)
 	ListObjectTypes(ctx context.Context, in *ListObjectTypesRequest, opts ...grpc.CallOption) (*ListObjectTypesResponse, error)
-	GetObjType(ctx context.Context, in *GetObjTypeRequest, opts ...grpc.CallOption) (*GetObjTypeResponse, error)
+	// rpc GetObjType(GetObjTypeRequest) returns (GetObjTypeResponse) {};
 	// relation type metadata methods
 	GetRelationType(ctx context.Context, in *GetRelationTypeRequest, opts ...grpc.CallOption) (*GetRelationTypeResponse, error)
 	SetRelationType(ctx context.Context, in *SetRelationTypeRequest, opts ...grpc.CallOption) (*SetRelationTypeResponse, error)
 	DeleteRelationType(ctx context.Context, in *DeleteRelationTypeRequest, opts ...grpc.CallOption) (*DeleteRelationTypeResponse, error)
 	ListRelationTypes(ctx context.Context, in *ListRelationTypesRequest, opts ...grpc.CallOption) (*ListRelationTypesResponse, error)
-	GetRelType(ctx context.Context, in *GetRelTypeRequest, opts ...grpc.CallOption) (*GetRelTypeResponse, error)
+	// rpc GetRelType(GetRelTypeRequest) returns (GetRelTypeResponse) {};
 	// permission metadata methods
 	GetPermission(ctx context.Context, in *GetPermissionRequest, opts ...grpc.CallOption) (*GetPermissionResponse, error)
 	SetPermission(ctx context.Context, in *SetPermissionRequest, opts ...grpc.CallOption) (*SetPermissionResponse, error)
 	DeletePermission(ctx context.Context, in *DeletePermissionRequest, opts ...grpc.CallOption) (*DeletePermissionResponse, error)
 	ListPermissions(ctx context.Context, in *ListPermissionsRequest, opts ...grpc.CallOption) (*ListPermissionsResponse, error)
-	GetPerm(ctx context.Context, in *GetPermRequest, opts ...grpc.CallOption) (*GetPermResponse, error)
+	// rpc GetPerm(GetPermRequest) returns (GetPermResponse) {};
 	// object methods
 	GetObject(ctx context.Context, in *GetObjectRequest, opts ...grpc.CallOption) (*GetObjectResponse, error)
 	SetObject(ctx context.Context, in *SetObjectRequest, opts ...grpc.CallOption) (*SetObjectResponse, error)
 	DeleteObject(ctx context.Context, in *DeleteObjectRequest, opts ...grpc.CallOption) (*DeleteObjectResponse, error)
 	ListObjects(ctx context.Context, in *ListObjectsRequest, opts ...grpc.CallOption) (*ListObjectsResponse, error)
-	GetObj(ctx context.Context, in *GetObjRequest, opts ...grpc.CallOption) (*GetObjResponse, error)
+	// rpc GetObj(GetObjRequest) returns (GetObjResponse) {};
 	// relation methods
 	GetRelation(ctx context.Context, in *GetRelationRequest, opts ...grpc.CallOption) (*GetRelationResponse, error)
 	SetRelation(ctx context.Context, in *SetRelationRequest, opts ...grpc.CallOption) (*SetRelationResponse, error)
 	DeleteRelation(ctx context.Context, in *DeleteRelationRequest, opts ...grpc.CallOption) (*DeleteRelationResponse, error)
 	ListRelations(ctx context.Context, in *ListRelationsRequest, opts ...grpc.CallOption) (*ListRelationsResponse, error)
-	GetRel(ctx context.Context, in *GetRelRequest, opts ...grpc.CallOption) (*GetRelResponse, error)
+	// rpc GetRel(GetRelRequest) returns (GetRelResponse) {};
 	// graph methods
-	ListObjectGraph(ctx context.Context, in *ListObjectGraphRequest, opts ...grpc.CallOption) (*ListObjectGraphResponse, error)
+	// rpc ListObjectGraph(ListObjectGraphRequest) returns (ListObjectGraphResponse) {};
 	GetGraph(ctx context.Context, in *GetGraphRequest, opts ...grpc.CallOption) (*GetGraphResponse, error)
 	// check methods
-	Check(ctx context.Context, in *CheckRequest, opts ...grpc.CallOption) (*CheckResponse, error)
+	// rpc Check(CheckRequest) returns (CheckResponse) {};
 	CheckRelation(ctx context.Context, in *CheckRelationRequest, opts ...grpc.CallOption) (*CheckRelationResponse, error)
 	CheckPermission(ctx context.Context, in *CheckPermissionRequest, opts ...grpc.CallOption) (*CheckPermissionResponse, error)
 	// misc methods
@@ -107,15 +107,6 @@ func (c *directoryClient) ListObjectTypes(ctx context.Context, in *ListObjectTyp
 	return out, nil
 }
 
-func (c *directoryClient) GetObjType(ctx context.Context, in *GetObjTypeRequest, opts ...grpc.CallOption) (*GetObjTypeResponse, error) {
-	out := new(GetObjTypeResponse)
-	err := c.cc.Invoke(ctx, "/aserto.directory.v2.Directory/GetObjType", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *directoryClient) GetRelationType(ctx context.Context, in *GetRelationTypeRequest, opts ...grpc.CallOption) (*GetRelationTypeResponse, error) {
 	out := new(GetRelationTypeResponse)
 	err := c.cc.Invoke(ctx, "/aserto.directory.v2.Directory/GetRelationType", in, out, opts...)
@@ -146,15 +137,6 @@ func (c *directoryClient) DeleteRelationType(ctx context.Context, in *DeleteRela
 func (c *directoryClient) ListRelationTypes(ctx context.Context, in *ListRelationTypesRequest, opts ...grpc.CallOption) (*ListRelationTypesResponse, error) {
 	out := new(ListRelationTypesResponse)
 	err := c.cc.Invoke(ctx, "/aserto.directory.v2.Directory/ListRelationTypes", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *directoryClient) GetRelType(ctx context.Context, in *GetRelTypeRequest, opts ...grpc.CallOption) (*GetRelTypeResponse, error) {
-	out := new(GetRelTypeResponse)
-	err := c.cc.Invoke(ctx, "/aserto.directory.v2.Directory/GetRelType", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -197,15 +179,6 @@ func (c *directoryClient) ListPermissions(ctx context.Context, in *ListPermissio
 	return out, nil
 }
 
-func (c *directoryClient) GetPerm(ctx context.Context, in *GetPermRequest, opts ...grpc.CallOption) (*GetPermResponse, error) {
-	out := new(GetPermResponse)
-	err := c.cc.Invoke(ctx, "/aserto.directory.v2.Directory/GetPerm", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *directoryClient) GetObject(ctx context.Context, in *GetObjectRequest, opts ...grpc.CallOption) (*GetObjectResponse, error) {
 	out := new(GetObjectResponse)
 	err := c.cc.Invoke(ctx, "/aserto.directory.v2.Directory/GetObject", in, out, opts...)
@@ -236,15 +209,6 @@ func (c *directoryClient) DeleteObject(ctx context.Context, in *DeleteObjectRequ
 func (c *directoryClient) ListObjects(ctx context.Context, in *ListObjectsRequest, opts ...grpc.CallOption) (*ListObjectsResponse, error) {
 	out := new(ListObjectsResponse)
 	err := c.cc.Invoke(ctx, "/aserto.directory.v2.Directory/ListObjects", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *directoryClient) GetObj(ctx context.Context, in *GetObjRequest, opts ...grpc.CallOption) (*GetObjResponse, error) {
-	out := new(GetObjResponse)
-	err := c.cc.Invoke(ctx, "/aserto.directory.v2.Directory/GetObj", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -287,36 +251,9 @@ func (c *directoryClient) ListRelations(ctx context.Context, in *ListRelationsRe
 	return out, nil
 }
 
-func (c *directoryClient) GetRel(ctx context.Context, in *GetRelRequest, opts ...grpc.CallOption) (*GetRelResponse, error) {
-	out := new(GetRelResponse)
-	err := c.cc.Invoke(ctx, "/aserto.directory.v2.Directory/GetRel", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *directoryClient) ListObjectGraph(ctx context.Context, in *ListObjectGraphRequest, opts ...grpc.CallOption) (*ListObjectGraphResponse, error) {
-	out := new(ListObjectGraphResponse)
-	err := c.cc.Invoke(ctx, "/aserto.directory.v2.Directory/ListObjectGraph", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *directoryClient) GetGraph(ctx context.Context, in *GetGraphRequest, opts ...grpc.CallOption) (*GetGraphResponse, error) {
 	out := new(GetGraphResponse)
 	err := c.cc.Invoke(ctx, "/aserto.directory.v2.Directory/GetGraph", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *directoryClient) Check(ctx context.Context, in *CheckRequest, opts ...grpc.CallOption) (*CheckResponse, error) {
-	out := new(CheckResponse)
-	err := c.cc.Invoke(ctx, "/aserto.directory.v2.Directory/Check", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -359,36 +296,36 @@ type DirectoryServer interface {
 	SetObjectType(context.Context, *SetObjectTypeRequest) (*SetObjectTypeResponse, error)
 	DeleteObjectType(context.Context, *DeleteObjectTypeRequest) (*DeleteObjectTypeResponse, error)
 	ListObjectTypes(context.Context, *ListObjectTypesRequest) (*ListObjectTypesResponse, error)
-	GetObjType(context.Context, *GetObjTypeRequest) (*GetObjTypeResponse, error)
+	// rpc GetObjType(GetObjTypeRequest) returns (GetObjTypeResponse) {};
 	// relation type metadata methods
 	GetRelationType(context.Context, *GetRelationTypeRequest) (*GetRelationTypeResponse, error)
 	SetRelationType(context.Context, *SetRelationTypeRequest) (*SetRelationTypeResponse, error)
 	DeleteRelationType(context.Context, *DeleteRelationTypeRequest) (*DeleteRelationTypeResponse, error)
 	ListRelationTypes(context.Context, *ListRelationTypesRequest) (*ListRelationTypesResponse, error)
-	GetRelType(context.Context, *GetRelTypeRequest) (*GetRelTypeResponse, error)
+	// rpc GetRelType(GetRelTypeRequest) returns (GetRelTypeResponse) {};
 	// permission metadata methods
 	GetPermission(context.Context, *GetPermissionRequest) (*GetPermissionResponse, error)
 	SetPermission(context.Context, *SetPermissionRequest) (*SetPermissionResponse, error)
 	DeletePermission(context.Context, *DeletePermissionRequest) (*DeletePermissionResponse, error)
 	ListPermissions(context.Context, *ListPermissionsRequest) (*ListPermissionsResponse, error)
-	GetPerm(context.Context, *GetPermRequest) (*GetPermResponse, error)
+	// rpc GetPerm(GetPermRequest) returns (GetPermResponse) {};
 	// object methods
 	GetObject(context.Context, *GetObjectRequest) (*GetObjectResponse, error)
 	SetObject(context.Context, *SetObjectRequest) (*SetObjectResponse, error)
 	DeleteObject(context.Context, *DeleteObjectRequest) (*DeleteObjectResponse, error)
 	ListObjects(context.Context, *ListObjectsRequest) (*ListObjectsResponse, error)
-	GetObj(context.Context, *GetObjRequest) (*GetObjResponse, error)
+	// rpc GetObj(GetObjRequest) returns (GetObjResponse) {};
 	// relation methods
 	GetRelation(context.Context, *GetRelationRequest) (*GetRelationResponse, error)
 	SetRelation(context.Context, *SetRelationRequest) (*SetRelationResponse, error)
 	DeleteRelation(context.Context, *DeleteRelationRequest) (*DeleteRelationResponse, error)
 	ListRelations(context.Context, *ListRelationsRequest) (*ListRelationsResponse, error)
-	GetRel(context.Context, *GetRelRequest) (*GetRelResponse, error)
+	// rpc GetRel(GetRelRequest) returns (GetRelResponse) {};
 	// graph methods
-	ListObjectGraph(context.Context, *ListObjectGraphRequest) (*ListObjectGraphResponse, error)
+	// rpc ListObjectGraph(ListObjectGraphRequest) returns (ListObjectGraphResponse) {};
 	GetGraph(context.Context, *GetGraphRequest) (*GetGraphResponse, error)
 	// check methods
-	Check(context.Context, *CheckRequest) (*CheckResponse, error)
+	// rpc Check(CheckRequest) returns (CheckResponse) {};
 	CheckRelation(context.Context, *CheckRelationRequest) (*CheckRelationResponse, error)
 	CheckPermission(context.Context, *CheckPermissionRequest) (*CheckPermissionResponse, error)
 	// misc methods
@@ -411,9 +348,6 @@ func (UnimplementedDirectoryServer) DeleteObjectType(context.Context, *DeleteObj
 func (UnimplementedDirectoryServer) ListObjectTypes(context.Context, *ListObjectTypesRequest) (*ListObjectTypesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListObjectTypes not implemented")
 }
-func (UnimplementedDirectoryServer) GetObjType(context.Context, *GetObjTypeRequest) (*GetObjTypeResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetObjType not implemented")
-}
 func (UnimplementedDirectoryServer) GetRelationType(context.Context, *GetRelationTypeRequest) (*GetRelationTypeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRelationType not implemented")
 }
@@ -425,9 +359,6 @@ func (UnimplementedDirectoryServer) DeleteRelationType(context.Context, *DeleteR
 }
 func (UnimplementedDirectoryServer) ListRelationTypes(context.Context, *ListRelationTypesRequest) (*ListRelationTypesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListRelationTypes not implemented")
-}
-func (UnimplementedDirectoryServer) GetRelType(context.Context, *GetRelTypeRequest) (*GetRelTypeResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetRelType not implemented")
 }
 func (UnimplementedDirectoryServer) GetPermission(context.Context, *GetPermissionRequest) (*GetPermissionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPermission not implemented")
@@ -441,9 +372,6 @@ func (UnimplementedDirectoryServer) DeletePermission(context.Context, *DeletePer
 func (UnimplementedDirectoryServer) ListPermissions(context.Context, *ListPermissionsRequest) (*ListPermissionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPermissions not implemented")
 }
-func (UnimplementedDirectoryServer) GetPerm(context.Context, *GetPermRequest) (*GetPermResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPerm not implemented")
-}
 func (UnimplementedDirectoryServer) GetObject(context.Context, *GetObjectRequest) (*GetObjectResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetObject not implemented")
 }
@@ -455,9 +383,6 @@ func (UnimplementedDirectoryServer) DeleteObject(context.Context, *DeleteObjectR
 }
 func (UnimplementedDirectoryServer) ListObjects(context.Context, *ListObjectsRequest) (*ListObjectsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListObjects not implemented")
-}
-func (UnimplementedDirectoryServer) GetObj(context.Context, *GetObjRequest) (*GetObjResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetObj not implemented")
 }
 func (UnimplementedDirectoryServer) GetRelation(context.Context, *GetRelationRequest) (*GetRelationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRelation not implemented")
@@ -471,17 +396,8 @@ func (UnimplementedDirectoryServer) DeleteRelation(context.Context, *DeleteRelat
 func (UnimplementedDirectoryServer) ListRelations(context.Context, *ListRelationsRequest) (*ListRelationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListRelations not implemented")
 }
-func (UnimplementedDirectoryServer) GetRel(context.Context, *GetRelRequest) (*GetRelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetRel not implemented")
-}
-func (UnimplementedDirectoryServer) ListObjectGraph(context.Context, *ListObjectGraphRequest) (*ListObjectGraphResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListObjectGraph not implemented")
-}
 func (UnimplementedDirectoryServer) GetGraph(context.Context, *GetGraphRequest) (*GetGraphResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGraph not implemented")
-}
-func (UnimplementedDirectoryServer) Check(context.Context, *CheckRequest) (*CheckResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Check not implemented")
 }
 func (UnimplementedDirectoryServer) CheckRelation(context.Context, *CheckRelationRequest) (*CheckRelationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckRelation not implemented")
@@ -576,24 +492,6 @@ func _Directory_ListObjectTypes_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Directory_GetObjType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetObjTypeRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DirectoryServer).GetObjType(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/aserto.directory.v2.Directory/GetObjType",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DirectoryServer).GetObjType(ctx, req.(*GetObjTypeRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Directory_GetRelationType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetRelationTypeRequest)
 	if err := dec(in); err != nil {
@@ -662,24 +560,6 @@ func _Directory_ListRelationTypes_Handler(srv interface{}, ctx context.Context, 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DirectoryServer).ListRelationTypes(ctx, req.(*ListRelationTypesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Directory_GetRelType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetRelTypeRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DirectoryServer).GetRelType(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/aserto.directory.v2.Directory/GetRelType",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DirectoryServer).GetRelType(ctx, req.(*GetRelTypeRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -756,24 +636,6 @@ func _Directory_ListPermissions_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Directory_GetPerm_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetPermRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DirectoryServer).GetPerm(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/aserto.directory.v2.Directory/GetPerm",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DirectoryServer).GetPerm(ctx, req.(*GetPermRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Directory_GetObject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetObjectRequest)
 	if err := dec(in); err != nil {
@@ -842,24 +704,6 @@ func _Directory_ListObjects_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DirectoryServer).ListObjects(ctx, req.(*ListObjectsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Directory_GetObj_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetObjRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DirectoryServer).GetObj(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/aserto.directory.v2.Directory/GetObj",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DirectoryServer).GetObj(ctx, req.(*GetObjRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -936,42 +780,6 @@ func _Directory_ListRelations_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Directory_GetRel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetRelRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DirectoryServer).GetRel(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/aserto.directory.v2.Directory/GetRel",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DirectoryServer).GetRel(ctx, req.(*GetRelRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Directory_ListObjectGraph_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListObjectGraphRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DirectoryServer).ListObjectGraph(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/aserto.directory.v2.Directory/ListObjectGraph",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DirectoryServer).ListObjectGraph(ctx, req.(*ListObjectGraphRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Directory_GetGraph_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetGraphRequest)
 	if err := dec(in); err != nil {
@@ -986,24 +794,6 @@ func _Directory_GetGraph_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DirectoryServer).GetGraph(ctx, req.(*GetGraphRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Directory_Check_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CheckRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DirectoryServer).Check(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/aserto.directory.v2.Directory/Check",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DirectoryServer).Check(ctx, req.(*CheckRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1086,10 +876,6 @@ var Directory_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Directory_ListObjectTypes_Handler,
 		},
 		{
-			MethodName: "GetObjType",
-			Handler:    _Directory_GetObjType_Handler,
-		},
-		{
 			MethodName: "GetRelationType",
 			Handler:    _Directory_GetRelationType_Handler,
 		},
@@ -1104,10 +890,6 @@ var Directory_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListRelationTypes",
 			Handler:    _Directory_ListRelationTypes_Handler,
-		},
-		{
-			MethodName: "GetRelType",
-			Handler:    _Directory_GetRelType_Handler,
 		},
 		{
 			MethodName: "GetPermission",
@@ -1126,10 +908,6 @@ var Directory_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Directory_ListPermissions_Handler,
 		},
 		{
-			MethodName: "GetPerm",
-			Handler:    _Directory_GetPerm_Handler,
-		},
-		{
 			MethodName: "GetObject",
 			Handler:    _Directory_GetObject_Handler,
 		},
@@ -1144,10 +922,6 @@ var Directory_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListObjects",
 			Handler:    _Directory_ListObjects_Handler,
-		},
-		{
-			MethodName: "GetObj",
-			Handler:    _Directory_GetObj_Handler,
 		},
 		{
 			MethodName: "GetRelation",
@@ -1166,20 +940,8 @@ var Directory_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Directory_ListRelations_Handler,
 		},
 		{
-			MethodName: "GetRel",
-			Handler:    _Directory_GetRel_Handler,
-		},
-		{
-			MethodName: "ListObjectGraph",
-			Handler:    _Directory_ListObjectGraph_Handler,
-		},
-		{
 			MethodName: "GetGraph",
 			Handler:    _Directory_GetGraph_Handler,
-		},
-		{
-			MethodName: "Check",
-			Handler:    _Directory_Check_Handler,
 		},
 		{
 			MethodName: "CheckRelation",
