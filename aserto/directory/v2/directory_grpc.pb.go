@@ -50,6 +50,7 @@ type DirectoryClient interface {
 	// graph methods
 	GetGraph(ctx context.Context, in *GetGraphRequest, opts ...grpc.CallOption) (*GetGraphResponse, error)
 	// check methods
+	// rpc Check(CheckRequest) returns (CheckResponse) {};
 	CheckRelation(ctx context.Context, in *CheckRelationRequest, opts ...grpc.CallOption) (*CheckRelationResponse, error)
 	CheckPermission(ctx context.Context, in *CheckPermissionRequest, opts ...grpc.CallOption) (*CheckPermissionResponse, error)
 	// misc methods
@@ -312,6 +313,7 @@ type DirectoryServer interface {
 	// graph methods
 	GetGraph(context.Context, *GetGraphRequest) (*GetGraphResponse, error)
 	// check methods
+	// rpc Check(CheckRequest) returns (CheckResponse) {};
 	CheckRelation(context.Context, *CheckRelationRequest) (*CheckRelationResponse, error)
 	CheckPermission(context.Context, *CheckPermissionRequest) (*CheckPermissionResponse, error)
 	// misc methods
