@@ -9,6 +9,7 @@ import (
 	"os"
 	"os/exec"
 	"path"
+	"path/filepath"
 	"strings"
 
 	"github.com/aserto-dev/clui"
@@ -62,7 +63,7 @@ func Generate() error {
 
 // remove all built images files.
 func Clean() error {
-	return os.RemoveAll("bin")
+	return os.RemoveAll("aserto")
 }
 
 func Lint() error {
@@ -161,7 +162,20 @@ func bufGenerate(image string) error {
 		return err
 	}
 
-	return buf.Run(
+	oldPath := os.Getenv("PATH")
+
+	pathSeparator := string(os.PathListSeparator)
+	path := oldPath +
+		pathSeparator +
+		filepath.Dir(deps.GoBinPath("protoc-gen-go-grpc")) +
+		pathSeparator +
+		filepath.Dir(deps.GoBinPath("protoc-gen-grpc-gateway")) +
+		pathSeparator +
+		filepath.Dir(deps.GoBinPath("protoc-gen-go"))
+
+	return buf.RunWithEnv(map[string]string{
+		"PATH": path,
+	},
 		buf.AddArg("generate"),
 		buf.AddArg(image),
 	)
