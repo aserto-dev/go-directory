@@ -32,9 +32,9 @@ require (
 
 require (
 	github.com/aserto-dev/clui v0.8.1
-	github.com/aserto-dev/go-grpc v0.8.43
-	github.com/grpc-ecosystem/grpc-gateway/v2 v2.11.0
-	google.golang.org/genproto v0.0.0-20220719170305-83ca9fad585f
-	google.golang.org/grpc v1.48.0
-	google.golang.org/protobuf v1.28.0
+	github.com/aserto-dev/go-grpc v0.8.51
+	github.com/grpc-ecosystem/grpc-gateway/v2 v2.11.3
+	google.golang.org/genproto v0.0.0-20220902135211-223410557253
+	google.golang.org/grpc v1.49.0
+	google.golang.org/protobuf v1.28.1
 )
