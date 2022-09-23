@@ -62,51 +62,51 @@ func main() {
 
 func testObjectType() {
 	req := &common.ObjectType{
-		Id:          nil, //proto.Int32(10),
-		Name:        proto.String("book"),
-		DisplayName: proto.String("book object"),
-		IsSubject:   proto.Bool(false),
-		Ordinal:     proto.Int32(1234),
-		Status:      proto.Uint32(1),
+		Id:          10,
+		Name:        "book",
+		DisplayName: "book object",
+		IsSubject:   false,
+		Ordinal:     1234,
+		Status:      1,
 		Schema:      pb.NewStruct(),
-		Hash:        nil, //proto.String("01234567890"),
+		Hash:        "01234567890",
 	}
 	fmt.Println(ProtoToStr(req))
 }
 
 func testPermission() {
 	req := &common.Permission{
-		Id:          nil, //proto.String("69595fa6-5437-4837-a091-0d282636429c"),
-		Name:        proto.String("book:sell"),
-		DisplayName: proto.String("sell book"),
-		Hash:        nil, //proto.String("01234567890"),
+		Id:          "69595fa6-5437-4837-a091-0d282636429c",
+		Name:        "book:sell",
+		DisplayName: "sell book",
+		Hash:        "01234567890",
 	}
 	fmt.Println(ProtoToStr(req))
 }
 
 func testRelationType() {
 	req := &common.RelationType{
-		Id:          nil, //proto.Int32(11),
-		Name:        proto.String("owner"),
-		ObjectType:  proto.String("book"),
-		DisplayName: proto.String("book::owner"),
-		Ordinal:     proto.Int32(0),
-		Status:      proto.Uint32(0),
+		Id:          11,
+		Name:        "owner",
+		ObjectType:  "book",
+		DisplayName: "book::owner",
+		Ordinal:     0,
+		Status:      0,
 		Unions:      []string{},
 		Permissions: []string{"book:sell"},
-		Hash:        nil, //proto.String("01234567890"),
+		Hash:        "01234567890",
 	}
 	fmt.Println(ProtoToStr(req))
 }
 
 func testObject() {
 	req := &common.Object{
-		Id:          nil, //proto.String("b51983e9-085c-486a-acf9-da9508ff415b"),
-		Key:         proto.String("978-1260440218"),
-		Type:        proto.String("book"),
-		DisplayName: proto.String("Java: A Beginner's Guide, Eighth Edition 8th Edition"),
+		Id:          "b51983e9-085c-486a-acf9-da9508ff415b",
+		Key:         "978-1260440218",
+		Type:        "book",
+		DisplayName: "Java: A Beginner's Guide, Eighth Edition 8th Edition",
 		Properties:  pb.NewStruct(),
-		Hash:        nil, //proto.String("01234567890"),
+		Hash:        "01234567890",
 	}
 	fmt.Println(ProtoToStr(req))
 }
@@ -118,13 +118,13 @@ func testRelation() {
 			Key:  proto.String("euang@acmecorp.com"),
 			Type: proto.String("user"),
 		},
-		Relation: proto.String("owner"),
+		Relation: "owner",
 		Object: &common.ObjectIdentifier{
 			Id:   nil, //proto.String(""),
 			Key:  proto.String("978-1260440218"),
 			Type: proto.String("book"),
 		},
-		Hash: nil, //proto.String("01234567890"),
+		Hash: "01234567890",
 	}
 	fmt.Println(ProtoToStr(req))
 }
