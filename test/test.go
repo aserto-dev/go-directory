@@ -12,7 +12,7 @@ import (
 	"github.com/aserto-dev/go-directory/aserto/directory/importer/v2"
 	"github.com/aserto-dev/go-directory/aserto/directory/v2"
 	"github.com/aserto-dev/go-directory/aserto/directory/writer/v2"
-	"github.com/aserto-dev/go-utils/pb"
+	"github.com/aserto-dev/go-directory/pkg/pb"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 	"google.golang.org/protobuf/encoding/protojson"

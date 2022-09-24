@@ -882,7 +882,7 @@ type GetPermissionResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *v2.Permission `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"` // permision instance
+	Result *v2.Permission `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"` // permission instance
 }
 
 func (x *GetPermissionResponse) Reset() {
