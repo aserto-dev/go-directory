@@ -41,3 +41,20 @@ func main() {
 		log.Fatalf("failed to serve: %v", err)
 	}
 }
+
+func CreateObjectGetManyRequest() {
+	_ = directory.GetObjectManyRequest{
+		Param: []*directory.ObjectParam{
+			{
+				Opt: &directory.ObjectParam_Id{
+					Id: "ID1",
+				},
+			},
+			{
+				Opt: &directory.ObjectParam_Id{
+					Id: "ID2",
+				},
+			},
+		},
+	}
+}
