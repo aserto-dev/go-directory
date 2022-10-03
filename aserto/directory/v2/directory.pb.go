@@ -603,6 +603,100 @@ func (x *GetObjectResponse) GetResults() []*Object {
 	return nil
 }
 
+type GetObjectManyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Param []*ObjectParam `protobuf:"bytes,1,rep,name=param,proto3" json:"param,omitempty"` // object identifier list
+}
+
+func (x *GetObjectManyRequest) Reset() {
+	*x = GetObjectManyRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetObjectManyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetObjectManyRequest) ProtoMessage() {}
+
+func (x *GetObjectManyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetObjectManyRequest.ProtoReflect.Descriptor instead.
+func (*GetObjectManyRequest) Descriptor() ([]byte, []int) {
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *GetObjectManyRequest) GetParam() []*ObjectParam {
+	if x != nil {
+		return x.Param
+	}
+	return nil
+}
+
+type GetObjectManyResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Results []*Object `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` // array of object instances
+}
+
+func (x *GetObjectManyResponse) Reset() {
+	*x = GetObjectManyResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetObjectManyResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetObjectManyResponse) ProtoMessage() {}
+
+func (x *GetObjectManyResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetObjectManyResponse.ProtoReflect.Descriptor instead.
+func (*GetObjectManyResponse) Descriptor() ([]byte, []int) {
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *GetObjectManyResponse) GetResults() []*Object {
+	if x != nil {
+		return x.Results
+	}
+	return nil
+}
+
 type ListObjectsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -615,7 +709,7 @@ type ListObjectsRequest struct {
 func (x *ListObjectsRequest) Reset() {
 	*x = ListObjectsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[12]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -628,7 +722,7 @@ func (x *ListObjectsRequest) String() string {
 func (*ListObjectsRequest) ProtoMessage() {}
 
 func (x *ListObjectsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[12]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -641,7 +735,7 @@ func (x *ListObjectsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListObjectsRequest.ProtoReflect.Descriptor instead.
 func (*ListObjectsRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{12}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *ListObjectsRequest) GetType() string {
@@ -670,7 +764,7 @@ type ListObjectsResponse struct {
 func (x *ListObjectsResponse) Reset() {
 	*x = ListObjectsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[13]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -683,7 +777,7 @@ func (x *ListObjectsResponse) String() string {
 func (*ListObjectsResponse) ProtoMessage() {}
 
 func (x *ListObjectsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[13]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -696,7 +790,7 @@ func (x *ListObjectsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListObjectsResponse.ProtoReflect.Descriptor instead.
 func (*ListObjectsResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{13}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *ListObjectsResponse) GetResults() []*Object {
@@ -724,7 +818,7 @@ type GetRelationRequest struct {
 func (x *GetRelationRequest) Reset() {
 	*x = GetRelationRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[14]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -737,7 +831,7 @@ func (x *GetRelationRequest) String() string {
 func (*GetRelationRequest) ProtoMessage() {}
 
 func (x *GetRelationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[14]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -750,7 +844,7 @@ func (x *GetRelationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRelationRequest.ProtoReflect.Descriptor instead.
 func (*GetRelationRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{14}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *GetRelationRequest) GetParam() *RelationParam {
@@ -771,7 +865,7 @@ type GetRelationResponse struct {
 func (x *GetRelationResponse) Reset() {
 	*x = GetRelationResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[15]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -784,7 +878,7 @@ func (x *GetRelationResponse) String() string {
 func (*GetRelationResponse) ProtoMessage() {}
 
 func (x *GetRelationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[15]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -797,7 +891,7 @@ func (x *GetRelationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRelationResponse.ProtoReflect.Descriptor instead.
 func (*GetRelationResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{15}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *GetRelationResponse) GetResults() []*Relation {
@@ -819,7 +913,7 @@ type ListRelationsRequest struct {
 func (x *ListRelationsRequest) Reset() {
 	*x = ListRelationsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[16]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -832,7 +926,7 @@ func (x *ListRelationsRequest) String() string {
 func (*ListRelationsRequest) ProtoMessage() {}
 
 func (x *ListRelationsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[16]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -845,7 +939,7 @@ func (x *ListRelationsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListRelationsRequest.ProtoReflect.Descriptor instead.
 func (*ListRelationsRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{16}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *ListRelationsRequest) GetParam() *RelationParam {
@@ -874,7 +968,7 @@ type ListRelationsResponse struct {
 func (x *ListRelationsResponse) Reset() {
 	*x = ListRelationsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[17]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -887,7 +981,7 @@ func (x *ListRelationsResponse) String() string {
 func (*ListRelationsResponse) ProtoMessage() {}
 
 func (x *ListRelationsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[17]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -900,7 +994,7 @@ func (x *ListRelationsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListRelationsResponse.ProtoReflect.Descriptor instead.
 func (*ListRelationsResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{17}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *ListRelationsResponse) GetResults() []*Relation {
@@ -928,7 +1022,7 @@ type GetPermissionRequest struct {
 func (x *GetPermissionRequest) Reset() {
 	*x = GetPermissionRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[18]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -941,7 +1035,7 @@ func (x *GetPermissionRequest) String() string {
 func (*GetPermissionRequest) ProtoMessage() {}
 
 func (x *GetPermissionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[18]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -954,7 +1048,7 @@ func (x *GetPermissionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetPermissionRequest.ProtoReflect.Descriptor instead.
 func (*GetPermissionRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{18}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *GetPermissionRequest) GetParam() *PermissionParam {
@@ -975,7 +1069,7 @@ type GetPermissionResponse struct {
 func (x *GetPermissionResponse) Reset() {
 	*x = GetPermissionResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[19]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -988,7 +1082,7 @@ func (x *GetPermissionResponse) String() string {
 func (*GetPermissionResponse) ProtoMessage() {}
 
 func (x *GetPermissionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[19]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1001,7 +1095,7 @@ func (x *GetPermissionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetPermissionResponse.ProtoReflect.Descriptor instead.
 func (*GetPermissionResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{19}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *GetPermissionResponse) GetResults() []*Permission {
@@ -1022,7 +1116,7 @@ type ListPermissionsRequest struct {
 func (x *ListPermissionsRequest) Reset() {
 	*x = ListPermissionsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[20]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1035,7 +1129,7 @@ func (x *ListPermissionsRequest) String() string {
 func (*ListPermissionsRequest) ProtoMessage() {}
 
 func (x *ListPermissionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[20]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1048,7 +1142,7 @@ func (x *ListPermissionsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPermissionsRequest.ProtoReflect.Descriptor instead.
 func (*ListPermissionsRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{20}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *ListPermissionsRequest) GetPage() *v2.PaginationRequest {
@@ -1070,7 +1164,7 @@ type ListPermissionsResponse struct {
 func (x *ListPermissionsResponse) Reset() {
 	*x = ListPermissionsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[21]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1083,7 +1177,7 @@ func (x *ListPermissionsResponse) String() string {
 func (*ListPermissionsResponse) ProtoMessage() {}
 
 func (x *ListPermissionsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[21]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1096,7 +1190,7 @@ func (x *ListPermissionsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPermissionsResponse.ProtoReflect.Descriptor instead.
 func (*ListPermissionsResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{21}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *ListPermissionsResponse) GetResults() []*Permission {
@@ -1130,7 +1224,7 @@ type CheckRequest struct {
 func (x *CheckRequest) Reset() {
 	*x = CheckRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[22]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[24]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1143,7 +1237,7 @@ func (x *CheckRequest) String() string {
 func (*CheckRequest) ProtoMessage() {}
 
 func (x *CheckRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[22]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[24]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1156,7 +1250,7 @@ func (x *CheckRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckRequest.ProtoReflect.Descriptor instead.
 func (*CheckRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{22}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *CheckRequest) GetSubject() *ObjectParam {
@@ -1229,7 +1323,7 @@ type CheckResponse struct {
 func (x *CheckResponse) Reset() {
 	*x = CheckResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[23]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[25]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1242,7 +1336,7 @@ func (x *CheckResponse) String() string {
 func (*CheckResponse) ProtoMessage() {}
 
 func (x *CheckResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[23]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[25]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1255,7 +1349,7 @@ func (x *CheckResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckResponse.ProtoReflect.Descriptor instead.
 func (*CheckResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{23}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *CheckResponse) GetCheck() bool {
@@ -1284,7 +1378,7 @@ type GetGraphRequest struct {
 func (x *GetGraphRequest) Reset() {
 	*x = GetGraphRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[24]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[26]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1297,7 +1391,7 @@ func (x *GetGraphRequest) String() string {
 func (*GetGraphRequest) ProtoMessage() {}
 
 func (x *GetGraphRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[24]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[26]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1310,7 +1404,7 @@ func (x *GetGraphRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGraphRequest.ProtoReflect.Descriptor instead.
 func (*GetGraphRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{24}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *GetGraphRequest) GetAnchorId() string {
@@ -1338,7 +1432,7 @@ type GetGraphResponse struct {
 func (x *GetGraphResponse) Reset() {
 	*x = GetGraphResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_v2_directory_proto_msgTypes[25]
+		mi := &file_aserto_directory_v2_directory_proto_msgTypes[27]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1351,7 +1445,7 @@ func (x *GetGraphResponse) String() string {
 func (*GetGraphResponse) ProtoMessage() {}
 
 func (x *GetGraphResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_v2_directory_proto_msgTypes[25]
+	mi := &file_aserto_directory_v2_directory_proto_msgTypes[27]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1364,7 +1458,7 @@ func (x *GetGraphResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGraphResponse.ProtoReflect.Descriptor instead.
 func (*GetGraphResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{25}
+	return file_aserto_directory_v2_directory_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *GetGraphResponse) GetResults() []*ObjectDependency {
@@ -1460,6 +1554,16 @@ var file_aserto_directory_v2_directory_proto_rawDesc = []byte{
 	0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x50,
 	0x61, 0x72, 0x61, 0x6d, 0x52, 0x05, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x22, 0x4a, 0x0a, 0x11, 0x47,
 	0x65, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x35, 0x0a, 0x07, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28,
+	0x0b, 0x32, 0x1b, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63,
+	0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x52, 0x07,
+	0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x73, 0x22, 0x4e, 0x0a, 0x14, 0x47, 0x65, 0x74, 0x4f, 0x62,
+	0x6a, 0x65, 0x63, 0x74, 0x4d, 0x61, 0x6e, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
+	0x36, 0x0a, 0x05, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x20,
+	0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72,
+	0x79, 0x2e, 0x76, 0x32, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x50, 0x61, 0x72, 0x61, 0x6d,
+	0x52, 0x05, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x22, 0x4e, 0x0a, 0x15, 0x47, 0x65, 0x74, 0x4f, 0x62,
+	0x6a, 0x65, 0x63, 0x74, 0x4d, 0x61, 0x6e, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
 	0x12, 0x35, 0x0a, 0x07, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28,
 	0x0b, 0x32, 0x1b, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63,
 	0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x52, 0x07,
@@ -1565,7 +1669,7 @@ var file_aserto_directory_v2_directory_proto_rawDesc = []byte{
 	0x20, 0x03, 0x28, 0x0b, 0x32, 0x25, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69,
 	0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63,
 	0x74, 0x44, 0x65, 0x70, 0x65, 0x6e, 0x64, 0x65, 0x6e, 0x63, 0x79, 0x52, 0x07, 0x72, 0x65, 0x73,
-	0x75, 0x6c, 0x74, 0x73, 0x32, 0x9d, 0x0b, 0x0a, 0x09, 0x44, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f,
+	0x75, 0x6c, 0x74, 0x73, 0x32, 0x87, 0x0c, 0x0a, 0x09, 0x44, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f,
 	0x72, 0x79, 0x12, 0x68, 0x0a, 0x0d, 0x47, 0x65, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x54,
 	0x79, 0x70, 0x65, 0x12, 0x29, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72,
 	0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x47, 0x65, 0x74, 0x4f, 0x62, 0x6a,
@@ -1613,56 +1717,63 @@ var file_aserto_directory_v2_directory_proto_rawDesc = []byte{
 	0x47, 0x65, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
 	0x1a, 0x26, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74,
 	0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x47, 0x65, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x62, 0x0a, 0x0b, 0x4c, 0x69,
-	0x73, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x73, 0x12, 0x27, 0x2e, 0x61, 0x73, 0x65, 0x72,
-	0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e,
-	0x4c, 0x69, 0x73, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x1a, 0x28, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65,
-	0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4f, 0x62, 0x6a,
-	0x65, 0x63, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x62,
-	0x0a, 0x0b, 0x47, 0x65, 0x74, 0x52, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x27, 0x2e,
-	0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79,
-	0x2e, 0x76, 0x32, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x28, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x68, 0x0a, 0x0d, 0x47, 0x65,
+	0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x4d, 0x61, 0x6e, 0x79, 0x12, 0x29, 0x2e, 0x61, 0x73,
+	0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76,
+	0x32, 0x2e, 0x47, 0x65, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x4d, 0x61, 0x6e, 0x79, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2a, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e,
 	0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x47, 0x65, 0x74,
-	0x52, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x22, 0x00, 0x12, 0x68, 0x0a, 0x0d, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x6c, 0x61, 0x74, 0x69,
-	0x6f, 0x6e, 0x73, 0x12, 0x29, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72,
-	0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65,
-	0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2a,
-	0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72,
-	0x79, 0x2e, 0x76, 0x32, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f,
-	0x6e, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x59, 0x0a, 0x08,
-	0x47, 0x65, 0x74, 0x47, 0x72, 0x61, 0x70, 0x68, 0x12, 0x24, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74,
+	0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x4d, 0x61, 0x6e, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x22, 0x00, 0x12, 0x62, 0x0a, 0x0b, 0x4c, 0x69, 0x73, 0x74, 0x4f, 0x62, 0x6a, 0x65,
+	0x63, 0x74, 0x73, 0x12, 0x27, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72,
+	0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4f, 0x62,
+	0x6a, 0x65, 0x63, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x28, 0x2e, 0x61,
+	0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e,
+	0x76, 0x32, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x73, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x62, 0x0a, 0x0b, 0x47, 0x65, 0x74, 0x52,
+	0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x27, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f,
+	0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x47, 0x65,
+	0x74, 0x52, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x28, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74,
+	0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x65, 0x6c, 0x61, 0x74, 0x69,
+	0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x68, 0x0a, 0x0d,
+	0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x12, 0x29, 0x2e,
+	0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79,
+	0x2e, 0x76, 0x32, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2a, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74,
+	0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x4c,
+	0x69, 0x73, 0x74, 0x52, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x59, 0x0a, 0x08, 0x47, 0x65, 0x74, 0x47, 0x72, 0x61,
+	0x70, 0x68, 0x12, 0x24, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65,
+	0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x47, 0x65, 0x74, 0x47, 0x72, 0x61, 0x70,
+	0x68, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x25, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74,
 	0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x47,
-	0x65, 0x74, 0x47, 0x72, 0x61, 0x70, 0x68, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x25,
+	0x65, 0x74, 0x47, 0x72, 0x61, 0x70, 0x68, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
+	0x00, 0x12, 0x50, 0x0a, 0x05, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x12, 0x21, 0x2e, 0x61, 0x73, 0x65,
+	0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32,
+	0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x22, 0x2e,
+	0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79,
+	0x2e, 0x76, 0x32, 0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x22, 0x00, 0x12, 0xb8, 0x01, 0x0a, 0x04, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x20, 0x2e, 0x61,
+	0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e,
+	0x76, 0x32, 0x2e, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x21,
 	0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72,
-	0x79, 0x2e, 0x76, 0x32, 0x2e, 0x47, 0x65, 0x74, 0x47, 0x72, 0x61, 0x70, 0x68, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x50, 0x0a, 0x05, 0x43, 0x68, 0x65, 0x63, 0x6b,
-	0x12, 0x21, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74,
-	0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x1a, 0x22, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72,
-	0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0xb8, 0x01, 0x0a, 0x04, 0x49, 0x6e,
-	0x66, 0x6f, 0x12, 0x20, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65,
-	0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x1a, 0x21, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69,
-	0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x49, 0x6e, 0x66, 0x6f, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x6b, 0x92, 0x41, 0x4a, 0x0a, 0x04, 0x69, 0x6e,
-	0x66, 0x6f, 0x12, 0x17, 0x44, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x20, 0x49, 0x6e,
-	0x66, 0x6f, 0x20, 0x45, 0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x1a, 0x17, 0x44, 0x69, 0x72,
-	0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x20, 0x49, 0x6e, 0x66, 0x6f, 0x20, 0x45, 0x6e, 0x64, 0x70,
-	0x6f, 0x69, 0x6e, 0x74, 0x2a, 0x0e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e,
-	0x69, 0x6e, 0x66, 0x6f, 0x62, 0x00, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x18, 0x12, 0x16, 0x2f, 0x61,
-	0x70, 0x69, 0x2f, 0x76, 0x32, 0x2f, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2f,
-	0x69, 0x6e, 0x66, 0x6f, 0x42, 0x70, 0x5a, 0x40, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63,
-	0x6f, 0x6d, 0x2f, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2d, 0x64, 0x65, 0x76, 0x2f, 0x67, 0x6f,
-	0x2d, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2f, 0x61, 0x73, 0x65, 0x72, 0x74,
-	0x6f, 0x2f, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2f, 0x76, 0x32, 0x3b, 0x64,
-	0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x92, 0x41, 0x2b, 0x2a, 0x01, 0x02, 0x32, 0x10,
-	0x61, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2f, 0x6a, 0x73, 0x6f, 0x6e,
-	0x3a, 0x10, 0x61, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2f, 0x6a, 0x73,
-	0x6f, 0x6e, 0x5a, 0x00, 0x62, 0x00, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x79, 0x2e, 0x76, 0x32, 0x2e, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x22, 0x6b, 0x92, 0x41, 0x4a, 0x0a, 0x04, 0x69, 0x6e, 0x66, 0x6f, 0x12, 0x17, 0x44, 0x69,
+	0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x20, 0x49, 0x6e, 0x66, 0x6f, 0x20, 0x45, 0x6e, 0x64,
+	0x70, 0x6f, 0x69, 0x6e, 0x74, 0x1a, 0x17, 0x44, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79,
+	0x20, 0x49, 0x6e, 0x66, 0x6f, 0x20, 0x45, 0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x2a, 0x0e,
+	0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x69, 0x6e, 0x66, 0x6f, 0x62, 0x00,
+	0x82, 0xd3, 0xe4, 0x93, 0x02, 0x18, 0x12, 0x16, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x76, 0x32, 0x2f,
+	0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2f, 0x69, 0x6e, 0x66, 0x6f, 0x42, 0x70,
+	0x5a, 0x40, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x61, 0x73, 0x65,
+	0x72, 0x74, 0x6f, 0x2d, 0x64, 0x65, 0x76, 0x2f, 0x67, 0x6f, 0x2d, 0x64, 0x69, 0x72, 0x65, 0x63,
+	0x74, 0x6f, 0x72, 0x79, 0x2f, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2f, 0x64, 0x69, 0x72, 0x65,
+	0x63, 0x74, 0x6f, 0x72, 0x79, 0x2f, 0x76, 0x32, 0x3b, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f,
+	0x72, 0x79, 0x92, 0x41, 0x2b, 0x2a, 0x01, 0x02, 0x32, 0x10, 0x61, 0x70, 0x70, 0x6c, 0x69, 0x63,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2f, 0x6a, 0x73, 0x6f, 0x6e, 0x3a, 0x10, 0x61, 0x70, 0x70, 0x6c,
+	0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2f, 0x6a, 0x73, 0x6f, 0x6e, 0x5a, 0x00, 0x62, 0x00,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1677,7 +1788,7 @@ func file_aserto_directory_v2_directory_proto_rawDescGZIP() []byte {
 	return file_aserto_directory_v2_directory_proto_rawDescData
 }
 
-var file_aserto_directory_v2_directory_proto_msgTypes = make([]protoimpl.MessageInfo, 26)
+var file_aserto_directory_v2_directory_proto_msgTypes = make([]protoimpl.MessageInfo, 28)
 var file_aserto_directory_v2_directory_proto_goTypes = []interface{}{
 	(*InfoRequest)(nil),               // 0: aserto.directory.v2.InfoRequest
 	(*InfoResponse)(nil),              // 1: aserto.directory.v2.InfoResponse
@@ -1691,100 +1802,106 @@ var file_aserto_directory_v2_directory_proto_goTypes = []interface{}{
 	(*ListRelationTypesResponse)(nil), // 9: aserto.directory.v2.ListRelationTypesResponse
 	(*GetObjectRequest)(nil),          // 10: aserto.directory.v2.GetObjectRequest
 	(*GetObjectResponse)(nil),         // 11: aserto.directory.v2.GetObjectResponse
-	(*ListObjectsRequest)(nil),        // 12: aserto.directory.v2.ListObjectsRequest
-	(*ListObjectsResponse)(nil),       // 13: aserto.directory.v2.ListObjectsResponse
-	(*GetRelationRequest)(nil),        // 14: aserto.directory.v2.GetRelationRequest
-	(*GetRelationResponse)(nil),       // 15: aserto.directory.v2.GetRelationResponse
-	(*ListRelationsRequest)(nil),      // 16: aserto.directory.v2.ListRelationsRequest
-	(*ListRelationsResponse)(nil),     // 17: aserto.directory.v2.ListRelationsResponse
-	(*GetPermissionRequest)(nil),      // 18: aserto.directory.v2.GetPermissionRequest
-	(*GetPermissionResponse)(nil),     // 19: aserto.directory.v2.GetPermissionResponse
-	(*ListPermissionsRequest)(nil),    // 20: aserto.directory.v2.ListPermissionsRequest
-	(*ListPermissionsResponse)(nil),   // 21: aserto.directory.v2.ListPermissionsResponse
-	(*CheckRequest)(nil),              // 22: aserto.directory.v2.CheckRequest
-	(*CheckResponse)(nil),             // 23: aserto.directory.v2.CheckResponse
-	(*GetGraphRequest)(nil),           // 24: aserto.directory.v2.GetGraphRequest
-	(*GetGraphResponse)(nil),          // 25: aserto.directory.v2.GetGraphResponse
-	(*structpb.Struct)(nil),           // 26: google.protobuf.Struct
-	(*ObjectTypeParam)(nil),           // 27: aserto.directory.v2.ObjectTypeParam
-	(*ObjectType)(nil),                // 28: aserto.directory.v2.ObjectType
-	(*v2.PaginationRequest)(nil),      // 29: aserto.api.v2.PaginationRequest
-	(*v2.PaginationResponse)(nil),     // 30: aserto.api.v2.PaginationResponse
-	(*RelationTypeParam)(nil),         // 31: aserto.directory.v2.RelationTypeParam
-	(*RelationType)(nil),              // 32: aserto.directory.v2.RelationType
-	(*ObjectParam)(nil),               // 33: aserto.directory.v2.ObjectParam
-	(*Object)(nil),                    // 34: aserto.directory.v2.Object
-	(*RelationParam)(nil),             // 35: aserto.directory.v2.RelationParam
-	(*Relation)(nil),                  // 36: aserto.directory.v2.Relation
-	(*PermissionParam)(nil),           // 37: aserto.directory.v2.PermissionParam
-	(*Permission)(nil),                // 38: aserto.directory.v2.Permission
-	(*ObjectDependency)(nil),          // 39: aserto.directory.v2.ObjectDependency
+	(*GetObjectManyRequest)(nil),      // 12: aserto.directory.v2.GetObjectManyRequest
+	(*GetObjectManyResponse)(nil),     // 13: aserto.directory.v2.GetObjectManyResponse
+	(*ListObjectsRequest)(nil),        // 14: aserto.directory.v2.ListObjectsRequest
+	(*ListObjectsResponse)(nil),       // 15: aserto.directory.v2.ListObjectsResponse
+	(*GetRelationRequest)(nil),        // 16: aserto.directory.v2.GetRelationRequest
+	(*GetRelationResponse)(nil),       // 17: aserto.directory.v2.GetRelationResponse
+	(*ListRelationsRequest)(nil),      // 18: aserto.directory.v2.ListRelationsRequest
+	(*ListRelationsResponse)(nil),     // 19: aserto.directory.v2.ListRelationsResponse
+	(*GetPermissionRequest)(nil),      // 20: aserto.directory.v2.GetPermissionRequest
+	(*GetPermissionResponse)(nil),     // 21: aserto.directory.v2.GetPermissionResponse
+	(*ListPermissionsRequest)(nil),    // 22: aserto.directory.v2.ListPermissionsRequest
+	(*ListPermissionsResponse)(nil),   // 23: aserto.directory.v2.ListPermissionsResponse
+	(*CheckRequest)(nil),              // 24: aserto.directory.v2.CheckRequest
+	(*CheckResponse)(nil),             // 25: aserto.directory.v2.CheckResponse
+	(*GetGraphRequest)(nil),           // 26: aserto.directory.v2.GetGraphRequest
+	(*GetGraphResponse)(nil),          // 27: aserto.directory.v2.GetGraphResponse
+	(*structpb.Struct)(nil),           // 28: google.protobuf.Struct
+	(*ObjectTypeParam)(nil),           // 29: aserto.directory.v2.ObjectTypeParam
+	(*ObjectType)(nil),                // 30: aserto.directory.v2.ObjectType
+	(*v2.PaginationRequest)(nil),      // 31: aserto.api.v2.PaginationRequest
+	(*v2.PaginationResponse)(nil),     // 32: aserto.api.v2.PaginationResponse
+	(*RelationTypeParam)(nil),         // 33: aserto.directory.v2.RelationTypeParam
+	(*RelationType)(nil),              // 34: aserto.directory.v2.RelationType
+	(*ObjectParam)(nil),               // 35: aserto.directory.v2.ObjectParam
+	(*Object)(nil),                    // 36: aserto.directory.v2.Object
+	(*RelationParam)(nil),             // 37: aserto.directory.v2.RelationParam
+	(*Relation)(nil),                  // 38: aserto.directory.v2.Relation
+	(*PermissionParam)(nil),           // 39: aserto.directory.v2.PermissionParam
+	(*Permission)(nil),                // 40: aserto.directory.v2.Permission
+	(*ObjectDependency)(nil),          // 41: aserto.directory.v2.ObjectDependency
 }
 var file_aserto_directory_v2_directory_proto_depIdxs = []int32{
-	26, // 0: aserto.directory.v2.InfoResponse.info:type_name -> google.protobuf.Struct
-	27, // 1: aserto.directory.v2.GetObjectTypeRequest.param:type_name -> aserto.directory.v2.ObjectTypeParam
-	28, // 2: aserto.directory.v2.GetObjectTypeResponse.results:type_name -> aserto.directory.v2.ObjectType
-	29, // 3: aserto.directory.v2.ListObjectTypesRequest.page:type_name -> aserto.api.v2.PaginationRequest
-	28, // 4: aserto.directory.v2.ListObjectTypesResponse.results:type_name -> aserto.directory.v2.ObjectType
-	30, // 5: aserto.directory.v2.ListObjectTypesResponse.page:type_name -> aserto.api.v2.PaginationResponse
-	31, // 6: aserto.directory.v2.GetRelationTypeRequest.param:type_name -> aserto.directory.v2.RelationTypeParam
-	32, // 7: aserto.directory.v2.GetRelationTypeResponse.results:type_name -> aserto.directory.v2.RelationType
-	29, // 8: aserto.directory.v2.ListRelationTypesRequest.page:type_name -> aserto.api.v2.PaginationRequest
-	32, // 9: aserto.directory.v2.ListRelationTypesResponse.results:type_name -> aserto.directory.v2.RelationType
-	30, // 10: aserto.directory.v2.ListRelationTypesResponse.page:type_name -> aserto.api.v2.PaginationResponse
-	33, // 11: aserto.directory.v2.GetObjectRequest.param:type_name -> aserto.directory.v2.ObjectParam
-	34, // 12: aserto.directory.v2.GetObjectResponse.results:type_name -> aserto.directory.v2.Object
-	29, // 13: aserto.directory.v2.ListObjectsRequest.page:type_name -> aserto.api.v2.PaginationRequest
-	34, // 14: aserto.directory.v2.ListObjectsResponse.results:type_name -> aserto.directory.v2.Object
-	30, // 15: aserto.directory.v2.ListObjectsResponse.page:type_name -> aserto.api.v2.PaginationResponse
-	35, // 16: aserto.directory.v2.GetRelationRequest.param:type_name -> aserto.directory.v2.RelationParam
-	36, // 17: aserto.directory.v2.GetRelationResponse.results:type_name -> aserto.directory.v2.Relation
-	35, // 18: aserto.directory.v2.ListRelationsRequest.param:type_name -> aserto.directory.v2.RelationParam
-	29, // 19: aserto.directory.v2.ListRelationsRequest.page:type_name -> aserto.api.v2.PaginationRequest
-	36, // 20: aserto.directory.v2.ListRelationsResponse.results:type_name -> aserto.directory.v2.Relation
-	30, // 21: aserto.directory.v2.ListRelationsResponse.page:type_name -> aserto.api.v2.PaginationResponse
-	37, // 22: aserto.directory.v2.GetPermissionRequest.param:type_name -> aserto.directory.v2.PermissionParam
-	38, // 23: aserto.directory.v2.GetPermissionResponse.results:type_name -> aserto.directory.v2.Permission
-	29, // 24: aserto.directory.v2.ListPermissionsRequest.page:type_name -> aserto.api.v2.PaginationRequest
-	38, // 25: aserto.directory.v2.ListPermissionsResponse.results:type_name -> aserto.directory.v2.Permission
-	30, // 26: aserto.directory.v2.ListPermissionsResponse.page:type_name -> aserto.api.v2.PaginationResponse
-	33, // 27: aserto.directory.v2.CheckRequest.subject:type_name -> aserto.directory.v2.ObjectParam
-	31, // 28: aserto.directory.v2.CheckRequest.relation:type_name -> aserto.directory.v2.RelationTypeParam
-	37, // 29: aserto.directory.v2.CheckRequest.permission:type_name -> aserto.directory.v2.PermissionParam
-	33, // 30: aserto.directory.v2.CheckRequest.object:type_name -> aserto.directory.v2.ObjectParam
-	35, // 31: aserto.directory.v2.GetGraphRequest.param:type_name -> aserto.directory.v2.RelationParam
-	39, // 32: aserto.directory.v2.GetGraphResponse.results:type_name -> aserto.directory.v2.ObjectDependency
-	2,  // 33: aserto.directory.v2.Directory.GetObjectType:input_type -> aserto.directory.v2.GetObjectTypeRequest
-	4,  // 34: aserto.directory.v2.Directory.ListObjectTypes:input_type -> aserto.directory.v2.ListObjectTypesRequest
-	6,  // 35: aserto.directory.v2.Directory.GetRelationType:input_type -> aserto.directory.v2.GetRelationTypeRequest
-	8,  // 36: aserto.directory.v2.Directory.ListRelationTypes:input_type -> aserto.directory.v2.ListRelationTypesRequest
-	18, // 37: aserto.directory.v2.Directory.GetPermission:input_type -> aserto.directory.v2.GetPermissionRequest
-	20, // 38: aserto.directory.v2.Directory.ListPermissions:input_type -> aserto.directory.v2.ListPermissionsRequest
-	10, // 39: aserto.directory.v2.Directory.GetObject:input_type -> aserto.directory.v2.GetObjectRequest
-	12, // 40: aserto.directory.v2.Directory.ListObjects:input_type -> aserto.directory.v2.ListObjectsRequest
-	14, // 41: aserto.directory.v2.Directory.GetRelation:input_type -> aserto.directory.v2.GetRelationRequest
-	16, // 42: aserto.directory.v2.Directory.ListRelations:input_type -> aserto.directory.v2.ListRelationsRequest
-	24, // 43: aserto.directory.v2.Directory.GetGraph:input_type -> aserto.directory.v2.GetGraphRequest
-	22, // 44: aserto.directory.v2.Directory.Check:input_type -> aserto.directory.v2.CheckRequest
-	0,  // 45: aserto.directory.v2.Directory.Info:input_type -> aserto.directory.v2.InfoRequest
-	3,  // 46: aserto.directory.v2.Directory.GetObjectType:output_type -> aserto.directory.v2.GetObjectTypeResponse
-	5,  // 47: aserto.directory.v2.Directory.ListObjectTypes:output_type -> aserto.directory.v2.ListObjectTypesResponse
-	7,  // 48: aserto.directory.v2.Directory.GetRelationType:output_type -> aserto.directory.v2.GetRelationTypeResponse
-	9,  // 49: aserto.directory.v2.Directory.ListRelationTypes:output_type -> aserto.directory.v2.ListRelationTypesResponse
-	19, // 50: aserto.directory.v2.Directory.GetPermission:output_type -> aserto.directory.v2.GetPermissionResponse
-	21, // 51: aserto.directory.v2.Directory.ListPermissions:output_type -> aserto.directory.v2.ListPermissionsResponse
-	11, // 52: aserto.directory.v2.Directory.GetObject:output_type -> aserto.directory.v2.GetObjectResponse
-	13, // 53: aserto.directory.v2.Directory.ListObjects:output_type -> aserto.directory.v2.ListObjectsResponse
-	15, // 54: aserto.directory.v2.Directory.GetRelation:output_type -> aserto.directory.v2.GetRelationResponse
-	17, // 55: aserto.directory.v2.Directory.ListRelations:output_type -> aserto.directory.v2.ListRelationsResponse
-	25, // 56: aserto.directory.v2.Directory.GetGraph:output_type -> aserto.directory.v2.GetGraphResponse
-	23, // 57: aserto.directory.v2.Directory.Check:output_type -> aserto.directory.v2.CheckResponse
-	1,  // 58: aserto.directory.v2.Directory.Info:output_type -> aserto.directory.v2.InfoResponse
-	46, // [46:59] is the sub-list for method output_type
-	33, // [33:46] is the sub-list for method input_type
-	33, // [33:33] is the sub-list for extension type_name
-	33, // [33:33] is the sub-list for extension extendee
-	0,  // [0:33] is the sub-list for field type_name
+	28, // 0: aserto.directory.v2.InfoResponse.info:type_name -> google.protobuf.Struct
+	29, // 1: aserto.directory.v2.GetObjectTypeRequest.param:type_name -> aserto.directory.v2.ObjectTypeParam
+	30, // 2: aserto.directory.v2.GetObjectTypeResponse.results:type_name -> aserto.directory.v2.ObjectType
+	31, // 3: aserto.directory.v2.ListObjectTypesRequest.page:type_name -> aserto.api.v2.PaginationRequest
+	30, // 4: aserto.directory.v2.ListObjectTypesResponse.results:type_name -> aserto.directory.v2.ObjectType
+	32, // 5: aserto.directory.v2.ListObjectTypesResponse.page:type_name -> aserto.api.v2.PaginationResponse
+	33, // 6: aserto.directory.v2.GetRelationTypeRequest.param:type_name -> aserto.directory.v2.RelationTypeParam
+	34, // 7: aserto.directory.v2.GetRelationTypeResponse.results:type_name -> aserto.directory.v2.RelationType
+	31, // 8: aserto.directory.v2.ListRelationTypesRequest.page:type_name -> aserto.api.v2.PaginationRequest
+	34, // 9: aserto.directory.v2.ListRelationTypesResponse.results:type_name -> aserto.directory.v2.RelationType
+	32, // 10: aserto.directory.v2.ListRelationTypesResponse.page:type_name -> aserto.api.v2.PaginationResponse
+	35, // 11: aserto.directory.v2.GetObjectRequest.param:type_name -> aserto.directory.v2.ObjectParam
+	36, // 12: aserto.directory.v2.GetObjectResponse.results:type_name -> aserto.directory.v2.Object
+	35, // 13: aserto.directory.v2.GetObjectManyRequest.param:type_name -> aserto.directory.v2.ObjectParam
+	36, // 14: aserto.directory.v2.GetObjectManyResponse.results:type_name -> aserto.directory.v2.Object
+	31, // 15: aserto.directory.v2.ListObjectsRequest.page:type_name -> aserto.api.v2.PaginationRequest
+	36, // 16: aserto.directory.v2.ListObjectsResponse.results:type_name -> aserto.directory.v2.Object
+	32, // 17: aserto.directory.v2.ListObjectsResponse.page:type_name -> aserto.api.v2.PaginationResponse
+	37, // 18: aserto.directory.v2.GetRelationRequest.param:type_name -> aserto.directory.v2.RelationParam
+	38, // 19: aserto.directory.v2.GetRelationResponse.results:type_name -> aserto.directory.v2.Relation
+	37, // 20: aserto.directory.v2.ListRelationsRequest.param:type_name -> aserto.directory.v2.RelationParam
+	31, // 21: aserto.directory.v2.ListRelationsRequest.page:type_name -> aserto.api.v2.PaginationRequest
+	38, // 22: aserto.directory.v2.ListRelationsResponse.results:type_name -> aserto.directory.v2.Relation
+	32, // 23: aserto.directory.v2.ListRelationsResponse.page:type_name -> aserto.api.v2.PaginationResponse
+	39, // 24: aserto.directory.v2.GetPermissionRequest.param:type_name -> aserto.directory.v2.PermissionParam
+	40, // 25: aserto.directory.v2.GetPermissionResponse.results:type_name -> aserto.directory.v2.Permission
+	31, // 26: aserto.directory.v2.ListPermissionsRequest.page:type_name -> aserto.api.v2.PaginationRequest
+	40, // 27: aserto.directory.v2.ListPermissionsResponse.results:type_name -> aserto.directory.v2.Permission
+	32, // 28: aserto.directory.v2.ListPermissionsResponse.page:type_name -> aserto.api.v2.PaginationResponse
+	35, // 29: aserto.directory.v2.CheckRequest.subject:type_name -> aserto.directory.v2.ObjectParam
+	33, // 30: aserto.directory.v2.CheckRequest.relation:type_name -> aserto.directory.v2.RelationTypeParam
+	39, // 31: aserto.directory.v2.CheckRequest.permission:type_name -> aserto.directory.v2.PermissionParam
+	35, // 32: aserto.directory.v2.CheckRequest.object:type_name -> aserto.directory.v2.ObjectParam
+	37, // 33: aserto.directory.v2.GetGraphRequest.param:type_name -> aserto.directory.v2.RelationParam
+	41, // 34: aserto.directory.v2.GetGraphResponse.results:type_name -> aserto.directory.v2.ObjectDependency
+	2,  // 35: aserto.directory.v2.Directory.GetObjectType:input_type -> aserto.directory.v2.GetObjectTypeRequest
+	4,  // 36: aserto.directory.v2.Directory.ListObjectTypes:input_type -> aserto.directory.v2.ListObjectTypesRequest
+	6,  // 37: aserto.directory.v2.Directory.GetRelationType:input_type -> aserto.directory.v2.GetRelationTypeRequest
+	8,  // 38: aserto.directory.v2.Directory.ListRelationTypes:input_type -> aserto.directory.v2.ListRelationTypesRequest
+	20, // 39: aserto.directory.v2.Directory.GetPermission:input_type -> aserto.directory.v2.GetPermissionRequest
+	22, // 40: aserto.directory.v2.Directory.ListPermissions:input_type -> aserto.directory.v2.ListPermissionsRequest
+	10, // 41: aserto.directory.v2.Directory.GetObject:input_type -> aserto.directory.v2.GetObjectRequest
+	12, // 42: aserto.directory.v2.Directory.GetObjectMany:input_type -> aserto.directory.v2.GetObjectManyRequest
+	14, // 43: aserto.directory.v2.Directory.ListObjects:input_type -> aserto.directory.v2.ListObjectsRequest
+	16, // 44: aserto.directory.v2.Directory.GetRelation:input_type -> aserto.directory.v2.GetRelationRequest
+	18, // 45: aserto.directory.v2.Directory.ListRelations:input_type -> aserto.directory.v2.ListRelationsRequest
+	26, // 46: aserto.directory.v2.Directory.GetGraph:input_type -> aserto.directory.v2.GetGraphRequest
+	24, // 47: aserto.directory.v2.Directory.Check:input_type -> aserto.directory.v2.CheckRequest
+	0,  // 48: aserto.directory.v2.Directory.Info:input_type -> aserto.directory.v2.InfoRequest
+	3,  // 49: aserto.directory.v2.Directory.GetObjectType:output_type -> aserto.directory.v2.GetObjectTypeResponse
+	5,  // 50: aserto.directory.v2.Directory.ListObjectTypes:output_type -> aserto.directory.v2.ListObjectTypesResponse
+	7,  // 51: aserto.directory.v2.Directory.GetRelationType:output_type -> aserto.directory.v2.GetRelationTypeResponse
+	9,  // 52: aserto.directory.v2.Directory.ListRelationTypes:output_type -> aserto.directory.v2.ListRelationTypesResponse
+	21, // 53: aserto.directory.v2.Directory.GetPermission:output_type -> aserto.directory.v2.GetPermissionResponse
+	23, // 54: aserto.directory.v2.Directory.ListPermissions:output_type -> aserto.directory.v2.ListPermissionsResponse
+	11, // 55: aserto.directory.v2.Directory.GetObject:output_type -> aserto.directory.v2.GetObjectResponse
+	13, // 56: aserto.directory.v2.Directory.GetObjectMany:output_type -> aserto.directory.v2.GetObjectManyResponse
+	15, // 57: aserto.directory.v2.Directory.ListObjects:output_type -> aserto.directory.v2.ListObjectsResponse
+	17, // 58: aserto.directory.v2.Directory.GetRelation:output_type -> aserto.directory.v2.GetRelationResponse
+	19, // 59: aserto.directory.v2.Directory.ListRelations:output_type -> aserto.directory.v2.ListRelationsResponse
+	27, // 60: aserto.directory.v2.Directory.GetGraph:output_type -> aserto.directory.v2.GetGraphResponse
+	25, // 61: aserto.directory.v2.Directory.Check:output_type -> aserto.directory.v2.CheckResponse
+	1,  // 62: aserto.directory.v2.Directory.Info:output_type -> aserto.directory.v2.InfoResponse
+	49, // [49:63] is the sub-list for method output_type
+	35, // [35:49] is the sub-list for method input_type
+	35, // [35:35] is the sub-list for extension type_name
+	35, // [35:35] is the sub-list for extension extendee
+	0,  // [0:35] is the sub-list for field type_name
 }
 
 func init() { file_aserto_directory_v2_directory_proto_init() }
@@ -1941,7 +2058,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 			}
 		}
 		file_aserto_directory_v2_directory_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListObjectsRequest); i {
+			switch v := v.(*GetObjectManyRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1953,7 +2070,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 			}
 		}
 		file_aserto_directory_v2_directory_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListObjectsResponse); i {
+			switch v := v.(*GetObjectManyResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1965,7 +2082,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 			}
 		}
 		file_aserto_directory_v2_directory_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetRelationRequest); i {
+			switch v := v.(*ListObjectsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1977,7 +2094,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 			}
 		}
 		file_aserto_directory_v2_directory_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetRelationResponse); i {
+			switch v := v.(*ListObjectsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1989,7 +2106,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 			}
 		}
 		file_aserto_directory_v2_directory_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListRelationsRequest); i {
+			switch v := v.(*GetRelationRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2001,7 +2118,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 			}
 		}
 		file_aserto_directory_v2_directory_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListRelationsResponse); i {
+			switch v := v.(*GetRelationResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2013,7 +2130,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 			}
 		}
 		file_aserto_directory_v2_directory_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetPermissionRequest); i {
+			switch v := v.(*ListRelationsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2025,7 +2142,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 			}
 		}
 		file_aserto_directory_v2_directory_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetPermissionResponse); i {
+			switch v := v.(*ListRelationsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2037,7 +2154,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 			}
 		}
 		file_aserto_directory_v2_directory_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListPermissionsRequest); i {
+			switch v := v.(*GetPermissionRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2049,7 +2166,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 			}
 		}
 		file_aserto_directory_v2_directory_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListPermissionsResponse); i {
+			switch v := v.(*GetPermissionResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2061,7 +2178,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 			}
 		}
 		file_aserto_directory_v2_directory_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CheckRequest); i {
+			switch v := v.(*ListPermissionsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2073,7 +2190,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 			}
 		}
 		file_aserto_directory_v2_directory_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CheckResponse); i {
+			switch v := v.(*ListPermissionsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2085,7 +2202,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 			}
 		}
 		file_aserto_directory_v2_directory_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetGraphRequest); i {
+			switch v := v.(*CheckRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2097,6 +2214,30 @@ func file_aserto_directory_v2_directory_proto_init() {
 			}
 		}
 		file_aserto_directory_v2_directory_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CheckResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_aserto_directory_v2_directory_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetGraphRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_aserto_directory_v2_directory_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetGraphResponse); i {
 			case 0:
 				return &v.state
@@ -2110,8 +2251,8 @@ func file_aserto_directory_v2_directory_proto_init() {
 		}
 	}
 	file_aserto_directory_v2_directory_proto_msgTypes[8].OneofWrappers = []interface{}{}
-	file_aserto_directory_v2_directory_proto_msgTypes[12].OneofWrappers = []interface{}{}
-	file_aserto_directory_v2_directory_proto_msgTypes[22].OneofWrappers = []interface{}{
+	file_aserto_directory_v2_directory_proto_msgTypes[14].OneofWrappers = []interface{}{}
+	file_aserto_directory_v2_directory_proto_msgTypes[24].OneofWrappers = []interface{}{
 		(*CheckRequest_Relation)(nil),
 		(*CheckRequest_Permission)(nil),
 	}
@@ -2121,7 +2262,7 @@ func file_aserto_directory_v2_directory_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_aserto_directory_v2_directory_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   26,
+			NumMessages:   28,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
