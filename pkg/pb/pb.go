@@ -51,7 +51,9 @@ func UnmarshalNext(d *json.Decoder, m proto.Message) error {
 		return err
 	}
 
-	return protojson.Unmarshal(b, m)
+	return protojson.UnmarshalOptions{
+		DiscardUnknown: true,
+	}.Unmarshal(b, m)
 }
 
 // ProtoToStr, marshal proto message to string representation.

@@ -33,6 +33,7 @@ type DirectoryClient interface {
 	GetPermissions(ctx context.Context, in *GetPermissionsRequest, opts ...grpc.CallOption) (*GetPermissionsResponse, error)
 	// object methods
 	GetObject(ctx context.Context, in *GetObjectRequest, opts ...grpc.CallOption) (*GetObjectResponse, error)
+	GetObjectMany(ctx context.Context, in *GetObjectManyRequest, opts ...grpc.CallOption) (*GetObjectManyResponse, error)
 	GetObjects(ctx context.Context, in *GetObjectsRequest, opts ...grpc.CallOption) (*GetObjectsResponse, error)
 	// relation methods
 	GetRelation(ctx context.Context, in *GetRelationRequest, opts ...grpc.CallOption) (*GetRelationResponse, error)
@@ -115,6 +116,15 @@ func (c *directoryClient) GetObject(ctx context.Context, in *GetObjectRequest, o
 	return out, nil
 }
 
+func (c *directoryClient) GetObjectMany(ctx context.Context, in *GetObjectManyRequest, opts ...grpc.CallOption) (*GetObjectManyResponse, error) {
+	out := new(GetObjectManyResponse)
+	err := c.cc.Invoke(ctx, "/aserto.directory.v2.Directory/GetObjectMany", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *directoryClient) GetObjects(ctx context.Context, in *GetObjectsRequest, opts ...grpc.CallOption) (*GetObjectsResponse, error) {
 	out := new(GetObjectsResponse)
 	err := c.cc.Invoke(ctx, "/aserto.directory.v2.Directory/GetObjects", in, out, opts...)
@@ -184,6 +194,7 @@ type DirectoryServer interface {
 	GetPermissions(context.Context, *GetPermissionsRequest) (*GetPermissionsResponse, error)
 	// object methods
 	GetObject(context.Context, *GetObjectRequest) (*GetObjectResponse, error)
+	GetObjectMany(context.Context, *GetObjectManyRequest) (*GetObjectManyResponse, error)
 	GetObjects(context.Context, *GetObjectsRequest) (*GetObjectsResponse, error)
 	// relation methods
 	GetRelation(context.Context, *GetRelationRequest) (*GetRelationResponse, error)
@@ -219,6 +230,9 @@ func (UnimplementedDirectoryServer) GetPermissions(context.Context, *GetPermissi
 }
 func (UnimplementedDirectoryServer) GetObject(context.Context, *GetObjectRequest) (*GetObjectResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetObject not implemented")
+}
+func (UnimplementedDirectoryServer) GetObjectMany(context.Context, *GetObjectManyRequest) (*GetObjectManyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetObjectMany not implemented")
 }
 func (UnimplementedDirectoryServer) GetObjects(context.Context, *GetObjectsRequest) (*GetObjectsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetObjects not implemented")
@@ -376,6 +390,24 @@ func _Directory_GetObject_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Directory_GetObjectMany_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetObjectManyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DirectoryServer).GetObjectMany(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/aserto.directory.v2.Directory/GetObjectMany",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DirectoryServer).GetObjectMany(ctx, req.(*GetObjectManyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Directory_GetObjects_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetObjectsRequest)
 	if err := dec(in); err != nil {
@@ -518,6 +550,10 @@ var Directory_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetObject",
 			Handler:    _Directory_GetObject_Handler,
+		},
+		{
+			MethodName: "GetObjectMany",
+			Handler:    _Directory_GetObjectMany_Handler,
 		},
 		{
 			MethodName: "GetObjects",

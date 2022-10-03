@@ -6,6 +6,7 @@ import (
 	"log"
 	"net"
 	"os"
+	"testing"
 
 	"github.com/aserto-dev/go-directory/aserto/directory/common/v2"
 	"github.com/aserto-dev/go-directory/aserto/directory/exporter/v2"
@@ -138,4 +139,13 @@ func ProtoToStr(msg proto.Message) string {
 		UseEnumNumbers:  false,
 		EmitUnpopulated: false,
 	}.Format(msg)
+}
+
+func TestGetManyObject(t *testing.T) {
+	_ = directory.GetObjectManyRequest{
+		Param: []*common.ObjectIdentifier{
+			{Id: proto.String("ID1")},
+			{Id: proto.String("ID2")},
+		},
+	}
 }
