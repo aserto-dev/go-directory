@@ -21,6 +21,7 @@ var (
 	ErrInvalidRelationTypePermission = newErr("E20011", codes.Internal, http.StatusInternalServerError, "invalid relation type permission")
 	ErrDirectoryStoreTenantNotFound  = newErr("E20012", codes.NotFound, http.StatusNotFound, "tenant store not found")
 	ErrHashMismatch                  = newErr("E20013", codes.InvalidArgument, http.StatusBadRequest, "hash value mismatch")
+	ErrPermissionInUse               = newErr("E20014", codes.FailedPrecondition, http.StatusPreconditionFailed, "permission in use by one or more relation types")
 
 	ErrObjectNotFound                = ErrNotFound.Str("type", "object")
 	ErrObjectTypeNotFound            = ErrNotFound.Str("type", "object type")
