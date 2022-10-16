@@ -645,16 +645,16 @@ type ObjectDependency struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ObjectType  string `protobuf:"bytes,1,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"`    // object type name of source object
-	ObjectId    string `protobuf:"bytes,3,opt,name=object_id,json=objectId,proto3" json:"object_id,omitempty"`          // object id (uuid) of source object
-	ObjectKey   string `protobuf:"bytes,4,opt,name=object_key,json=objectKey,proto3" json:"object_key,omitempty"`       // object search key of source object
-	Relation    string `protobuf:"bytes,5,opt,name=relation,proto3" json:"relation,omitempty"`                          // relation identifier
-	SubjectType string `protobuf:"bytes,7,opt,name=subject_type,json=subjectType,proto3" json:"subject_type,omitempty"` // object type id of target object
-	SubjectId   string `protobuf:"bytes,9,opt,name=subject_id,json=subjectId,proto3" json:"subject_id,omitempty"`       // object id (uuid) of target object
-	SubjectKey  string `protobuf:"bytes,10,opt,name=subject_key,json=subjectKey,proto3" json:"subject_key,omitempty"`   // object search key of target object
-	Depth       int32  `protobuf:"varint,11,opt,name=depth,proto3" json:"depth,omitempty"`                              // dependency depth
-	IsCycle     bool   `protobuf:"varint,12,opt,name=is_cycle,json=isCycle,proto3" json:"is_cycle,omitempty"`           // dependency cycle
-	Path        string `protobuf:"bytes,13,opt,name=path,proto3" json:"path,omitempty"`                                 // dependency path
+	ObjectType  string   `protobuf:"bytes,1,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"`    // object type name of source object
+	ObjectId    string   `protobuf:"bytes,3,opt,name=object_id,json=objectId,proto3" json:"object_id,omitempty"`          // object id (uuid) of source object
+	ObjectKey   string   `protobuf:"bytes,4,opt,name=object_key,json=objectKey,proto3" json:"object_key,omitempty"`       // object search key of source object
+	Relation    string   `protobuf:"bytes,5,opt,name=relation,proto3" json:"relation,omitempty"`                          // relation identifier
+	SubjectType string   `protobuf:"bytes,7,opt,name=subject_type,json=subjectType,proto3" json:"subject_type,omitempty"` // object type id of target object
+	SubjectId   string   `protobuf:"bytes,9,opt,name=subject_id,json=subjectId,proto3" json:"subject_id,omitempty"`       // object id (uuid) of target object
+	SubjectKey  string   `protobuf:"bytes,10,opt,name=subject_key,json=subjectKey,proto3" json:"subject_key,omitempty"`   // object search key of target object
+	Depth       int32    `protobuf:"varint,11,opt,name=depth,proto3" json:"depth,omitempty"`                              // dependency depth
+	IsCycle     bool     `protobuf:"varint,12,opt,name=is_cycle,json=isCycle,proto3" json:"is_cycle,omitempty"`           // dependency cycle
+	Path        []string `protobuf:"bytes,13,rep,name=path,proto3" json:"path,omitempty"`                                 // dependency path
 }
 
 func (x *ObjectDependency) Reset() {
@@ -752,11 +752,11 @@ func (x *ObjectDependency) GetIsCycle() bool {
 	return false
 }
 
-func (x *ObjectDependency) GetPath() string {
+func (x *ObjectDependency) GetPath() []string {
 	if x != nil {
 		return x.Path
 	}
-	return ""
+	return nil
 }
 
 // ObjectType identifier
@@ -1209,7 +1209,7 @@ var file_aserto_directory_common_v2_common_proto_rawDesc = []byte{
 	0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x64, 0x65, 0x70, 0x74, 0x68, 0x12, 0x19, 0x0a, 0x08, 0x69,
 	0x73, 0x5f, 0x63, 0x79, 0x63, 0x6c, 0x65, 0x18, 0x0c, 0x20, 0x01, 0x28, 0x08, 0x52, 0x07, 0x69,
 	0x73, 0x43, 0x79, 0x63, 0x6c, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x70, 0x61, 0x74, 0x68, 0x18, 0x0d,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x70, 0x61, 0x74, 0x68, 0x22, 0x54, 0x0a, 0x14, 0x4f, 0x62,
+	0x20, 0x03, 0x28, 0x09, 0x52, 0x04, 0x70, 0x61, 0x74, 0x68, 0x22, 0x54, 0x0a, 0x14, 0x4f, 0x62,
 	0x6a, 0x65, 0x63, 0x74, 0x54, 0x79, 0x70, 0x65, 0x49, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x66, 0x69,
 	0x65, 0x72, 0x12, 0x13, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x48, 0x00,
 	0x52, 0x02, 0x69, 0x64, 0x88, 0x01, 0x01, 0x12, 0x17, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18,
