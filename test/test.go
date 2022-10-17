@@ -11,7 +11,7 @@ import (
 	"github.com/aserto-dev/go-directory/aserto/directory/common/v2"
 	"github.com/aserto-dev/go-directory/aserto/directory/exporter/v2"
 	"github.com/aserto-dev/go-directory/aserto/directory/importer/v2"
-	"github.com/aserto-dev/go-directory/aserto/directory/v2"
+	"github.com/aserto-dev/go-directory/aserto/directory/reader/v2"
 	"github.com/aserto-dev/go-directory/aserto/directory/writer/v2"
 	"github.com/aserto-dev/go-directory/pkg/pb"
 	"google.golang.org/grpc"
@@ -21,7 +21,7 @@ import (
 )
 
 type server struct {
-	directory.UnimplementedDirectoryServer
+	reader.UnimplementedReaderServer
 	writer.UnimplementedWriterServer
 	importer.UnimplementedImporterServer
 	exporter.UnimplementedExporterServer
@@ -48,7 +48,7 @@ func main() {
 	}
 	s := grpc.NewServer()
 
-	directory.RegisterDirectoryServer(s, &server{})
+	reader.RegisterReaderServer(s, &server{})
 	writer.RegisterWriterServer(s, &server{})
 	exporter.RegisterExporterServer(s, &server{})
 	importer.RegisterImporterServer(s, &server{})
@@ -142,7 +142,7 @@ func ProtoToStr(msg proto.Message) string {
 }
 
 func TestGetManyObject(t *testing.T) {
-	_ = directory.GetObjectManyRequest{
+	_ = reader.GetObjectManyRequest{
 		Param: []*common.ObjectIdentifier{
 			{Id: proto.String("ID1")},
 			{Id: proto.String("ID2")},

@@ -1063,6 +1063,118 @@ func (x *RelationIdentifier) GetObject() *ObjectIdentifier {
 	return nil
 }
 
+// Pagination request
+type PaginationRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Size  int32  `protobuf:"varint,1,opt,name=size,proto3" json:"size,omitempty"`  // requested page size, valid value between 1-100 rows (default 100)
+	Token string `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"` // pagination start token, default ""
+}
+
+func (x *PaginationRequest) Reset() {
+	*x = PaginationRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_aserto_directory_common_v2_common_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PaginationRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PaginationRequest) ProtoMessage() {}
+
+func (x *PaginationRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_aserto_directory_common_v2_common_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PaginationRequest.ProtoReflect.Descriptor instead.
+func (*PaginationRequest) Descriptor() ([]byte, []int) {
+	return file_aserto_directory_common_v2_common_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *PaginationRequest) GetSize() int32 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+func (x *PaginationRequest) GetToken() string {
+	if x != nil {
+		return x.Token
+	}
+	return ""
+}
+
+// Pagination response
+type PaginationResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NextToken  string `protobuf:"bytes,1,opt,name=next_token,json=nextToken,proto3" json:"next_token,omitempty"`     // next page token, when empty there are no more pages to fetch
+	ResultSize int32  `protobuf:"varint,2,opt,name=result_size,json=resultSize,proto3" json:"result_size,omitempty"` // result size of the page returned
+}
+
+func (x *PaginationResponse) Reset() {
+	*x = PaginationResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_aserto_directory_common_v2_common_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PaginationResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PaginationResponse) ProtoMessage() {}
+
+func (x *PaginationResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_aserto_directory_common_v2_common_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PaginationResponse.ProtoReflect.Descriptor instead.
+func (*PaginationResponse) Descriptor() ([]byte, []int) {
+	return file_aserto_directory_common_v2_common_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *PaginationResponse) GetNextToken() string {
+	if x != nil {
+		return x.NextToken
+	}
+	return ""
+}
+
+func (x *PaginationResponse) GetResultSize() int32 {
+	if x != nil {
+		return x.ResultSize
+	}
+	return 0
+}
+
 var File_aserto_directory_common_v2_common_proto protoreflect.FileDescriptor
 
 var file_aserto_directory_common_v2_common_proto_rawDesc = []byte{
@@ -1251,18 +1363,27 @@ var file_aserto_directory_common_v2_common_proto_rawDesc = []byte{
 	0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x2c, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64,
 	0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e,
 	0x76, 0x32, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x49, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x66,
-	0x69, 0x65, 0x72, 0x52, 0x06, 0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x2a, 0x5e, 0x0a, 0x04, 0x46,
-	0x6c, 0x61, 0x67, 0x12, 0x10, 0x0a, 0x0c, 0x46, 0x4c, 0x41, 0x47, 0x5f, 0x55, 0x4e, 0x4b, 0x4e,
-	0x4f, 0x57, 0x4e, 0x10, 0x00, 0x12, 0x0f, 0x0a, 0x0b, 0x46, 0x4c, 0x41, 0x47, 0x5f, 0x48, 0x49,
-	0x44, 0x44, 0x45, 0x4e, 0x10, 0x01, 0x12, 0x11, 0x0a, 0x0d, 0x46, 0x4c, 0x41, 0x47, 0x5f, 0x52,
-	0x45, 0x41, 0x44, 0x4f, 0x4e, 0x4c, 0x59, 0x10, 0x02, 0x12, 0x0f, 0x0a, 0x0b, 0x46, 0x4c, 0x41,
-	0x47, 0x5f, 0x53, 0x59, 0x53, 0x54, 0x45, 0x4d, 0x10, 0x04, 0x12, 0x0f, 0x0a, 0x0b, 0x46, 0x4c,
-	0x41, 0x47, 0x5f, 0x53, 0x48, 0x41, 0x44, 0x4f, 0x57, 0x10, 0x08, 0x42, 0x46, 0x5a, 0x44, 0x67,
-	0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f,
-	0x2d, 0x64, 0x65, 0x76, 0x2f, 0x67, 0x6f, 0x2d, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72,
-	0x79, 0x2f, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2f, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f,
-	0x72, 0x79, 0x2f, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2f, 0x76, 0x32, 0x3b, 0x63, 0x6f, 0x6d,
-	0x6d, 0x6f, 0x6e, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x69, 0x65, 0x72, 0x52, 0x06, 0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x22, 0x3d, 0x0a, 0x11, 0x50,
+	0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x12, 0x12, 0x0a, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x04,
+	0x73, 0x69, 0x7a, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x22, 0x54, 0x0a, 0x12, 0x50, 0x61,
+	0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x1d, 0x0a, 0x0a, 0x6e, 0x65, 0x78, 0x74, 0x5f, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x6e, 0x65, 0x78, 0x74, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x12,
+	0x1f, 0x0a, 0x0b, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x5f, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x05, 0x52, 0x0a, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x53, 0x69, 0x7a, 0x65,
+	0x2a, 0x5e, 0x0a, 0x04, 0x46, 0x6c, 0x61, 0x67, 0x12, 0x10, 0x0a, 0x0c, 0x46, 0x4c, 0x41, 0x47,
+	0x5f, 0x55, 0x4e, 0x4b, 0x4e, 0x4f, 0x57, 0x4e, 0x10, 0x00, 0x12, 0x0f, 0x0a, 0x0b, 0x46, 0x4c,
+	0x41, 0x47, 0x5f, 0x48, 0x49, 0x44, 0x44, 0x45, 0x4e, 0x10, 0x01, 0x12, 0x11, 0x0a, 0x0d, 0x46,
+	0x4c, 0x41, 0x47, 0x5f, 0x52, 0x45, 0x41, 0x44, 0x4f, 0x4e, 0x4c, 0x59, 0x10, 0x02, 0x12, 0x0f,
+	0x0a, 0x0b, 0x46, 0x4c, 0x41, 0x47, 0x5f, 0x53, 0x59, 0x53, 0x54, 0x45, 0x4d, 0x10, 0x04, 0x12,
+	0x0f, 0x0a, 0x0b, 0x46, 0x4c, 0x41, 0x47, 0x5f, 0x53, 0x48, 0x41, 0x44, 0x4f, 0x57, 0x10, 0x08,
+	0x42, 0x46, 0x5a, 0x44, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x61,
+	0x73, 0x65, 0x72, 0x74, 0x6f, 0x2d, 0x64, 0x65, 0x76, 0x2f, 0x67, 0x6f, 0x2d, 0x64, 0x69, 0x72,
+	0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2f, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2f, 0x64, 0x69,
+	0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2f, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2f, 0x76,
+	0x32, 0x3b, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1278,7 +1399,7 @@ func file_aserto_directory_common_v2_common_proto_rawDescGZIP() []byte {
 }
 
 var file_aserto_directory_common_v2_common_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_aserto_directory_common_v2_common_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_aserto_directory_common_v2_common_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_aserto_directory_common_v2_common_proto_goTypes = []interface{}{
 	(Flag)(0),                      // 0: aserto.directory.common.v2.Flag
 	(*ObjectType)(nil),             // 1: aserto.directory.common.v2.ObjectType
@@ -1292,29 +1413,31 @@ var file_aserto_directory_common_v2_common_proto_goTypes = []interface{}{
 	(*RelationTypeIdentifier)(nil), // 9: aserto.directory.common.v2.RelationTypeIdentifier
 	(*ObjectIdentifier)(nil),       // 10: aserto.directory.common.v2.ObjectIdentifier
 	(*RelationIdentifier)(nil),     // 11: aserto.directory.common.v2.RelationIdentifier
-	(*structpb.Struct)(nil),        // 12: google.protobuf.Struct
-	(*timestamppb.Timestamp)(nil),  // 13: google.protobuf.Timestamp
+	(*PaginationRequest)(nil),      // 12: aserto.directory.common.v2.PaginationRequest
+	(*PaginationResponse)(nil),     // 13: aserto.directory.common.v2.PaginationResponse
+	(*structpb.Struct)(nil),        // 14: google.protobuf.Struct
+	(*timestamppb.Timestamp)(nil),  // 15: google.protobuf.Timestamp
 }
 var file_aserto_directory_common_v2_common_proto_depIdxs = []int32{
-	12, // 0: aserto.directory.common.v2.ObjectType.schema:type_name -> google.protobuf.Struct
-	13, // 1: aserto.directory.common.v2.ObjectType.created_at:type_name -> google.protobuf.Timestamp
-	13, // 2: aserto.directory.common.v2.ObjectType.updated_at:type_name -> google.protobuf.Timestamp
-	13, // 3: aserto.directory.common.v2.ObjectType.deleted_at:type_name -> google.protobuf.Timestamp
-	13, // 4: aserto.directory.common.v2.Permission.created_at:type_name -> google.protobuf.Timestamp
-	13, // 5: aserto.directory.common.v2.Permission.updated_at:type_name -> google.protobuf.Timestamp
-	13, // 6: aserto.directory.common.v2.Permission.deleted_at:type_name -> google.protobuf.Timestamp
-	13, // 7: aserto.directory.common.v2.RelationType.created_at:type_name -> google.protobuf.Timestamp
-	13, // 8: aserto.directory.common.v2.RelationType.updated_at:type_name -> google.protobuf.Timestamp
-	13, // 9: aserto.directory.common.v2.RelationType.deleted_at:type_name -> google.protobuf.Timestamp
-	12, // 10: aserto.directory.common.v2.Object.properties:type_name -> google.protobuf.Struct
-	13, // 11: aserto.directory.common.v2.Object.created_at:type_name -> google.protobuf.Timestamp
-	13, // 12: aserto.directory.common.v2.Object.updated_at:type_name -> google.protobuf.Timestamp
-	13, // 13: aserto.directory.common.v2.Object.deleted_at:type_name -> google.protobuf.Timestamp
+	14, // 0: aserto.directory.common.v2.ObjectType.schema:type_name -> google.protobuf.Struct
+	15, // 1: aserto.directory.common.v2.ObjectType.created_at:type_name -> google.protobuf.Timestamp
+	15, // 2: aserto.directory.common.v2.ObjectType.updated_at:type_name -> google.protobuf.Timestamp
+	15, // 3: aserto.directory.common.v2.ObjectType.deleted_at:type_name -> google.protobuf.Timestamp
+	15, // 4: aserto.directory.common.v2.Permission.created_at:type_name -> google.protobuf.Timestamp
+	15, // 5: aserto.directory.common.v2.Permission.updated_at:type_name -> google.protobuf.Timestamp
+	15, // 6: aserto.directory.common.v2.Permission.deleted_at:type_name -> google.protobuf.Timestamp
+	15, // 7: aserto.directory.common.v2.RelationType.created_at:type_name -> google.protobuf.Timestamp
+	15, // 8: aserto.directory.common.v2.RelationType.updated_at:type_name -> google.protobuf.Timestamp
+	15, // 9: aserto.directory.common.v2.RelationType.deleted_at:type_name -> google.protobuf.Timestamp
+	14, // 10: aserto.directory.common.v2.Object.properties:type_name -> google.protobuf.Struct
+	15, // 11: aserto.directory.common.v2.Object.created_at:type_name -> google.protobuf.Timestamp
+	15, // 12: aserto.directory.common.v2.Object.updated_at:type_name -> google.protobuf.Timestamp
+	15, // 13: aserto.directory.common.v2.Object.deleted_at:type_name -> google.protobuf.Timestamp
 	10, // 14: aserto.directory.common.v2.Relation.subject:type_name -> aserto.directory.common.v2.ObjectIdentifier
 	10, // 15: aserto.directory.common.v2.Relation.object:type_name -> aserto.directory.common.v2.ObjectIdentifier
-	13, // 16: aserto.directory.common.v2.Relation.created_at:type_name -> google.protobuf.Timestamp
-	13, // 17: aserto.directory.common.v2.Relation.updated_at:type_name -> google.protobuf.Timestamp
-	13, // 18: aserto.directory.common.v2.Relation.deleted_at:type_name -> google.protobuf.Timestamp
+	15, // 16: aserto.directory.common.v2.Relation.created_at:type_name -> google.protobuf.Timestamp
+	15, // 17: aserto.directory.common.v2.Relation.updated_at:type_name -> google.protobuf.Timestamp
+	15, // 18: aserto.directory.common.v2.Relation.deleted_at:type_name -> google.protobuf.Timestamp
 	10, // 19: aserto.directory.common.v2.RelationIdentifier.subject:type_name -> aserto.directory.common.v2.ObjectIdentifier
 	9,  // 20: aserto.directory.common.v2.RelationIdentifier.relation:type_name -> aserto.directory.common.v2.RelationTypeIdentifier
 	10, // 21: aserto.directory.common.v2.RelationIdentifier.object:type_name -> aserto.directory.common.v2.ObjectIdentifier
@@ -1463,6 +1586,30 @@ func file_aserto_directory_common_v2_common_proto_init() {
 				return nil
 			}
 		}
+		file_aserto_directory_common_v2_common_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*PaginationRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_aserto_directory_common_v2_common_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*PaginationResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	file_aserto_directory_common_v2_common_proto_msgTypes[6].OneofWrappers = []interface{}{}
 	file_aserto_directory_common_v2_common_proto_msgTypes[7].OneofWrappers = []interface{}{}
@@ -1474,7 +1621,7 @@ func file_aserto_directory_common_v2_common_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_aserto_directory_common_v2_common_proto_rawDesc,
 			NumEnums:      1,
-			NumMessages:   11,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

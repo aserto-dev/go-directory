@@ -3,11 +3,12 @@ package derr
 import (
 	"net/http"
 
-	"github.com/aserto-dev/go-utils/cerr"
+	cerr "github.com/aserto-dev/errors"
 	"google.golang.org/grpc/codes"
 )
 
 var (
+	ErrUnknown                       = newErr("E20000", codes.Internal, http.StatusInternalServerError, "an unknown error has occurred")
 	ErrInvalidJSON                   = newErr("E20001", codes.Internal, http.StatusInternalServerError, "invalid json")
 	ErrNotFound                      = newErr("E20002", codes.NotFound, http.StatusNotFound, "not found")
 	ErrAlreadyExists                 = newErr("E20003", codes.AlreadyExists, http.StatusConflict, "already exists")
@@ -22,6 +23,14 @@ var (
 	ErrDirectoryStoreTenantNotFound  = newErr("E20012", codes.NotFound, http.StatusNotFound, "tenant store not found")
 	ErrHashMismatch                  = newErr("E20013", codes.InvalidArgument, http.StatusBadRequest, "hash value mismatch")
 	ErrPermissionInUse               = newErr("E20014", codes.FailedPrecondition, http.StatusPreconditionFailed, "permission in use by one or more relation types")
+	ErrInvalidArgument               = newErr("E20015", codes.InvalidArgument, http.StatusBadRequest, "invalid argument")
+	ErrInvalidID                     = newErr("E20016", codes.InvalidArgument, http.StatusBadRequest, "invalid ID")
+	ErrAuthenticationFailed          = newErr("E20017", codes.FailedPrecondition, http.StatusUnauthorized, "authentication failed")
+	ErrAuthorizationFailed           = newErr("E10046", codes.PermissionDenied, http.StatusUnauthorized, "authorization failed")
+	ErrInvalidDecision               = newErr("E10052", codes.InvalidArgument, http.StatusBadRequest, "invalid decision")
+	ErrInvalidTenantID               = newErr("E10002", codes.InvalidArgument, http.StatusBadRequest, "invalid tenant id")
+	ErrInvalidTenantName             = newErr("E10003", codes.InvalidArgument, http.StatusBadRequest, "invalid tenant name")
+	ErrDirectoryObjectNotFound       = newErr("E10066", codes.NotFound, http.StatusNotFound, "directory object not found")
 
 	ErrObjectNotFound                = ErrNotFound.Str("type", "object")
 	ErrObjectTypeNotFound            = ErrNotFound.Str("type", "object type")
@@ -35,19 +44,19 @@ var (
 	ErrRelationTypeAlreadyExists     = ErrAlreadyExists.Str("type", "relation type")
 	ErrPermissionAlreadyExists       = ErrAlreadyExists.Str("type", "permission")
 	ErrPermissionNotFound            = ErrNotFound.Str("type", "permission")
-	ErrInvalidCursor                 = cerr.ErrInvalidArgument.Msg("pagination cursor")
-	ErrNotASubject                   = cerr.ErrInvalidArgument.Msg("not a subject")
-	ErrInvalidObjectTypeIdentifier   = cerr.ErrInvalidArgument.Msg("object_type_identifier")
-	ErrInvalidPermissionIdentifier   = cerr.ErrInvalidArgument.Msg("permission_identifier")
-	ErrInvalidRelationTypeIdentifier = cerr.ErrInvalidArgument.Msg("relation_type_identifier")
-	ErrInvalidObjectIdentifier       = cerr.ErrInvalidArgument.Msg("object_identifier")
-	ErrInvalidRelationIdentifier     = cerr.ErrInvalidArgument.Msg("relation_identifier")
-	ErrInvalidObjectTypeID           = cerr.ErrInvalidArgument.Msg("object_type_id")
-	ErrInvalidRelationTypeID         = cerr.ErrInvalidArgument.Msg("relation_type_id")
-	ErrInvalidPermissionID           = cerr.ErrInvalidArgument.Msg("permission_id")
-	ErrInvalidObjectID               = cerr.ErrInvalidArgument.Msg("object_id")
+	ErrInvalidCursor                 = ErrInvalidArgument.Msg("pagination cursor")
+	ErrNotASubject                   = ErrInvalidArgument.Msg("not a subject")
+	ErrInvalidObjectTypeIdentifier   = ErrInvalidArgument.Msg("object_type_identifier")
+	ErrInvalidPermissionIdentifier   = ErrInvalidArgument.Msg("permission_identifier")
+	ErrInvalidRelationTypeIdentifier = ErrInvalidArgument.Msg("relation_type_identifier")
+	ErrInvalidObjectIdentifier       = ErrInvalidArgument.Msg("object_identifier")
+	ErrInvalidRelationIdentifier     = ErrInvalidArgument.Msg("relation_identifier")
+	ErrInvalidObjectTypeID           = ErrInvalidArgument.Msg("object_type_id")
+	ErrInvalidRelationTypeID         = ErrInvalidArgument.Msg("relation_type_id")
+	ErrInvalidPermissionID           = ErrInvalidArgument.Msg("permission_id")
+	ErrInvalidObjectID               = ErrInvalidArgument.Msg("object_id")
 )
 
 func newErr(code string, statusCode codes.Code, httpCode int, msg string) *cerr.AsertoError {
-	return &cerr.AsertoError{Code: code, StatusCode: statusCode, Message: msg, HttpCode: httpCode}
+	return &cerr.AsertoError{Code: code, StatusCode: statusCode, Message: msg, HTTPCode: httpCode}
 }
