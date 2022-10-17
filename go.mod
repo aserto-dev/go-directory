@@ -5,16 +5,20 @@ go 1.17
 require github.com/magefile/mage v1.14.0
 
 require (
-	github.com/aserto-dev/go-grpc v0.8.51
+	github.com/aserto-dev/errors v0.0.1
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.11.3
-	google.golang.org/genproto v0.0.0-20220902135211-223410557253
-	google.golang.org/grpc v1.49.0
+	github.com/pkg/errors v0.9.1
+	google.golang.org/genproto v0.0.0-20220927151529-dcaddaf36704
+	google.golang.org/grpc v1.50.1
 	google.golang.org/protobuf v1.28.1
 )
 
 require (
 	github.com/golang/protobuf v1.5.2 // indirect
-	golang.org/x/net v0.0.0-20220624214902-1bab6f366d9e // indirect
-	golang.org/x/sys v0.0.0-20220610221304-9f5ed59c137d // indirect
+	github.com/mattn/go-colorable v0.1.12 // indirect
+	github.com/mattn/go-isatty v0.0.14 // indirect
+	github.com/rs/zerolog v1.28.0 // indirect
+	golang.org/x/net v0.0.0-20220909164309-bea034e7d591 // indirect
+	golang.org/x/sys v0.0.0-20220907062415-87db552b00fd // indirect
 	golang.org/x/text v0.3.7 // indirect
 )
