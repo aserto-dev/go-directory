@@ -61,6 +61,18 @@ func Generate() error {
 	return nil
 }
 
+func GenerateDev() error {
+	bufImage := "../pb-directory/bin/directory.bin"
+
+	os.Setenv("BUF_BETA_SUPPRESS_WARNINGS", "1")
+
+	if err := bufGenerate(bufImage); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // remove all built images files.
 func Clean() error {
 	return os.RemoveAll("aserto")
