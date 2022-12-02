@@ -31,6 +31,7 @@ var (
 	ErrInvalidTenantName             = cerr.NewAsertoError("E20021", codes.InvalidArgument, http.StatusBadRequest, "invalid tenant name")
 	ErrDirectoryObjectNotFound       = cerr.NewAsertoError("E20022", codes.NotFound, http.StatusNotFound, "directory object not found")
 	ErrNoTenantID                    = cerr.NewAsertoError("E20023", codes.InvalidArgument, http.StatusBadRequest, "no tenant id specified")
+	ErrMaxDepthExceeded              = cerr.NewAsertoError("E20024", codes.Aborted, http.StatusInternalServerError, "graph depth exceeded")
 
 	ErrObjectNotFound                = ErrNotFound.Str("type", "object")
 	ErrObjectTypeNotFound            = ErrNotFound.Str("type", "object type")
