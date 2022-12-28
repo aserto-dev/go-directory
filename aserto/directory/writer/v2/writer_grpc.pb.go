@@ -25,12 +25,6 @@ type WriterClient interface {
 	// object type metadata methods
 	SetObjectType(ctx context.Context, in *SetObjectTypeRequest, opts ...grpc.CallOption) (*SetObjectTypeResponse, error)
 	DeleteObjectType(ctx context.Context, in *DeleteObjectTypeRequest, opts ...grpc.CallOption) (*DeleteObjectTypeResponse, error)
-	// relation type metadata methods
-	SetRelationType(ctx context.Context, in *SetRelationTypeRequest, opts ...grpc.CallOption) (*SetRelationTypeResponse, error)
-	DeleteRelationType(ctx context.Context, in *DeleteRelationTypeRequest, opts ...grpc.CallOption) (*DeleteRelationTypeResponse, error)
-	// permission metadata methods
-	SetPermission(ctx context.Context, in *SetPermissionRequest, opts ...grpc.CallOption) (*SetPermissionResponse, error)
-	DeletePermission(ctx context.Context, in *DeletePermissionRequest, opts ...grpc.CallOption) (*DeletePermissionResponse, error)
 	// object methods
 	SetObject(ctx context.Context, in *SetObjectRequest, opts ...grpc.CallOption) (*SetObjectResponse, error)
 	DeleteObject(ctx context.Context, in *DeleteObjectRequest, opts ...grpc.CallOption) (*DeleteObjectResponse, error)
@@ -59,42 +53,6 @@ func (c *writerClient) SetObjectType(ctx context.Context, in *SetObjectTypeReque
 func (c *writerClient) DeleteObjectType(ctx context.Context, in *DeleteObjectTypeRequest, opts ...grpc.CallOption) (*DeleteObjectTypeResponse, error) {
 	out := new(DeleteObjectTypeResponse)
 	err := c.cc.Invoke(ctx, "/aserto.directory.writer.v2.Writer/DeleteObjectType", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *writerClient) SetRelationType(ctx context.Context, in *SetRelationTypeRequest, opts ...grpc.CallOption) (*SetRelationTypeResponse, error) {
-	out := new(SetRelationTypeResponse)
-	err := c.cc.Invoke(ctx, "/aserto.directory.writer.v2.Writer/SetRelationType", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *writerClient) DeleteRelationType(ctx context.Context, in *DeleteRelationTypeRequest, opts ...grpc.CallOption) (*DeleteRelationTypeResponse, error) {
-	out := new(DeleteRelationTypeResponse)
-	err := c.cc.Invoke(ctx, "/aserto.directory.writer.v2.Writer/DeleteRelationType", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *writerClient) SetPermission(ctx context.Context, in *SetPermissionRequest, opts ...grpc.CallOption) (*SetPermissionResponse, error) {
-	out := new(SetPermissionResponse)
-	err := c.cc.Invoke(ctx, "/aserto.directory.writer.v2.Writer/SetPermission", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *writerClient) DeletePermission(ctx context.Context, in *DeletePermissionRequest, opts ...grpc.CallOption) (*DeletePermissionResponse, error) {
-	out := new(DeletePermissionResponse)
-	err := c.cc.Invoke(ctx, "/aserto.directory.writer.v2.Writer/DeletePermission", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -144,12 +102,6 @@ type WriterServer interface {
 	// object type metadata methods
 	SetObjectType(context.Context, *SetObjectTypeRequest) (*SetObjectTypeResponse, error)
 	DeleteObjectType(context.Context, *DeleteObjectTypeRequest) (*DeleteObjectTypeResponse, error)
-	// relation type metadata methods
-	SetRelationType(context.Context, *SetRelationTypeRequest) (*SetRelationTypeResponse, error)
-	DeleteRelationType(context.Context, *DeleteRelationTypeRequest) (*DeleteRelationTypeResponse, error)
-	// permission metadata methods
-	SetPermission(context.Context, *SetPermissionRequest) (*SetPermissionResponse, error)
-	DeletePermission(context.Context, *DeletePermissionRequest) (*DeletePermissionResponse, error)
 	// object methods
 	SetObject(context.Context, *SetObjectRequest) (*SetObjectResponse, error)
 	DeleteObject(context.Context, *DeleteObjectRequest) (*DeleteObjectResponse, error)
@@ -167,18 +119,6 @@ func (UnimplementedWriterServer) SetObjectType(context.Context, *SetObjectTypeRe
 }
 func (UnimplementedWriterServer) DeleteObjectType(context.Context, *DeleteObjectTypeRequest) (*DeleteObjectTypeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteObjectType not implemented")
-}
-func (UnimplementedWriterServer) SetRelationType(context.Context, *SetRelationTypeRequest) (*SetRelationTypeResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SetRelationType not implemented")
-}
-func (UnimplementedWriterServer) DeleteRelationType(context.Context, *DeleteRelationTypeRequest) (*DeleteRelationTypeResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteRelationType not implemented")
-}
-func (UnimplementedWriterServer) SetPermission(context.Context, *SetPermissionRequest) (*SetPermissionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SetPermission not implemented")
-}
-func (UnimplementedWriterServer) DeletePermission(context.Context, *DeletePermissionRequest) (*DeletePermissionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeletePermission not implemented")
 }
 func (UnimplementedWriterServer) SetObject(context.Context, *SetObjectRequest) (*SetObjectResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetObject not implemented")
@@ -236,78 +176,6 @@ func _Writer_DeleteObjectType_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(WriterServer).DeleteObjectType(ctx, req.(*DeleteObjectTypeRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Writer_SetRelationType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SetRelationTypeRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(WriterServer).SetRelationType(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/aserto.directory.writer.v2.Writer/SetRelationType",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WriterServer).SetRelationType(ctx, req.(*SetRelationTypeRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Writer_DeleteRelationType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteRelationTypeRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(WriterServer).DeleteRelationType(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/aserto.directory.writer.v2.Writer/DeleteRelationType",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WriterServer).DeleteRelationType(ctx, req.(*DeleteRelationTypeRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Writer_SetPermission_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SetPermissionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(WriterServer).SetPermission(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/aserto.directory.writer.v2.Writer/SetPermission",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WriterServer).SetPermission(ctx, req.(*SetPermissionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Writer_DeletePermission_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeletePermissionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(WriterServer).DeletePermission(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/aserto.directory.writer.v2.Writer/DeletePermission",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WriterServer).DeletePermission(ctx, req.(*DeletePermissionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -398,22 +266,6 @@ var Writer_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteObjectType",
 			Handler:    _Writer_DeleteObjectType_Handler,
-		},
-		{
-			MethodName: "SetRelationType",
-			Handler:    _Writer_SetRelationType_Handler,
-		},
-		{
-			MethodName: "DeleteRelationType",
-			Handler:    _Writer_DeleteRelationType_Handler,
-		},
-		{
-			MethodName: "SetPermission",
-			Handler:    _Writer_SetPermission_Handler,
-		},
-		{
-			MethodName: "DeletePermission",
-			Handler:    _Writer_DeletePermission_Handler,
 		},
 		{
 			MethodName: "SetObject",

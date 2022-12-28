@@ -1,11 +1,12 @@
 module github.com/aserto-dev/go-directory
 
-go 1.17
+go 1.19
 
 require github.com/magefile/mage v1.14.0
 
 require (
 	github.com/aserto-dev/errors v0.0.2
+	github.com/envoyproxy/protoc-gen-validate v0.1.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.11.3
 	google.golang.org/grpc v1.50.1
 	google.golang.org/protobuf v1.28.1

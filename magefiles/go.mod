@@ -1,6 +1,6 @@
 module github.com/aserto-dev/go-directory/magefiles
 
-go 1.17
+go 1.19
 
 // !!! required to workaround mage induces a clui dependency update which is 1.18 dependent and breaks the build !!!
 replace github.com/rivo/uniseg => github.com/rivo/uniseg v0.2.0

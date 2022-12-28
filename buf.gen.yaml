@@ -16,3 +16,8 @@ plugins:
       - paths=source_relative
       - logtostderr=true
       - generate_unbound_methods=true
+  - name: validate
+    out: .
+    opt:
+      - paths=source_relative
+      - lang=go
