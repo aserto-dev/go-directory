@@ -57,7 +57,16 @@ func (m *AuthorizationModel) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for Id
+	if !_AuthorizationModel_Id_Pattern.MatchString(m.GetId()) {
+		err := AuthorizationModelValidationError{
+			field:  "Id",
+			reason: "value does not match regex pattern \"^[ABCDEFGHJKMNPQRSTVWXYZ0-9]{26}$\"",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
 
 	// no validation rules for SchemaVersion
 
@@ -175,6 +184,8 @@ var _ interface {
 	ErrorName() string
 } = AuthorizationModelValidationError{}
 
+var _AuthorizationModel_Id_Pattern = regexp.MustCompile("^[ABCDEFGHJKMNPQRSTVWXYZ0-9]{26}$")
+
 // Validate checks the field values on TypeDefinition with the rules defined in
 // the proto definition for this message. If any rules are violated, the first
 // error encountered is returned, or nil if there are no violations.
@@ -197,7 +208,16 @@ func (m *TypeDefinition) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for Type
+	if !_TypeDefinition_Type_Pattern.MatchString(m.GetType()) {
+		err := TypeDefinitionValidationError{
+			field:  "Type",
+			reason: "value does not match regex pattern \"^[^:#@\\\\s]{1,254}$\"",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
 
 	{
 		sorted_keys := make([]string, len(m.GetRelations()))
@@ -211,7 +231,16 @@ func (m *TypeDefinition) validate(all bool) error {
 			val := m.GetRelations()[key]
 			_ = val
 
-			// no validation rules for Relations[key]
+			if !_TypeDefinition_Relations_Pattern.MatchString(key) {
+				err := TypeDefinitionValidationError{
+					field:  fmt.Sprintf("Relations[%v]", key),
+					reason: "value does not match regex pattern \"^[^:#@\\\\s]{1,50}$\"",
+				}
+				if !all {
+					return err
+				}
+				errors = append(errors, err)
+			}
 
 			if all {
 				switch v := interface{}(val).(type) {
@@ -352,6 +381,10 @@ var _ interface {
 	ErrorName() string
 } = TypeDefinitionValidationError{}
 
+var _TypeDefinition_Type_Pattern = regexp.MustCompile("^[^:#@\\s]{1,254}$")
+
+var _TypeDefinition_Relations_Pattern = regexp.MustCompile("^[^:#@\\s]{1,50}$")
+
 // Validate checks the field values on Relation with the rules defined in the
 // proto definition for this message. If any rules are violated, the first
 // error encountered is returned, or nil if there are no violations.
@@ -374,7 +407,16 @@ func (m *Relation) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for Name
+	if !_Relation_Name_Pattern.MatchString(m.GetName()) {
+		err := RelationValidationError{
+			field:  "Name",
+			reason: "value does not match regex pattern \"^[^:#@\\\\s]{1,50}$\"",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
 
 	if m.GetRewrite() == nil {
 		err := RelationValidationError{
@@ -521,6 +563,8 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = RelationValidationError{}
+
+var _Relation_Name_Pattern = regexp.MustCompile("^[^:#@\\s]{1,50}$")
 
 // Validate checks the field values on RelationTypeInfo with the rules defined
 // in the proto definition for this message. If any rules are violated, the
@@ -957,7 +1001,16 @@ func (m *RelationReference) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for Type
+	if !_RelationReference_Type_Pattern.MatchString(m.GetType()) {
+		err := RelationReferenceValidationError{
+			field:  "Type",
+			reason: "value does not match regex pattern \"^[^:#@\\\\s]{1,254}$\"",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
 
 	switch v := m.RelationOrWildcard.(type) {
 	case *RelationReference_Relation:
@@ -1112,6 +1165,8 @@ var _ interface {
 	ErrorName() string
 } = RelationReferenceValidationError{}
 
+var _RelationReference_Type_Pattern = regexp.MustCompile("^[^:#@\\s]{1,254}$")
+
 var _RelationReference_Relation_Pattern = regexp.MustCompile("^[^:#@\\s]{1,50}$")
 
 // Validate checks the field values on Wildcard with the rules defined in the
@@ -1213,22 +1268,22 @@ var _ interface {
 	ErrorName() string
 } = WildcardValidationError{}
 
-// Validate checks the field values on UserSets with the rules defined in the
+// Validate checks the field values on Usersets with the rules defined in the
 // proto definition for this message. If any rules are violated, the first
 // error encountered is returned, or nil if there are no violations.
-func (m *UserSets) Validate() error {
+func (m *Usersets) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on UserSets with the rules defined in
+// ValidateAll checks the field values on Usersets with the rules defined in
 // the proto definition for this message. If any rules are violated, the
-// result is a list of violation errors wrapped in UserSetsMultiError, or nil
+// result is a list of violation errors wrapped in UsersetsMultiError, or nil
 // if none found.
-func (m *UserSets) ValidateAll() error {
+func (m *Usersets) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *UserSets) validate(all bool) error {
+func (m *Usersets) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -1242,7 +1297,7 @@ func (m *UserSets) validate(all bool) error {
 			switch v := interface{}(item).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
-					errors = append(errors, UserSetsValidationError{
+					errors = append(errors, UsersetsValidationError{
 						field:  fmt.Sprintf("Child[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -1250,7 +1305,7 @@ func (m *UserSets) validate(all bool) error {
 				}
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
-					errors = append(errors, UserSetsValidationError{
+					errors = append(errors, UsersetsValidationError{
 						field:  fmt.Sprintf("Child[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -1259,7 +1314,7 @@ func (m *UserSets) validate(all bool) error {
 			}
 		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				return UserSetsValidationError{
+				return UsersetsValidationError{
 					field:  fmt.Sprintf("Child[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1270,18 +1325,18 @@ func (m *UserSets) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return UserSetsMultiError(errors)
+		return UsersetsMultiError(errors)
 	}
 
 	return nil
 }
 
-// UserSetsMultiError is an error wrapping multiple validation errors returned
-// by UserSets.ValidateAll() if the designated constraints aren't met.
-type UserSetsMultiError []error
+// UsersetsMultiError is an error wrapping multiple validation errors returned
+// by Usersets.ValidateAll() if the designated constraints aren't met.
+type UsersetsMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m UserSetsMultiError) Error() string {
+func (m UsersetsMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -1290,11 +1345,11 @@ func (m UserSetsMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m UserSetsMultiError) AllErrors() []error { return m }
+func (m UsersetsMultiError) AllErrors() []error { return m }
 
-// UserSetsValidationError is the validation error returned by
-// UserSets.Validate if the designated constraints aren't met.
-type UserSetsValidationError struct {
+// UsersetsValidationError is the validation error returned by
+// Usersets.Validate if the designated constraints aren't met.
+type UsersetsValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -1302,22 +1357,22 @@ type UserSetsValidationError struct {
 }
 
 // Field function returns field value.
-func (e UserSetsValidationError) Field() string { return e.field }
+func (e UsersetsValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e UserSetsValidationError) Reason() string { return e.reason }
+func (e UsersetsValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e UserSetsValidationError) Cause() error { return e.cause }
+func (e UsersetsValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e UserSetsValidationError) Key() bool { return e.key }
+func (e UsersetsValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e UserSetsValidationError) ErrorName() string { return "UserSetsValidationError" }
+func (e UsersetsValidationError) ErrorName() string { return "UsersetsValidationError" }
 
 // Error satisfies the builtin error interface
-func (e UserSetsValidationError) Error() string {
+func (e UsersetsValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -1329,14 +1384,14 @@ func (e UserSetsValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sUserSets.%s: %s%s",
+		"invalid %sUsersets.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = UserSetsValidationError{}
+var _ error = UsersetsValidationError{}
 
 var _ interface {
 	Field() string
@@ -1344,7 +1399,7 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = UserSetsValidationError{}
+} = UsersetsValidationError{}
 
 // Validate checks the field values on Difference with the rules defined in the
 // proto definition for this message. If any rules are violated, the first
@@ -1525,32 +1580,32 @@ var _ interface {
 	ErrorName() string
 } = DifferenceValidationError{}
 
-// Validate checks the field values on UserSet with the rules defined in the
+// Validate checks the field values on Userset with the rules defined in the
 // proto definition for this message. If any rules are violated, the first
 // error encountered is returned, or nil if there are no violations.
-func (m *UserSet) Validate() error {
+func (m *Userset) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on UserSet with the rules defined in the
+// ValidateAll checks the field values on Userset with the rules defined in the
 // proto definition for this message. If any rules are violated, the result is
-// a list of violation errors wrapped in UserSetMultiError, or nil if none found.
-func (m *UserSet) ValidateAll() error {
+// a list of violation errors wrapped in UsersetMultiError, or nil if none found.
+func (m *Userset) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *UserSet) validate(all bool) error {
+func (m *Userset) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
 
 	var errors []error
 
-	switch v := m.UserSet.(type) {
-	case *UserSet_This:
+	switch v := m.Userset.(type) {
+	case *Userset_This:
 		if v == nil {
-			err := UserSetValidationError{
-				field:  "UserSet",
+			err := UsersetValidationError{
+				field:  "Userset",
 				reason: "oneof value cannot be a typed-nil",
 			}
 			if !all {
@@ -1563,7 +1618,7 @@ func (m *UserSet) validate(all bool) error {
 			switch v := interface{}(m.GetThis()).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
-					errors = append(errors, UserSetValidationError{
+					errors = append(errors, UsersetValidationError{
 						field:  "This",
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -1571,7 +1626,7 @@ func (m *UserSet) validate(all bool) error {
 				}
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
-					errors = append(errors, UserSetValidationError{
+					errors = append(errors, UsersetValidationError{
 						field:  "This",
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -1580,7 +1635,7 @@ func (m *UserSet) validate(all bool) error {
 			}
 		} else if v, ok := interface{}(m.GetThis()).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				return UserSetValidationError{
+				return UsersetValidationError{
 					field:  "This",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1588,10 +1643,10 @@ func (m *UserSet) validate(all bool) error {
 			}
 		}
 
-	case *UserSet_ComputedUserSet:
+	case *Userset_ComputedUserset:
 		if v == nil {
-			err := UserSetValidationError{
-				field:  "UserSet",
+			err := UsersetValidationError{
+				field:  "Userset",
 				reason: "oneof value cannot be a typed-nil",
 			}
 			if !all {
@@ -1601,38 +1656,38 @@ func (m *UserSet) validate(all bool) error {
 		}
 
 		if all {
-			switch v := interface{}(m.GetComputedUserSet()).(type) {
+			switch v := interface{}(m.GetComputedUserset()).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
-					errors = append(errors, UserSetValidationError{
-						field:  "ComputedUserSet",
+					errors = append(errors, UsersetValidationError{
+						field:  "ComputedUserset",
 						reason: "embedded message failed validation",
 						cause:  err,
 					})
 				}
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
-					errors = append(errors, UserSetValidationError{
-						field:  "ComputedUserSet",
+					errors = append(errors, UsersetValidationError{
+						field:  "ComputedUserset",
 						reason: "embedded message failed validation",
 						cause:  err,
 					})
 				}
 			}
-		} else if v, ok := interface{}(m.GetComputedUserSet()).(interface{ Validate() error }); ok {
+		} else if v, ok := interface{}(m.GetComputedUserset()).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				return UserSetValidationError{
-					field:  "ComputedUserSet",
+				return UsersetValidationError{
+					field:  "ComputedUserset",
 					reason: "embedded message failed validation",
 					cause:  err,
 				}
 			}
 		}
 
-	case *UserSet_TupleToUserSet:
+	case *Userset_TupleToUserset:
 		if v == nil {
-			err := UserSetValidationError{
-				field:  "UserSet",
+			err := UsersetValidationError{
+				field:  "Userset",
 				reason: "oneof value cannot be a typed-nil",
 			}
 			if !all {
@@ -1642,38 +1697,38 @@ func (m *UserSet) validate(all bool) error {
 		}
 
 		if all {
-			switch v := interface{}(m.GetTupleToUserSet()).(type) {
+			switch v := interface{}(m.GetTupleToUserset()).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
-					errors = append(errors, UserSetValidationError{
-						field:  "TupleToUserSet",
+					errors = append(errors, UsersetValidationError{
+						field:  "TupleToUserset",
 						reason: "embedded message failed validation",
 						cause:  err,
 					})
 				}
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
-					errors = append(errors, UserSetValidationError{
-						field:  "TupleToUserSet",
+					errors = append(errors, UsersetValidationError{
+						field:  "TupleToUserset",
 						reason: "embedded message failed validation",
 						cause:  err,
 					})
 				}
 			}
-		} else if v, ok := interface{}(m.GetTupleToUserSet()).(interface{ Validate() error }); ok {
+		} else if v, ok := interface{}(m.GetTupleToUserset()).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				return UserSetValidationError{
-					field:  "TupleToUserSet",
+				return UsersetValidationError{
+					field:  "TupleToUserset",
 					reason: "embedded message failed validation",
 					cause:  err,
 				}
 			}
 		}
 
-	case *UserSet_Union:
+	case *Userset_Union:
 		if v == nil {
-			err := UserSetValidationError{
-				field:  "UserSet",
+			err := UsersetValidationError{
+				field:  "Userset",
 				reason: "oneof value cannot be a typed-nil",
 			}
 			if !all {
@@ -1686,7 +1741,7 @@ func (m *UserSet) validate(all bool) error {
 			switch v := interface{}(m.GetUnion()).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
-					errors = append(errors, UserSetValidationError{
+					errors = append(errors, UsersetValidationError{
 						field:  "Union",
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -1694,7 +1749,7 @@ func (m *UserSet) validate(all bool) error {
 				}
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
-					errors = append(errors, UserSetValidationError{
+					errors = append(errors, UsersetValidationError{
 						field:  "Union",
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -1703,7 +1758,7 @@ func (m *UserSet) validate(all bool) error {
 			}
 		} else if v, ok := interface{}(m.GetUnion()).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				return UserSetValidationError{
+				return UsersetValidationError{
 					field:  "Union",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1711,10 +1766,10 @@ func (m *UserSet) validate(all bool) error {
 			}
 		}
 
-	case *UserSet_Intersection:
+	case *Userset_Intersection:
 		if v == nil {
-			err := UserSetValidationError{
-				field:  "UserSet",
+			err := UsersetValidationError{
+				field:  "Userset",
 				reason: "oneof value cannot be a typed-nil",
 			}
 			if !all {
@@ -1727,7 +1782,7 @@ func (m *UserSet) validate(all bool) error {
 			switch v := interface{}(m.GetIntersection()).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
-					errors = append(errors, UserSetValidationError{
+					errors = append(errors, UsersetValidationError{
 						field:  "Intersection",
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -1735,7 +1790,7 @@ func (m *UserSet) validate(all bool) error {
 				}
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
-					errors = append(errors, UserSetValidationError{
+					errors = append(errors, UsersetValidationError{
 						field:  "Intersection",
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -1744,7 +1799,7 @@ func (m *UserSet) validate(all bool) error {
 			}
 		} else if v, ok := interface{}(m.GetIntersection()).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				return UserSetValidationError{
+				return UsersetValidationError{
 					field:  "Intersection",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1752,10 +1807,10 @@ func (m *UserSet) validate(all bool) error {
 			}
 		}
 
-	case *UserSet_Difference:
+	case *Userset_Difference:
 		if v == nil {
-			err := UserSetValidationError{
-				field:  "UserSet",
+			err := UsersetValidationError{
+				field:  "Userset",
 				reason: "oneof value cannot be a typed-nil",
 			}
 			if !all {
@@ -1768,7 +1823,7 @@ func (m *UserSet) validate(all bool) error {
 			switch v := interface{}(m.GetDifference()).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
-					errors = append(errors, UserSetValidationError{
+					errors = append(errors, UsersetValidationError{
 						field:  "Difference",
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -1776,7 +1831,7 @@ func (m *UserSet) validate(all bool) error {
 				}
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
-					errors = append(errors, UserSetValidationError{
+					errors = append(errors, UsersetValidationError{
 						field:  "Difference",
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -1785,7 +1840,7 @@ func (m *UserSet) validate(all bool) error {
 			}
 		} else if v, ok := interface{}(m.GetDifference()).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				return UserSetValidationError{
+				return UsersetValidationError{
 					field:  "Difference",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1798,18 +1853,18 @@ func (m *UserSet) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return UserSetMultiError(errors)
+		return UsersetMultiError(errors)
 	}
 
 	return nil
 }
 
-// UserSetMultiError is an error wrapping multiple validation errors returned
-// by UserSet.ValidateAll() if the designated constraints aren't met.
-type UserSetMultiError []error
+// UsersetMultiError is an error wrapping multiple validation errors returned
+// by Userset.ValidateAll() if the designated constraints aren't met.
+type UsersetMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m UserSetMultiError) Error() string {
+func (m UsersetMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -1818,11 +1873,11 @@ func (m UserSetMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m UserSetMultiError) AllErrors() []error { return m }
+func (m UsersetMultiError) AllErrors() []error { return m }
 
-// UserSetValidationError is the validation error returned by UserSet.Validate
+// UsersetValidationError is the validation error returned by Userset.Validate
 // if the designated constraints aren't met.
-type UserSetValidationError struct {
+type UsersetValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -1830,22 +1885,22 @@ type UserSetValidationError struct {
 }
 
 // Field function returns field value.
-func (e UserSetValidationError) Field() string { return e.field }
+func (e UsersetValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e UserSetValidationError) Reason() string { return e.reason }
+func (e UsersetValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e UserSetValidationError) Cause() error { return e.cause }
+func (e UsersetValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e UserSetValidationError) Key() bool { return e.key }
+func (e UsersetValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e UserSetValidationError) ErrorName() string { return "UserSetValidationError" }
+func (e UsersetValidationError) ErrorName() string { return "UsersetValidationError" }
 
 // Error satisfies the builtin error interface
-func (e UserSetValidationError) Error() string {
+func (e UsersetValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -1857,14 +1912,14 @@ func (e UserSetValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sUserSet.%s: %s%s",
+		"invalid %sUserset.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = UserSetValidationError{}
+var _ error = UsersetValidationError{}
 
 var _ interface {
 	Field() string
@@ -1872,24 +1927,24 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = UserSetValidationError{}
+} = UsersetValidationError{}
 
-// Validate checks the field values on DirectUserSet with the rules defined in
+// Validate checks the field values on DirectUserset with the rules defined in
 // the proto definition for this message. If any rules are violated, the first
 // error encountered is returned, or nil if there are no violations.
-func (m *DirectUserSet) Validate() error {
+func (m *DirectUserset) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on DirectUserSet with the rules defined
+// ValidateAll checks the field values on DirectUserset with the rules defined
 // in the proto definition for this message. If any rules are violated, the
-// result is a list of violation errors wrapped in DirectUserSetMultiError, or
+// result is a list of violation errors wrapped in DirectUsersetMultiError, or
 // nil if none found.
-func (m *DirectUserSet) ValidateAll() error {
+func (m *DirectUserset) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *DirectUserSet) validate(all bool) error {
+func (m *DirectUserset) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -1897,19 +1952,19 @@ func (m *DirectUserSet) validate(all bool) error {
 	var errors []error
 
 	if len(errors) > 0 {
-		return DirectUserSetMultiError(errors)
+		return DirectUsersetMultiError(errors)
 	}
 
 	return nil
 }
 
-// DirectUserSetMultiError is an error wrapping multiple validation errors
-// returned by DirectUserSet.ValidateAll() if the designated constraints
+// DirectUsersetMultiError is an error wrapping multiple validation errors
+// returned by DirectUserset.ValidateAll() if the designated constraints
 // aren't met.
-type DirectUserSetMultiError []error
+type DirectUsersetMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m DirectUserSetMultiError) Error() string {
+func (m DirectUsersetMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -1918,11 +1973,11 @@ func (m DirectUserSetMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m DirectUserSetMultiError) AllErrors() []error { return m }
+func (m DirectUsersetMultiError) AllErrors() []error { return m }
 
-// DirectUserSetValidationError is the validation error returned by
-// DirectUserSet.Validate if the designated constraints aren't met.
-type DirectUserSetValidationError struct {
+// DirectUsersetValidationError is the validation error returned by
+// DirectUserset.Validate if the designated constraints aren't met.
+type DirectUsersetValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -1930,22 +1985,22 @@ type DirectUserSetValidationError struct {
 }
 
 // Field function returns field value.
-func (e DirectUserSetValidationError) Field() string { return e.field }
+func (e DirectUsersetValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e DirectUserSetValidationError) Reason() string { return e.reason }
+func (e DirectUsersetValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e DirectUserSetValidationError) Cause() error { return e.cause }
+func (e DirectUsersetValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e DirectUserSetValidationError) Key() bool { return e.key }
+func (e DirectUsersetValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e DirectUserSetValidationError) ErrorName() string { return "DirectUserSetValidationError" }
+func (e DirectUsersetValidationError) ErrorName() string { return "DirectUsersetValidationError" }
 
 // Error satisfies the builtin error interface
-func (e DirectUserSetValidationError) Error() string {
+func (e DirectUsersetValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -1957,14 +2012,14 @@ func (e DirectUserSetValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sDirectUserSet.%s: %s%s",
+		"invalid %sDirectUserset.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = DirectUserSetValidationError{}
+var _ error = DirectUsersetValidationError{}
 
 var _ interface {
 	Field() string
@@ -1972,7 +2027,7 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = DirectUserSetValidationError{}
+} = DirectUsersetValidationError{}
 
 // Validate checks the field values on ObjectRelation with the rules defined in
 // the proto definition for this message. If any rules are violated, the first
@@ -2096,22 +2151,22 @@ var _ interface {
 	ErrorName() string
 } = ObjectRelationValidationError{}
 
-// Validate checks the field values on TupleToUserSet with the rules defined in
+// Validate checks the field values on TupleToUserset with the rules defined in
 // the proto definition for this message. If any rules are violated, the first
 // error encountered is returned, or nil if there are no violations.
-func (m *TupleToUserSet) Validate() error {
+func (m *TupleToUserset) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on TupleToUserSet with the rules defined
+// ValidateAll checks the field values on TupleToUserset with the rules defined
 // in the proto definition for this message. If any rules are violated, the
-// result is a list of violation errors wrapped in TupleToUserSetMultiError,
+// result is a list of violation errors wrapped in TupleToUsersetMultiError,
 // or nil if none found.
-func (m *TupleToUserSet) ValidateAll() error {
+func (m *TupleToUserset) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *TupleToUserSet) validate(all bool) error {
+func (m *TupleToUserset) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -2119,28 +2174,28 @@ func (m *TupleToUserSet) validate(all bool) error {
 	var errors []error
 
 	if all {
-		switch v := interface{}(m.GetTupleSet()).(type) {
+		switch v := interface{}(m.GetTupleset()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, TupleToUserSetValidationError{
-					field:  "TupleSet",
+				errors = append(errors, TupleToUsersetValidationError{
+					field:  "Tupleset",
 					reason: "embedded message failed validation",
 					cause:  err,
 				})
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, TupleToUserSetValidationError{
-					field:  "TupleSet",
+				errors = append(errors, TupleToUsersetValidationError{
+					field:  "Tupleset",
 					reason: "embedded message failed validation",
 					cause:  err,
 				})
 			}
 		}
-	} else if v, ok := interface{}(m.GetTupleSet()).(interface{ Validate() error }); ok {
+	} else if v, ok := interface{}(m.GetTupleset()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return TupleToUserSetValidationError{
-				field:  "TupleSet",
+			return TupleToUsersetValidationError{
+				field:  "Tupleset",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}
@@ -2148,28 +2203,28 @@ func (m *TupleToUserSet) validate(all bool) error {
 	}
 
 	if all {
-		switch v := interface{}(m.GetComputedUserSet()).(type) {
+		switch v := interface{}(m.GetComputedUserset()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, TupleToUserSetValidationError{
-					field:  "ComputedUserSet",
+				errors = append(errors, TupleToUsersetValidationError{
+					field:  "ComputedUserset",
 					reason: "embedded message failed validation",
 					cause:  err,
 				})
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, TupleToUserSetValidationError{
-					field:  "ComputedUserSet",
+				errors = append(errors, TupleToUsersetValidationError{
+					field:  "ComputedUserset",
 					reason: "embedded message failed validation",
 					cause:  err,
 				})
 			}
 		}
-	} else if v, ok := interface{}(m.GetComputedUserSet()).(interface{ Validate() error }); ok {
+	} else if v, ok := interface{}(m.GetComputedUserset()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return TupleToUserSetValidationError{
-				field:  "ComputedUserSet",
+			return TupleToUsersetValidationError{
+				field:  "ComputedUserset",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}
@@ -2177,19 +2232,19 @@ func (m *TupleToUserSet) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return TupleToUserSetMultiError(errors)
+		return TupleToUsersetMultiError(errors)
 	}
 
 	return nil
 }
 
-// TupleToUserSetMultiError is an error wrapping multiple validation errors
-// returned by TupleToUserSet.ValidateAll() if the designated constraints
+// TupleToUsersetMultiError is an error wrapping multiple validation errors
+// returned by TupleToUserset.ValidateAll() if the designated constraints
 // aren't met.
-type TupleToUserSetMultiError []error
+type TupleToUsersetMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m TupleToUserSetMultiError) Error() string {
+func (m TupleToUsersetMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -2198,11 +2253,11 @@ func (m TupleToUserSetMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m TupleToUserSetMultiError) AllErrors() []error { return m }
+func (m TupleToUsersetMultiError) AllErrors() []error { return m }
 
-// TupleToUserSetValidationError is the validation error returned by
-// TupleToUserSet.Validate if the designated constraints aren't met.
-type TupleToUserSetValidationError struct {
+// TupleToUsersetValidationError is the validation error returned by
+// TupleToUserset.Validate if the designated constraints aren't met.
+type TupleToUsersetValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -2210,22 +2265,22 @@ type TupleToUserSetValidationError struct {
 }
 
 // Field function returns field value.
-func (e TupleToUserSetValidationError) Field() string { return e.field }
+func (e TupleToUsersetValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e TupleToUserSetValidationError) Reason() string { return e.reason }
+func (e TupleToUsersetValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e TupleToUserSetValidationError) Cause() error { return e.cause }
+func (e TupleToUsersetValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e TupleToUserSetValidationError) Key() bool { return e.key }
+func (e TupleToUsersetValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e TupleToUserSetValidationError) ErrorName() string { return "TupleToUserSetValidationError" }
+func (e TupleToUsersetValidationError) ErrorName() string { return "TupleToUsersetValidationError" }
 
 // Error satisfies the builtin error interface
-func (e TupleToUserSetValidationError) Error() string {
+func (e TupleToUsersetValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -2237,14 +2292,14 @@ func (e TupleToUserSetValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sTupleToUserSet.%s: %s%s",
+		"invalid %sTupleToUserset.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = TupleToUserSetValidationError{}
+var _ error = TupleToUsersetValidationError{}
 
 var _ interface {
 	Field() string
@@ -2252,4 +2307,4 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = TupleToUserSetValidationError{}
+} = TupleToUsersetValidationError{}

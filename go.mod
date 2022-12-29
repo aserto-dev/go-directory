@@ -8,6 +8,7 @@ require (
 	github.com/aserto-dev/errors v0.0.2
 	github.com/envoyproxy/protoc-gen-validate v0.1.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.11.3
+	google.golang.org/genproto v0.0.0-20220927151529-dcaddaf36704
 	google.golang.org/grpc v1.50.1
 	google.golang.org/protobuf v1.28.1
 )
@@ -21,5 +22,4 @@ require (
 	golang.org/x/net v0.0.0-20220909164309-bea034e7d591 // indirect
 	golang.org/x/sys v0.0.0-20220907062415-87db552b00fd // indirect
 	golang.org/x/text v0.3.7 // indirect
-	google.golang.org/genproto v0.0.0-20220927151529-dcaddaf36704 // indirect
 )
