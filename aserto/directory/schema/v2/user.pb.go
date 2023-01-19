@@ -91,6 +91,7 @@ func (UserStatus) EnumDescriptor() ([]byte, []int) {
 	return file_aserto_directory_schema_v2_user_proto_rawDescGZIP(), []int{0}
 }
 
+// Properties of "user" objects.
 type UserProperties struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
