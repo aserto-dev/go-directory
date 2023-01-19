@@ -77,6 +77,7 @@ type ImportRequest struct {
 
 	OpCode Opcode `protobuf:"varint,1,opt,name=op_code,json=opCode,proto3,enum=aserto.directory.importer.v2.Opcode" json:"op_code,omitempty"` // operation Opcode enum value
 	// Types that are assignable to Msg:
+	//
 	//	*ImportRequest_ObjectType
 	//	*ImportRequest_Permission
 	//	*ImportRequest_RelationType
