@@ -63,7 +63,6 @@ func main() {
 
 func testObjectType() {
 	req := &common.ObjectType{
-		Id:          10,
 		Name:        "book",
 		DisplayName: "book object",
 		IsSubject:   false,
@@ -77,7 +76,6 @@ func testObjectType() {
 
 func testPermission() {
 	req := &common.Permission{
-		Id:          "69595fa6-5437-4837-a091-0d282636429c",
 		Name:        "book:sell",
 		DisplayName: "sell book",
 		Hash:        "01234567890",
@@ -87,7 +85,6 @@ func testPermission() {
 
 func testRelationType() {
 	req := &common.RelationType{
-		Id:          11,
 		Name:        "owner",
 		ObjectType:  "book",
 		DisplayName: "book::owner",
@@ -102,7 +99,6 @@ func testRelationType() {
 
 func testObject() {
 	req := &common.Object{
-		Id:          "b51983e9-085c-486a-acf9-da9508ff415b",
 		Key:         "978-1260440218",
 		Type:        "book",
 		DisplayName: "Java: A Beginner's Guide, Eighth Edition 8th Edition",
@@ -115,13 +111,11 @@ func testObject() {
 func testRelation() {
 	req := &common.Relation{
 		Subject: &common.ObjectIdentifier{
-			Id:   nil, //proto.String(""),
 			Key:  proto.String("euang@acmecorp.com"),
 			Type: proto.String("user"),
 		},
 		Relation: "owner",
 		Object: &common.ObjectIdentifier{
-			Id:   nil, //proto.String(""),
 			Key:  proto.String("978-1260440218"),
 			Type: proto.String("book"),
 		},
@@ -144,8 +138,8 @@ func ProtoToStr(msg proto.Message) string {
 func TestGetManyObject(t *testing.T) {
 	_ = reader.GetObjectManyRequest{
 		Param: []*common.ObjectIdentifier{
-			{Id: proto.String("ID1")},
-			{Id: proto.String("ID2")},
+			{Type: proto.String(""), Key: proto.String("")},
+			{Type: proto.String(""), Key: proto.String("")},
 		},
 	}
 }
