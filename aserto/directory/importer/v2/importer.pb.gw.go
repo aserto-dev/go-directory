@@ -93,7 +93,7 @@ func RegisterImporterHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 // RegisterImporterHandlerFromEndpoint is same as RegisterImporterHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterImporterHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.Dial(endpoint, opts...)
+	conn, err := grpc.DialContext(ctx, endpoint, opts...)
 	if err != nil {
 		return err
 	}
