@@ -377,7 +377,7 @@ func local_request_Writer_DeleteRelation_0(ctx context.Context, marshaler runtim
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterWriterHandlerFromEndpoint instead.
 func RegisterWriterHandlerServer(ctx context.Context, mux *runtime.ServeMux, server WriterServer) error {
 
-	mux.Handle("POST", pattern_Writer_SetObjectType_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PUT", pattern_Writer_SetObjectType_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -385,7 +385,7 @@ func RegisterWriterHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/SetObjectType", runtime.WithHTTPPathPattern("/aserto.directory.writer.v2.Writer/SetObjectType"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/SetObjectType", runtime.WithHTTPPathPattern("/api/v2/directory/object_type"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -402,7 +402,7 @@ func RegisterWriterHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 
 	})
 
-	mux.Handle("POST", pattern_Writer_DeleteObjectType_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_Writer_DeleteObjectType_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -410,7 +410,7 @@ func RegisterWriterHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/DeleteObjectType", runtime.WithHTTPPathPattern("/aserto.directory.writer.v2.Writer/DeleteObjectType"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/DeleteObjectType", runtime.WithHTTPPathPattern("/api/v2/directory/object_type"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -427,7 +427,7 @@ func RegisterWriterHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 
 	})
 
-	mux.Handle("POST", pattern_Writer_SetRelationType_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PUT", pattern_Writer_SetRelationType_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -435,7 +435,7 @@ func RegisterWriterHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/SetRelationType", runtime.WithHTTPPathPattern("/aserto.directory.writer.v2.Writer/SetRelationType"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/SetRelationType", runtime.WithHTTPPathPattern("/api/v2/directory/relation_type"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -452,7 +452,7 @@ func RegisterWriterHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 
 	})
 
-	mux.Handle("POST", pattern_Writer_DeleteRelationType_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_Writer_DeleteRelationType_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -460,7 +460,7 @@ func RegisterWriterHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/DeleteRelationType", runtime.WithHTTPPathPattern("/aserto.directory.writer.v2.Writer/DeleteRelationType"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/DeleteRelationType", runtime.WithHTTPPathPattern("/api/v2/directory/relation_type"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -477,7 +477,7 @@ func RegisterWriterHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 
 	})
 
-	mux.Handle("POST", pattern_Writer_SetPermission_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PUT", pattern_Writer_SetPermission_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -485,7 +485,7 @@ func RegisterWriterHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/SetPermission", runtime.WithHTTPPathPattern("/aserto.directory.writer.v2.Writer/SetPermission"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/SetPermission", runtime.WithHTTPPathPattern("/api/v2/directory/permission"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -502,7 +502,7 @@ func RegisterWriterHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 
 	})
 
-	mux.Handle("POST", pattern_Writer_DeletePermission_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_Writer_DeletePermission_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -510,7 +510,7 @@ func RegisterWriterHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/DeletePermission", runtime.WithHTTPPathPattern("/aserto.directory.writer.v2.Writer/DeletePermission"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/DeletePermission", runtime.WithHTTPPathPattern("/api/v2/directory/permission"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -527,7 +527,7 @@ func RegisterWriterHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 
 	})
 
-	mux.Handle("POST", pattern_Writer_SetObject_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PUT", pattern_Writer_SetObject_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -535,7 +535,7 @@ func RegisterWriterHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/SetObject", runtime.WithHTTPPathPattern("/aserto.directory.writer.v2.Writer/SetObject"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/SetObject", runtime.WithHTTPPathPattern("/api/v2/directory/object"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -552,7 +552,7 @@ func RegisterWriterHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 
 	})
 
-	mux.Handle("POST", pattern_Writer_DeleteObject_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_Writer_DeleteObject_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -560,7 +560,7 @@ func RegisterWriterHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/DeleteObject", runtime.WithHTTPPathPattern("/aserto.directory.writer.v2.Writer/DeleteObject"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/DeleteObject", runtime.WithHTTPPathPattern("/api/v2/directory/object"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -577,7 +577,7 @@ func RegisterWriterHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 
 	})
 
-	mux.Handle("POST", pattern_Writer_SetRelation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PUT", pattern_Writer_SetRelation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -585,7 +585,7 @@ func RegisterWriterHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/SetRelation", runtime.WithHTTPPathPattern("/aserto.directory.writer.v2.Writer/SetRelation"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/SetRelation", runtime.WithHTTPPathPattern("/api/v2/directory/relation"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -602,7 +602,7 @@ func RegisterWriterHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 
 	})
 
-	mux.Handle("POST", pattern_Writer_DeleteRelation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_Writer_DeleteRelation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -610,7 +610,7 @@ func RegisterWriterHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/DeleteRelation", runtime.WithHTTPPathPattern("/aserto.directory.writer.v2.Writer/DeleteRelation"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/DeleteRelation", runtime.WithHTTPPathPattern("/api/v2/directory/relation"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -668,13 +668,13 @@ func RegisterWriterHandler(ctx context.Context, mux *runtime.ServeMux, conn *grp
 // "WriterClient" to call the correct interceptors.
 func RegisterWriterHandlerClient(ctx context.Context, mux *runtime.ServeMux, client WriterClient) error {
 
-	mux.Handle("POST", pattern_Writer_SetObjectType_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PUT", pattern_Writer_SetObjectType_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/SetObjectType", runtime.WithHTTPPathPattern("/aserto.directory.writer.v2.Writer/SetObjectType"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/SetObjectType", runtime.WithHTTPPathPattern("/api/v2/directory/object_type"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -690,13 +690,13 @@ func RegisterWriterHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 
 	})
 
-	mux.Handle("POST", pattern_Writer_DeleteObjectType_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_Writer_DeleteObjectType_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/DeleteObjectType", runtime.WithHTTPPathPattern("/aserto.directory.writer.v2.Writer/DeleteObjectType"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/DeleteObjectType", runtime.WithHTTPPathPattern("/api/v2/directory/object_type"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -712,13 +712,13 @@ func RegisterWriterHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 
 	})
 
-	mux.Handle("POST", pattern_Writer_SetRelationType_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PUT", pattern_Writer_SetRelationType_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/SetRelationType", runtime.WithHTTPPathPattern("/aserto.directory.writer.v2.Writer/SetRelationType"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/SetRelationType", runtime.WithHTTPPathPattern("/api/v2/directory/relation_type"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -734,13 +734,13 @@ func RegisterWriterHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 
 	})
 
-	mux.Handle("POST", pattern_Writer_DeleteRelationType_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_Writer_DeleteRelationType_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/DeleteRelationType", runtime.WithHTTPPathPattern("/aserto.directory.writer.v2.Writer/DeleteRelationType"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/DeleteRelationType", runtime.WithHTTPPathPattern("/api/v2/directory/relation_type"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -756,13 +756,13 @@ func RegisterWriterHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 
 	})
 
-	mux.Handle("POST", pattern_Writer_SetPermission_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PUT", pattern_Writer_SetPermission_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/SetPermission", runtime.WithHTTPPathPattern("/aserto.directory.writer.v2.Writer/SetPermission"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/SetPermission", runtime.WithHTTPPathPattern("/api/v2/directory/permission"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -778,13 +778,13 @@ func RegisterWriterHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 
 	})
 
-	mux.Handle("POST", pattern_Writer_DeletePermission_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_Writer_DeletePermission_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/DeletePermission", runtime.WithHTTPPathPattern("/aserto.directory.writer.v2.Writer/DeletePermission"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/DeletePermission", runtime.WithHTTPPathPattern("/api/v2/directory/permission"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -800,13 +800,13 @@ func RegisterWriterHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 
 	})
 
-	mux.Handle("POST", pattern_Writer_SetObject_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PUT", pattern_Writer_SetObject_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/SetObject", runtime.WithHTTPPathPattern("/aserto.directory.writer.v2.Writer/SetObject"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/SetObject", runtime.WithHTTPPathPattern("/api/v2/directory/object"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -822,13 +822,13 @@ func RegisterWriterHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 
 	})
 
-	mux.Handle("POST", pattern_Writer_DeleteObject_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_Writer_DeleteObject_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/DeleteObject", runtime.WithHTTPPathPattern("/aserto.directory.writer.v2.Writer/DeleteObject"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/DeleteObject", runtime.WithHTTPPathPattern("/api/v2/directory/object"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -844,13 +844,13 @@ func RegisterWriterHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 
 	})
 
-	mux.Handle("POST", pattern_Writer_SetRelation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PUT", pattern_Writer_SetRelation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/SetRelation", runtime.WithHTTPPathPattern("/aserto.directory.writer.v2.Writer/SetRelation"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/SetRelation", runtime.WithHTTPPathPattern("/api/v2/directory/relation"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -866,13 +866,13 @@ func RegisterWriterHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 
 	})
 
-	mux.Handle("POST", pattern_Writer_DeleteRelation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_Writer_DeleteRelation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/DeleteRelation", runtime.WithHTTPPathPattern("/aserto.directory.writer.v2.Writer/DeleteRelation"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.writer.v2.Writer/DeleteRelation", runtime.WithHTTPPathPattern("/api/v2/directory/relation"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -892,25 +892,25 @@ func RegisterWriterHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 }
 
 var (
-	pattern_Writer_SetObjectType_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"aserto.directory.writer.v2.Writer", "SetObjectType"}, ""))
+	pattern_Writer_SetObjectType_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v2", "directory", "object_type"}, ""))
 
-	pattern_Writer_DeleteObjectType_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"aserto.directory.writer.v2.Writer", "DeleteObjectType"}, ""))
+	pattern_Writer_DeleteObjectType_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v2", "directory", "object_type"}, ""))
 
-	pattern_Writer_SetRelationType_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"aserto.directory.writer.v2.Writer", "SetRelationType"}, ""))
+	pattern_Writer_SetRelationType_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v2", "directory", "relation_type"}, ""))
 
-	pattern_Writer_DeleteRelationType_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"aserto.directory.writer.v2.Writer", "DeleteRelationType"}, ""))
+	pattern_Writer_DeleteRelationType_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v2", "directory", "relation_type"}, ""))
 
-	pattern_Writer_SetPermission_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"aserto.directory.writer.v2.Writer", "SetPermission"}, ""))
+	pattern_Writer_SetPermission_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v2", "directory", "permission"}, ""))
 
-	pattern_Writer_DeletePermission_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"aserto.directory.writer.v2.Writer", "DeletePermission"}, ""))
+	pattern_Writer_DeletePermission_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v2", "directory", "permission"}, ""))
 
-	pattern_Writer_SetObject_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"aserto.directory.writer.v2.Writer", "SetObject"}, ""))
+	pattern_Writer_SetObject_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v2", "directory", "object"}, ""))
 
-	pattern_Writer_DeleteObject_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"aserto.directory.writer.v2.Writer", "DeleteObject"}, ""))
+	pattern_Writer_DeleteObject_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v2", "directory", "object"}, ""))
 
-	pattern_Writer_SetRelation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"aserto.directory.writer.v2.Writer", "SetRelation"}, ""))
+	pattern_Writer_SetRelation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v2", "directory", "relation"}, ""))
 
-	pattern_Writer_DeleteRelation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"aserto.directory.writer.v2.Writer", "DeleteRelation"}, ""))
+	pattern_Writer_DeleteRelation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v2", "directory", "relation"}, ""))
 )
 
 var (

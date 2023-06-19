@@ -55,8 +55,9 @@ type ReaderClient interface {
 	// relation methods
 	GetRelation(ctx context.Context, in *GetRelationRequest, opts ...grpc.CallOption) (*GetRelationResponse, error)
 	GetRelations(ctx context.Context, in *GetRelationsRequest, opts ...grpc.CallOption) (*GetRelationsResponse, error)
-	// check methods
+	// check permission method
 	CheckPermission(ctx context.Context, in *CheckPermissionRequest, opts ...grpc.CallOption) (*CheckPermissionResponse, error)
+	// check relation method
 	CheckRelation(ctx context.Context, in *CheckRelationRequest, opts ...grpc.CallOption) (*CheckRelationResponse, error)
 	// graph methods
 	GetGraph(ctx context.Context, in *GetGraphRequest, opts ...grpc.CallOption) (*GetGraphResponse, error)
@@ -216,8 +217,9 @@ type ReaderServer interface {
 	// relation methods
 	GetRelation(context.Context, *GetRelationRequest) (*GetRelationResponse, error)
 	GetRelations(context.Context, *GetRelationsRequest) (*GetRelationsResponse, error)
-	// check methods
+	// check permission method
 	CheckPermission(context.Context, *CheckPermissionRequest) (*CheckPermissionResponse, error)
+	// check relation method
 	CheckRelation(context.Context, *CheckRelationRequest) (*CheckRelationResponse, error)
 	// graph methods
 	GetGraph(context.Context, *GetGraphRequest) (*GetGraphResponse, error)
