@@ -27,10 +27,10 @@ const (
 	UserStatus_USER_STATUS_STAGED      UserStatus = 1 // Staged status, is when the user object is first created, before the activation flow is initiated, or if there is a pending admin action.
 	UserStatus_USER_STATUS_PROVISIONED UserStatus = 2 // Provisioned status, is when the user object is provisioned, but the user has not provided verification by clicking through the activation email or provided a password.
 	UserStatus_USER_STATUS_ACTIVE      UserStatus = 3 // Active status, is when:
-	// * An admin adds a user and sets the user password without requiring email verification.
-	// * An admin adds a user, sets the user password, and requires the user to set their password when they first sign-in.
-	// * A user self-registers into a custom app or IDP and email verification is not required.
-	// * An admin explicitly activates the user.
+	//  * An admin adds a user and sets the user password without requiring email verification.
+	//  * An admin adds a user, sets the user password, and requires the user to set their password when they first sign-in.
+	//  * A user self-registers into a custom app or IDP and email verification is not required.
+	//  * An admin explicitly activates the user.
 	UserStatus_USER_STATUS_RECOVERY         UserStatus = 4 // Recovery status, when the user requests a password reset or an admin initiates one on their behalf.
 	UserStatus_USER_STATUS_PASSWORD_EXPIRED UserStatus = 5 // Password expired, status when the users' password has expired and the account requires an update to the password before a user is granted access.
 	UserStatus_USER_STATUS_LOCKED_OUT       UserStatus = 6 // Locked out status, is when the user exceeds the number of login attempts defined in the login policy.

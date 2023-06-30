@@ -159,7 +159,6 @@ type ExportResponse struct {
 	unknownFields protoimpl.UnknownFields
 
 	// Types that are assignable to Msg:
-	//
 	//	*ExportResponse_Object
 	//	*ExportResponse_ObjectType
 	//	*ExportResponse_Relation

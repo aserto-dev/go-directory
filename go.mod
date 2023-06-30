@@ -6,13 +6,13 @@ require github.com/magefile/mage v1.15.0
 
 require (
 	github.com/aserto-dev/errors v0.0.5
-	github.com/grpc-ecosystem/grpc-gateway/v2 v2.16.0
 	google.golang.org/grpc v1.56.1
 	google.golang.org/protobuf v1.31.0
 )
 
 require (
 	github.com/golang/protobuf v1.5.3 // indirect
+	github.com/grpc-ecosystem/grpc-gateway/v2 v2.16.0 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.19 // indirect
 	github.com/pkg/errors v0.9.1 // indirect

@@ -59,16 +59,6 @@ func Generate() error {
 	return nil
 }
 
-func GenerateDev() error {
-	bufImage := "../pb-directory/bin/directory.bin"
-
-	if err := bufGenerate(bufImage); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 // remove all built images files.
 func Clean() error {
 	return os.RemoveAll("aserto")
@@ -136,6 +126,27 @@ func Login() error {
 		return err
 	}
 	return nil
+}
+
+// Generates from a dev build.
+func GenerateDev() error {
+	os.Setenv("BUF_BETA_SUPPRESS_WARNINGS", "1")
+
+	bufImage := filepath.Join(getProtoRepo(), "bin", "directory.bin#format=bin")
+
+	if err := bufGenerate(bufImage); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func getProtoRepo() string {
+	protoRepo := os.Getenv("PROTO_REPO")
+	if protoRepo == "" {
+		protoRepo = "../pb-directory"
+	}
+	return protoRepo
 }
 
 func bufBreaking(dir, image string, tag buf.Tag) error {
