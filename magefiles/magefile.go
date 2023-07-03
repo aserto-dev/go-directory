@@ -25,7 +25,7 @@ var (
 )
 
 func init() {
-	os.Setenv("GO_VERSION", "1.17")
+	os.Setenv("GO_VERSION", "1.19")
 	os.Setenv("GOPRIVATE", "github.com/aserto-dev")
 }
 
@@ -45,8 +45,6 @@ func All() error {
 func Generate() error {
 	bufImage := "buf.build/aserto-dev/directory"
 
-	os.Setenv("BUF_BETA_SUPPRESS_WARNINGS", "1")
-
 	tag, err := buf.GetLatestTag(bufImage)
 	if err != nil {
 		fmt.Println("Could not retrieve tags, using latest")
@@ -63,8 +61,6 @@ func Generate() error {
 
 func GenerateDev() error {
 	bufImage := "../pb-directory/bin/directory.bin"
-
-	os.Setenv("BUF_BETA_SUPPRESS_WARNINGS", "1")
 
 	if err := bufGenerate(bufImage); err != nil {
 		return err
@@ -91,8 +87,6 @@ func Lint() error {
 func Breaking() error {
 	mg.SerialDeps(Login)
 	bufImage := "buf.build/aserto-dev/directory"
-
-	os.Setenv("BUF_BETA_SUPPRESS_WARNINGS", "1")
 
 	tag, err := buf.GetLatestTag(bufImage)
 	if err != nil {
