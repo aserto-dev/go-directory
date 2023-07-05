@@ -769,6 +769,176 @@ func local_request_Reader_GetRelations_0(ctx context.Context, marshaler runtime.
 
 }
 
+var (
+	filter_Reader_GetRelations_1 = &utilities.DoubleArray{Encoding: map[string]int{"subject_type": 0, "subjectType": 1, "subject_id": 2, "subjectId": 3, "subject_relation": 4, "subjectRelation": 5, "object_type": 6, "objectType": 7, "object_id": 8, "objectId": 9, "relation": 10}, Base: []int{1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, Check: []int{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 12}}
+)
+
+func request_Reader_GetRelations_1(ctx context.Context, marshaler runtime.Marshaler, client ReaderClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetRelationsRequest
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["subject_type"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subject_type")
+	}
+
+	protoReq.SubjectType, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subject_type", err)
+	}
+
+	val, ok = pathParams["subject_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subject_id")
+	}
+
+	protoReq.SubjectId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subject_id", err)
+	}
+
+	val, ok = pathParams["subject_relation"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subject_relation")
+	}
+
+	protoReq.SubjectRelation, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subject_relation", err)
+	}
+
+	val, ok = pathParams["object_type"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "object_type")
+	}
+
+	protoReq.ObjectType, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "object_type", err)
+	}
+
+	val, ok = pathParams["object_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "object_id")
+	}
+
+	protoReq.ObjectId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "object_id", err)
+	}
+
+	val, ok = pathParams["relation"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "relation")
+	}
+
+	protoReq.Relation, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "relation", err)
+	}
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Reader_GetRelations_1); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.GetRelations(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_Reader_GetRelations_1(ctx context.Context, marshaler runtime.Marshaler, server ReaderServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetRelationsRequest
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["subject_type"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subject_type")
+	}
+
+	protoReq.SubjectType, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subject_type", err)
+	}
+
+	val, ok = pathParams["subject_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subject_id")
+	}
+
+	protoReq.SubjectId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subject_id", err)
+	}
+
+	val, ok = pathParams["subject_relation"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subject_relation")
+	}
+
+	protoReq.SubjectRelation, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subject_relation", err)
+	}
+
+	val, ok = pathParams["object_type"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "object_type")
+	}
+
+	protoReq.ObjectType, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "object_type", err)
+	}
+
+	val, ok = pathParams["object_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "object_id")
+	}
+
+	protoReq.ObjectId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "object_id", err)
+	}
+
+	val, ok = pathParams["relation"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "relation")
+	}
+
+	protoReq.Relation, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "relation", err)
+	}
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Reader_GetRelations_1); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.GetRelations(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
 func request_Reader_CheckPermission_0(ctx context.Context, marshaler runtime.Marshaler, client ReaderClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq CheckPermissionRequest
 	var metadata runtime.ServerMetadata
@@ -1135,7 +1305,7 @@ func RegisterReaderHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.reader.v3.Reader/GetRelations", runtime.WithHTTPPathPattern("/api/v3/directory/relations/{object_type}/{object_id}/{relation}/{subject_type}/{subject_id}/{subject_relation}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.reader.v3.Reader/GetRelations", runtime.WithHTTPPathPattern("/api/v3/directory/relations/object/{object_type}/{object_id}/{relation}/{subject_type}/{subject_id}/{subject_relation}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1149,6 +1319,31 @@ func RegisterReaderHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		}
 
 		forward_Reader_GetRelations_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_Reader_GetRelations_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.reader.v3.Reader/GetRelations", runtime.WithHTTPPathPattern("/api/v3/directory/relations/subject/{subject_type}/{subject_id}/{subject_relation}/{object_type}/{object_id}/{relation}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_Reader_GetRelations_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_Reader_GetRelations_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1494,7 +1689,7 @@ func RegisterReaderHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.reader.v3.Reader/GetRelations", runtime.WithHTTPPathPattern("/api/v3/directory/relations/{object_type}/{object_id}/{relation}/{subject_type}/{subject_id}/{subject_relation}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.reader.v3.Reader/GetRelations", runtime.WithHTTPPathPattern("/api/v3/directory/relations/object/{object_type}/{object_id}/{relation}/{subject_type}/{subject_id}/{subject_relation}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1507,6 +1702,28 @@ func RegisterReaderHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		}
 
 		forward_Reader_GetRelations_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_Reader_GetRelations_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.reader.v3.Reader/GetRelations", runtime.WithHTTPPathPattern("/api/v3/directory/relations/subject/{subject_type}/{subject_id}/{subject_relation}/{object_type}/{object_id}/{relation}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Reader_GetRelations_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_Reader_GetRelations_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1600,7 +1817,9 @@ var (
 
 	pattern_Reader_GetRelation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 6, 1, 0, 4, 1, 5, 7, 1, 0, 4, 1, 5, 8}, []string{"api", "v3", "directory", "relation", "object_type", "object_id", "subject_type", "subject_id", "subject_relation"}, ""))
 
-	pattern_Reader_GetRelations_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5, 1, 0, 4, 1, 5, 6, 1, 0, 4, 1, 5, 7, 1, 0, 4, 1, 5, 8, 1, 0, 4, 1, 5, 9}, []string{"api", "v3", "directory", "relations", "object_type", "object_id", "relation", "subject_type", "subject_id", "subject_relation"}, ""))
+	pattern_Reader_GetRelations_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 1, 0, 4, 1, 5, 5, 1, 0, 4, 1, 5, 6, 1, 0, 4, 1, 5, 7, 1, 0, 4, 1, 5, 8, 1, 0, 4, 1, 5, 9, 1, 0, 4, 1, 5, 10}, []string{"api", "v3", "directory", "relations", "object", "object_type", "object_id", "relation", "subject_type", "subject_id", "subject_relation"}, ""))
+
+	pattern_Reader_GetRelations_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 1, 0, 4, 1, 5, 5, 1, 0, 4, 1, 5, 6, 1, 0, 4, 1, 5, 7, 1, 0, 4, 1, 5, 8, 1, 0, 4, 1, 5, 9, 1, 0, 4, 1, 5, 10}, []string{"api", "v3", "directory", "relations", "subject", "subject_type", "subject_id", "subject_relation", "object_type", "object_id", "relation"}, ""))
 
 	pattern_Reader_CheckPermission_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v3", "directory", "check", "permission"}, ""))
 
@@ -1631,6 +1850,8 @@ var (
 	forward_Reader_GetRelation_0 = runtime.ForwardResponseMessage
 
 	forward_Reader_GetRelations_0 = runtime.ForwardResponseMessage
+
+	forward_Reader_GetRelations_1 = runtime.ForwardResponseMessage
 
 	forward_Reader_CheckPermission_0 = runtime.ForwardResponseMessage
 
