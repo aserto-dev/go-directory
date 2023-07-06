@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.28.1
 // 	protoc        (unknown)
-// source: aserto/directory/schema/v2/identity.proto
+// source: aserto/directory/schema/v3/identity.proto
 
 package schema
 
@@ -72,11 +72,11 @@ func (x IdentityKind) String() string {
 }
 
 func (IdentityKind) Descriptor() protoreflect.EnumDescriptor {
-	return file_aserto_directory_schema_v2_identity_proto_enumTypes[0].Descriptor()
+	return file_aserto_directory_schema_v3_identity_proto_enumTypes[0].Descriptor()
 }
 
 func (IdentityKind) Type() protoreflect.EnumType {
-	return &file_aserto_directory_schema_v2_identity_proto_enumTypes[0]
+	return &file_aserto_directory_schema_v3_identity_proto_enumTypes[0]
 }
 
 func (x IdentityKind) Number() protoreflect.EnumNumber {
@@ -85,7 +85,7 @@ func (x IdentityKind) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use IdentityKind.Descriptor instead.
 func (IdentityKind) EnumDescriptor() ([]byte, []int) {
-	return file_aserto_directory_schema_v2_identity_proto_rawDescGZIP(), []int{0}
+	return file_aserto_directory_schema_v3_identity_proto_rawDescGZIP(), []int{0}
 }
 
 // Properties of "identity" objects.
@@ -95,7 +95,7 @@ type IdentityProperties struct {
 	unknownFields protoimpl.UnknownFields
 
 	// identity kind [email|username|uid|pid|dn|phone]
-	Kind IdentityKind `protobuf:"varint,1,opt,name=kind,proto3,enum=aserto.directory.schema.v2.IdentityKind" json:"kind,omitempty"`
+	Kind IdentityKind `protobuf:"varint,1,opt,name=kind,proto3,enum=aserto.directory.schema.v3.IdentityKind" json:"kind,omitempty"`
 	// identity provider name
 	Provider string `protobuf:"bytes,2,opt,name=provider,proto3" json:"provider,omitempty"`
 	// identity has been verified (false when not explicitly specified)
@@ -107,7 +107,7 @@ type IdentityProperties struct {
 func (x *IdentityProperties) Reset() {
 	*x = IdentityProperties{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_aserto_directory_schema_v2_identity_proto_msgTypes[0]
+		mi := &file_aserto_directory_schema_v3_identity_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -120,7 +120,7 @@ func (x *IdentityProperties) String() string {
 func (*IdentityProperties) ProtoMessage() {}
 
 func (x *IdentityProperties) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_schema_v2_identity_proto_msgTypes[0]
+	mi := &file_aserto_directory_schema_v3_identity_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -133,7 +133,7 @@ func (x *IdentityProperties) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IdentityProperties.ProtoReflect.Descriptor instead.
 func (*IdentityProperties) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_schema_v2_identity_proto_rawDescGZIP(), []int{0}
+	return file_aserto_directory_schema_v3_identity_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *IdentityProperties) GetKind() IdentityKind {
@@ -164,18 +164,18 @@ func (x *IdentityProperties) GetConnectionId() string {
 	return ""
 }
 
-var File_aserto_directory_schema_v2_identity_proto protoreflect.FileDescriptor
+var File_aserto_directory_schema_v3_identity_proto protoreflect.FileDescriptor
 
-var file_aserto_directory_schema_v2_identity_proto_rawDesc = []byte{
+var file_aserto_directory_schema_v3_identity_proto_rawDesc = []byte{
 	0x0a, 0x29, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2f, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f,
-	0x72, 0x79, 0x2f, 0x73, 0x63, 0x68, 0x65, 0x6d, 0x61, 0x2f, 0x76, 0x32, 0x2f, 0x69, 0x64, 0x65,
+	0x72, 0x79, 0x2f, 0x73, 0x63, 0x68, 0x65, 0x6d, 0x61, 0x2f, 0x76, 0x33, 0x2f, 0x69, 0x64, 0x65,
 	0x6e, 0x74, 0x69, 0x74, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x1a, 0x61, 0x73, 0x65,
 	0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e, 0x73, 0x63,
-	0x68, 0x65, 0x6d, 0x61, 0x2e, 0x76, 0x32, 0x22, 0xc6, 0x01, 0x0a, 0x12, 0x49, 0x64, 0x65, 0x6e,
+	0x68, 0x65, 0x6d, 0x61, 0x2e, 0x76, 0x33, 0x22, 0xc6, 0x01, 0x0a, 0x12, 0x49, 0x64, 0x65, 0x6e,
 	0x74, 0x69, 0x74, 0x79, 0x50, 0x72, 0x6f, 0x70, 0x65, 0x72, 0x74, 0x69, 0x65, 0x73, 0x12, 0x3c,
 	0x0a, 0x04, 0x6b, 0x69, 0x6e, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x28, 0x2e, 0x61,
 	0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2e,
-	0x73, 0x63, 0x68, 0x65, 0x6d, 0x61, 0x2e, 0x76, 0x32, 0x2e, 0x49, 0x64, 0x65, 0x6e, 0x74, 0x69,
+	0x73, 0x63, 0x68, 0x65, 0x6d, 0x61, 0x2e, 0x76, 0x33, 0x2e, 0x49, 0x64, 0x65, 0x6e, 0x74, 0x69,
 	0x74, 0x79, 0x4b, 0x69, 0x6e, 0x64, 0x52, 0x04, 0x6b, 0x69, 0x6e, 0x64, 0x12, 0x1a, 0x0a, 0x08,
 	0x70, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08,
 	0x70, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x12, 0x1a, 0x0a, 0x08, 0x76, 0x65, 0x72, 0x69,
@@ -200,29 +200,29 @@ var file_aserto_directory_schema_v2_identity_proto_rawDesc = []byte{
 	0x73, 0x65, 0x72, 0x74, 0x6f, 0x2d, 0x64, 0x65, 0x76, 0x2f, 0x67, 0x6f, 0x2d, 0x64, 0x69, 0x72,
 	0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2f, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2f, 0x64, 0x69,
 	0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2f, 0x73, 0x63, 0x68, 0x65, 0x6d, 0x61, 0x2f, 0x76,
-	0x32, 0x3b, 0x73, 0x63, 0x68, 0x65, 0x6d, 0x61, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x33, 0x3b, 0x73, 0x63, 0x68, 0x65, 0x6d, 0x61, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_aserto_directory_schema_v2_identity_proto_rawDescOnce sync.Once
-	file_aserto_directory_schema_v2_identity_proto_rawDescData = file_aserto_directory_schema_v2_identity_proto_rawDesc
+	file_aserto_directory_schema_v3_identity_proto_rawDescOnce sync.Once
+	file_aserto_directory_schema_v3_identity_proto_rawDescData = file_aserto_directory_schema_v3_identity_proto_rawDesc
 )
 
-func file_aserto_directory_schema_v2_identity_proto_rawDescGZIP() []byte {
-	file_aserto_directory_schema_v2_identity_proto_rawDescOnce.Do(func() {
-		file_aserto_directory_schema_v2_identity_proto_rawDescData = protoimpl.X.CompressGZIP(file_aserto_directory_schema_v2_identity_proto_rawDescData)
+func file_aserto_directory_schema_v3_identity_proto_rawDescGZIP() []byte {
+	file_aserto_directory_schema_v3_identity_proto_rawDescOnce.Do(func() {
+		file_aserto_directory_schema_v3_identity_proto_rawDescData = protoimpl.X.CompressGZIP(file_aserto_directory_schema_v3_identity_proto_rawDescData)
 	})
-	return file_aserto_directory_schema_v2_identity_proto_rawDescData
+	return file_aserto_directory_schema_v3_identity_proto_rawDescData
 }
 
-var file_aserto_directory_schema_v2_identity_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_aserto_directory_schema_v2_identity_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
-var file_aserto_directory_schema_v2_identity_proto_goTypes = []interface{}{
-	(IdentityKind)(0),          // 0: aserto.directory.schema.v2.IdentityKind
-	(*IdentityProperties)(nil), // 1: aserto.directory.schema.v2.IdentityProperties
+var file_aserto_directory_schema_v3_identity_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_aserto_directory_schema_v3_identity_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_aserto_directory_schema_v3_identity_proto_goTypes = []interface{}{
+	(IdentityKind)(0),          // 0: aserto.directory.schema.v3.IdentityKind
+	(*IdentityProperties)(nil), // 1: aserto.directory.schema.v3.IdentityProperties
 }
-var file_aserto_directory_schema_v2_identity_proto_depIdxs = []int32{
-	0, // 0: aserto.directory.schema.v2.IdentityProperties.kind:type_name -> aserto.directory.schema.v2.IdentityKind
+var file_aserto_directory_schema_v3_identity_proto_depIdxs = []int32{
+	0, // 0: aserto.directory.schema.v3.IdentityProperties.kind:type_name -> aserto.directory.schema.v3.IdentityKind
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
@@ -230,13 +230,13 @@ var file_aserto_directory_schema_v2_identity_proto_depIdxs = []int32{
 	0, // [0:1] is the sub-list for field type_name
 }
 
-func init() { file_aserto_directory_schema_v2_identity_proto_init() }
-func file_aserto_directory_schema_v2_identity_proto_init() {
-	if File_aserto_directory_schema_v2_identity_proto != nil {
+func init() { file_aserto_directory_schema_v3_identity_proto_init() }
+func file_aserto_directory_schema_v3_identity_proto_init() {
+	if File_aserto_directory_schema_v3_identity_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_aserto_directory_schema_v2_identity_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_aserto_directory_schema_v3_identity_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*IdentityProperties); i {
 			case 0:
 				return &v.state
@@ -249,24 +249,24 @@ func file_aserto_directory_schema_v2_identity_proto_init() {
 			}
 		}
 	}
-	file_aserto_directory_schema_v2_identity_proto_msgTypes[0].OneofWrappers = []interface{}{}
+	file_aserto_directory_schema_v3_identity_proto_msgTypes[0].OneofWrappers = []interface{}{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_aserto_directory_schema_v2_identity_proto_rawDesc,
+			RawDescriptor: file_aserto_directory_schema_v3_identity_proto_rawDesc,
 			NumEnums:      1,
 			NumMessages:   1,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_aserto_directory_schema_v2_identity_proto_goTypes,
-		DependencyIndexes: file_aserto_directory_schema_v2_identity_proto_depIdxs,
-		EnumInfos:         file_aserto_directory_schema_v2_identity_proto_enumTypes,
-		MessageInfos:      file_aserto_directory_schema_v2_identity_proto_msgTypes,
+		GoTypes:           file_aserto_directory_schema_v3_identity_proto_goTypes,
+		DependencyIndexes: file_aserto_directory_schema_v3_identity_proto_depIdxs,
+		EnumInfos:         file_aserto_directory_schema_v3_identity_proto_enumTypes,
+		MessageInfos:      file_aserto_directory_schema_v3_identity_proto_msgTypes,
 	}.Build()
-	File_aserto_directory_schema_v2_identity_proto = out.File
-	file_aserto_directory_schema_v2_identity_proto_rawDesc = nil
-	file_aserto_directory_schema_v2_identity_proto_goTypes = nil
-	file_aserto_directory_schema_v2_identity_proto_depIdxs = nil
+	File_aserto_directory_schema_v3_identity_proto = out.File
+	file_aserto_directory_schema_v3_identity_proto_rawDesc = nil
+	file_aserto_directory_schema_v3_identity_proto_goTypes = nil
+	file_aserto_directory_schema_v3_identity_proto_depIdxs = nil
 }
