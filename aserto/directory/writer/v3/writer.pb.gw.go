@@ -66,7 +66,7 @@ func local_request_Writer_SetObject_0(ctx context.Context, marshaler runtime.Mar
 }
 
 var (
-	filter_Writer_DeleteObject_0 = &utilities.DoubleArray{Encoding: map[string]int{"object_type": 0, "objectType": 1, "object_id": 2, "objectId": 3}, Base: []int{1, 1, 2, 3, 4, 0, 0, 0, 0}, Check: []int{0, 1, 1, 1, 1, 2, 3, 4, 5}}
+	filter_Writer_DeleteObject_0 = &utilities.DoubleArray{Encoding: map[string]int{"object": 0, "type": 1, "id": 2}, Base: []int{1, 4, 5, 6, 2, 0, 4, 0, 0, 0}, Check: []int{0, 1, 1, 1, 2, 5, 2, 7, 3, 4}}
 )
 
 func request_Writer_DeleteObject_0(ctx context.Context, marshaler runtime.Marshaler, client WriterClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -80,24 +80,24 @@ func request_Writer_DeleteObject_0(ctx context.Context, marshaler runtime.Marsha
 		_   = err
 	)
 
-	val, ok = pathParams["object_type"]
+	val, ok = pathParams["object.type"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "object_type")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "object.type")
 	}
 
-	protoReq.ObjectType, err = runtime.String(val)
+	err = runtime.PopulateFieldFromPath(&protoReq, "object.type", val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "object_type", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "object.type", err)
 	}
 
-	val, ok = pathParams["object_id"]
+	val, ok = pathParams["object.id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "object_id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "object.id")
 	}
 
-	protoReq.ObjectId, err = runtime.String(val)
+	err = runtime.PopulateFieldFromPath(&protoReq, "object.id", val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "object_id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "object.id", err)
 	}
 
 	if err := req.ParseForm(); err != nil {
@@ -123,24 +123,24 @@ func local_request_Writer_DeleteObject_0(ctx context.Context, marshaler runtime.
 		_   = err
 	)
 
-	val, ok = pathParams["object_type"]
+	val, ok = pathParams["object.type"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "object_type")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "object.type")
 	}
 
-	protoReq.ObjectType, err = runtime.String(val)
+	err = runtime.PopulateFieldFromPath(&protoReq, "object.type", val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "object_type", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "object.type", err)
 	}
 
-	val, ok = pathParams["object_id"]
+	val, ok = pathParams["object.id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "object_id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "object.id")
 	}
 
-	protoReq.ObjectId, err = runtime.String(val)
+	err = runtime.PopulateFieldFromPath(&protoReq, "object.id", val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "object_id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "object.id", err)
 	}
 
 	if err := req.ParseForm(); err != nil {
@@ -189,6 +189,10 @@ func local_request_Writer_SetRelation_0(ctx context.Context, marshaler runtime.M
 
 }
 
+var (
+	filter_Writer_DeleteRelation_0 = &utilities.DoubleArray{Encoding: map[string]int{"relation": 0, "object_type": 1, "objectType": 2, "object_id": 3, "objectId": 4, "subject_type": 5, "subjectType": 6, "subject_id": 7, "subjectId": 8, "subject_relation": 9, "subjectRelation": 10}, Base: []int{1, 8, 1, 9, 2, 10, 3, 11, 4, 12, 5, 13, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0}, Check: []int{0, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 3, 5, 7, 9, 11, 2, 18, 2, 4, 6, 8, 10, 12}}
+)
+
 func request_Writer_DeleteRelation_0(ctx context.Context, marshaler runtime.Marshaler, client WriterClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq DeleteRelationRequest
 	var metadata runtime.ServerMetadata
@@ -200,64 +204,71 @@ func request_Writer_DeleteRelation_0(ctx context.Context, marshaler runtime.Mars
 		_   = err
 	)
 
-	val, ok = pathParams["object_type"]
+	val, ok = pathParams["relation.object_type"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "object_type")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "relation.object_type")
 	}
 
-	protoReq.ObjectType, err = runtime.String(val)
+	err = runtime.PopulateFieldFromPath(&protoReq, "relation.object_type", val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "object_type", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "relation.object_type", err)
 	}
 
-	val, ok = pathParams["object_id"]
+	val, ok = pathParams["relation.object_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "object_id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "relation.object_id")
 	}
 
-	protoReq.ObjectId, err = runtime.String(val)
+	err = runtime.PopulateFieldFromPath(&protoReq, "relation.object_id", val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "object_id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "relation.object_id", err)
 	}
 
-	val, ok = pathParams["relation"]
+	val, ok = pathParams["relation.relation"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "relation")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "relation.relation")
 	}
 
-	protoReq.Relation, err = runtime.String(val)
+	err = runtime.PopulateFieldFromPath(&protoReq, "relation.relation", val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "relation", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "relation.relation", err)
 	}
 
-	val, ok = pathParams["subject_type"]
+	val, ok = pathParams["relation.subject_type"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subject_type")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "relation.subject_type")
 	}
 
-	protoReq.SubjectType, err = runtime.String(val)
+	err = runtime.PopulateFieldFromPath(&protoReq, "relation.subject_type", val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subject_type", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "relation.subject_type", err)
 	}
 
-	val, ok = pathParams["subject_id"]
+	val, ok = pathParams["relation.subject_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subject_id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "relation.subject_id")
 	}
 
-	protoReq.SubjectId, err = runtime.String(val)
+	err = runtime.PopulateFieldFromPath(&protoReq, "relation.subject_id", val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subject_id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "relation.subject_id", err)
 	}
 
-	val, ok = pathParams["subject_relation"]
+	val, ok = pathParams["relation.subject_relation"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subject_relation")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "relation.subject_relation")
 	}
 
-	protoReq.SubjectRelation, err = runtime.String(val)
+	err = runtime.PopulateFieldFromPath(&protoReq, "relation.subject_relation", val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subject_relation", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "relation.subject_relation", err)
+	}
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Writer_DeleteRelation_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
 	msg, err := client.DeleteRelation(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -276,64 +287,71 @@ func local_request_Writer_DeleteRelation_0(ctx context.Context, marshaler runtim
 		_   = err
 	)
 
-	val, ok = pathParams["object_type"]
+	val, ok = pathParams["relation.object_type"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "object_type")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "relation.object_type")
 	}
 
-	protoReq.ObjectType, err = runtime.String(val)
+	err = runtime.PopulateFieldFromPath(&protoReq, "relation.object_type", val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "object_type", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "relation.object_type", err)
 	}
 
-	val, ok = pathParams["object_id"]
+	val, ok = pathParams["relation.object_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "object_id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "relation.object_id")
 	}
 
-	protoReq.ObjectId, err = runtime.String(val)
+	err = runtime.PopulateFieldFromPath(&protoReq, "relation.object_id", val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "object_id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "relation.object_id", err)
 	}
 
-	val, ok = pathParams["relation"]
+	val, ok = pathParams["relation.relation"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "relation")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "relation.relation")
 	}
 
-	protoReq.Relation, err = runtime.String(val)
+	err = runtime.PopulateFieldFromPath(&protoReq, "relation.relation", val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "relation", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "relation.relation", err)
 	}
 
-	val, ok = pathParams["subject_type"]
+	val, ok = pathParams["relation.subject_type"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subject_type")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "relation.subject_type")
 	}
 
-	protoReq.SubjectType, err = runtime.String(val)
+	err = runtime.PopulateFieldFromPath(&protoReq, "relation.subject_type", val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subject_type", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "relation.subject_type", err)
 	}
 
-	val, ok = pathParams["subject_id"]
+	val, ok = pathParams["relation.subject_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subject_id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "relation.subject_id")
 	}
 
-	protoReq.SubjectId, err = runtime.String(val)
+	err = runtime.PopulateFieldFromPath(&protoReq, "relation.subject_id", val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subject_id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "relation.subject_id", err)
 	}
 
-	val, ok = pathParams["subject_relation"]
+	val, ok = pathParams["relation.subject_relation"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subject_relation")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "relation.subject_relation")
 	}
 
-	protoReq.SubjectRelation, err = runtime.String(val)
+	err = runtime.PopulateFieldFromPath(&protoReq, "relation.subject_relation", val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subject_relation", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "relation.subject_relation", err)
+	}
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Writer_DeleteRelation_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
 	msg, err := server.DeleteRelation(ctx, &protoReq)
@@ -347,7 +365,7 @@ func local_request_Writer_DeleteRelation_0(ctx context.Context, marshaler runtim
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterWriterHandlerFromEndpoint instead.
 func RegisterWriterHandlerServer(ctx context.Context, mux *runtime.ServeMux, server WriterServer) error {
 
-	mux.Handle("PUT", pattern_Writer_SetObject_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_Writer_SetObject_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -380,7 +398,7 @@ func RegisterWriterHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.writer.v3.Writer/DeleteObject", runtime.WithHTTPPathPattern("/api/v3/directory/object/{object_type}/{object_id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.writer.v3.Writer/DeleteObject", runtime.WithHTTPPathPattern("/api/v3/directory/object/{object.type}/{object.id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -430,7 +448,7 @@ func RegisterWriterHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.writer.v3.Writer/DeleteRelation", runtime.WithHTTPPathPattern("/api/v3/directory/relation/{object_type}/{object_id}/{relation}/{subject_type}/{subject_id}/{subject_relation}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.writer.v3.Writer/DeleteRelation", runtime.WithHTTPPathPattern("/api/v3/directory/relation/{relation.object_type}/{relation.object_id}/{relation.relation}/{relation.subject_type}/{relation.subject_id}/{relation.subject_relation}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -488,7 +506,7 @@ func RegisterWriterHandler(ctx context.Context, mux *runtime.ServeMux, conn *grp
 // "WriterClient" to call the correct interceptors.
 func RegisterWriterHandlerClient(ctx context.Context, mux *runtime.ServeMux, client WriterClient) error {
 
-	mux.Handle("PUT", pattern_Writer_SetObject_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_Writer_SetObject_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -516,7 +534,7 @@ func RegisterWriterHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.writer.v3.Writer/DeleteObject", runtime.WithHTTPPathPattern("/api/v3/directory/object/{object_type}/{object_id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.writer.v3.Writer/DeleteObject", runtime.WithHTTPPathPattern("/api/v3/directory/object/{object.type}/{object.id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -560,7 +578,7 @@ func RegisterWriterHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.writer.v3.Writer/DeleteRelation", runtime.WithHTTPPathPattern("/api/v3/directory/relation/{object_type}/{object_id}/{relation}/{subject_type}/{subject_id}/{subject_relation}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.writer.v3.Writer/DeleteRelation", runtime.WithHTTPPathPattern("/api/v3/directory/relation/{relation.object_type}/{relation.object_id}/{relation.relation}/{relation.subject_type}/{relation.subject_id}/{relation.subject_relation}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -582,11 +600,11 @@ func RegisterWriterHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 var (
 	pattern_Writer_SetObject_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v3", "directory", "object"}, ""))
 
-	pattern_Writer_DeleteObject_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"api", "v3", "directory", "object", "object_type", "object_id"}, ""))
+	pattern_Writer_DeleteObject_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"api", "v3", "directory", "object", "object.type", "object.id"}, ""))
 
 	pattern_Writer_SetRelation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v3", "directory", "relation"}, ""))
 
-	pattern_Writer_DeleteRelation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 6, 1, 0, 4, 1, 5, 7, 1, 0, 4, 1, 5, 8}, []string{"api", "v3", "directory", "relation", "object_type", "object_id", "subject_type", "subject_id", "subject_relation"}, ""))
+	pattern_Writer_DeleteRelation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5, 1, 0, 4, 1, 5, 6, 1, 0, 4, 1, 5, 7, 1, 0, 4, 1, 5, 8, 1, 0, 4, 1, 5, 9}, []string{"api", "v3", "directory", "relation", "relation.object_type", "relation.object_id", "relation.relation", "relation.subject_type", "relation.subject_id", "relation.subject_relation"}, ""))
 )
 
 var (
