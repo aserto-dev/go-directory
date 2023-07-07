@@ -28,7 +28,7 @@ const (
 	IdentityKind_IDENTITY_KIND_EMAIL    IdentityKind = 2 // email address
 	IdentityKind_IDENTITY_KIND_USERNAME IdentityKind = 3 // username
 	IdentityKind_IDENTITY_KIND_DN       IdentityKind = 4 // distinguished name format RFC1779
-	IdentityKind_IDENTITY_KIND_PHONE    IdentityKind = 5 // phonenumber using the format described in RFC3966, +1-201-555-0111 (without the tel: prefix)
+	IdentityKind_IDENTITY_KIND_PHONE    IdentityKind = 5 // phone number using the format described in RFC3966, +1-201-555-0111 (without the tel: prefix)
 	IdentityKind_IDENTITY_KIND_EMPID    IdentityKind = 6 // employee identifier
 )
 
