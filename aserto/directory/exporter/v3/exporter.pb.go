@@ -25,10 +25,14 @@ const (
 type Option int32
 
 const (
-	Option_OPTION_UNKNOWN        Option = 0  // nothing selected (default initialization value)
-	Option_OPTION_DATA_OBJECTS   Option = 8  // object instances
-	Option_OPTION_DATA_RELATIONS Option = 16 // relation instances
-	Option_OPTION_DATA           Option = 24 // all data = OPTION_DATA_OBJECTS | OPTION_DATA_RELATIONS
+	// nothing selected (default initialization value)
+	Option_OPTION_UNKNOWN Option = 0
+	// object instances
+	Option_OPTION_DATA_OBJECTS Option = 8
+	// relation instances
+	Option_OPTION_DATA_RELATIONS Option = 16
+	// all data = OPTION_DATA_OBJECTS | OPTION_DATA_RELATIONS
+	Option_OPTION_DATA Option = 24
 )
 
 // Enum value maps for Option.
@@ -79,8 +83,10 @@ type ExportRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Options   uint32                 `protobuf:"varint,1,opt,name=options,proto3" json:"options,omitempty"`                      // data export options mask
-	StartFrom *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=start_from,json=startFrom,proto3" json:"start_from,omitempty"` // start export from timestamp (UTC)
+	// data export options mask
+	Options uint32 `protobuf:"varint,1,opt,name=options,proto3" json:"options,omitempty"`
+	// start export from timestamp (UTC)
+	StartFrom *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=start_from,json=startFrom,proto3" json:"start_from,omitempty"`
 }
 
 func (x *ExportRequest) Reset() {
@@ -199,11 +205,13 @@ type isExportResponse_Msg interface {
 }
 
 type ExportResponse_Object struct {
-	Object *v3.Object `protobuf:"bytes,2,opt,name=object,proto3,oneof"` // object instance (data)
+	// object instance (data)
+	Object *v3.Object `protobuf:"bytes,2,opt,name=object,proto3,oneof"`
 }
 
 type ExportResponse_Relation struct {
-	Relation *v3.Relation `protobuf:"bytes,4,opt,name=relation,proto3,oneof"` // relation instance (data)
+	// relation instance (data)
+	Relation *v3.Relation `protobuf:"bytes,4,opt,name=relation,proto3,oneof"`
 }
 
 func (*ExportResponse_Object) isExportResponse_Msg() {}

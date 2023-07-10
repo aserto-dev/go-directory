@@ -25,11 +25,16 @@ const (
 type Flag int32
 
 const (
-	Flag_FLAG_UNKNOWN  Flag = 0 // default, no special object behavior
-	Flag_FLAG_HIDDEN   Flag = 1 // hidden object
-	Flag_FLAG_READONLY Flag = 2 // read-only object
-	Flag_FLAG_SYSTEM   Flag = 4 // system object
-	Flag_FLAG_SHADOW   Flag = 8 // shadow object by type+key associated to parent object
+	// default, no special object behavior
+	Flag_FLAG_UNKNOWN Flag = 0
+	// hidden object
+	Flag_FLAG_HIDDEN Flag = 1
+	// read-only object
+	Flag_FLAG_READONLY Flag = 2
+	// system object
+	Flag_FLAG_SYSTEM Flag = 4
+	// shadow object by type+key associated to parent object
+	Flag_FLAG_SHADOW Flag = 8
 )
 
 // Enum value maps for Flag.
@@ -82,15 +87,24 @@ type ObjectType struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Name        string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`                                  // object type name (unique, lc-string)
-	DisplayName string                 `protobuf:"bytes,3,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"` // object type display name
-	IsSubject   bool                   `protobuf:"varint,4,opt,name=is_subject,json=isSubject,proto3" json:"is_subject,omitempty"`      // object type is a subject (user|group) (default false)
-	Ordinal     int32                  `protobuf:"varint,5,opt,name=ordinal,proto3" json:"ordinal,omitempty"`                           // sort ordinal (default 0)
-	Status      uint32                 `protobuf:"varint,6,opt,name=status,proto3" json:"status,omitempty"`                             // status flag bitmap (default 0)
-	Schema      *structpb.Struct       `protobuf:"bytes,10,opt,name=schema,proto3" json:"schema,omitempty"`                             // object type schema definition (JSON)
-	CreatedAt   *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`      // created at timestamp (UTC)
-	UpdatedAt   *timestamppb.Timestamp `protobuf:"bytes,21,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`      // last updated timestamp (UTC)
-	Hash        string                 `protobuf:"bytes,23,opt,name=hash,proto3" json:"hash,omitempty"`                                 // object instance hash
+	// object type name (unique, lc-string)
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// object type display name
+	DisplayName string `protobuf:"bytes,3,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
+	// object type is a subject (user|group) (default false)
+	IsSubject bool `protobuf:"varint,4,opt,name=is_subject,json=isSubject,proto3" json:"is_subject,omitempty"`
+	// sort ordinal (default 0)
+	Ordinal int32 `protobuf:"varint,5,opt,name=ordinal,proto3" json:"ordinal,omitempty"`
+	// status flag bitmap (default 0)
+	Status uint32 `protobuf:"varint,6,opt,name=status,proto3" json:"status,omitempty"`
+	// object type schema definition (JSON)
+	Schema *structpb.Struct `protobuf:"bytes,10,opt,name=schema,proto3" json:"schema,omitempty"`
+	// created at timestamp (UTC)
+	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	// last updated timestamp (UTC)
+	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,21,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	// object instance hash
+	Hash string `protobuf:"bytes,23,opt,name=hash,proto3" json:"hash,omitempty"`
 }
 
 func (x *ObjectType) Reset() {
@@ -193,11 +207,16 @@ type Permission struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Name        string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`                                  // permission name (unique, cs-string)
-	DisplayName string                 `protobuf:"bytes,3,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"` // permission display name
-	CreatedAt   *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`      // created at timestamp (UTC)
-	UpdatedAt   *timestamppb.Timestamp `protobuf:"bytes,21,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`      // last updated timestamp (UTC)
-	Hash        string                 `protobuf:"bytes,23,opt,name=hash,proto3" json:"hash,omitempty"`                                 // object instance hash
+	// permission name (unique, cs-string)
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// permission display name
+	DisplayName string `protobuf:"bytes,3,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
+	// created at timestamp (UTC)
+	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	// last updated timestamp (UTC)
+	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,21,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	// object instance hash
+	Hash string `protobuf:"bytes,23,opt,name=hash,proto3" json:"hash,omitempty"`
 }
 
 func (x *Permission) Reset() {
@@ -272,16 +291,26 @@ type RelationType struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Name        string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`                                  // relation type name selector
-	ObjectType  string                 `protobuf:"bytes,3,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"`    // object type referenced by relation
-	DisplayName string                 `protobuf:"bytes,4,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"` // relation display name
-	Ordinal     int32                  `protobuf:"varint,5,opt,name=ordinal,proto3" json:"ordinal,omitempty"`                           // sort ordinal (default 0)
-	Status      uint32                 `protobuf:"varint,6,opt,name=status,proto3" json:"status,omitempty"`                             // status bitmap (default 0)
-	Unions      []string               `protobuf:"bytes,7,rep,name=unions,proto3" json:"unions,omitempty"`                              // relations union-ed with relation type instance
-	Permissions []string               `protobuf:"bytes,8,rep,name=permissions,proto3" json:"permissions,omitempty"`                    // permissions associated to relation type instance
-	CreatedAt   *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`      // created at timestamp (UTC)
-	UpdatedAt   *timestamppb.Timestamp `protobuf:"bytes,21,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`      // last updated timestamp (UTC)
-	Hash        string                 `protobuf:"bytes,23,opt,name=hash,proto3" json:"hash,omitempty"`                                 // object instance hash
+	// relation type name selector
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// object type referenced by relation
+	ObjectType string `protobuf:"bytes,3,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"`
+	// relation display name
+	DisplayName string `protobuf:"bytes,4,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
+	// sort ordinal (default 0)
+	Ordinal int32 `protobuf:"varint,5,opt,name=ordinal,proto3" json:"ordinal,omitempty"`
+	// status bitmap (default 0)
+	Status uint32 `protobuf:"varint,6,opt,name=status,proto3" json:"status,omitempty"`
+	// relations union-ed with relation type instance
+	Unions []string `protobuf:"bytes,7,rep,name=unions,proto3" json:"unions,omitempty"`
+	// permissions associated to relation type instance
+	Permissions []string `protobuf:"bytes,8,rep,name=permissions,proto3" json:"permissions,omitempty"`
+	// created at timestamp (UTC)
+	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	// last updated timestamp (UTC)
+	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,21,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	// object instance hash
+	Hash string `protobuf:"bytes,23,opt,name=hash,proto3" json:"hash,omitempty"`
 }
 
 func (x *RelationType) Reset() {
@@ -391,13 +420,20 @@ type Object struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Key         string                 `protobuf:"bytes,2,opt,name=key,proto3" json:"key,omitempty"`                                    // external object key (cs-string)
-	Type        string                 `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`                                  // object type name
-	DisplayName string                 `protobuf:"bytes,4,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"` // display name object
-	Properties  *structpb.Struct       `protobuf:"bytes,5,opt,name=properties,proto3" json:"properties,omitempty"`                      // property bag
-	CreatedAt   *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`      // created at timestamp (UTC)
-	UpdatedAt   *timestamppb.Timestamp `protobuf:"bytes,21,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`      // last updated timestamp (UTC)
-	Hash        string                 `protobuf:"bytes,23,opt,name=hash,proto3" json:"hash,omitempty"`                                 // object instance hash
+	// external object key (cs-string)
+	Key string `protobuf:"bytes,2,opt,name=key,proto3" json:"key,omitempty"`
+	// object type name
+	Type string `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`
+	// display name object
+	DisplayName string `protobuf:"bytes,4,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
+	// property bag
+	Properties *structpb.Struct `protobuf:"bytes,5,opt,name=properties,proto3" json:"properties,omitempty"`
+	// created at timestamp (UTC)
+	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	// last updated timestamp (UTC)
+	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,21,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	// object instance hash
+	Hash string `protobuf:"bytes,23,opt,name=hash,proto3" json:"hash,omitempty"`
 }
 
 func (x *Object) Reset() {
@@ -486,12 +522,18 @@ type Relation struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Subject   *ObjectIdentifier      `protobuf:"bytes,1,opt,name=subject,proto3" json:"subject,omitempty"`                       // subject identifier
-	Relation  string                 `protobuf:"bytes,2,opt,name=relation,proto3" json:"relation,omitempty"`                     // relation type name
-	Object    *ObjectIdentifier      `protobuf:"bytes,3,opt,name=object,proto3" json:"object,omitempty"`                         // object identifier
-	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"` // created at timestamp (UTC)
-	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,21,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"` // last updated timestamp (UTC)
-	Hash      string                 `protobuf:"bytes,23,opt,name=hash,proto3" json:"hash,omitempty"`                            // object instance hash
+	// subject identifier
+	Subject *ObjectIdentifier `protobuf:"bytes,1,opt,name=subject,proto3" json:"subject,omitempty"`
+	// relation type name
+	Relation string `protobuf:"bytes,2,opt,name=relation,proto3" json:"relation,omitempty"`
+	// object identifier
+	Object *ObjectIdentifier `protobuf:"bytes,3,opt,name=object,proto3" json:"object,omitempty"`
+	// created at timestamp (UTC)
+	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	// last updated timestamp (UTC)
+	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,21,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	// object instance hash
+	Hash string `protobuf:"bytes,23,opt,name=hash,proto3" json:"hash,omitempty"`
 }
 
 func (x *Relation) Reset() {
@@ -573,14 +615,22 @@ type ObjectDependency struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ObjectType  string   `protobuf:"bytes,1,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"`    // object type name of source object
-	ObjectKey   string   `protobuf:"bytes,4,opt,name=object_key,json=objectKey,proto3" json:"object_key,omitempty"`       // object search key of source object
-	Relation    string   `protobuf:"bytes,5,opt,name=relation,proto3" json:"relation,omitempty"`                          // relation identifier
-	SubjectType string   `protobuf:"bytes,7,opt,name=subject_type,json=subjectType,proto3" json:"subject_type,omitempty"` // object type id of target object
-	SubjectKey  string   `protobuf:"bytes,10,opt,name=subject_key,json=subjectKey,proto3" json:"subject_key,omitempty"`   // object search key of target object
-	Depth       int32    `protobuf:"varint,11,opt,name=depth,proto3" json:"depth,omitempty"`                              // dependency depth
-	IsCycle     bool     `protobuf:"varint,12,opt,name=is_cycle,json=isCycle,proto3" json:"is_cycle,omitempty"`           // dependency cycle
-	Path        []string `protobuf:"bytes,13,rep,name=path,proto3" json:"path,omitempty"`                                 // dependency path
+	// object type name of source object
+	ObjectType string `protobuf:"bytes,1,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"`
+	// object search key of source object
+	ObjectKey string `protobuf:"bytes,4,opt,name=object_key,json=objectKey,proto3" json:"object_key,omitempty"`
+	// relation identifier
+	Relation string `protobuf:"bytes,5,opt,name=relation,proto3" json:"relation,omitempty"`
+	// object type id of target object
+	SubjectType string `protobuf:"bytes,7,opt,name=subject_type,json=subjectType,proto3" json:"subject_type,omitempty"`
+	// object search key of target object
+	SubjectKey string `protobuf:"bytes,10,opt,name=subject_key,json=subjectKey,proto3" json:"subject_key,omitempty"`
+	// dependency depth
+	Depth int32 `protobuf:"varint,11,opt,name=depth,proto3" json:"depth,omitempty"`
+	// dependency cycle
+	IsCycle bool `protobuf:"varint,12,opt,name=is_cycle,json=isCycle,proto3" json:"is_cycle,omitempty"`
+	// dependency path
+	Path []string `protobuf:"bytes,13,rep,name=path,proto3" json:"path,omitempty"`
 }
 
 func (x *ObjectDependency) Reset() {
@@ -677,7 +727,8 @@ type ObjectTypeIdentifier struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Name *string `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"` // object type name (unique, lc-string)
+	// object type name (unique, lc-string)
+	Name *string `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`
 }
 
 func (x *ObjectTypeIdentifier) Reset() {
@@ -725,7 +776,8 @@ type PermissionIdentifier struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Name *string `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"` // permission name (unique, cs-string)
+	// permission name (unique, cs-string)
+	Name *string `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`
 }
 
 func (x *PermissionIdentifier) Reset() {
@@ -773,8 +825,10 @@ type RelationTypeIdentifier struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Name       *string `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`                               // relation type name selector
-	ObjectType *string `protobuf:"bytes,3,opt,name=object_type,json=objectType,proto3,oneof" json:"object_type,omitempty"` // object type referenced by relation
+	// relation type name selector
+	Name *string `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`
+	// object type referenced by relation
+	ObjectType *string `protobuf:"bytes,3,opt,name=object_type,json=objectType,proto3,oneof" json:"object_type,omitempty"`
 }
 
 func (x *RelationTypeIdentifier) Reset() {
@@ -829,8 +883,10 @@ type ObjectIdentifier struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Type *string `protobuf:"bytes,1,opt,name=type,proto3,oneof" json:"type,omitempty"` // object type
-	Key  *string `protobuf:"bytes,3,opt,name=key,proto3,oneof" json:"key,omitempty"`   // external object key (cs-string)
+	// object type
+	Type *string `protobuf:"bytes,1,opt,name=type,proto3,oneof" json:"type,omitempty"`
+	// external object key (cs-string)
+	Key *string `protobuf:"bytes,3,opt,name=key,proto3,oneof" json:"key,omitempty"`
 }
 
 func (x *ObjectIdentifier) Reset() {
@@ -885,9 +941,12 @@ type RelationIdentifier struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Subject  *ObjectIdentifier       `protobuf:"bytes,1,opt,name=subject,proto3" json:"subject,omitempty"`   // subject identifier
-	Relation *RelationTypeIdentifier `protobuf:"bytes,2,opt,name=relation,proto3" json:"relation,omitempty"` // relation identifier
-	Object   *ObjectIdentifier       `protobuf:"bytes,3,opt,name=object,proto3" json:"object,omitempty"`     // object identifier
+	// subject identifier
+	Subject *ObjectIdentifier `protobuf:"bytes,1,opt,name=subject,proto3" json:"subject,omitempty"`
+	// relation identifier
+	Relation *RelationTypeIdentifier `protobuf:"bytes,2,opt,name=relation,proto3" json:"relation,omitempty"`
+	// object identifier
+	Object *ObjectIdentifier `protobuf:"bytes,3,opt,name=object,proto3" json:"object,omitempty"`
 }
 
 func (x *RelationIdentifier) Reset() {
@@ -949,8 +1008,10 @@ type PaginationRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Size  int32  `protobuf:"varint,1,opt,name=size,proto3" json:"size,omitempty"`  // requested page size, valid value between 1-100 rows (default 100)
-	Token string `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"` // pagination start token, default ""
+	// requested page size, valid value between 1-100 rows (default 100)
+	Size int32 `protobuf:"varint,1,opt,name=size,proto3" json:"size,omitempty"`
+	// pagination start token, default ""
+	Token string `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`
 }
 
 func (x *PaginationRequest) Reset() {
@@ -1005,8 +1066,10 @@ type PaginationResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	NextToken  string `protobuf:"bytes,1,opt,name=next_token,json=nextToken,proto3" json:"next_token,omitempty"`     // next page token, when empty there are no more pages to fetch
-	ResultSize int32  `protobuf:"varint,2,opt,name=result_size,json=resultSize,proto3" json:"result_size,omitempty"` // result size of the page returned
+	// next page token, when empty there are no more pages to fetch
+	NextToken string `protobuf:"bytes,1,opt,name=next_token,json=nextToken,proto3" json:"next_token,omitempty"`
+	// result size of the page returned
+	ResultSize int32 `protobuf:"varint,2,opt,name=result_size,json=resultSize,proto3" json:"result_size,omitempty"`
 }
 
 func (x *PaginationResponse) Reset() {

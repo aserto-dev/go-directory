@@ -23,19 +23,28 @@ const (
 type UserStatus int32
 
 const (
-	UserStatus_USER_STATUS_UNKNOWN     UserStatus = 0 // User status undefined
-	UserStatus_USER_STATUS_STAGED      UserStatus = 1 // Staged status, is when the user object is first created, before the activation flow is initiated, or if there is a pending admin action.
-	UserStatus_USER_STATUS_PROVISIONED UserStatus = 2 // Provisioned status, is when the user object is provisioned, but the user has not provided verification by clicking through the activation email or provided a password.
-	UserStatus_USER_STATUS_ACTIVE      UserStatus = 3 // Active status, is when:
-	// * An admin adds a user and sets the user password without requiring email verification.
-	// * An admin adds a user, sets the user password, and requires the user to set their password when they first sign-in.
-	// * A user self-registers into a custom app or IDP and email verification is not required.
-	// * An admin explicitly activates the user.
-	UserStatus_USER_STATUS_RECOVERY         UserStatus = 4 // Recovery status, when the user requests a password reset or an admin initiates one on their behalf.
-	UserStatus_USER_STATUS_PASSWORD_EXPIRED UserStatus = 5 // Password expired, status when the users' password has expired and the account requires an update to the password before a user is granted access.
-	UserStatus_USER_STATUS_LOCKED_OUT       UserStatus = 6 // Locked out status, is when the user exceeds the number of login attempts defined in the login policy.
-	UserStatus_USER_STATUS_SUSPENDED        UserStatus = 7 // Suspended status, when an admin explicitly suspends the user account.
-	UserStatus_USER_STATUS_DEPROVISIONED    UserStatus = 8 // Deprovisioned status, is when an administrator explicitly deactivates or deprovisions/deletes the account.
+	// User status undefined
+	UserStatus_USER_STATUS_UNKNOWN UserStatus = 0
+	// Staged status, is when the user object is first created, before the activation flow is initiated, or if there is a pending admin action.
+	UserStatus_USER_STATUS_STAGED UserStatus = 1
+	// Provisioned status, is when the user object is provisioned, but the user has not provided verification by clicking through the activation email or provided a password.
+	UserStatus_USER_STATUS_PROVISIONED UserStatus = 2
+	// Active status, is when:
+	//   - An admin adds a user and sets the user password without requiring email verification.
+	//   - An admin adds a user, sets the user password, and requires the user to set their password when they first sign-in.
+	//   - A user self-registers into a custom app or IDP and email verification is not required.
+	//   - An admin explicitly activates the user.
+	UserStatus_USER_STATUS_ACTIVE UserStatus = 3
+	// Recovery status, when the user requests a password reset or an admin initiates one on their behalf.
+	UserStatus_USER_STATUS_RECOVERY UserStatus = 4
+	// Password expired, status when the users' password has expired and the account requires an update to the password before a user is granted access.
+	UserStatus_USER_STATUS_PASSWORD_EXPIRED UserStatus = 5
+	// Locked out status, is when the user exceeds the number of login attempts defined in the login policy.
+	UserStatus_USER_STATUS_LOCKED_OUT UserStatus = 6
+	// Suspended status, when an admin explicitly suspends the user account.
+	UserStatus_USER_STATUS_SUSPENDED UserStatus = 7
+	// Deprovisioned status, is when an administrator explicitly deactivates or deprovisions/deletes the account.
+	UserStatus_USER_STATUS_DEPROVISIONED UserStatus = 8
 )
 
 // Enum value maps for UserStatus.
@@ -97,11 +106,16 @@ type UserProperties struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Email        string     `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`                                               // main email address of user
-	Picture      string     `protobuf:"bytes,2,opt,name=picture,proto3" json:"picture,omitempty"`                                           // URL to user's picture
-	Status       UserStatus `protobuf:"varint,3,opt,name=status,proto3,enum=aserto.directory.schema.v2.UserStatus" json:"status,omitempty"` // user lifecycle status
-	Enabled      bool       `protobuf:"varint,4,opt,name=enabled,proto3" json:"enabled,omitempty"`                                          // enabled (false prevents the user from accessing anything)
-	ConnectionId string     `protobuf:"bytes,5,opt,name=connection_id,json=connectionId,proto3" json:"connection_id,omitempty"`             // ID of the IDP connection the user is associated with.
+	// main email address of user
+	Email string `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
+	// URL to user's picture
+	Picture string `protobuf:"bytes,2,opt,name=picture,proto3" json:"picture,omitempty"`
+	// user lifecycle status
+	Status UserStatus `protobuf:"varint,3,opt,name=status,proto3,enum=aserto.directory.schema.v2.UserStatus" json:"status,omitempty"`
+	// enabled (false prevents the user from accessing anything)
+	Enabled bool `protobuf:"varint,4,opt,name=enabled,proto3" json:"enabled,omitempty"`
+	// ID of the IDP connection the user instance is associated with.
+	ConnectionId string `protobuf:"bytes,5,opt,name=connection_id,json=connectionId,proto3" json:"connection_id,omitempty"`
 }
 
 func (x *UserProperties) Reset() {

@@ -27,7 +27,8 @@ type SetObjectTypeRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ObjectType *v2.ObjectType `protobuf:"bytes,1,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"` //
+	// object type instance
+	ObjectType *v2.ObjectType `protobuf:"bytes,1,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"`
 }
 
 func (x *SetObjectTypeRequest) Reset() {
@@ -74,7 +75,8 @@ type SetObjectTypeResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *v2.ObjectType `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"` // object type instance
+	// object type instance
+	Result *v2.ObjectType `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
 }
 
 func (x *SetObjectTypeResponse) Reset() {
@@ -121,7 +123,8 @@ type DeleteObjectTypeRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Param *v2.ObjectTypeIdentifier `protobuf:"bytes,1,opt,name=param,proto3" json:"param,omitempty"` //
+	// object type identifier
+	Param *v2.ObjectTypeIdentifier `protobuf:"bytes,1,opt,name=param,proto3" json:"param,omitempty"`
 }
 
 func (x *DeleteObjectTypeRequest) Reset() {
@@ -168,7 +171,8 @@ type DeleteObjectTypeResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *emptypb.Empty `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"` // empty result
+	// empty result
+	Result *emptypb.Empty `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
 }
 
 func (x *DeleteObjectTypeResponse) Reset() {
@@ -215,7 +219,8 @@ type SetRelationTypeRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	RelationType *v2.RelationType `protobuf:"bytes,1,opt,name=relation_type,json=relationType,proto3" json:"relation_type,omitempty"` //
+	// relation type instance
+	RelationType *v2.RelationType `protobuf:"bytes,1,opt,name=relation_type,json=relationType,proto3" json:"relation_type,omitempty"`
 }
 
 func (x *SetRelationTypeRequest) Reset() {
@@ -262,7 +267,8 @@ type SetRelationTypeResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *v2.RelationType `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"` // relation types instance
+	// relation types instance
+	Result *v2.RelationType `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
 }
 
 func (x *SetRelationTypeResponse) Reset() {
@@ -309,7 +315,8 @@ type DeleteRelationTypeRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Param *v2.RelationTypeIdentifier `protobuf:"bytes,1,opt,name=param,proto3" json:"param,omitempty"` //
+	// relation type identifier
+	Param *v2.RelationTypeIdentifier `protobuf:"bytes,1,opt,name=param,proto3" json:"param,omitempty"`
 }
 
 func (x *DeleteRelationTypeRequest) Reset() {
@@ -356,7 +363,8 @@ type DeleteRelationTypeResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *emptypb.Empty `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"` // empty result
+	// empty result
+	Result *emptypb.Empty `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
 }
 
 func (x *DeleteRelationTypeResponse) Reset() {
@@ -403,7 +411,8 @@ type SetPermissionRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Permission *v2.Permission `protobuf:"bytes,1,opt,name=permission,proto3" json:"permission,omitempty"` //
+	// permission instance
+	Permission *v2.Permission `protobuf:"bytes,1,opt,name=permission,proto3" json:"permission,omitempty"`
 }
 
 func (x *SetPermissionRequest) Reset() {
@@ -450,7 +459,8 @@ type SetPermissionResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *v2.Permission `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"` // permission instance
+	// permission instance
+	Result *v2.Permission `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
 }
 
 func (x *SetPermissionResponse) Reset() {
@@ -497,7 +507,8 @@ type DeletePermissionRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Param *v2.PermissionIdentifier `protobuf:"bytes,1,opt,name=param,proto3" json:"param,omitempty"` //
+	// permission identifier
+	Param *v2.PermissionIdentifier `protobuf:"bytes,1,opt,name=param,proto3" json:"param,omitempty"`
 }
 
 func (x *DeletePermissionRequest) Reset() {
@@ -544,7 +555,8 @@ type DeletePermissionResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *emptypb.Empty `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"` // empty result
+	// empty result
+	Result *emptypb.Empty `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
 }
 
 func (x *DeletePermissionResponse) Reset() {
@@ -591,7 +603,8 @@ type SetObjectRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Object *v2.Object `protobuf:"bytes,1,opt,name=object,proto3" json:"object,omitempty"` //
+	// object instance
+	Object *v2.Object `protobuf:"bytes,1,opt,name=object,proto3" json:"object,omitempty"`
 }
 
 func (x *SetObjectRequest) Reset() {
@@ -638,7 +651,8 @@ type SetObjectResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *v2.Object `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"` // object instance
+	// object instance
+	Result *v2.Object `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
 }
 
 func (x *SetObjectResponse) Reset() {
@@ -685,8 +699,10 @@ type DeleteObjectRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Param         *v2.ObjectIdentifier `protobuf:"bytes,1,opt,name=param,proto3" json:"param,omitempty"`                                             //
-	WithRelations *bool                `protobuf:"varint,2,opt,name=with_relations,json=withRelations,proto3,oneof" json:"with_relations,omitempty"` // delete object relations, both object and subject relations.
+	// object identifier
+	Param *v2.ObjectIdentifier `protobuf:"bytes,1,opt,name=param,proto3" json:"param,omitempty"`
+	// delete object relations, both object and subject relations.
+	WithRelations *bool `protobuf:"varint,2,opt,name=with_relations,json=withRelations,proto3,oneof" json:"with_relations,omitempty"`
 }
 
 func (x *DeleteObjectRequest) Reset() {
@@ -740,7 +756,8 @@ type DeleteObjectResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *emptypb.Empty `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"` // empty result
+	// empty result
+	Result *emptypb.Empty `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
 }
 
 func (x *DeleteObjectResponse) Reset() {
@@ -787,7 +804,8 @@ type SetRelationRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Relation *v2.Relation `protobuf:"bytes,1,opt,name=relation,proto3" json:"relation,omitempty"` //
+	// relation instance
+	Relation *v2.Relation `protobuf:"bytes,1,opt,name=relation,proto3" json:"relation,omitempty"`
 }
 
 func (x *SetRelationRequest) Reset() {
@@ -834,7 +852,8 @@ type SetRelationResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *v2.Relation `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"` // relation instance
+	// relation instance
+	Result *v2.Relation `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
 }
 
 func (x *SetRelationResponse) Reset() {
@@ -881,7 +900,8 @@ type DeleteRelationRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Param *v2.RelationIdentifier `protobuf:"bytes,1,opt,name=param,proto3" json:"param,omitempty"` //
+	// relation identifier
+	Param *v2.RelationIdentifier `protobuf:"bytes,1,opt,name=param,proto3" json:"param,omitempty"`
 }
 
 func (x *DeleteRelationRequest) Reset() {
@@ -928,7 +948,8 @@ type DeleteRelationResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *emptypb.Empty `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"` // empty result
+	// empty result
+	Result *emptypb.Empty `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
 }
 
 func (x *DeleteRelationResponse) Reset() {

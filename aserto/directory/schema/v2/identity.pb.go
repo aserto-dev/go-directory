@@ -23,13 +23,20 @@ const (
 type IdentityKind int32
 
 const (
-	IdentityKind_IDENTITY_KIND_UNKNOWN  IdentityKind = 0 // undefined state
-	IdentityKind_IDENTITY_KIND_PID      IdentityKind = 1 // provider unique identifier
-	IdentityKind_IDENTITY_KIND_EMAIL    IdentityKind = 2 // email address
-	IdentityKind_IDENTITY_KIND_USERNAME IdentityKind = 3 // username
-	IdentityKind_IDENTITY_KIND_DN       IdentityKind = 4 // distinguished name format RFC1779
-	IdentityKind_IDENTITY_KIND_PHONE    IdentityKind = 5 // phone number using the format described in RFC3966, +1-201-555-0111 (without the tel: prefix)
-	IdentityKind_IDENTITY_KIND_EMPID    IdentityKind = 6 // employee identifier
+	// undefined state
+	IdentityKind_IDENTITY_KIND_UNKNOWN IdentityKind = 0
+	// provider unique identifier
+	IdentityKind_IDENTITY_KIND_PID IdentityKind = 1
+	// email address
+	IdentityKind_IDENTITY_KIND_EMAIL IdentityKind = 2
+	// username
+	IdentityKind_IDENTITY_KIND_USERNAME IdentityKind = 3
+	// distinguished name format RFC1779
+	IdentityKind_IDENTITY_KIND_DN IdentityKind = 4
+	// phone number using the format described in RFC3966, using the E.164 recommendation
+	IdentityKind_IDENTITY_KIND_PHONE IdentityKind = 5
+	// employee identifier
+	IdentityKind_IDENTITY_KIND_EMPID IdentityKind = 6
 )
 
 // Enum value maps for IdentityKind.
@@ -87,10 +94,14 @@ type IdentityProperties struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Kind         IdentityKind `protobuf:"varint,1,opt,name=kind,proto3,enum=aserto.directory.schema.v2.IdentityKind" json:"kind,omitempty"` // identity kind [email|username|uid|pid|dn|phone]
-	Provider     string       `protobuf:"bytes,2,opt,name=provider,proto3" json:"provider,omitempty"`                                       // identity provider name
-	Verified     bool         `protobuf:"varint,3,opt,name=verified,proto3" json:"verified,omitempty"`                                      // identity has been verified (false when not explicitly specified)
-	ConnectionId *string      `protobuf:"bytes,4,opt,name=connection_id,json=connectionId,proto3,oneof" json:"connection_id,omitempty"`     // IDP connection id which owns the object instance
+	// identity kind [email|username|uid|pid|dn|phone]
+	Kind IdentityKind `protobuf:"varint,1,opt,name=kind,proto3,enum=aserto.directory.schema.v2.IdentityKind" json:"kind,omitempty"`
+	// identity provider name
+	Provider string `protobuf:"bytes,2,opt,name=provider,proto3" json:"provider,omitempty"`
+	// identity has been verified (false when not explicitly specified)
+	Verified bool `protobuf:"varint,3,opt,name=verified,proto3" json:"verified,omitempty"`
+	// IDP connection id which owns the object instance
+	ConnectionId *string `protobuf:"bytes,4,opt,name=connection_id,json=connectionId,proto3,oneof" json:"connection_id,omitempty"`
 }
 
 func (x *IdentityProperties) Reset() {
