@@ -19,35 +19,20 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Reader_GetObjectType_FullMethodName    = "/aserto.directory.reader.v3.Reader/GetObjectType"
-	Reader_GetObjectTypes_FullMethodName   = "/aserto.directory.reader.v3.Reader/GetObjectTypes"
-	Reader_GetRelationType_FullMethodName  = "/aserto.directory.reader.v3.Reader/GetRelationType"
-	Reader_GetRelationTypes_FullMethodName = "/aserto.directory.reader.v3.Reader/GetRelationTypes"
-	Reader_GetPermission_FullMethodName    = "/aserto.directory.reader.v3.Reader/GetPermission"
-	Reader_GetPermissions_FullMethodName   = "/aserto.directory.reader.v3.Reader/GetPermissions"
-	Reader_GetObject_FullMethodName        = "/aserto.directory.reader.v3.Reader/GetObject"
-	Reader_GetObjectMany_FullMethodName    = "/aserto.directory.reader.v3.Reader/GetObjectMany"
-	Reader_GetObjects_FullMethodName       = "/aserto.directory.reader.v3.Reader/GetObjects"
-	Reader_GetRelation_FullMethodName      = "/aserto.directory.reader.v3.Reader/GetRelation"
-	Reader_GetRelations_FullMethodName     = "/aserto.directory.reader.v3.Reader/GetRelations"
-	Reader_CheckPermission_FullMethodName  = "/aserto.directory.reader.v3.Reader/CheckPermission"
-	Reader_CheckRelation_FullMethodName    = "/aserto.directory.reader.v3.Reader/CheckRelation"
-	Reader_GetGraph_FullMethodName         = "/aserto.directory.reader.v3.Reader/GetGraph"
+	Reader_GetObject_FullMethodName       = "/aserto.directory.reader.v3.Reader/GetObject"
+	Reader_GetObjectMany_FullMethodName   = "/aserto.directory.reader.v3.Reader/GetObjectMany"
+	Reader_GetObjects_FullMethodName      = "/aserto.directory.reader.v3.Reader/GetObjects"
+	Reader_GetRelation_FullMethodName     = "/aserto.directory.reader.v3.Reader/GetRelation"
+	Reader_GetRelations_FullMethodName    = "/aserto.directory.reader.v3.Reader/GetRelations"
+	Reader_CheckPermission_FullMethodName = "/aserto.directory.reader.v3.Reader/CheckPermission"
+	Reader_CheckRelation_FullMethodName   = "/aserto.directory.reader.v3.Reader/CheckRelation"
+	Reader_GetGraph_FullMethodName        = "/aserto.directory.reader.v3.Reader/GetGraph"
 )
 
 // ReaderClient is the client API for Reader service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ReaderClient interface {
-	// object type metadata methods
-	GetObjectType(ctx context.Context, in *GetObjectTypeRequest, opts ...grpc.CallOption) (*GetObjectTypeResponse, error)
-	GetObjectTypes(ctx context.Context, in *GetObjectTypesRequest, opts ...grpc.CallOption) (*GetObjectTypesResponse, error)
-	// relation type metadata methods
-	GetRelationType(ctx context.Context, in *GetRelationTypeRequest, opts ...grpc.CallOption) (*GetRelationTypeResponse, error)
-	GetRelationTypes(ctx context.Context, in *GetRelationTypesRequest, opts ...grpc.CallOption) (*GetRelationTypesResponse, error)
-	// permission metadata methods
-	GetPermission(ctx context.Context, in *GetPermissionRequest, opts ...grpc.CallOption) (*GetPermissionResponse, error)
-	GetPermissions(ctx context.Context, in *GetPermissionsRequest, opts ...grpc.CallOption) (*GetPermissionsResponse, error)
 	// object methods
 	GetObject(ctx context.Context, in *GetObjectRequest, opts ...grpc.CallOption) (*GetObjectResponse, error)
 	GetObjectMany(ctx context.Context, in *GetObjectManyRequest, opts ...grpc.CallOption) (*GetObjectManyResponse, error)
@@ -69,60 +54,6 @@ type readerClient struct {
 
 func NewReaderClient(cc grpc.ClientConnInterface) ReaderClient {
 	return &readerClient{cc}
-}
-
-func (c *readerClient) GetObjectType(ctx context.Context, in *GetObjectTypeRequest, opts ...grpc.CallOption) (*GetObjectTypeResponse, error) {
-	out := new(GetObjectTypeResponse)
-	err := c.cc.Invoke(ctx, Reader_GetObjectType_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *readerClient) GetObjectTypes(ctx context.Context, in *GetObjectTypesRequest, opts ...grpc.CallOption) (*GetObjectTypesResponse, error) {
-	out := new(GetObjectTypesResponse)
-	err := c.cc.Invoke(ctx, Reader_GetObjectTypes_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *readerClient) GetRelationType(ctx context.Context, in *GetRelationTypeRequest, opts ...grpc.CallOption) (*GetRelationTypeResponse, error) {
-	out := new(GetRelationTypeResponse)
-	err := c.cc.Invoke(ctx, Reader_GetRelationType_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *readerClient) GetRelationTypes(ctx context.Context, in *GetRelationTypesRequest, opts ...grpc.CallOption) (*GetRelationTypesResponse, error) {
-	out := new(GetRelationTypesResponse)
-	err := c.cc.Invoke(ctx, Reader_GetRelationTypes_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *readerClient) GetPermission(ctx context.Context, in *GetPermissionRequest, opts ...grpc.CallOption) (*GetPermissionResponse, error) {
-	out := new(GetPermissionResponse)
-	err := c.cc.Invoke(ctx, Reader_GetPermission_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *readerClient) GetPermissions(ctx context.Context, in *GetPermissionsRequest, opts ...grpc.CallOption) (*GetPermissionsResponse, error) {
-	out := new(GetPermissionsResponse)
-	err := c.cc.Invoke(ctx, Reader_GetPermissions_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *readerClient) GetObject(ctx context.Context, in *GetObjectRequest, opts ...grpc.CallOption) (*GetObjectResponse, error) {
@@ -201,15 +132,6 @@ func (c *readerClient) GetGraph(ctx context.Context, in *GetGraphRequest, opts .
 // All implementations should embed UnimplementedReaderServer
 // for forward compatibility
 type ReaderServer interface {
-	// object type metadata methods
-	GetObjectType(context.Context, *GetObjectTypeRequest) (*GetObjectTypeResponse, error)
-	GetObjectTypes(context.Context, *GetObjectTypesRequest) (*GetObjectTypesResponse, error)
-	// relation type metadata methods
-	GetRelationType(context.Context, *GetRelationTypeRequest) (*GetRelationTypeResponse, error)
-	GetRelationTypes(context.Context, *GetRelationTypesRequest) (*GetRelationTypesResponse, error)
-	// permission metadata methods
-	GetPermission(context.Context, *GetPermissionRequest) (*GetPermissionResponse, error)
-	GetPermissions(context.Context, *GetPermissionsRequest) (*GetPermissionsResponse, error)
 	// object methods
 	GetObject(context.Context, *GetObjectRequest) (*GetObjectResponse, error)
 	GetObjectMany(context.Context, *GetObjectManyRequest) (*GetObjectManyResponse, error)
@@ -229,24 +151,6 @@ type ReaderServer interface {
 type UnimplementedReaderServer struct {
 }
 
-func (UnimplementedReaderServer) GetObjectType(context.Context, *GetObjectTypeRequest) (*GetObjectTypeResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetObjectType not implemented")
-}
-func (UnimplementedReaderServer) GetObjectTypes(context.Context, *GetObjectTypesRequest) (*GetObjectTypesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetObjectTypes not implemented")
-}
-func (UnimplementedReaderServer) GetRelationType(context.Context, *GetRelationTypeRequest) (*GetRelationTypeResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetRelationType not implemented")
-}
-func (UnimplementedReaderServer) GetRelationTypes(context.Context, *GetRelationTypesRequest) (*GetRelationTypesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetRelationTypes not implemented")
-}
-func (UnimplementedReaderServer) GetPermission(context.Context, *GetPermissionRequest) (*GetPermissionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPermission not implemented")
-}
-func (UnimplementedReaderServer) GetPermissions(context.Context, *GetPermissionsRequest) (*GetPermissionsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPermissions not implemented")
-}
 func (UnimplementedReaderServer) GetObject(context.Context, *GetObjectRequest) (*GetObjectResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetObject not implemented")
 }
@@ -281,114 +185,6 @@ type UnsafeReaderServer interface {
 
 func RegisterReaderServer(s grpc.ServiceRegistrar, srv ReaderServer) {
 	s.RegisterService(&Reader_ServiceDesc, srv)
-}
-
-func _Reader_GetObjectType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetObjectTypeRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ReaderServer).GetObjectType(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Reader_GetObjectType_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ReaderServer).GetObjectType(ctx, req.(*GetObjectTypeRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Reader_GetObjectTypes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetObjectTypesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ReaderServer).GetObjectTypes(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Reader_GetObjectTypes_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ReaderServer).GetObjectTypes(ctx, req.(*GetObjectTypesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Reader_GetRelationType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetRelationTypeRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ReaderServer).GetRelationType(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Reader_GetRelationType_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ReaderServer).GetRelationType(ctx, req.(*GetRelationTypeRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Reader_GetRelationTypes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetRelationTypesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ReaderServer).GetRelationTypes(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Reader_GetRelationTypes_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ReaderServer).GetRelationTypes(ctx, req.(*GetRelationTypesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Reader_GetPermission_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetPermissionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ReaderServer).GetPermission(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Reader_GetPermission_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ReaderServer).GetPermission(ctx, req.(*GetPermissionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Reader_GetPermissions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetPermissionsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ReaderServer).GetPermissions(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Reader_GetPermissions_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ReaderServer).GetPermissions(ctx, req.(*GetPermissionsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _Reader_GetObject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -542,30 +338,6 @@ var Reader_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "aserto.directory.reader.v3.Reader",
 	HandlerType: (*ReaderServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "GetObjectType",
-			Handler:    _Reader_GetObjectType_Handler,
-		},
-		{
-			MethodName: "GetObjectTypes",
-			Handler:    _Reader_GetObjectTypes_Handler,
-		},
-		{
-			MethodName: "GetRelationType",
-			Handler:    _Reader_GetRelationType_Handler,
-		},
-		{
-			MethodName: "GetRelationTypes",
-			Handler:    _Reader_GetRelationTypes_Handler,
-		},
-		{
-			MethodName: "GetPermission",
-			Handler:    _Reader_GetPermission_Handler,
-		},
-		{
-			MethodName: "GetPermissions",
-			Handler:    _Reader_GetPermissions_Handler,
-		},
 		{
 			MethodName: "GetObject",
 			Handler:    _Reader_GetObject_Handler,
