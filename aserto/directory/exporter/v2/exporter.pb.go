@@ -25,18 +25,30 @@ const (
 type Option int32
 
 const (
-	Option_OPTION_UNKNOWN                  Option = 0  // nothing selected (default initialization value)
-	Option_OPTION_METADATA_OBJECT_TYPES    Option = 1  // object type metadata
-	Option_OPTION_METADATA_RELATION_TYPES  Option = 2  // relation type metadata
-	Option_OPTION_METADATA_PERMISSIONS     Option = 4  // permission metadata
-	Option_OPTION_METADATA                 Option = 7  // all metadata = OPTION_METADATA_OBJECT_TYPES | OPTION_METADATA_RELATION_TYPES | OPTION_METADATA_PERMISSIONS
-	Option_OPTION_DATA_OBJECTS             Option = 8  // object instances
-	Option_OPTION_DATA_RELATIONS           Option = 16 // relation instances with id values
-	Option_OPTION_DATA_RELATIONS_WITH_KEYS Option = 32 // relation instances with key values
-	Option_OPTION_DATA                     Option = 24 // all data = OPTION_DATA_OBJECTS | OPTION_DATA_RELATIONS
-	Option_OPTION_DATA_WITH_KEYS           Option = 40 // all data with keys = OPTION_DATA_OBJECTS | OPTION_DATA_RELATIONS_WITH_KEYS
-	Option_OPTION_ALL                      Option = 31 // all metadata and data = OPTION_METADATA | OPTION_DATA
-	Option_OPTION_ALL_WITH_KEYS            Option = 47 // all metadata and data with keys = OPTION_METADATA | OPTION_DATA_WITH_KEYS
+	// nothing selected (default initialization value)
+	Option_OPTION_UNKNOWN Option = 0
+	// object type metadata
+	Option_OPTION_METADATA_OBJECT_TYPES Option = 1
+	// relation type metadata
+	Option_OPTION_METADATA_RELATION_TYPES Option = 2
+	// permission metadata
+	Option_OPTION_METADATA_PERMISSIONS Option = 4
+	// all metadata = OPTION_METADATA_OBJECT_TYPES | OPTION_METADATA_RELATION_TYPES | OPTION_METADATA_PERMISSIONS
+	Option_OPTION_METADATA Option = 7
+	// object instances
+	Option_OPTION_DATA_OBJECTS Option = 8
+	// relation instances
+	Option_OPTION_DATA_RELATIONS Option = 16
+	// relation instances with key values
+	Option_OPTION_DATA_RELATIONS_WITH_KEYS Option = 32
+	// all data = OPTION_DATA_OBJECTS | OPTION_DATA_RELATIONS
+	Option_OPTION_DATA Option = 24
+	// all data with keys = OPTION_DATA_OBJECTS | OPTION_DATA_RELATIONS_WITH_KEYS
+	Option_OPTION_DATA_WITH_KEYS Option = 40
+	// all metadata and data = OPTION_METADATA | OPTION_DATA
+	Option_OPTION_ALL Option = 31
+	// all metadata and data with keys = OPTION_METADATA | OPTION_DATA_WITH_KEYS
+	Option_OPTION_ALL_WITH_KEYS Option = 47
 )
 
 // Enum value maps for Option.
@@ -103,8 +115,10 @@ type ExportRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Options   uint32                 `protobuf:"varint,1,opt,name=options,proto3" json:"options,omitempty"`                      // data export options mask
-	StartFrom *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=start_from,json=startFrom,proto3" json:"start_from,omitempty"` // start export from timestamp (UTC)
+	// data export options mask
+	Options uint32 `protobuf:"varint,1,opt,name=options,proto3" json:"options,omitempty"`
+	// start export from timestamp (UTC)
+	StartFrom *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=start_from,json=startFrom,proto3" json:"start_from,omitempty"`
 }
 
 func (x *ExportRequest) Reset() {
@@ -247,23 +261,28 @@ type isExportResponse_Msg interface {
 }
 
 type ExportResponse_Object struct {
-	Object *v2.Object `protobuf:"bytes,2,opt,name=object,proto3,oneof"` // object instance (data)
+	// object instance (data)
+	Object *v2.Object `protobuf:"bytes,2,opt,name=object,proto3,oneof"`
 }
 
 type ExportResponse_ObjectType struct {
-	ObjectType *v2.ObjectType `protobuf:"bytes,3,opt,name=object_type,json=objectType,proto3,oneof"` // object type instance (metadata)
+	// object type instance (metadata)
+	ObjectType *v2.ObjectType `protobuf:"bytes,3,opt,name=object_type,json=objectType,proto3,oneof"`
 }
 
 type ExportResponse_Relation struct {
-	Relation *v2.Relation `protobuf:"bytes,4,opt,name=relation,proto3,oneof"` // relation instance (data)
+	// relation instance (data)
+	Relation *v2.Relation `protobuf:"bytes,4,opt,name=relation,proto3,oneof"`
 }
 
 type ExportResponse_RelationType struct {
-	RelationType *v2.RelationType `protobuf:"bytes,5,opt,name=relation_type,json=relationType,proto3,oneof"` // relation type instance (metadata)
+	// relation type instance (metadata)
+	RelationType *v2.RelationType `protobuf:"bytes,5,opt,name=relation_type,json=relationType,proto3,oneof"`
 }
 
 type ExportResponse_Permission struct {
-	Permission *v2.Permission `protobuf:"bytes,6,opt,name=permission,proto3,oneof"` // permission instance (metadata)
+	// permission instance (metadata)
+	Permission *v2.Permission `protobuf:"bytes,6,opt,name=permission,proto3,oneof"`
 }
 
 func (*ExportResponse_Object) isExportResponse_Msg() {}

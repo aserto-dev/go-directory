@@ -75,7 +75,8 @@ type ImportRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	OpCode Opcode `protobuf:"varint,1,opt,name=op_code,json=opCode,proto3,enum=aserto.directory.importer.v2.Opcode" json:"op_code,omitempty"` // operation Opcode enum value
+	// operation Opcode enum value
+	OpCode Opcode `protobuf:"varint,1,opt,name=op_code,json=opCode,proto3,enum=aserto.directory.importer.v2.Opcode" json:"op_code,omitempty"`
 	// Types that are assignable to Msg:
 	//
 	//	*ImportRequest_ObjectType
@@ -172,23 +173,28 @@ type isImportRequest_Msg interface {
 }
 
 type ImportRequest_ObjectType struct {
-	ObjectType *v2.ObjectType `protobuf:"bytes,2,opt,name=object_type,json=objectType,proto3,oneof"` // object_type import message
+	// object_type import message
+	ObjectType *v2.ObjectType `protobuf:"bytes,2,opt,name=object_type,json=objectType,proto3,oneof"`
 }
 
 type ImportRequest_Permission struct {
-	Permission *v2.Permission `protobuf:"bytes,3,opt,name=permission,proto3,oneof"` // permission import message
+	// permission import message
+	Permission *v2.Permission `protobuf:"bytes,3,opt,name=permission,proto3,oneof"`
 }
 
 type ImportRequest_RelationType struct {
-	RelationType *v2.RelationType `protobuf:"bytes,4,opt,name=relation_type,json=relationType,proto3,oneof"` // relation_type import message
+	// relation_type import message
+	RelationType *v2.RelationType `protobuf:"bytes,4,opt,name=relation_type,json=relationType,proto3,oneof"`
 }
 
 type ImportRequest_Object struct {
-	Object *v2.Object `protobuf:"bytes,5,opt,name=object,proto3,oneof"` // object import message
+	// object import message
+	Object *v2.Object `protobuf:"bytes,5,opt,name=object,proto3,oneof"`
 }
 
 type ImportRequest_Relation struct {
-	Relation *v2.Relation `protobuf:"bytes,6,opt,name=relation,proto3,oneof"` // relation import message
+	// relation import message
+	Relation *v2.Relation `protobuf:"bytes,6,opt,name=relation,proto3,oneof"`
 }
 
 func (*ImportRequest_ObjectType) isImportRequest_Msg() {}
@@ -206,11 +212,16 @@ type ImportResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ObjectType   *ImportCounter `protobuf:"bytes,1,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"`       // object_type import counter
-	Permission   *ImportCounter `protobuf:"bytes,2,opt,name=permission,proto3" json:"permission,omitempty"`                         // object_type import counter
-	RelationType *ImportCounter `protobuf:"bytes,3,opt,name=relation_type,json=relationType,proto3" json:"relation_type,omitempty"` // object_type import counter
-	Object       *ImportCounter `protobuf:"bytes,4,opt,name=object,proto3" json:"object,omitempty"`                                 // object import counter
-	Relation     *ImportCounter `protobuf:"bytes,5,opt,name=relation,proto3" json:"relation,omitempty"`                             // object_type import counter
+	// object_type import counter
+	ObjectType *ImportCounter `protobuf:"bytes,1,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"`
+	// object_type import counter
+	Permission *ImportCounter `protobuf:"bytes,2,opt,name=permission,proto3" json:"permission,omitempty"`
+	// object_type import counter
+	RelationType *ImportCounter `protobuf:"bytes,3,opt,name=relation_type,json=relationType,proto3" json:"relation_type,omitempty"`
+	// object import counter
+	Object *ImportCounter `protobuf:"bytes,4,opt,name=object,proto3" json:"object,omitempty"`
+	// object_type import counter
+	Relation *ImportCounter `protobuf:"bytes,5,opt,name=relation,proto3" json:"relation,omitempty"`
 }
 
 func (x *ImportResponse) Reset() {
@@ -285,10 +296,14 @@ type ImportCounter struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Recv   uint64 `protobuf:"varint,1,opt,name=recv,proto3" json:"recv,omitempty"`     // number of messages received
-	Set    uint64 `protobuf:"varint,2,opt,name=set,proto3" json:"set,omitempty"`       // number of messages with OPCODE_SET
-	Delete uint64 `protobuf:"varint,3,opt,name=delete,proto3" json:"delete,omitempty"` // number of messages with OPCODE_DELETE
-	Error  uint64 `protobuf:"varint,4,opt,name=error,proto3" json:"error,omitempty"`   // number of messages resulting in error
+	// number of messages received
+	Recv uint64 `protobuf:"varint,1,opt,name=recv,proto3" json:"recv,omitempty"`
+	// number of messages with OPCODE_SET
+	Set uint64 `protobuf:"varint,2,opt,name=set,proto3" json:"set,omitempty"`
+	// number of messages with OPCODE_DELETE
+	Delete uint64 `protobuf:"varint,3,opt,name=delete,proto3" json:"delete,omitempty"`
+	// number of messages resulting in error
+	Error uint64 `protobuf:"varint,4,opt,name=error,proto3" json:"error,omitempty"`
 }
 
 func (x *ImportCounter) Reset() {

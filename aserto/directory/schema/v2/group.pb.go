@@ -26,7 +26,8 @@ type GroupProperties struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ConnectionId string `protobuf:"bytes,1,opt,name=connection_id,json=connectionId,proto3" json:"connection_id,omitempty"` // ID of the IDP connection the group is associated with.
+	// ID of the IDP connection the group instance is associated with.
+	ConnectionId string `protobuf:"bytes,1,opt,name=connection_id,json=connectionId,proto3" json:"connection_id,omitempty"`
 }
 
 func (x *GroupProperties) Reset() {

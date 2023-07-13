@@ -26,7 +26,8 @@ type GetObjectTypeRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Param *v2.ObjectTypeIdentifier `protobuf:"bytes,1,opt,name=param,proto3" json:"param,omitempty"` // object type selector
+	// object type selector
+	Param *v2.ObjectTypeIdentifier `protobuf:"bytes,1,opt,name=param,proto3" json:"param,omitempty"`
 }
 
 func (x *GetObjectTypeRequest) Reset() {
@@ -73,7 +74,8 @@ type GetObjectTypeResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *v2.ObjectType `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"` // object type instance
+	// object type instance
+	Result *v2.ObjectType `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
 }
 
 func (x *GetObjectTypeResponse) Reset() {
@@ -120,7 +122,8 @@ type GetObjectTypesRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Page *v2.PaginationRequest `protobuf:"bytes,9,opt,name=page,proto3" json:"page,omitempty"` // pagination request
+	// pagination request
+	Page *v2.PaginationRequest `protobuf:"bytes,9,opt,name=page,proto3" json:"page,omitempty"`
 }
 
 func (x *GetObjectTypesRequest) Reset() {
@@ -167,8 +170,10 @@ type GetObjectTypesResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Results []*v2.ObjectType       `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` // array of object types
-	Page    *v2.PaginationResponse `protobuf:"bytes,9,opt,name=page,proto3" json:"page,omitempty"`       // pagination response
+	// array of object types
+	Results []*v2.ObjectType `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
+	// pagination response
+	Page *v2.PaginationResponse `protobuf:"bytes,9,opt,name=page,proto3" json:"page,omitempty"`
 }
 
 func (x *GetObjectTypesResponse) Reset() {
@@ -222,7 +227,8 @@ type GetRelationTypeRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Param *v2.RelationTypeIdentifier `protobuf:"bytes,1,opt,name=param,proto3" json:"param,omitempty"` // relation type selector
+	// relation type selector
+	Param *v2.RelationTypeIdentifier `protobuf:"bytes,1,opt,name=param,proto3" json:"param,omitempty"`
 }
 
 func (x *GetRelationTypeRequest) Reset() {
@@ -269,7 +275,8 @@ type GetRelationTypeResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *v2.RelationType `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"` // relation type instance
+	// relation type instance
+	Result *v2.RelationType `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
 }
 
 func (x *GetRelationTypeResponse) Reset() {
@@ -316,8 +323,10 @@ type GetRelationTypesRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Param *v2.ObjectTypeIdentifier `protobuf:"bytes,1,opt,name=param,proto3" json:"param,omitempty"` // object type selector
-	Page  *v2.PaginationRequest    `protobuf:"bytes,9,opt,name=page,proto3" json:"page,omitempty"`   // pagination request
+	// object type selector
+	Param *v2.ObjectTypeIdentifier `protobuf:"bytes,1,opt,name=param,proto3" json:"param,omitempty"`
+	// pagination request
+	Page *v2.PaginationRequest `protobuf:"bytes,9,opt,name=page,proto3" json:"page,omitempty"`
 }
 
 func (x *GetRelationTypesRequest) Reset() {
@@ -371,8 +380,10 @@ type GetRelationTypesResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Results []*v2.RelationType     `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` // array of relation types
-	Page    *v2.PaginationResponse `protobuf:"bytes,9,opt,name=page,proto3" json:"page,omitempty"`       // pagination response
+	// array of relation types
+	Results []*v2.RelationType `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
+	// pagination response
+	Page *v2.PaginationResponse `protobuf:"bytes,9,opt,name=page,proto3" json:"page,omitempty"`
 }
 
 func (x *GetRelationTypesResponse) Reset() {
@@ -426,8 +437,10 @@ type GetObjectRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Param         *v2.ObjectIdentifier `protobuf:"bytes,1,opt,name=param,proto3" json:"param,omitempty"`                                             // object selector
-	WithRelations *bool                `protobuf:"varint,2,opt,name=with_relations,json=withRelations,proto3,oneof" json:"with_relations,omitempty"` // materialize the object relations objects
+	// object selector
+	Param *v2.ObjectIdentifier `protobuf:"bytes,1,opt,name=param,proto3" json:"param,omitempty"`
+	// materialize the object relations objects
+	WithRelations *bool `protobuf:"varint,2,opt,name=with_relations,json=withRelations,proto3,oneof" json:"with_relations,omitempty"`
 }
 
 func (x *GetObjectRequest) Reset() {
@@ -481,9 +494,12 @@ type GetObjectResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result   *v2.Object     `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`     // object instance
-	Incoming []*v2.Relation `protobuf:"bytes,2,rep,name=incoming,proto3" json:"incoming,omitempty"` // incoming object relations
-	Outgoing []*v2.Relation `protobuf:"bytes,3,rep,name=outgoing,proto3" json:"outgoing,omitempty"` // outgoing object relations
+	// object instance
+	Result *v2.Object `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	// incoming object relations of object instance (result.type == incoming.subject.type && result.key == incoming.subject.key)
+	Incoming []*v2.Relation `protobuf:"bytes,2,rep,name=incoming,proto3" json:"incoming,omitempty"`
+	// outgoing object relations of object instance (result.type == outgoing.object.type && result.key == outgoing.object.key)
+	Outgoing []*v2.Relation `protobuf:"bytes,3,rep,name=outgoing,proto3" json:"outgoing,omitempty"`
 }
 
 func (x *GetObjectResponse) Reset() {
@@ -544,7 +560,8 @@ type GetObjectManyRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Param []*v2.ObjectIdentifier `protobuf:"bytes,1,rep,name=param,proto3" json:"param,omitempty"` // object identifier list
+	// object identifier list
+	Param []*v2.ObjectIdentifier `protobuf:"bytes,1,rep,name=param,proto3" json:"param,omitempty"`
 }
 
 func (x *GetObjectManyRequest) Reset() {
@@ -591,7 +608,8 @@ type GetObjectManyResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Results []*v2.Object `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` // array of object instances
+	// array of object instances
+	Results []*v2.Object `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
 }
 
 func (x *GetObjectManyResponse) Reset() {
@@ -638,8 +656,10 @@ type GetObjectsRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Param *v2.ObjectTypeIdentifier `protobuf:"bytes,1,opt,name=param,proto3" json:"param,omitempty"` // object type selector
-	Page  *v2.PaginationRequest    `protobuf:"bytes,9,opt,name=page,proto3" json:"page,omitempty"`   // pagination request
+	// object type selector
+	Param *v2.ObjectTypeIdentifier `protobuf:"bytes,1,opt,name=param,proto3" json:"param,omitempty"`
+	// pagination request
+	Page *v2.PaginationRequest `protobuf:"bytes,9,opt,name=page,proto3" json:"page,omitempty"`
 }
 
 func (x *GetObjectsRequest) Reset() {
@@ -693,8 +713,10 @@ type GetObjectsResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Results []*v2.Object           `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` // array of object instances
-	Page    *v2.PaginationResponse `protobuf:"bytes,9,opt,name=page,proto3" json:"page,omitempty"`       // pagination response
+	// array of object instances
+	Results []*v2.Object `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
+	// pagination response
+	Page *v2.PaginationResponse `protobuf:"bytes,9,opt,name=page,proto3" json:"page,omitempty"`
 }
 
 func (x *GetObjectsResponse) Reset() {
@@ -748,8 +770,10 @@ type GetRelationRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Param       *v2.RelationIdentifier `protobuf:"bytes,1,opt,name=param,proto3" json:"param,omitempty"`                                       // relation selector
-	WithObjects *bool                  `protobuf:"varint,2,opt,name=with_objects,json=withObjects,proto3,oneof" json:"with_objects,omitempty"` // materialize relation objects
+	// relation selector
+	Param *v2.RelationIdentifier `protobuf:"bytes,1,opt,name=param,proto3" json:"param,omitempty"`
+	// materialize relation objects
+	WithObjects *bool `protobuf:"varint,2,opt,name=with_objects,json=withObjects,proto3,oneof" json:"with_objects,omitempty"`
 }
 
 func (x *GetRelationRequest) Reset() {
@@ -803,8 +827,10 @@ type GetRelationResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Results []*v2.Relation        `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`                                                                                         // array of relation instances
-	Objects map[string]*v2.Object `protobuf:"bytes,2,rep,name=objects,proto3" json:"objects,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"` // map of materialized relation objects
+	// array of relation instances
+	Results []*v2.Relation `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
+	// map of materialized relation objects
+	Objects map[string]*v2.Object `protobuf:"bytes,2,rep,name=objects,proto3" json:"objects,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 }
 
 func (x *GetRelationResponse) Reset() {
@@ -858,8 +884,10 @@ type GetRelationsRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Param *v2.RelationIdentifier `protobuf:"bytes,1,opt,name=param,proto3" json:"param,omitempty"` // relation selector
-	Page  *v2.PaginationRequest  `protobuf:"bytes,9,opt,name=page,proto3" json:"page,omitempty"`   // pagination request
+	// relation selector
+	Param *v2.RelationIdentifier `protobuf:"bytes,1,opt,name=param,proto3" json:"param,omitempty"`
+	// pagination request
+	Page *v2.PaginationRequest `protobuf:"bytes,9,opt,name=page,proto3" json:"page,omitempty"`
 }
 
 func (x *GetRelationsRequest) Reset() {
@@ -913,8 +941,10 @@ type GetRelationsResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Results []*v2.Relation         `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` // array of relation instances
-	Page    *v2.PaginationResponse `protobuf:"bytes,9,opt,name=page,proto3" json:"page,omitempty"`       // pagination response
+	// array of relation instances
+	Results []*v2.Relation `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
+	// pagination response
+	Page *v2.PaginationResponse `protobuf:"bytes,9,opt,name=page,proto3" json:"page,omitempty"`
 }
 
 func (x *GetRelationsResponse) Reset() {
@@ -968,7 +998,8 @@ type GetPermissionRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Param *v2.PermissionIdentifier `protobuf:"bytes,1,opt,name=param,proto3" json:"param,omitempty"` // permission selector
+	// permission selector
+	Param *v2.PermissionIdentifier `protobuf:"bytes,1,opt,name=param,proto3" json:"param,omitempty"`
 }
 
 func (x *GetPermissionRequest) Reset() {
@@ -1015,7 +1046,8 @@ type GetPermissionResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *v2.Permission `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"` // permission instance
+	// permission instance
+	Result *v2.Permission `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
 }
 
 func (x *GetPermissionResponse) Reset() {
@@ -1062,7 +1094,8 @@ type GetPermissionsRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Page *v2.PaginationRequest `protobuf:"bytes,9,opt,name=page,proto3" json:"page,omitempty"` // pagination request
+	// pagination request
+	Page *v2.PaginationRequest `protobuf:"bytes,9,opt,name=page,proto3" json:"page,omitempty"`
 }
 
 func (x *GetPermissionsRequest) Reset() {
@@ -1109,8 +1142,10 @@ type GetPermissionsResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Results []*v2.Permission       `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` // array of permissions
-	Page    *v2.PaginationResponse `protobuf:"bytes,9,opt,name=page,proto3" json:"page,omitempty"`       // pagination response
+	// array of permissions
+	Results []*v2.Permission `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
+	// pagination response
+	Page *v2.PaginationResponse `protobuf:"bytes,9,opt,name=page,proto3" json:"page,omitempty"`
 }
 
 func (x *GetPermissionsResponse) Reset() {
@@ -1164,10 +1199,14 @@ type CheckPermissionRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Subject    *v2.ObjectIdentifier     `protobuf:"bytes,1,opt,name=subject,proto3" json:"subject,omitempty"`       // subject selector
-	Permission *v2.PermissionIdentifier `protobuf:"bytes,2,opt,name=permission,proto3" json:"permission,omitempty"` // permission selector
-	Object     *v2.ObjectIdentifier     `protobuf:"bytes,3,opt,name=object,proto3" json:"object,omitempty"`         // object selector
-	Trace      bool                     `protobuf:"varint,7,opt,name=trace,proto3" json:"trace,omitempty"`          // collect trace information
+	// subject selector
+	Subject *v2.ObjectIdentifier `protobuf:"bytes,1,opt,name=subject,proto3" json:"subject,omitempty"`
+	// permission selector
+	Permission *v2.PermissionIdentifier `protobuf:"bytes,2,opt,name=permission,proto3" json:"permission,omitempty"`
+	// object selector
+	Object *v2.ObjectIdentifier `protobuf:"bytes,3,opt,name=object,proto3" json:"object,omitempty"`
+	// collect trace information
+	Trace bool `protobuf:"varint,7,opt,name=trace,proto3" json:"trace,omitempty"`
 }
 
 func (x *CheckPermissionRequest) Reset() {
@@ -1235,8 +1274,10 @@ type CheckPermissionResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Check bool     `protobuf:"varint,1,opt,name=check,proto3" json:"check,omitempty"` // check result (BOOL)
-	Trace []string `protobuf:"bytes,2,rep,name=trace,proto3" json:"trace,omitempty"`  // trace information
+	// check result
+	Check bool `protobuf:"varint,1,opt,name=check,proto3" json:"check,omitempty"`
+	// trace information
+	Trace []string `protobuf:"bytes,2,rep,name=trace,proto3" json:"trace,omitempty"`
 }
 
 func (x *CheckPermissionResponse) Reset() {
@@ -1290,10 +1331,14 @@ type CheckRelationRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Subject  *v2.ObjectIdentifier       `protobuf:"bytes,1,opt,name=subject,proto3" json:"subject,omitempty"`   // subject selector
-	Relation *v2.RelationTypeIdentifier `protobuf:"bytes,2,opt,name=relation,proto3" json:"relation,omitempty"` // relation selector
-	Object   *v2.ObjectIdentifier       `protobuf:"bytes,3,opt,name=object,proto3" json:"object,omitempty"`     // object selector
-	Trace    bool                       `protobuf:"varint,7,opt,name=trace,proto3" json:"trace,omitempty"`      // collect trace information
+	// subject selector
+	Subject *v2.ObjectIdentifier `protobuf:"bytes,1,opt,name=subject,proto3" json:"subject,omitempty"`
+	// relation selector
+	Relation *v2.RelationTypeIdentifier `protobuf:"bytes,2,opt,name=relation,proto3" json:"relation,omitempty"`
+	// object selector
+	Object *v2.ObjectIdentifier `protobuf:"bytes,3,opt,name=object,proto3" json:"object,omitempty"`
+	// collect trace information
+	Trace bool `protobuf:"varint,7,opt,name=trace,proto3" json:"trace,omitempty"`
 }
 
 func (x *CheckRelationRequest) Reset() {
@@ -1361,8 +1406,10 @@ type CheckRelationResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Check bool     `protobuf:"varint,1,opt,name=check,proto3" json:"check,omitempty"` // check result (BOOL)
-	Trace []string `protobuf:"bytes,2,rep,name=trace,proto3" json:"trace,omitempty"`  // trace information
+	// check result
+	Check bool `protobuf:"varint,1,opt,name=check,proto3" json:"check,omitempty"`
+	// trace information
+	Trace []string `protobuf:"bytes,2,rep,name=trace,proto3" json:"trace,omitempty"`
 }
 
 func (x *CheckRelationResponse) Reset() {
@@ -1416,8 +1463,10 @@ type CheckResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Check bool     `protobuf:"varint,1,opt,name=check,proto3" json:"check,omitempty"` // check result (BOOL)
-	Trace []string `protobuf:"bytes,2,rep,name=trace,proto3" json:"trace,omitempty"`  // trace information
+	// check result
+	Check bool `protobuf:"varint,1,opt,name=check,proto3" json:"check,omitempty"`
+	// trace information
+	Trace []string `protobuf:"bytes,2,rep,name=trace,proto3" json:"trace,omitempty"`
 }
 
 func (x *CheckResponse) Reset() {
@@ -1471,10 +1520,14 @@ type GetGraphRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Anchor   *v2.ObjectIdentifier       `protobuf:"bytes,1,opt,name=anchor,proto3" json:"anchor,omitempty"`     // anchor selector
-	Subject  *v2.ObjectIdentifier       `protobuf:"bytes,2,opt,name=subject,proto3" json:"subject,omitempty"`   // subject selector
-	Relation *v2.RelationTypeIdentifier `protobuf:"bytes,3,opt,name=relation,proto3" json:"relation,omitempty"` // relation selector
-	Object   *v2.ObjectIdentifier       `protobuf:"bytes,4,opt,name=object,proto3" json:"object,omitempty"`     // object selector
+	// anchor selector
+	Anchor *v2.ObjectIdentifier `protobuf:"bytes,1,opt,name=anchor,proto3" json:"anchor,omitempty"`
+	// subject selector
+	Subject *v2.ObjectIdentifier `protobuf:"bytes,2,opt,name=subject,proto3" json:"subject,omitempty"`
+	// relation selector
+	Relation *v2.RelationTypeIdentifier `protobuf:"bytes,3,opt,name=relation,proto3" json:"relation,omitempty"`
+	// object selector
+	Object *v2.ObjectIdentifier `protobuf:"bytes,4,opt,name=object,proto3" json:"object,omitempty"`
 }
 
 func (x *GetGraphRequest) Reset() {
@@ -1542,7 +1595,8 @@ type GetGraphResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Results []*v2.ObjectDependency `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` // dependency graph
+	// dependency graph
+	Results []*v2.ObjectDependency `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
 }
 
 func (x *GetGraphResponse) Reset() {
