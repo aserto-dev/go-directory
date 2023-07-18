@@ -496,10 +496,8 @@ type GetObjectResponse struct {
 
 	// object instance
 	Result *v2.Object `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
-	// incoming object relations of object instance (result.type == incoming.subject.type && result.key == incoming.subject.key)
-	Incoming []*v2.Relation `protobuf:"bytes,2,rep,name=incoming,proto3" json:"incoming,omitempty"`
-	// outgoing object relations of object instance (result.type == outgoing.object.type && result.key == outgoing.object.key)
-	Outgoing []*v2.Relation `protobuf:"bytes,3,rep,name=outgoing,proto3" json:"outgoing,omitempty"`
+	// object relations
+	Relations []*v2.Relation `protobuf:"bytes,4,rep,name=relations,proto3" json:"relations,omitempty"`
 }
 
 func (x *GetObjectResponse) Reset() {
@@ -541,16 +539,9 @@ func (x *GetObjectResponse) GetResult() *v2.Object {
 	return nil
 }
 
-func (x *GetObjectResponse) GetIncoming() []*v2.Relation {
+func (x *GetObjectResponse) GetRelations() []*v2.Relation {
 	if x != nil {
-		return x.Incoming
-	}
-	return nil
-}
-
-func (x *GetObjectResponse) GetOutgoing() []*v2.Relation {
-	if x != nil {
-		return x.Outgoing
+		return x.Relations
 	}
 	return nil
 }
@@ -1717,20 +1708,18 @@ var file_aserto_directory_reader_v2_reader_proto_rawDesc = []byte{
 	0x74, 0x68, 0x5f, 0x72, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x02, 0x20, 0x01,
 	0x28, 0x08, 0x48, 0x00, 0x52, 0x0d, 0x77, 0x69, 0x74, 0x68, 0x52, 0x65, 0x6c, 0x61, 0x74, 0x69,
 	0x6f, 0x6e, 0x73, 0x88, 0x01, 0x01, 0x42, 0x11, 0x0a, 0x0f, 0x5f, 0x77, 0x69, 0x74, 0x68, 0x5f,
-	0x72, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x22, 0xd3, 0x01, 0x0a, 0x11, 0x47, 0x65,
+	0x72, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x22, 0xb3, 0x01, 0x0a, 0x11, 0x47, 0x65,
 	0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
 	0x3a, 0x0a, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
 	0x22, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f,
 	0x72, 0x79, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x76, 0x32, 0x2e, 0x4f, 0x62, 0x6a,
-	0x65, 0x63, 0x74, 0x52, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x12, 0x40, 0x0a, 0x08, 0x69,
-	0x6e, 0x63, 0x6f, 0x6d, 0x69, 0x6e, 0x67, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x24, 0x2e,
-	0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79,
-	0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x76, 0x32, 0x2e, 0x52, 0x65, 0x6c, 0x61, 0x74,
-	0x69, 0x6f, 0x6e, 0x52, 0x08, 0x69, 0x6e, 0x63, 0x6f, 0x6d, 0x69, 0x6e, 0x67, 0x12, 0x40, 0x0a,
-	0x08, 0x6f, 0x75, 0x74, 0x67, 0x6f, 0x69, 0x6e, 0x67, 0x18, 0x03, 0x20, 0x03, 0x28, 0x0b, 0x32,
-	0x24, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f,
-	0x72, 0x79, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x76, 0x32, 0x2e, 0x52, 0x65, 0x6c,
-	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x08, 0x6f, 0x75, 0x74, 0x67, 0x6f, 0x69, 0x6e, 0x67, 0x22,
+	0x65, 0x63, 0x74, 0x52, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x12, 0x42, 0x0a, 0x09, 0x72,
+	0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x04, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x24,
+	0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72,
+	0x79, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x76, 0x32, 0x2e, 0x52, 0x65, 0x6c, 0x61,
+	0x74, 0x69, 0x6f, 0x6e, 0x52, 0x09, 0x72, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x4a,
+	0x04, 0x08, 0x02, 0x10, 0x03, 0x4a, 0x04, 0x08, 0x03, 0x10, 0x04, 0x52, 0x08, 0x69, 0x6e, 0x63,
+	0x6f, 0x6d, 0x69, 0x6e, 0x67, 0x52, 0x08, 0x6f, 0x75, 0x74, 0x67, 0x6f, 0x69, 0x6e, 0x67, 0x22,
 	0x5a, 0x0a, 0x14, 0x47, 0x65, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x4d, 0x61, 0x6e, 0x79,
 	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x42, 0x0a, 0x05, 0x70, 0x61, 0x72, 0x61, 0x6d,
 	0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x2c, 0x2e, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2e,
@@ -2091,71 +2080,70 @@ var file_aserto_directory_reader_v2_reader_proto_depIdxs = []int32{
 	33, // 10: aserto.directory.reader.v2.GetRelationTypesResponse.page:type_name -> aserto.directory.common.v2.PaginationResponse
 	36, // 11: aserto.directory.reader.v2.GetObjectRequest.param:type_name -> aserto.directory.common.v2.ObjectIdentifier
 	37, // 12: aserto.directory.reader.v2.GetObjectResponse.result:type_name -> aserto.directory.common.v2.Object
-	38, // 13: aserto.directory.reader.v2.GetObjectResponse.incoming:type_name -> aserto.directory.common.v2.Relation
-	38, // 14: aserto.directory.reader.v2.GetObjectResponse.outgoing:type_name -> aserto.directory.common.v2.Relation
-	36, // 15: aserto.directory.reader.v2.GetObjectManyRequest.param:type_name -> aserto.directory.common.v2.ObjectIdentifier
-	37, // 16: aserto.directory.reader.v2.GetObjectManyResponse.results:type_name -> aserto.directory.common.v2.Object
-	30, // 17: aserto.directory.reader.v2.GetObjectsRequest.param:type_name -> aserto.directory.common.v2.ObjectTypeIdentifier
-	32, // 18: aserto.directory.reader.v2.GetObjectsRequest.page:type_name -> aserto.directory.common.v2.PaginationRequest
-	37, // 19: aserto.directory.reader.v2.GetObjectsResponse.results:type_name -> aserto.directory.common.v2.Object
-	33, // 20: aserto.directory.reader.v2.GetObjectsResponse.page:type_name -> aserto.directory.common.v2.PaginationResponse
-	39, // 21: aserto.directory.reader.v2.GetRelationRequest.param:type_name -> aserto.directory.common.v2.RelationIdentifier
-	38, // 22: aserto.directory.reader.v2.GetRelationResponse.results:type_name -> aserto.directory.common.v2.Relation
-	29, // 23: aserto.directory.reader.v2.GetRelationResponse.objects:type_name -> aserto.directory.reader.v2.GetRelationResponse.ObjectsEntry
-	39, // 24: aserto.directory.reader.v2.GetRelationsRequest.param:type_name -> aserto.directory.common.v2.RelationIdentifier
-	32, // 25: aserto.directory.reader.v2.GetRelationsRequest.page:type_name -> aserto.directory.common.v2.PaginationRequest
-	38, // 26: aserto.directory.reader.v2.GetRelationsResponse.results:type_name -> aserto.directory.common.v2.Relation
-	33, // 27: aserto.directory.reader.v2.GetRelationsResponse.page:type_name -> aserto.directory.common.v2.PaginationResponse
-	40, // 28: aserto.directory.reader.v2.GetPermissionRequest.param:type_name -> aserto.directory.common.v2.PermissionIdentifier
-	41, // 29: aserto.directory.reader.v2.GetPermissionResponse.result:type_name -> aserto.directory.common.v2.Permission
-	32, // 30: aserto.directory.reader.v2.GetPermissionsRequest.page:type_name -> aserto.directory.common.v2.PaginationRequest
-	41, // 31: aserto.directory.reader.v2.GetPermissionsResponse.results:type_name -> aserto.directory.common.v2.Permission
-	33, // 32: aserto.directory.reader.v2.GetPermissionsResponse.page:type_name -> aserto.directory.common.v2.PaginationResponse
-	36, // 33: aserto.directory.reader.v2.CheckPermissionRequest.subject:type_name -> aserto.directory.common.v2.ObjectIdentifier
-	40, // 34: aserto.directory.reader.v2.CheckPermissionRequest.permission:type_name -> aserto.directory.common.v2.PermissionIdentifier
-	36, // 35: aserto.directory.reader.v2.CheckPermissionRequest.object:type_name -> aserto.directory.common.v2.ObjectIdentifier
-	36, // 36: aserto.directory.reader.v2.CheckRelationRequest.subject:type_name -> aserto.directory.common.v2.ObjectIdentifier
-	34, // 37: aserto.directory.reader.v2.CheckRelationRequest.relation:type_name -> aserto.directory.common.v2.RelationTypeIdentifier
-	36, // 38: aserto.directory.reader.v2.CheckRelationRequest.object:type_name -> aserto.directory.common.v2.ObjectIdentifier
-	36, // 39: aserto.directory.reader.v2.GetGraphRequest.anchor:type_name -> aserto.directory.common.v2.ObjectIdentifier
-	36, // 40: aserto.directory.reader.v2.GetGraphRequest.subject:type_name -> aserto.directory.common.v2.ObjectIdentifier
-	34, // 41: aserto.directory.reader.v2.GetGraphRequest.relation:type_name -> aserto.directory.common.v2.RelationTypeIdentifier
-	36, // 42: aserto.directory.reader.v2.GetGraphRequest.object:type_name -> aserto.directory.common.v2.ObjectIdentifier
-	42, // 43: aserto.directory.reader.v2.GetGraphResponse.results:type_name -> aserto.directory.common.v2.ObjectDependency
-	37, // 44: aserto.directory.reader.v2.GetRelationResponse.ObjectsEntry.value:type_name -> aserto.directory.common.v2.Object
-	0,  // 45: aserto.directory.reader.v2.Reader.GetObjectType:input_type -> aserto.directory.reader.v2.GetObjectTypeRequest
-	2,  // 46: aserto.directory.reader.v2.Reader.GetObjectTypes:input_type -> aserto.directory.reader.v2.GetObjectTypesRequest
-	4,  // 47: aserto.directory.reader.v2.Reader.GetRelationType:input_type -> aserto.directory.reader.v2.GetRelationTypeRequest
-	6,  // 48: aserto.directory.reader.v2.Reader.GetRelationTypes:input_type -> aserto.directory.reader.v2.GetRelationTypesRequest
-	18, // 49: aserto.directory.reader.v2.Reader.GetPermission:input_type -> aserto.directory.reader.v2.GetPermissionRequest
-	20, // 50: aserto.directory.reader.v2.Reader.GetPermissions:input_type -> aserto.directory.reader.v2.GetPermissionsRequest
-	8,  // 51: aserto.directory.reader.v2.Reader.GetObject:input_type -> aserto.directory.reader.v2.GetObjectRequest
-	10, // 52: aserto.directory.reader.v2.Reader.GetObjectMany:input_type -> aserto.directory.reader.v2.GetObjectManyRequest
-	12, // 53: aserto.directory.reader.v2.Reader.GetObjects:input_type -> aserto.directory.reader.v2.GetObjectsRequest
-	14, // 54: aserto.directory.reader.v2.Reader.GetRelation:input_type -> aserto.directory.reader.v2.GetRelationRequest
-	16, // 55: aserto.directory.reader.v2.Reader.GetRelations:input_type -> aserto.directory.reader.v2.GetRelationsRequest
-	22, // 56: aserto.directory.reader.v2.Reader.CheckPermission:input_type -> aserto.directory.reader.v2.CheckPermissionRequest
-	24, // 57: aserto.directory.reader.v2.Reader.CheckRelation:input_type -> aserto.directory.reader.v2.CheckRelationRequest
-	27, // 58: aserto.directory.reader.v2.Reader.GetGraph:input_type -> aserto.directory.reader.v2.GetGraphRequest
-	1,  // 59: aserto.directory.reader.v2.Reader.GetObjectType:output_type -> aserto.directory.reader.v2.GetObjectTypeResponse
-	3,  // 60: aserto.directory.reader.v2.Reader.GetObjectTypes:output_type -> aserto.directory.reader.v2.GetObjectTypesResponse
-	5,  // 61: aserto.directory.reader.v2.Reader.GetRelationType:output_type -> aserto.directory.reader.v2.GetRelationTypeResponse
-	7,  // 62: aserto.directory.reader.v2.Reader.GetRelationTypes:output_type -> aserto.directory.reader.v2.GetRelationTypesResponse
-	19, // 63: aserto.directory.reader.v2.Reader.GetPermission:output_type -> aserto.directory.reader.v2.GetPermissionResponse
-	21, // 64: aserto.directory.reader.v2.Reader.GetPermissions:output_type -> aserto.directory.reader.v2.GetPermissionsResponse
-	9,  // 65: aserto.directory.reader.v2.Reader.GetObject:output_type -> aserto.directory.reader.v2.GetObjectResponse
-	11, // 66: aserto.directory.reader.v2.Reader.GetObjectMany:output_type -> aserto.directory.reader.v2.GetObjectManyResponse
-	13, // 67: aserto.directory.reader.v2.Reader.GetObjects:output_type -> aserto.directory.reader.v2.GetObjectsResponse
-	15, // 68: aserto.directory.reader.v2.Reader.GetRelation:output_type -> aserto.directory.reader.v2.GetRelationResponse
-	17, // 69: aserto.directory.reader.v2.Reader.GetRelations:output_type -> aserto.directory.reader.v2.GetRelationsResponse
-	23, // 70: aserto.directory.reader.v2.Reader.CheckPermission:output_type -> aserto.directory.reader.v2.CheckPermissionResponse
-	25, // 71: aserto.directory.reader.v2.Reader.CheckRelation:output_type -> aserto.directory.reader.v2.CheckRelationResponse
-	28, // 72: aserto.directory.reader.v2.Reader.GetGraph:output_type -> aserto.directory.reader.v2.GetGraphResponse
-	59, // [59:73] is the sub-list for method output_type
-	45, // [45:59] is the sub-list for method input_type
-	45, // [45:45] is the sub-list for extension type_name
-	45, // [45:45] is the sub-list for extension extendee
-	0,  // [0:45] is the sub-list for field type_name
+	38, // 13: aserto.directory.reader.v2.GetObjectResponse.relations:type_name -> aserto.directory.common.v2.Relation
+	36, // 14: aserto.directory.reader.v2.GetObjectManyRequest.param:type_name -> aserto.directory.common.v2.ObjectIdentifier
+	37, // 15: aserto.directory.reader.v2.GetObjectManyResponse.results:type_name -> aserto.directory.common.v2.Object
+	30, // 16: aserto.directory.reader.v2.GetObjectsRequest.param:type_name -> aserto.directory.common.v2.ObjectTypeIdentifier
+	32, // 17: aserto.directory.reader.v2.GetObjectsRequest.page:type_name -> aserto.directory.common.v2.PaginationRequest
+	37, // 18: aserto.directory.reader.v2.GetObjectsResponse.results:type_name -> aserto.directory.common.v2.Object
+	33, // 19: aserto.directory.reader.v2.GetObjectsResponse.page:type_name -> aserto.directory.common.v2.PaginationResponse
+	39, // 20: aserto.directory.reader.v2.GetRelationRequest.param:type_name -> aserto.directory.common.v2.RelationIdentifier
+	38, // 21: aserto.directory.reader.v2.GetRelationResponse.results:type_name -> aserto.directory.common.v2.Relation
+	29, // 22: aserto.directory.reader.v2.GetRelationResponse.objects:type_name -> aserto.directory.reader.v2.GetRelationResponse.ObjectsEntry
+	39, // 23: aserto.directory.reader.v2.GetRelationsRequest.param:type_name -> aserto.directory.common.v2.RelationIdentifier
+	32, // 24: aserto.directory.reader.v2.GetRelationsRequest.page:type_name -> aserto.directory.common.v2.PaginationRequest
+	38, // 25: aserto.directory.reader.v2.GetRelationsResponse.results:type_name -> aserto.directory.common.v2.Relation
+	33, // 26: aserto.directory.reader.v2.GetRelationsResponse.page:type_name -> aserto.directory.common.v2.PaginationResponse
+	40, // 27: aserto.directory.reader.v2.GetPermissionRequest.param:type_name -> aserto.directory.common.v2.PermissionIdentifier
+	41, // 28: aserto.directory.reader.v2.GetPermissionResponse.result:type_name -> aserto.directory.common.v2.Permission
+	32, // 29: aserto.directory.reader.v2.GetPermissionsRequest.page:type_name -> aserto.directory.common.v2.PaginationRequest
+	41, // 30: aserto.directory.reader.v2.GetPermissionsResponse.results:type_name -> aserto.directory.common.v2.Permission
+	33, // 31: aserto.directory.reader.v2.GetPermissionsResponse.page:type_name -> aserto.directory.common.v2.PaginationResponse
+	36, // 32: aserto.directory.reader.v2.CheckPermissionRequest.subject:type_name -> aserto.directory.common.v2.ObjectIdentifier
+	40, // 33: aserto.directory.reader.v2.CheckPermissionRequest.permission:type_name -> aserto.directory.common.v2.PermissionIdentifier
+	36, // 34: aserto.directory.reader.v2.CheckPermissionRequest.object:type_name -> aserto.directory.common.v2.ObjectIdentifier
+	36, // 35: aserto.directory.reader.v2.CheckRelationRequest.subject:type_name -> aserto.directory.common.v2.ObjectIdentifier
+	34, // 36: aserto.directory.reader.v2.CheckRelationRequest.relation:type_name -> aserto.directory.common.v2.RelationTypeIdentifier
+	36, // 37: aserto.directory.reader.v2.CheckRelationRequest.object:type_name -> aserto.directory.common.v2.ObjectIdentifier
+	36, // 38: aserto.directory.reader.v2.GetGraphRequest.anchor:type_name -> aserto.directory.common.v2.ObjectIdentifier
+	36, // 39: aserto.directory.reader.v2.GetGraphRequest.subject:type_name -> aserto.directory.common.v2.ObjectIdentifier
+	34, // 40: aserto.directory.reader.v2.GetGraphRequest.relation:type_name -> aserto.directory.common.v2.RelationTypeIdentifier
+	36, // 41: aserto.directory.reader.v2.GetGraphRequest.object:type_name -> aserto.directory.common.v2.ObjectIdentifier
+	42, // 42: aserto.directory.reader.v2.GetGraphResponse.results:type_name -> aserto.directory.common.v2.ObjectDependency
+	37, // 43: aserto.directory.reader.v2.GetRelationResponse.ObjectsEntry.value:type_name -> aserto.directory.common.v2.Object
+	0,  // 44: aserto.directory.reader.v2.Reader.GetObjectType:input_type -> aserto.directory.reader.v2.GetObjectTypeRequest
+	2,  // 45: aserto.directory.reader.v2.Reader.GetObjectTypes:input_type -> aserto.directory.reader.v2.GetObjectTypesRequest
+	4,  // 46: aserto.directory.reader.v2.Reader.GetRelationType:input_type -> aserto.directory.reader.v2.GetRelationTypeRequest
+	6,  // 47: aserto.directory.reader.v2.Reader.GetRelationTypes:input_type -> aserto.directory.reader.v2.GetRelationTypesRequest
+	18, // 48: aserto.directory.reader.v2.Reader.GetPermission:input_type -> aserto.directory.reader.v2.GetPermissionRequest
+	20, // 49: aserto.directory.reader.v2.Reader.GetPermissions:input_type -> aserto.directory.reader.v2.GetPermissionsRequest
+	8,  // 50: aserto.directory.reader.v2.Reader.GetObject:input_type -> aserto.directory.reader.v2.GetObjectRequest
+	10, // 51: aserto.directory.reader.v2.Reader.GetObjectMany:input_type -> aserto.directory.reader.v2.GetObjectManyRequest
+	12, // 52: aserto.directory.reader.v2.Reader.GetObjects:input_type -> aserto.directory.reader.v2.GetObjectsRequest
+	14, // 53: aserto.directory.reader.v2.Reader.GetRelation:input_type -> aserto.directory.reader.v2.GetRelationRequest
+	16, // 54: aserto.directory.reader.v2.Reader.GetRelations:input_type -> aserto.directory.reader.v2.GetRelationsRequest
+	22, // 55: aserto.directory.reader.v2.Reader.CheckPermission:input_type -> aserto.directory.reader.v2.CheckPermissionRequest
+	24, // 56: aserto.directory.reader.v2.Reader.CheckRelation:input_type -> aserto.directory.reader.v2.CheckRelationRequest
+	27, // 57: aserto.directory.reader.v2.Reader.GetGraph:input_type -> aserto.directory.reader.v2.GetGraphRequest
+	1,  // 58: aserto.directory.reader.v2.Reader.GetObjectType:output_type -> aserto.directory.reader.v2.GetObjectTypeResponse
+	3,  // 59: aserto.directory.reader.v2.Reader.GetObjectTypes:output_type -> aserto.directory.reader.v2.GetObjectTypesResponse
+	5,  // 60: aserto.directory.reader.v2.Reader.GetRelationType:output_type -> aserto.directory.reader.v2.GetRelationTypeResponse
+	7,  // 61: aserto.directory.reader.v2.Reader.GetRelationTypes:output_type -> aserto.directory.reader.v2.GetRelationTypesResponse
+	19, // 62: aserto.directory.reader.v2.Reader.GetPermission:output_type -> aserto.directory.reader.v2.GetPermissionResponse
+	21, // 63: aserto.directory.reader.v2.Reader.GetPermissions:output_type -> aserto.directory.reader.v2.GetPermissionsResponse
+	9,  // 64: aserto.directory.reader.v2.Reader.GetObject:output_type -> aserto.directory.reader.v2.GetObjectResponse
+	11, // 65: aserto.directory.reader.v2.Reader.GetObjectMany:output_type -> aserto.directory.reader.v2.GetObjectManyResponse
+	13, // 66: aserto.directory.reader.v2.Reader.GetObjects:output_type -> aserto.directory.reader.v2.GetObjectsResponse
+	15, // 67: aserto.directory.reader.v2.Reader.GetRelation:output_type -> aserto.directory.reader.v2.GetRelationResponse
+	17, // 68: aserto.directory.reader.v2.Reader.GetRelations:output_type -> aserto.directory.reader.v2.GetRelationsResponse
+	23, // 69: aserto.directory.reader.v2.Reader.CheckPermission:output_type -> aserto.directory.reader.v2.CheckPermissionResponse
+	25, // 70: aserto.directory.reader.v2.Reader.CheckRelation:output_type -> aserto.directory.reader.v2.CheckRelationResponse
+	28, // 71: aserto.directory.reader.v2.Reader.GetGraph:output_type -> aserto.directory.reader.v2.GetGraphResponse
+	58, // [58:72] is the sub-list for method output_type
+	44, // [44:58] is the sub-list for method input_type
+	44, // [44:44] is the sub-list for extension type_name
+	44, // [44:44] is the sub-list for extension extendee
+	0,  // [0:44] is the sub-list for field type_name
 }
 
 func init() { file_aserto_directory_reader_v2_reader_proto_init() }
