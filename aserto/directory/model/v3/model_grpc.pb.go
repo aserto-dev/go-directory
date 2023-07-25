@@ -19,8 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Model_GetManifest_FullMethodName = "/aserto.directory.model.v3.Model/GetManifest"
-	Model_SetManifest_FullMethodName = "/aserto.directory.model.v3.Model/SetManifest"
+	Model_GetManifest_FullMethodName    = "/aserto.directory.model.v3.Model/GetManifest"
+	Model_SetManifest_FullMethodName    = "/aserto.directory.model.v3.Model/SetManifest"
+	Model_DeleteManifest_FullMethodName = "/aserto.directory.model.v3.Model/DeleteManifest"
+	Model_ListManifests_FullMethodName  = "/aserto.directory.model.v3.Model/ListManifests"
 )
 
 // ModelClient is the client API for Model service.
@@ -29,6 +31,8 @@ const (
 type ModelClient interface {
 	GetManifest(ctx context.Context, in *GetManifestRequest, opts ...grpc.CallOption) (Model_GetManifestClient, error)
 	SetManifest(ctx context.Context, opts ...grpc.CallOption) (Model_SetManifestClient, error)
+	DeleteManifest(ctx context.Context, in *DeleteManifestRequest, opts ...grpc.CallOption) (*DeleteManifestResponse, error)
+	ListManifests(ctx context.Context, in *ListManifestsRequest, opts ...grpc.CallOption) (*ListManifestsResponse, error)
 }
 
 type modelClient struct {
@@ -105,12 +109,32 @@ func (x *modelSetManifestClient) CloseAndRecv() (*SetManifestResponse, error) {
 	return m, nil
 }
 
+func (c *modelClient) DeleteManifest(ctx context.Context, in *DeleteManifestRequest, opts ...grpc.CallOption) (*DeleteManifestResponse, error) {
+	out := new(DeleteManifestResponse)
+	err := c.cc.Invoke(ctx, Model_DeleteManifest_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *modelClient) ListManifests(ctx context.Context, in *ListManifestsRequest, opts ...grpc.CallOption) (*ListManifestsResponse, error) {
+	out := new(ListManifestsResponse)
+	err := c.cc.Invoke(ctx, Model_ListManifests_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ModelServer is the server API for Model service.
 // All implementations should embed UnimplementedModelServer
 // for forward compatibility
 type ModelServer interface {
 	GetManifest(*GetManifestRequest, Model_GetManifestServer) error
 	SetManifest(Model_SetManifestServer) error
+	DeleteManifest(context.Context, *DeleteManifestRequest) (*DeleteManifestResponse, error)
+	ListManifests(context.Context, *ListManifestsRequest) (*ListManifestsResponse, error)
 }
 
 // UnimplementedModelServer should be embedded to have forward compatible implementations.
@@ -122,6 +146,12 @@ func (UnimplementedModelServer) GetManifest(*GetManifestRequest, Model_GetManife
 }
 func (UnimplementedModelServer) SetManifest(Model_SetManifestServer) error {
 	return status.Errorf(codes.Unimplemented, "method SetManifest not implemented")
+}
+func (UnimplementedModelServer) DeleteManifest(context.Context, *DeleteManifestRequest) (*DeleteManifestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteManifest not implemented")
+}
+func (UnimplementedModelServer) ListManifests(context.Context, *ListManifestsRequest) (*ListManifestsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListManifests not implemented")
 }
 
 // UnsafeModelServer may be embedded to opt out of forward compatibility for this service.
@@ -182,13 +212,58 @@ func (x *modelSetManifestServer) Recv() (*SetManifestRequest, error) {
 	return m, nil
 }
 
+func _Model_DeleteManifest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteManifestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelServer).DeleteManifest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Model_DeleteManifest_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelServer).DeleteManifest(ctx, req.(*DeleteManifestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Model_ListManifests_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListManifestsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelServer).ListManifests(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Model_ListManifests_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelServer).ListManifests(ctx, req.(*ListManifestsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Model_ServiceDesc is the grpc.ServiceDesc for Model service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Model_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "aserto.directory.model.v3.Model",
 	HandlerType: (*ModelServer)(nil),
-	Methods:     []grpc.MethodDesc{},
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "DeleteManifest",
+			Handler:    _Model_DeleteManifest_Handler,
+		},
+		{
+			MethodName: "ListManifests",
+			Handler:    _Model_ListManifests_Handler,
+		},
+	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "GetManifest",

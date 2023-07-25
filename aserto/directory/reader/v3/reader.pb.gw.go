@@ -192,79 +192,12 @@ func local_request_Reader_GetObjects_0(ctx context.Context, marshaler runtime.Ma
 }
 
 var (
-	filter_Reader_GetRelation_0 = &utilities.DoubleArray{Encoding: map[string]int{"object_type": 0, "objectType": 1, "object_id": 2, "objectId": 3, "relation": 4, "subject_type": 5, "subjectType": 6, "subject_id": 7, "subjectId": 8, "subject_relation": 9, "subjectRelation": 10}, Base: []int{1, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, Check: []int{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 3, 4, 5, 6, 6, 7, 8, 9, 10, 11, 12}}
+	filter_Reader_GetRelation_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
 func request_Reader_GetRelation_0(ctx context.Context, marshaler runtime.Marshaler, client ReaderClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetRelationRequest
 	var metadata runtime.ServerMetadata
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["object_type"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "object_type")
-	}
-
-	protoReq.ObjectType, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "object_type", err)
-	}
-
-	val, ok = pathParams["object_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "object_id")
-	}
-
-	protoReq.ObjectId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "object_id", err)
-	}
-
-	val, ok = pathParams["relation"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "relation")
-	}
-
-	protoReq.Relation, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "relation", err)
-	}
-
-	val, ok = pathParams["subject_type"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subject_type")
-	}
-
-	protoReq.SubjectType, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subject_type", err)
-	}
-
-	val, ok = pathParams["subject_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subject_id")
-	}
-
-	protoReq.SubjectId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subject_id", err)
-	}
-
-	val, ok = pathParams["subject_relation"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subject_relation")
-	}
-
-	protoReq.SubjectRelation, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subject_relation", err)
-	}
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
@@ -282,73 +215,6 @@ func local_request_Reader_GetRelation_0(ctx context.Context, marshaler runtime.M
 	var protoReq GetRelationRequest
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["object_type"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "object_type")
-	}
-
-	protoReq.ObjectType, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "object_type", err)
-	}
-
-	val, ok = pathParams["object_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "object_id")
-	}
-
-	protoReq.ObjectId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "object_id", err)
-	}
-
-	val, ok = pathParams["relation"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "relation")
-	}
-
-	protoReq.Relation, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "relation", err)
-	}
-
-	val, ok = pathParams["subject_type"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subject_type")
-	}
-
-	protoReq.SubjectType, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subject_type", err)
-	}
-
-	val, ok = pathParams["subject_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subject_id")
-	}
-
-	protoReq.SubjectId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subject_id", err)
-	}
-
-	val, ok = pathParams["subject_relation"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subject_relation")
-	}
-
-	protoReq.SubjectRelation, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subject_relation", err)
-	}
-
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
@@ -361,15 +227,18 @@ func local_request_Reader_GetRelation_0(ctx context.Context, marshaler runtime.M
 
 }
 
+var (
+	filter_Reader_GetRelations_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
 func request_Reader_GetRelations_0(ctx context.Context, marshaler runtime.Marshaler, client ReaderClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetRelationsRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Reader_GetRelations_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -382,11 +251,10 @@ func local_request_Reader_GetRelations_0(ctx context.Context, marshaler runtime.
 	var protoReq GetRelationsRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Reader_GetRelations_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -463,15 +331,45 @@ func local_request_Reader_CheckRelation_0(ctx context.Context, marshaler runtime
 
 }
 
+var (
+	filter_Reader_GetGraph_0 = &utilities.DoubleArray{Encoding: map[string]int{"anchor_type": 0, "anchorType": 1, "anchor_id": 2, "anchorId": 3}, Base: []int{1, 1, 2, 3, 4, 0, 0, 0, 0}, Check: []int{0, 1, 1, 1, 1, 2, 3, 4, 5}}
+)
+
 func request_Reader_GetGraph_0(ctx context.Context, marshaler runtime.Marshaler, client ReaderClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetGraphRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["anchor_type"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "anchor_type")
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+
+	protoReq.AnchorType, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "anchor_type", err)
+	}
+
+	val, ok = pathParams["anchor_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "anchor_id")
+	}
+
+	protoReq.AnchorId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "anchor_id", err)
+	}
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Reader_GetGraph_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -484,11 +382,37 @@ func local_request_Reader_GetGraph_0(ctx context.Context, marshaler runtime.Mars
 	var protoReq GetGraphRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["anchor_type"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "anchor_type")
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+
+	protoReq.AnchorType, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "anchor_type", err)
+	}
+
+	val, ok = pathParams["anchor_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "anchor_id")
+	}
+
+	protoReq.AnchorId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "anchor_id", err)
+	}
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Reader_GetGraph_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -586,7 +510,7 @@ func RegisterReaderHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.reader.v3.Reader/GetRelation", runtime.WithHTTPPathPattern("/api/v3/directory/relation/{object_type}/{object_id}/{relation}/{subject_type}/{subject_id}/{subject_relation}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.reader.v3.Reader/GetRelation", runtime.WithHTTPPathPattern("/api/v3/directory/relation"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -603,7 +527,7 @@ func RegisterReaderHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 
 	})
 
-	mux.Handle("POST", pattern_Reader_GetRelations_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Reader_GetRelations_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -678,7 +602,7 @@ func RegisterReaderHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 
 	})
 
-	mux.Handle("POST", pattern_Reader_GetGraph_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Reader_GetGraph_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -686,7 +610,7 @@ func RegisterReaderHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.reader.v3.Reader/GetGraph", runtime.WithHTTPPathPattern("/api/v3/directory/graph"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.reader.v3.Reader/GetGraph", runtime.WithHTTPPathPattern("/api/v3/directory/graph/{anchor_type}/{anchor_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -816,7 +740,7 @@ func RegisterReaderHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.reader.v3.Reader/GetRelation", runtime.WithHTTPPathPattern("/api/v3/directory/relation/{object_type}/{object_id}/{relation}/{subject_type}/{subject_id}/{subject_relation}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.reader.v3.Reader/GetRelation", runtime.WithHTTPPathPattern("/api/v3/directory/relation"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -832,7 +756,7 @@ func RegisterReaderHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 
 	})
 
-	mux.Handle("POST", pattern_Reader_GetRelations_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Reader_GetRelations_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -898,13 +822,13 @@ func RegisterReaderHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 
 	})
 
-	mux.Handle("POST", pattern_Reader_GetGraph_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Reader_GetGraph_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.reader.v3.Reader/GetGraph", runtime.WithHTTPPathPattern("/api/v3/directory/graph"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.reader.v3.Reader/GetGraph", runtime.WithHTTPPathPattern("/api/v3/directory/graph/{anchor_type}/{anchor_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -930,7 +854,7 @@ var (
 
 	pattern_Reader_GetObjects_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v3", "directory", "objects"}, ""))
 
-	pattern_Reader_GetRelation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 6, 1, 0, 4, 1, 5, 7, 1, 0, 4, 1, 5, 8}, []string{"api", "v3", "directory", "relation", "object_type", "object_id", "subject_type", "subject_id", "subject_relation"}, ""))
+	pattern_Reader_GetRelation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v3", "directory", "relation"}, ""))
 
 	pattern_Reader_GetRelations_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v3", "directory", "relations"}, ""))
 
@@ -938,7 +862,7 @@ var (
 
 	pattern_Reader_CheckRelation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v3", "directory", "check", "relation"}, ""))
 
-	pattern_Reader_GetGraph_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v3", "directory", "graph"}, ""))
+	pattern_Reader_GetGraph_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"api", "v3", "directory", "graph", "anchor_type", "anchor_id"}, ""))
 )
 
 var (

@@ -189,75 +189,19 @@ func local_request_Writer_SetRelation_0(ctx context.Context, marshaler runtime.M
 
 }
 
+var (
+	filter_Writer_DeleteRelation_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
 func request_Writer_DeleteRelation_0(ctx context.Context, marshaler runtime.Marshaler, client WriterClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq DeleteRelationRequest
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["object_type"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "object_type")
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
-	protoReq.ObjectType, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "object_type", err)
-	}
-
-	val, ok = pathParams["object_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "object_id")
-	}
-
-	protoReq.ObjectId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "object_id", err)
-	}
-
-	val, ok = pathParams["relation"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "relation")
-	}
-
-	protoReq.Relation, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "relation", err)
-	}
-
-	val, ok = pathParams["subject_type"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subject_type")
-	}
-
-	protoReq.SubjectType, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subject_type", err)
-	}
-
-	val, ok = pathParams["subject_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subject_id")
-	}
-
-	protoReq.SubjectId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subject_id", err)
-	}
-
-	val, ok = pathParams["subject_relation"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subject_relation")
-	}
-
-	protoReq.SubjectRelation, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subject_relation", err)
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Writer_DeleteRelation_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
 	msg, err := client.DeleteRelation(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -269,71 +213,11 @@ func local_request_Writer_DeleteRelation_0(ctx context.Context, marshaler runtim
 	var protoReq DeleteRelationRequest
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["object_type"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "object_type")
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
-	protoReq.ObjectType, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "object_type", err)
-	}
-
-	val, ok = pathParams["object_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "object_id")
-	}
-
-	protoReq.ObjectId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "object_id", err)
-	}
-
-	val, ok = pathParams["relation"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "relation")
-	}
-
-	protoReq.Relation, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "relation", err)
-	}
-
-	val, ok = pathParams["subject_type"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subject_type")
-	}
-
-	protoReq.SubjectType, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subject_type", err)
-	}
-
-	val, ok = pathParams["subject_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subject_id")
-	}
-
-	protoReq.SubjectId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subject_id", err)
-	}
-
-	val, ok = pathParams["subject_relation"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subject_relation")
-	}
-
-	protoReq.SubjectRelation, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subject_relation", err)
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Writer_DeleteRelation_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
 	msg, err := server.DeleteRelation(ctx, &protoReq)
@@ -430,7 +314,7 @@ func RegisterWriterHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.writer.v3.Writer/DeleteRelation", runtime.WithHTTPPathPattern("/api/v3/directory/relation/{object_type}/{object_id}/{relation}/{subject_type}/{subject_id}/{subject_relation}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.writer.v3.Writer/DeleteRelation", runtime.WithHTTPPathPattern("/api/v3/directory/relation"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -560,7 +444,7 @@ func RegisterWriterHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.writer.v3.Writer/DeleteRelation", runtime.WithHTTPPathPattern("/api/v3/directory/relation/{object_type}/{object_id}/{relation}/{subject_type}/{subject_id}/{subject_relation}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.writer.v3.Writer/DeleteRelation", runtime.WithHTTPPathPattern("/api/v3/directory/relation"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -586,7 +470,7 @@ var (
 
 	pattern_Writer_SetRelation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v3", "directory", "relation"}, ""))
 
-	pattern_Writer_DeleteRelation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 6, 1, 0, 4, 1, 5, 7, 1, 0, 4, 1, 5, 8}, []string{"api", "v3", "directory", "relation", "object_type", "object_id", "subject_type", "subject_id", "subject_relation"}, ""))
+	pattern_Writer_DeleteRelation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v3", "directory", "relation"}, ""))
 )
 
 var (
