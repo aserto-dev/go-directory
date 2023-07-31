@@ -13,6 +13,7 @@ require (
 require (
 	github.com/aserto-dev/errors v0.0.5
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.16.0
+	github.com/pkg/errors v0.9.1
 	google.golang.org/grpc v1.56.2
 	google.golang.org/protobuf v1.31.0
 )
@@ -24,7 +25,6 @@ require (
 	github.com/google/cel-go v0.17.1 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.19 // indirect
-	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/rogpeppe/go-internal v1.11.0 // indirect
 	github.com/rs/zerolog v1.29.1 // indirect
