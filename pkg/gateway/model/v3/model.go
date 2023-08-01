@@ -12,7 +12,7 @@ import (
 	"google.golang.org/grpc/grpclog"
 )
 
-const ChunkSize int = 64 * 1024
+const MaxChunkSizeBytes int = 64 * 1024
 
 func RegisterModelStreamHandlersFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.DialContext(ctx, endpoint, opts...)
