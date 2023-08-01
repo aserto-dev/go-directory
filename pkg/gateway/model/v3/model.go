@@ -40,7 +40,7 @@ func RegisterModelStreamHandlersFromEndpoint(ctx context.Context, mux *runtime.S
 func RegisterModelStreamHandlerClient(ctx context.Context, mux *runtime.ServeMux, client dms3.ModelClient) error {
 	if err := mux.HandlePath(
 		"GET",
-		"/api/v3/directory/manifest/{name}/{version}",
+		"/api/v3/directory/manifest/{name}",
 		getManifestHandler(mux, client),
 	); err != nil {
 		return errors.Wrap(err, "failed to register GetManifest handler")
@@ -65,7 +65,7 @@ func getManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient) runtime.
 			mux,
 			req,
 			"/aserto.directory.model.v3.Model/GetManifest",
-			runtime.WithHTTPPathPattern("/api/v3/directory/manifest/{name}/{version}"),
+			runtime.WithHTTPPathPattern("/api/v3/directory/manifest/{name}"),
 		)
 		if err != nil {
 			runtime.HTTPError(req.Context(), mux, outboundMarshaler, w, req, err)
@@ -74,7 +74,7 @@ func getManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient) runtime.
 
 		stream, err := client.GetManifest(ctx, &dms3.GetManifestRequest{
 			Name:    pathParams["name"],
-			Version: pathParams["version"],
+			Version: req.URL.Query().Get("version"),
 		})
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -99,7 +99,7 @@ func getManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient) runtime.
 			}
 
 			if body := msg.GetBody(); body != nil {
-				if _, err := w.Write(body); err != nil {
+				if _, err := w.Write(body.Data); err != nil {
 					runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 					return
 				}
@@ -150,7 +150,7 @@ func setManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient) runtime.
 
 			if n > 0 {
 				if err := stream.Send(&dms3.SetManifestRequest{
-					Msg: &dms3.SetManifestRequest_Body{Body: buf[:n]},
+					Msg: &dms3.SetManifestRequest_Body{Body: &dms3.Body{Data: buf[:n]}},
 				}); err != nil {
 					runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 					return
