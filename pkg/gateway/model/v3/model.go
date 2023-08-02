@@ -116,7 +116,7 @@ func setManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient) runtime.
 			mux,
 			req,
 			"/aserto.directory.model.v3.Model/SetManifest",
-			runtime.WithHTTPPathPattern("/api/v3/directory/manifest/{name}/{version}"),
+			runtime.WithHTTPPathPattern("/api/v3/directory/manifest/{name}"),
 		)
 		if err != nil {
 			runtime.HTTPError(req.Context(), mux, outboundMarshaler, w, req, err)
@@ -131,7 +131,7 @@ func setManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient) runtime.
 		if err := stream.Send(&dms3.SetManifestRequest{
 			Msg: &dms3.SetManifestRequest_Metadata{Metadata: &dms3.Metadata{
 				Name:    pathParams["name"],
-				Version: pathParams["version"],
+				Version: req.URL.Query().Get("version"),
 			}},
 		}); err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
