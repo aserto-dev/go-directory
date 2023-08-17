@@ -40,7 +40,7 @@ func RegisterModelStreamHandlersFromEndpoint(ctx context.Context, mux *runtime.S
 func RegisterModelStreamHandlerClient(ctx context.Context, mux *runtime.ServeMux, client dms3.ModelClient) error {
 	if err := mux.HandlePath(
 		"GET",
-		"/api/v3/directory/manifest/{name}",
+		"/api/v3/directory/manifest",
 		getManifestHandler(mux, client),
 	); err != nil {
 		return errors.Wrap(err, "failed to register GetManifest handler")
@@ -48,7 +48,7 @@ func RegisterModelStreamHandlerClient(ctx context.Context, mux *runtime.ServeMux
 
 	if err := mux.HandlePath(
 		"POST",
-		"/api/v3/directory/manifest/{name}/{version}",
+		"/api/v3/directory/manifest",
 		setManifestHandler(mux, client),
 	); err != nil {
 		return errors.Wrap(err, "failed to register SetManifest handler")
@@ -65,17 +65,14 @@ func getManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient) runtime.
 			mux,
 			req,
 			"/aserto.directory.model.v3.Model/GetManifest",
-			runtime.WithHTTPPathPattern("/api/v3/directory/manifest/{name}"),
+			runtime.WithHTTPPathPattern("/api/v3/directory/manifest"),
 		)
 		if err != nil {
 			runtime.HTTPError(req.Context(), mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		stream, err := client.GetManifest(ctx, &dms3.GetManifestRequest{
-			Name:    pathParams["name"],
-			Version: req.URL.Query().Get("version"),
-		})
+		stream, err := client.GetManifest(ctx, &dms3.GetManifestRequest{})
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -93,7 +90,6 @@ func getManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient) runtime.
 			}
 
 			if md := msg.GetMetadata(); md != nil {
-				w.Header().Set("X-Created-At", md.CreatedAt.AsTime().Format(http.TimeFormat))
 				w.Header().Set("X-Updated-At", md.UpdatedAt.AsTime().Format(http.TimeFormat))
 				w.Header().Set("ETag", md.Etag)
 			}
@@ -116,7 +112,7 @@ func setManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient) runtime.
 			mux,
 			req,
 			"/aserto.directory.model.v3.Model/SetManifest",
-			runtime.WithHTTPPathPattern("/api/v3/directory/manifest/{name}"),
+			runtime.WithHTTPPathPattern("/api/v3/directory/manifest"),
 		)
 		if err != nil {
 			runtime.HTTPError(req.Context(), mux, outboundMarshaler, w, req, err)
@@ -128,19 +124,9 @@ func setManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient) runtime.
 			return
 		}
 
-		if err := stream.Send(&dms3.SetManifestRequest{
-			Msg: &dms3.SetManifestRequest_Metadata{Metadata: &dms3.Metadata{
-				Name:    pathParams["name"],
-				Version: req.URL.Query().Get("version"),
-			}},
-		}); err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
 		reader := req.Body
 		defer reader.Close()
-		buf := make([]byte, 1024)
+		buf := make([]byte, MaxChunkSizeBytes)
 		for {
 			n, err := reader.Read(buf)
 			if err != nil && err != io.EOF {
