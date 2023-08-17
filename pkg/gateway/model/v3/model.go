@@ -126,7 +126,7 @@ func setManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient) runtime.
 
 		reader := req.Body
 		defer reader.Close()
-		buf := make([]byte, 1024)
+		buf := make([]byte, MaxChunkSizeBytes)
 		for {
 			n, err := reader.Read(buf)
 			if err != nil && err != io.EOF {
