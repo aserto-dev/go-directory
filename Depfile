@@ -32,7 +32,7 @@ go:
     version: "v1.26.1"
   protoc-gen-buf-lint:
     importPath: "github.com/bufbuild/buf/cmd/protoc-gen-buf-lint"
-    version: "v1.26.1" 
+    version: "v1.26.1"
   protoc-gen-go:
     importPath: google.golang.org/protobuf/cmd/protoc-gen-go
     version: "v1.31.0"
