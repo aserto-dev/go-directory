@@ -14,6 +14,7 @@ import (
 
 	"github.com/aserto-dev/clui"
 	"github.com/aserto-dev/mage-loot/buf"
+	"github.com/aserto-dev/mage-loot/common"
 	"github.com/aserto-dev/mage-loot/deps"
 	"github.com/aserto-dev/mage-loot/fsutil"
 	"github.com/aserto-dev/mage-loot/testutil"
@@ -74,14 +75,9 @@ func Clean() error {
 	return os.RemoveAll("aserto")
 }
 
+// Lint runs linting for the entire project.
 func Lint() error {
-	mg.SerialDeps(Login)
-
-	if err := bufLint("proto/buf.yaml", "bin/directory.bin"); err != nil {
-		return err
-	}
-
-	return nil
+	return common.Lint("--timeout", "5m0s")
 }
 
 func Breaking() error {
