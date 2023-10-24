@@ -82,7 +82,7 @@ type TenantProperties struct {
 	DirectoryV2 bool `protobuf:"varint,2,opt,name=directory_v2,json=directoryV2,proto3" json:"directory_v2,omitempty"`
 	// If true, the tenant cannot be reverted to the v1 directory experience.
 	DirectoryV2Only bool `protobuf:"varint,3,opt,name=directory_v2_only,json=directoryV2Only,proto3" json:"directory_v2_only,omitempty"`
-	// Additional properties that are only set accounts (personal tennats).
+	// Additional properties that are only set accounts (personal tenant).
 	Account *AccountProperties `protobuf:"bytes,4,opt,name=account,proto3,oneof" json:"account,omitempty"`
 }
 
