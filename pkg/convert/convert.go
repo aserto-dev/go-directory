@@ -3,7 +3,10 @@ package convert
 import (
 	dsc2 "github.com/aserto-dev/go-directory/aserto/directory/common/v2"
 	dsc3 "github.com/aserto-dev/go-directory/aserto/directory/common/v3"
+	dsr2 "github.com/aserto-dev/go-directory/aserto/directory/reader/v2"
+	dsr3 "github.com/aserto-dev/go-directory/aserto/directory/reader/v3"
 	"github.com/aserto-dev/go-directory/pkg/pb"
+	"github.com/samber/lo"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/structpb"
 )
@@ -161,6 +164,104 @@ func RelationArrayToV3(in []*dsc2.Relation) []*dsc3.Relation {
 		result[i] = RelationToV3(in[i])
 	}
 	return result
+}
+
+func GetObjectRequestToV3(in *dsr2.GetObjectRequest) *dsr3.GetObjectRequest {
+	return &dsr3.GetObjectRequest{
+		ObjectType:    in.GetParam().GetType(),
+		ObjectId:      in.GetParam().GetKey(),
+		WithRelations: in.GetWithRelations(),
+		Page:          PaginationRequestToV3(in.GetPage()),
+	}
+}
+
+func GetObjectManyRequestToV3(in *dsr2.GetObjectManyRequest) *dsr3.GetObjectManyRequest {
+	return &dsr3.GetObjectManyRequest{
+		Param: ObjectIdentifierArrayToV3(in.Param),
+	}
+}
+
+func GetObjectsRequestToV3(in *dsr2.GetObjectsRequest) *dsr3.GetObjectsRequest {
+	return &dsr3.GetObjectsRequest{
+		ObjectType: in.GetParam().GetName(),
+		Page:       PaginationRequestToV3(in.GetPage()),
+	}
+}
+
+func GetRelationRequestToV3(in *dsr2.GetRelationRequest) *dsr3.GetRelationRequest {
+	// if object type isn't specified on the request object identifier, try to get it from the relation identifier.
+	objType, _ := lo.Coalesce(
+		in.GetParam().GetObject().GetType(),
+		in.GetParam().GetRelation().GetObjectType(),
+	)
+
+	return &dsr3.GetRelationRequest{
+		ObjectType:  objType,
+		ObjectId:    in.GetParam().GetObject().GetKey(),
+		Relation:    in.GetParam().GetRelation().GetName(),
+		SubjectType: in.GetParam().GetSubject().GetType(),
+		SubjectId:   in.GetParam().GetSubject().GetKey(),
+		WithObjects: in.GetWithObjects(),
+	}
+}
+
+func GetRelationsRequestToV3(in *dsr2.GetRelationsRequest) *dsr3.GetRelationsRequest {
+	// if object type isn't specified on the request object identifier, try to get it from the relation identifier.
+	objType, _ := lo.Coalesce(
+		in.GetParam().GetObject().GetType(),
+		in.GetParam().GetRelation().GetObjectType(),
+	)
+
+	return &dsr3.GetRelationsRequest{
+		ObjectType:      objType,
+		ObjectId:        in.GetParam().GetObject().GetKey(),
+		Relation:        in.GetParam().GetRelation().GetName(),
+		SubjectType:     in.GetParam().GetSubject().GetType(),
+		SubjectId:       in.GetParam().GetSubject().GetKey(),
+		SubjectRelation: "",
+		WithObjects:     false,
+		Page:            PaginationRequestToV3(in.Page),
+	}
+}
+
+func CheckRelationRequestToV3(in *dsr2.CheckRelationRequest) *dsr3.CheckRelationRequest {
+	// if object type isn't specified on the request object identifier, try to get it from the relation identifier.
+	objType, _ := lo.Coalesce(
+		in.GetObject().GetType(),
+		in.GetRelation().GetObjectType(),
+	)
+
+	return &dsr3.CheckRelationRequest{
+		ObjectType:  objType,
+		ObjectId:    in.GetObject().GetKey(),
+		Relation:    in.GetRelation().GetName(),
+		SubjectType: in.GetSubject().GetType(),
+		SubjectId:   in.GetSubject().GetKey(),
+		Trace:       in.GetTrace(),
+	}
+}
+
+func CheckPermissionRequestToV3(in *dsr2.CheckPermissionRequest) *dsr3.CheckPermissionRequest {
+	return &dsr3.CheckPermissionRequest{
+		ObjectType:  in.GetObject().GetType(),
+		ObjectId:    in.GetObject().GetKey(),
+		Permission:  in.GetPermission().GetName(),
+		SubjectType: in.GetSubject().GetType(),
+		SubjectId:   in.GetSubject().GetKey(),
+		Trace:       in.GetTrace(),
+	}
+}
+
+func GetGraphRequestToV3(in *dsr2.GetGraphRequest) *dsr3.GetGraphRequest {
+	return &dsr3.GetGraphRequest{
+		AnchorType:  in.GetAnchor().GetType(),
+		AnchorId:    in.GetAnchor().GetKey(),
+		ObjectType:  in.GetObject().GetType(),
+		ObjectId:    in.GetObject().GetKey(),
+		Relation:    in.GetRelation().GetName(),
+		SubjectType: in.GetSubject().GetType(),
+		SubjectId:   in.GetSubject().GetKey(),
+	}
 }
 
 func PaginationRequestToV3(in *dsc2.PaginationRequest) *dsc3.PaginationRequest {
