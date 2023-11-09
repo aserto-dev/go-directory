@@ -55,5 +55,6 @@ var (
 	ErrInvalidRelationTypeIdentifier = cerr.NewAsertoError("E20045", codes.InvalidArgument, http.StatusBadRequest, "invalid argument relation_type_identifier")
 	ErrInvalidObjectIdentifier       = cerr.NewAsertoError("E20046", codes.InvalidArgument, http.StatusBadRequest, "invalid argument object_identifier")
 	ErrInvalidRelationIdentifier     = cerr.NewAsertoError("E20047", codes.InvalidArgument, http.StatusBadRequest, "invalid argument relation_identifier")
+	ErrProtoValidate                 = cerr.NewAsertoError("E20050", codes.InvalidArgument, http.StatusBadRequest, "")
 	ErrGraphDirectionality           = cerr.NewAsertoError("E20052", codes.InvalidArgument, http.StatusPreconditionFailed, "unable to determine graph directionality")
 )
