@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"io"
 
+	"github.com/samber/lo"
 	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/structpb"
@@ -125,4 +126,11 @@ func JSONToStruct(val map[string]interface{}) (*structpb.Struct, error) {
 	}
 
 	return &pb, nil
+}
+
+// Contains returns true if the collection contains the message.
+func Contains[T proto.Message](collection []T, message T) bool {
+	return lo.ContainsBy(collection, func(item T) bool {
+		return proto.Equal(item, message)
+	})
 }
