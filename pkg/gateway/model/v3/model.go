@@ -92,7 +92,7 @@ func getManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient, mdOpt me
 
 		if mdOpt == MetadataOnly {
 			md := metautils.ExtractOutgoing(ctx).Clone()
-			md.Set(string(header.HeaderAsertoMetadataOnly), "true")
+			md.Set(string(header.HeaderAsertoManifestRequest), "metadata-only")
 			ctx = md.ToOutgoing(ctx)
 		}
 

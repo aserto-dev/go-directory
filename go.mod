@@ -7,7 +7,7 @@ go 1.19
 require (
 	buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go v1.31.0-20231106192134-1baebb0a1518.2
 	github.com/aserto-dev/errors v0.0.6
-	github.com/aserto-dev/header v0.0.6-0.20231117175344-f2255a750e2e
+	github.com/aserto-dev/header v0.0.6-0.20231117202610-96320b276fd1
 	github.com/bufbuild/protovalidate-go v0.4.1
 	github.com/go-http-utils/headers v0.0.0-20181008091004-fed159eddc2a
 	github.com/grpc-ecosystem/go-grpc-middleware v1.4.0
