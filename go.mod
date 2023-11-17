@@ -6,6 +6,8 @@ require (
 	buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go v1.31.0-20231106192134-1baebb0a1518.2
 	github.com/aserto-dev/errors v0.0.6
 	github.com/bufbuild/protovalidate-go v0.4.1
+	github.com/go-http-utils/headers v0.0.0-20181008091004-fed159eddc2a
+	github.com/grpc-ecosystem/go-grpc-middleware v1.4.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.18.1
 	github.com/magefile/mage v1.15.0
 	github.com/pkg/errors v0.9.1

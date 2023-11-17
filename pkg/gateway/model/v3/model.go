@@ -6,6 +6,10 @@ import (
 	"net/http"
 
 	dms3 "github.com/aserto-dev/go-directory/aserto/directory/model/v3"
+	"github.com/aserto-dev/go-directory/pkg/manifest"
+	"github.com/aserto-dev/go-directory/pkg/pb"
+	"github.com/go-http-utils/headers"
+	"github.com/grpc-ecosystem/go-grpc-middleware/util/metautils"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/pkg/errors"
 	"google.golang.org/grpc"
@@ -13,6 +17,13 @@ import (
 )
 
 const MaxChunkSizeBytes int = 64 * 1024
+
+type metadataOption bool
+
+const (
+	WithBody     metadataOption = false
+	MetadataOnly metadataOption = true
+)
 
 func RegisterModelStreamHandlersFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.DialContext(ctx, endpoint, opts...)
@@ -39,9 +50,17 @@ func RegisterModelStreamHandlersFromEndpoint(ctx context.Context, mux *runtime.S
 
 func RegisterModelStreamHandlerClient(ctx context.Context, mux *runtime.ServeMux, client dms3.ModelClient) error {
 	if err := mux.HandlePath(
+		"HEAD",
+		"/api/v3/directory/manifest",
+		getManifestHandler(mux, client, MetadataOnly),
+	); err != nil {
+		return errors.Wrap(err, "failed to register GetManifest handler")
+	}
+
+	if err := mux.HandlePath(
 		"GET",
 		"/api/v3/directory/manifest",
-		getManifestHandler(mux, client),
+		getManifestHandler(mux, client, WithBody),
 	); err != nil {
 		return errors.Wrap(err, "failed to register GetManifest handler")
 	}
@@ -57,7 +76,7 @@ func RegisterModelStreamHandlerClient(ctx context.Context, mux *runtime.ServeMux
 	return nil
 }
 
-func getManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient) runtime.HandlerFunc {
+func getManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient, mdOpt metadataOption) runtime.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		ctx, err := runtime.AnnotateContext(
@@ -72,13 +91,20 @@ func getManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient) runtime.
 			return
 		}
 
+		if mdOpt == MetadataOnly {
+			md := metautils.ExtractOutgoing(ctx).Clone()
+			md.Set(manifest.HeaderAsertoManifestRequest, "metadata-only")
+			ctx = md.ToOutgoing(ctx)
+		}
+
 		stream, err := client.GetManifest(ctx, &dms3.GetManifestRequest{})
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		w.Header().Set("Content-Type", "application/yaml")
+		hasBody := false
+		hasModel := false
 		for {
 			msg, err := stream.Recv()
 			if err == io.EOF {
@@ -90,16 +116,35 @@ func getManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient) runtime.
 			}
 
 			if md := msg.GetMetadata(); md != nil {
-				w.Header().Set("X-Updated-At", md.UpdatedAt.AsTime().Format(http.TimeFormat))
-				w.Header().Set("ETag", md.Etag)
+				w.Header().Set(manifest.HeaderAsertoUpdatedAt, md.UpdatedAt.AsTime().Format(http.TimeFormat))
+				w.Header().Set(headers.ETag, md.Etag)
 			}
 
 			if body := msg.GetBody(); body != nil {
+				hasBody = true
+				w.Header().Set(headers.ContentType, "application/yaml")
+
 				if _, err := w.Write(body.Data); err != nil {
 					runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 					return
 				}
+
 			}
+
+			// We send either the body or the model, never both.
+			if model := msg.GetModel(); model != nil && !hasBody {
+				hasModel = true
+				w.Header().Set(headers.ContentType, "application/json")
+
+				if err := pb.ProtoToBuf(w, model); err != nil {
+					runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+					return
+				}
+			}
+		}
+
+		if !hasBody && !hasModel && req.Header.Get(headers.IfNoneMatch) != "" {
+			w.WriteHeader(http.StatusNotModified)
 		}
 	}
 }

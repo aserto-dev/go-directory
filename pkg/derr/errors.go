@@ -21,7 +21,7 @@ var (
 	ErrInvalidRelation               = cerr.NewAsertoError("E20010", codes.InvalidArgument, http.StatusBadRequest, "invalid relation")
 	ErrInvalidRelationTypePermission = cerr.NewAsertoError("E20011", codes.InvalidArgument, http.StatusBadRequest, "invalid relation type permission")
 	ErrDirectoryStoreTenantNotFound  = cerr.NewAsertoError("E20012", codes.NotFound, http.StatusNotFound, "tenant store not found")
-	ErrHashMismatch                  = cerr.NewAsertoError("E20013", codes.InvalidArgument, http.StatusBadRequest, "hash value mismatch")
+	ErrHashMismatch                  = cerr.NewAsertoError("E20013", codes.FailedPrecondition, http.StatusPreconditionFailed, "etag mismatch")
 	ErrInvalidArgument               = cerr.NewAsertoError("E20015", codes.InvalidArgument, http.StatusBadRequest, "invalid argument")
 	ErrInvalidID                     = cerr.NewAsertoError("E20016", codes.InvalidArgument, http.StatusBadRequest, "invalid ID")
 	ErrAuthenticationFailed          = cerr.NewAsertoError("E20017", codes.FailedPrecondition, http.StatusUnauthorized, "authentication failed")
