@@ -2,12 +2,9 @@ module github.com/aserto-dev/go-directory
 
 go 1.19
 
-// replace github.com/aserto-dev/header => ../header
-
 require (
 	buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go v1.31.0-20231106192134-1baebb0a1518.2
 	github.com/aserto-dev/errors v0.0.6
-	github.com/aserto-dev/header v0.0.6-0.20231117220103-e7c453359300
 	github.com/bufbuild/protovalidate-go v0.4.1
 	github.com/go-http-utils/headers v0.0.0-20181008091004-fed159eddc2a
 	github.com/grpc-ecosystem/go-grpc-middleware v1.4.0
@@ -26,8 +23,6 @@ require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/google/cel-go v0.18.2 // indirect
-	github.com/google/uuid v1.3.1 // indirect
-	github.com/grpc-ecosystem/grpc-gateway v1.16.0 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.19 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
