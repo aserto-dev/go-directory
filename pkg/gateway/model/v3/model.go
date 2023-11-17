@@ -7,6 +7,7 @@ import (
 
 	dms3 "github.com/aserto-dev/go-directory/aserto/directory/model/v3"
 	"github.com/aserto-dev/go-directory/pkg/manifest"
+	"github.com/aserto-dev/go-directory/pkg/pb"
 	"github.com/go-http-utils/headers"
 	"github.com/grpc-ecosystem/go-grpc-middleware/util/metautils"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
@@ -102,9 +103,8 @@ func getManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient, mdOpt me
 			return
 		}
 
-		w.Header().Set(headers.ContentType, "application/yaml")
-
 		hasBody := false
+		hasModel := false
 		for {
 			msg, err := stream.Recv()
 			if err == io.EOF {
@@ -121,15 +121,29 @@ func getManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient, mdOpt me
 			}
 
 			if body := msg.GetBody(); body != nil {
+				hasBody = true
+				w.Header().Set(headers.ContentType, "application/yaml")
+
 				if _, err := w.Write(body.Data); err != nil {
 					runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 					return
 				}
-				hasBody = true
+
+			}
+
+			// We send either the body or the model, never both.
+			if model := msg.GetModel(); model != nil && !hasBody {
+				hasModel = true
+				w.Header().Set(headers.ContentType, "application/json")
+
+				if err := pb.ProtoToBuf(w, model); err != nil {
+					runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+					return
+				}
 			}
 		}
 
-		if !hasBody && req.Header.Get(headers.IfNoneMatch) != "" {
+		if !hasBody && !hasModel && req.Header.Get(headers.IfNoneMatch) != "" {
 			w.WriteHeader(http.StatusNotModified)
 		}
 	}
