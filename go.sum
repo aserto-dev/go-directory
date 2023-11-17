@@ -14,6 +14,8 @@ github.com/aserto-dev/header v0.0.6-0.20231117200733-e22aa7e77a4e h1:N3F5iDX4m/5
 github.com/aserto-dev/header v0.0.6-0.20231117200733-e22aa7e77a4e/go.mod h1:M8bQEEAwupcTHvv4Tt0CkH1n8lfSevaoZvH4W/+FZQQ=
 github.com/aserto-dev/header v0.0.6-0.20231117202610-96320b276fd1 h1:Hbqgupz6DkXeBcuPzZzy0dXyfoe4NmxCW6Dxkc4NH6A=
 github.com/aserto-dev/header v0.0.6-0.20231117202610-96320b276fd1/go.mod h1:M8bQEEAwupcTHvv4Tt0CkH1n8lfSevaoZvH4W/+FZQQ=
+github.com/aserto-dev/header v0.0.6-0.20231117220103-e7c453359300 h1:hPvLIvhKUr5zt7fXWWLLYi9rLKJ77F4q4euocax6NRY=
+github.com/aserto-dev/header v0.0.6-0.20231117220103-e7c453359300/go.mod h1:jUHV4BK6nc/kqHZoN7jNn9jvjGyaISsjIzU/2OSe/Mg=
 github.com/benbjohnson/clock v1.1.0/go.mod h1:J11/hYXuz8f4ySSvYwY0FKfm+ezbsZBKZxNJlLklBHA=
 github.com/bufbuild/protovalidate-go v0.4.1 h1:ye/8S72WbEklCeltPkSEeT8Eu1A7P/gmMsmapkwqTFk=
 github.com/bufbuild/protovalidate-go v0.4.1/go.mod h1:+p5FXfOjSEgLz5WBDTOMPMdQPXqALEERbJZU7huDCtA=

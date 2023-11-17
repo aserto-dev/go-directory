@@ -6,7 +6,7 @@ import (
 	"net/http"
 
 	dms3 "github.com/aserto-dev/go-directory/aserto/directory/model/v3"
-	"github.com/aserto-dev/header"
+	"github.com/aserto-dev/go-directory/pkg/manifest"
 	"github.com/go-http-utils/headers"
 	"github.com/grpc-ecosystem/go-grpc-middleware/util/metautils"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
@@ -92,7 +92,7 @@ func getManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient, mdOpt me
 
 		if mdOpt == MetadataOnly {
 			md := metautils.ExtractOutgoing(ctx).Clone()
-			md.Set(string(header.HeaderAsertoManifestRequest), "metadata-only")
+			md.Set(manifest.HeaderAsertoManifestRequest, "metadata-only")
 			ctx = md.ToOutgoing(ctx)
 		}
 
@@ -102,7 +102,7 @@ func getManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient, mdOpt me
 			return
 		}
 
-		w.Header().Set("Content-Type", "application/yaml")
+		w.Header().Set(headers.ContentType, "application/yaml")
 
 		hasBody := false
 		for {
@@ -116,7 +116,7 @@ func getManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient, mdOpt me
 			}
 
 			if md := msg.GetMetadata(); md != nil {
-				w.Header().Set(string(header.HeaderAsertoUpdatedAt), md.UpdatedAt.AsTime().Format(http.TimeFormat))
+				w.Header().Set(manifest.HeaderAsertoUpdatedAt, md.UpdatedAt.AsTime().Format(http.TimeFormat))
 				w.Header().Set(headers.ETag, md.Etag)
 			}
 
