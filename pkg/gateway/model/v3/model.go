@@ -103,8 +103,11 @@ func getManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient, mdOpt me
 			return
 		}
 
-		hasBody := false
-		hasModel := false
+		var (
+			hasManifest bool
+			hasBody     bool
+			hasModel    bool
+		)
 		for {
 			msg, err := stream.Recv()
 			if err == io.EOF {
@@ -115,9 +118,10 @@ func getManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient, mdOpt me
 				return
 			}
 
-			if md := msg.GetMetadata(); md != nil {
+			if md := msg.GetMetadata(); md != nil && md.Etag != "" {
 				w.Header().Set(manifest.HeaderAsertoUpdatedAt, md.UpdatedAt.AsTime().Format(http.TimeFormat))
 				w.Header().Set(headers.ETag, md.Etag)
+				hasManifest = true
 			}
 
 			if body := msg.GetBody(); body != nil {
@@ -143,7 +147,7 @@ func getManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient, mdOpt me
 			}
 		}
 
-		if !hasBody && !hasModel && req.Header.Get(headers.IfNoneMatch) != "" {
+		if hasManifest && !hasBody && !hasModel && req.Header.Get(headers.IfNoneMatch) != "" {
 			w.WriteHeader(http.StatusNotModified)
 		}
 	}
