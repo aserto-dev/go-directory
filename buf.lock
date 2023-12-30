@@ -4,8 +4,8 @@ deps:
   - remote: buf.build
     owner: aserto-dev
     repository: aserto
-    commit: 946da224ea81449493723a3a29114d16
-    digest: shake256:1847233c40adc132c29cb391a9d2a5547928b1bff129e76e2e33ce818d324101b260c8905eaa7e9033bb7ce6b7c72d33d4cbef4c63cade38df0b2eb9fba2ea6d
+    commit: 853661eaef744ff99b612392f4d338a5
+    digest: shake256:9b095a7dfe6c4e591d41f974e48710a4471e6f1bdde0abf6b098ff875eb45945c1035b2e359b7166067f35f3589823ce385c377dd7825e74978465f492abb070
   - remote: buf.build
     owner: googleapis
     repository: googleapis
