@@ -213,14 +213,15 @@ func GetRelationsRequestToV3(in *dsr2.GetRelationsRequest) *dsr3.GetRelationsReq
 	)
 
 	return &dsr3.GetRelationsRequest{
-		ObjectType:      objType,
-		ObjectId:        in.GetParam().GetObject().GetKey(),
-		Relation:        in.GetParam().GetRelation().GetName(),
-		SubjectType:     in.GetParam().GetSubject().GetType(),
-		SubjectId:       in.GetParam().GetSubject().GetKey(),
-		SubjectRelation: proto.String(""),
-		WithObjects:     false,
-		Page:            PaginationRequestToV3(in.Page),
+		ObjectType:               objType,
+		ObjectId:                 in.GetParam().GetObject().GetKey(),
+		Relation:                 in.GetParam().GetRelation().GetName(),
+		SubjectType:              in.GetParam().GetSubject().GetType(),
+		SubjectId:                in.GetParam().GetSubject().GetKey(),
+		SubjectRelation:          "",
+		WithEmptySubjectRelation: true,
+		WithObjects:              false,
+		Page:                     PaginationRequestToV3(in.Page),
 	}
 }
 
