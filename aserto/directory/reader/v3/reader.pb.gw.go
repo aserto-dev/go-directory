@@ -366,7 +366,7 @@ func local_request_Reader_CheckRelation_0(ctx context.Context, marshaler runtime
 }
 
 var (
-	filter_Reader_GetGraph_0 = &utilities.DoubleArray{Encoding: map[string]int{"anchor_type": 0, "anchorType": 1, "anchor_id": 2, "anchorId": 3}, Base: []int{1, 1, 2, 3, 4, 0, 0, 0, 0}, Check: []int{0, 1, 1, 1, 1, 2, 3, 4, 5}}
+	filter_Reader_GetGraph_0 = &utilities.DoubleArray{Encoding: map[string]int{"object_type": 0, "objectType": 1, "relation": 2, "subject_type": 3, "subjectType": 4}, Base: []int{1, 1, 2, 4, 5, 6, 0, 0, 0, 0, 0, 0}, Check: []int{0, 1, 1, 1, 1, 1, 2, 3, 4, 4, 5, 6}}
 )
 
 func request_Reader_GetGraph_0(ctx context.Context, marshaler runtime.Marshaler, client ReaderClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -380,24 +380,34 @@ func request_Reader_GetGraph_0(ctx context.Context, marshaler runtime.Marshaler,
 		_   = err
 	)
 
-	val, ok = pathParams["anchor_type"]
+	val, ok = pathParams["object_type"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "anchor_type")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "object_type")
 	}
 
-	protoReq.AnchorType, err = runtime.String(val)
+	protoReq.ObjectType, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "anchor_type", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "object_type", err)
 	}
 
-	val, ok = pathParams["anchor_id"]
+	val, ok = pathParams["relation"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "anchor_id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "relation")
 	}
 
-	protoReq.AnchorId, err = runtime.String(val)
+	protoReq.Relation, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "anchor_id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "relation", err)
+	}
+
+	val, ok = pathParams["subject_type"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subject_type")
+	}
+
+	protoReq.SubjectType, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subject_type", err)
 	}
 
 	if err := req.ParseForm(); err != nil {
@@ -423,24 +433,34 @@ func local_request_Reader_GetGraph_0(ctx context.Context, marshaler runtime.Mars
 		_   = err
 	)
 
-	val, ok = pathParams["anchor_type"]
+	val, ok = pathParams["object_type"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "anchor_type")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "object_type")
 	}
 
-	protoReq.AnchorType, err = runtime.String(val)
+	protoReq.ObjectType, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "anchor_type", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "object_type", err)
 	}
 
-	val, ok = pathParams["anchor_id"]
+	val, ok = pathParams["relation"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "anchor_id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "relation")
 	}
 
-	protoReq.AnchorId, err = runtime.String(val)
+	protoReq.Relation, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "anchor_id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "relation", err)
+	}
+
+	val, ok = pathParams["subject_type"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subject_type")
+	}
+
+	protoReq.SubjectType, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subject_type", err)
 	}
 
 	if err := req.ParseForm(); err != nil {
@@ -669,7 +689,7 @@ func RegisterReaderHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.reader.v3.Reader/GetGraph", runtime.WithHTTPPathPattern("/api/v3/directory/graph/{anchor_type}/{anchor_id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/aserto.directory.reader.v3.Reader/GetGraph", runtime.WithHTTPPathPattern("/api/v3/directory/graph/{object_type}/{relation}/{subject_type}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -909,7 +929,7 @@ func RegisterReaderHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.reader.v3.Reader/GetGraph", runtime.WithHTTPPathPattern("/api/v3/directory/graph/{anchor_type}/{anchor_id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.reader.v3.Reader/GetGraph", runtime.WithHTTPPathPattern("/api/v3/directory/graph/{object_type}/{relation}/{subject_type}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -945,7 +965,7 @@ var (
 
 	pattern_Reader_CheckRelation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v3", "directory", "check", "relation"}, ""))
 
-	pattern_Reader_GetGraph_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"api", "v3", "directory", "graph", "anchor_type", "anchor_id"}, ""))
+	pattern_Reader_GetGraph_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5, 1, 0, 4, 1, 5, 6}, []string{"api", "v3", "directory", "graph", "object_type", "relation", "subject_type"}, ""))
 )
 
 var (
