@@ -46,4 +46,6 @@ var (
 	ErrProtoValidate                = cerr.NewAsertoError("E20050", codes.InvalidArgument, http.StatusBadRequest, "")
 	ErrGraphDirectionality          = cerr.NewAsertoError("E20052", codes.InvalidArgument, http.StatusPreconditionFailed, "unable to determine graph directionality")
 	ErrUnknownOpCode                = cerr.NewAsertoError("E20053", codes.InvalidArgument, http.StatusPreconditionFailed, "unknown import OpCode value")
+	ErrNotImplemented               = cerr.NewAsertoError("E20054", codes.Unimplemented, http.StatusNotImplemented, "not implemented")
+	ErrCycleDetected                = cerr.NewAsertoError("E20055", codes.FailedPrecondition, http.StatusPreconditionFailed, "cycle detected")
 )
