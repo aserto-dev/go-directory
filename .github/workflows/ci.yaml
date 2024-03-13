@@ -58,7 +58,7 @@ jobs:
 
     - name: Generate
       run: |
-        make generate
+        make buf-generate
 
     - name: Commit changes
       if: github.event_name == 'workflow_dispatch'
