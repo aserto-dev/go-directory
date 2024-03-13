@@ -56,9 +56,17 @@ jobs:
       run: |
         echo -e "machine buf.build\npassword ${ASERTO_BUF_TOKEN}" >> ~/.netrc
 
-    - name: Generate
+    - name: Buf Generate
       run: |
         make buf-generate
+
+    - name: Lint
+      run: |
+        make lint
+    
+    - name: Test
+      run: |
+        make test
 
     - name: Commit changes
       if: github.event_name == 'workflow_dispatch'

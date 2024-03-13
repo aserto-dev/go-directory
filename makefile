@@ -32,11 +32,12 @@ EXT_BIN_DIR		:= ${EXT_DIR}/bin
 EXT_TMP_DIR		:= ${EXT_DIR}/tmp
 
 .PHONY: deps
-deps: info install-vault install-buf install-svu install-goreleaser install-golangci-lint install-gotestsum install-wire 
+deps: info install-vault install-buf install-svu install-golangci-lint install-gotestsum
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
 
 build:
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
+	@${EXT_BIN_DIR}/goreleaser build --clean --snapshot --single-target
 
 lint:
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
@@ -159,7 +160,7 @@ install-golangci-lint: ${EXT_TMP_DIR} ${EXT_BIN_DIR}
 .PHONY: install-goreleaser
 install-goreleaser: ${EXT_TMP_DIR} ${EXT_BIN_DIR}
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
-	gh release download v${GORELEASER_VERSION} --repo https://github.com/goreleaser/goreleaser --pattern "goreleaser_$$(uname -s)_$$(uname -m).tar.gz" --output "${EXT_TMP_DIR}/goreleaser.tar.gz" --clobber
+	@gh release download v${GORELEASER_VERSION} --repo https://github.com/goreleaser/goreleaser --pattern "goreleaser_$$(uname -s)_$$(uname -m).tar.gz" --output "${EXT_TMP_DIR}/goreleaser.tar.gz" --clobber
 	@tar -xvf ${EXT_TMP_DIR}/goreleaser.tar.gz --directory ${EXT_BIN_DIR} goreleaser &> /dev/null
 	@chmod +x ${EXT_BIN_DIR}/goreleaser
 	@${EXT_BIN_DIR}/goreleaser --version
