@@ -19,6 +19,7 @@ on:
 env:
   VAULT_ADDR: https://vault.eng.aserto.com/
   GO_VERSION: "1.22"
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   build:
