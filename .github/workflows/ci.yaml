@@ -18,8 +18,9 @@ on:
 
 env:
   VAULT_ADDR: https://vault.eng.aserto.com/
-  BUF_VERSION: "1.30.0"
   BUF_REPO: "buf.build/aserto-dev/directory"
+
+  BUF_VERSION: "1.30.0"
   BUF_BETA_SUPPRESS_WARNINGS: 1
   GO_VERSION: "1.22"
   GO_LANGCI_LINT_VERSION: "v1.56.2"
@@ -64,7 +65,7 @@ jobs:
       run: |
         rm -rf ./aserto
     - 
-      name: Latest version tag from Buf Registry
+      name: Get latest version tag from Buf Registry
       id: buf-latest
       run: |
         echo "VERSION=$(buf beta registry tag list buf.build/aserto-dev/directory --format json --reverse | jq -r '.results[0].name')" >> "$GITHUB_OUTPUT"
