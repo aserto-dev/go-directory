@@ -68,12 +68,16 @@ jobs:
       run: |
         echo -e "machine buf.build\npassword ${ASERTO_BUF_TOKEN}" >> ~/.netrc
     - 
+      name: Latest version tag from Buf Registry
+      id: buf-latest
+      run: |
+        echo "VERSION=$(buf beta registry tag list buf.build/aserto-dev/directory --format json --reverse | jq -r '.results[0].name')" >> "$GITHUB_OUTPUT"
+    - 
       name: Buf Generate
       run: |
-        echo "BUF_LATEST=$(buf beta registry tag list buf.build/aserto-dev/directory --format json --reverse | jq -r '.results[0].name')" >> "$GITHUB_ENV"
-        echo "${{ env.BUF_REPO }}:${{ env.BUF_LATEST }}"
+        echo "${{ env.BUF_REPO }}:${{ steps.buf-latest.outputs.VERSION }}"
         buf mod update .
-        buf generate ${{ env.BUF_REPO }}:${{ env.BUF_LATEST }}
+        buf generate ${{ env.BUF_REPO }}:${{ steps.buf-latest.outputs.VERSION }}
     -
       name: Lint
       uses: golangci/golangci-lint-action@v4
