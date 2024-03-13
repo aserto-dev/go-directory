@@ -20,7 +20,6 @@ env:
   VAULT_ADDR: https://vault.eng.aserto.com/
   BUF_VERSION: "1.30.0"
   BUF_REPO: "buf.build/aserto-dev/directory"
-  BUF_LATEST: $(buf beta registry tag list buf.build/aserto-dev/directory --format json --reverse | jq -r '.results[0].name')
   BUF_BETA_SUPPRESS_WARNINGS: 1
   GO_VERSION: "1.22"
   GO_LANGCI_LINT_VERSION: "v1.56.2"
@@ -71,6 +70,7 @@ jobs:
     - 
       name: Buf Generate
       run: |
+        echo "BUF_LATEST=$(buf beta registry tag list buf.build/aserto-dev/directory --format json --reverse | jq -r '.results[0].name')" >> "$GITHUB_ENV"
         echo "${{ env.BUF_REPO }}:${{ env.BUF_LATEST }}"
         buf mod update .
         buf generate ${{ env.BUF_REPO }}:${{ env.BUF_LATEST }}
