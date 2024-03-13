@@ -18,14 +18,14 @@ on:
 
 env:
   VAULT_ADDR: https://vault.eng.aserto.com/
-  GO_VERSION: "1.19"
+  GO_VERSION: "1.22"
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - name: Read Configuration
-      uses: hashicorp/vault-action@v2
+      uses: hashicorp/vault-action@v3
       id: vault
       with:
         url: ${{ env.VAULT_ADDR }}
@@ -39,22 +39,25 @@ jobs:
         fetch-depth: 0
 
     - name: Setup Go
-      uses: actions/setup-go@v4
+      uses: actions/setup-go@v5
       with:
         go-version: ${{ env.GO_VERSION }}
 
     - name: Install dependencies
       run: |
-          go run mage.go deps
+        make deps
 
     - name: Clean generated code
-      run: go run mage.go clean
+      run: |
+        make clean-gen
 
     - name: Setup Buf Registry
-      run: echo -e "machine buf.build\npassword ${ASERTO_BUF_TOKEN}" >> ~/.netrc
+      run: |
+        echo -e "machine buf.build\npassword ${ASERTO_BUF_TOKEN}" >> ~/.netrc
 
     - name: Generate
-      run: go run mage.go generate
+      run: |
+        make generate
 
     - name: Commit changes
       if: github.event_name == 'workflow_dispatch'
