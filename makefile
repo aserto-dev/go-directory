@@ -16,13 +16,13 @@ GOTESTSUM_VERSION := 1.11.0
 GOLANGCI-LINT_VERSION := 1.56.2
 GORELEASER_VERSION := 1.24.0
 WIRE_VERSION	:= 0.6.0
+BUF_VERSION 	:= 1.30.0
 
 BUF_USER		:= $(shell vault kv get -field ASERTO_BUF_USER kv/buf.build)
 BUF_TOKEN		:= $(shell vault kv get -field ASERTO_BUF_TOKEN kv/buf.build)
 BUF_REPO		:= "buf.build/aserto-dev/directory"
 BUF_LATEST		:= $(shell BUF_BETA_SUPPRESS_WARNINGS=1 buf beta registry tag list buf.build/aserto-dev/directory --format json --reverse | jq -r '.results[0].name')
 BUF_DEV_IMAGE	:= "../pb-directory/bin/directory.bin"
-BUF_VERSION 	:= 1.30.0
 
 RELEASE_TAG		:= $$(svu)
 
