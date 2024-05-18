@@ -99,26 +99,26 @@ func ObjectArrayToV3(in []*dsc2.Object) []*dsc3.Object {
 	return result
 }
 
-func ObjectDependencyToV3(in *dsc2.ObjectDependency) *dsc3.ObjectDependency {
-	return &dsc3.ObjectDependency{
-		ObjectType:  in.GetObjectType(),
-		ObjectId:    in.GetObjectKey(),
-		Relation:    in.GetRelation(),
-		SubjectType: in.GetSubjectType(),
-		SubjectId:   in.GetSubjectKey(),
-		Depth:       in.GetDepth(),
-		IsCycle:     in.GetIsCycle(),
-		Path:        in.GetPath(),
-	}
-}
+// func ObjectDependencyToV3(in *dsc2.ObjectDependency) *dsc3.ObjectDependency {
+// 	return &dsc3.ObjectDependency{
+// 		ObjectType:  in.GetObjectType(),
+// 		ObjectId:    in.GetObjectKey(),
+// 		Relation:    in.GetRelation(),
+// 		SubjectType: in.GetSubjectType(),
+// 		SubjectId:   in.GetSubjectKey(),
+// 		Depth:       in.GetDepth(),
+// 		IsCycle:     in.GetIsCycle(),
+// 		Path:        in.GetPath(),
+// 	}
+// }
 
-func ObjectDependencyArrayToV3(in []*dsc2.ObjectDependency) []*dsc3.ObjectDependency {
-	result := make([]*dsc3.ObjectDependency, len(in))
-	for i := 0; i < len(in); i++ {
-		result[i] = ObjectDependencyToV3(in[i])
-	}
-	return result
-}
+// func ObjectDependencyArrayToV3(in []*dsc2.ObjectDependency) []*dsc3.ObjectDependency {
+// 	result := make([]*dsc3.ObjectDependency, len(in))
+// 	for i := 0; i < len(in); i++ {
+// 		result[i] = ObjectDependencyToV3(in[i])
+// 	}
+// 	return result
+// }
 
 func RelationToV2(in *dsc3.Relation) *dsc2.Relation {
 	return &dsc2.Relation{
@@ -252,17 +252,17 @@ func CheckPermissionRequestToV3(in *dsr2.CheckPermissionRequest) *dsr3.CheckPerm
 	}
 }
 
-func GetGraphRequestToV3(in *dsr2.GetGraphRequest) *dsr3.GetGraphRequest {
-	return &dsr3.GetGraphRequest{
-		AnchorType:  in.GetAnchor().GetType(),
-		AnchorId:    in.GetAnchor().GetKey(),
-		ObjectType:  in.GetObject().GetType(),
-		ObjectId:    in.GetObject().GetKey(),
-		Relation:    in.GetRelation().GetName(),
-		SubjectType: in.GetSubject().GetType(),
-		SubjectId:   in.GetSubject().GetKey(),
-	}
-}
+// func GetGraphRequestToV3(in *dsr2.GetGraphRequest) *dsr3.GetGraphRequest {
+// 	return &dsr3.GetGraphRequest{
+// 		AnchorType:  in.GetAnchor().GetType(),
+// 		AnchorId:    in.GetAnchor().GetKey(),
+// 		ObjectType:  in.GetObject().GetType(),
+// 		ObjectId:    in.GetObject().GetKey(),
+// 		Relation:    in.GetRelation().GetName(),
+// 		SubjectType: in.GetSubject().GetType(),
+// 		SubjectId:   in.GetSubject().GetKey(),
+// 	}
+// }
 
 func PaginationRequestToV3(in *dsc2.PaginationRequest) *dsc3.PaginationRequest {
 	if in == nil {
