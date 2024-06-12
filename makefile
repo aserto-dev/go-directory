@@ -57,42 +57,15 @@ buf-login:
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
 	@echo ${BUF_TOKEN} | ${EXT_BIN_DIR}/buf registry login --username ${BUF_USER} --token-stdin
 
-.PHONY: buf-lint
-buf-lint:
-	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
-	@${EXT_BIN_DIR}/buf lint proto
-
-.PHONY: buf-breaking
-buf-breaking:
-	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
-	@${EXT_BIN_DIR}/buf breaking proto --against "https://github.com/d5s-io/directory.git#branch=main"
-
-.PHONY: buf-build
-buf-build: ${BIN_DIR}
-	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
-	@${EXT_BIN_DIR}/buf build proto --output ${BIN_DIR}/directory.bin
-
-.PHONY: buf-push
-buf-push:
-	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
-	@${EXT_BIN_DIR}/buf push proto --tag ${RELEASE_TAG}
-
-.PHONY: buf-mod-update
-buf-mod-update:
-	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
-	@${EXT_BIN_DIR}/buf mod update .
-
 .PHONY: buf-generate
 buf-generate:
-	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
-	@${EXT_BIN_DIR}/buf mod update .
+	@echo -e "$(ATTN_COLOR)==> $@ ${BUF_REPO}:${BUF_LATEST}$(NO_COLOR)"
 	@${EXT_BIN_DIR}/buf generate ${BUF_REPO}:${BUF_LATEST}
 
 .PHONY: buf-generate-dev
 buf-generate-dev:
-	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
-	@${EXT_BIN_DIR}/buf mod update .
-	@${EXT_BIN_DIR}/buf generate "../pb-directory/bin/directory.bin"
+	@echo -e "$(ATTN_COLOR)==> $@ ${BUF_DEV_IMAGE}$(NO_COLOR)"
+	@${EXT_BIN_DIR}/buf generate ${BUF_DEV_IMAGE}
 
 .PHONY: info
 info:
