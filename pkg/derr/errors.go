@@ -48,4 +48,5 @@ var (
 	ErrUnknownOpCode                = cerr.NewAsertoError("E20053", codes.InvalidArgument, http.StatusPreconditionFailed, "unknown import OpCode value")
 	ErrNotImplemented               = cerr.NewAsertoError("E20054", codes.Unimplemented, http.StatusNotImplemented, "not implemented")
 	ErrCycleDetected                = cerr.NewAsertoError("E20055", codes.FailedPrecondition, http.StatusPreconditionFailed, "cycle detected")
+	ErrInvalidOpCode                = cerr.NewAsertoError("E20056", codes.InvalidArgument, http.StatusPreconditionFailed, "invalid import OpCode value")
 )
