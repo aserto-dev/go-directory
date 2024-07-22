@@ -26,6 +26,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ImporterClient interface {
+	// import stream of objects and relations
 	Import(ctx context.Context, opts ...grpc.CallOption) (Importer_ImportClient, error)
 }
 
@@ -72,6 +73,7 @@ func (x *importerImportClient) Recv() (*ImportResponse, error) {
 // All implementations should embed UnimplementedImporterServer
 // for forward compatibility
 type ImporterServer interface {
+	// import stream of objects and relations
 	Import(Importer_ImportServer) error
 }
 

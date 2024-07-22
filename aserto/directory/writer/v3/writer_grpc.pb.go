@@ -29,11 +29,13 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type WriterClient interface {
-	// object methods
+	// set object instance
 	SetObject(ctx context.Context, in *SetObjectRequest, opts ...grpc.CallOption) (*SetObjectResponse, error)
+	// delete object instance
 	DeleteObject(ctx context.Context, in *DeleteObjectRequest, opts ...grpc.CallOption) (*DeleteObjectResponse, error)
-	// relation methods
+	// set relation instance
 	SetRelation(ctx context.Context, in *SetRelationRequest, opts ...grpc.CallOption) (*SetRelationResponse, error)
+	// delete relation instance
 	DeleteRelation(ctx context.Context, in *DeleteRelationRequest, opts ...grpc.CallOption) (*DeleteRelationResponse, error)
 }
 
@@ -85,11 +87,13 @@ func (c *writerClient) DeleteRelation(ctx context.Context, in *DeleteRelationReq
 // All implementations should embed UnimplementedWriterServer
 // for forward compatibility
 type WriterServer interface {
-	// object methods
+	// set object instance
 	SetObject(context.Context, *SetObjectRequest) (*SetObjectResponse, error)
+	// delete object instance
 	DeleteObject(context.Context, *DeleteObjectRequest) (*DeleteObjectResponse, error)
-	// relation methods
+	// set relation instance
 	SetRelation(context.Context, *SetRelationRequest) (*SetRelationResponse, error)
+	// delete relation instance
 	DeleteRelation(context.Context, *DeleteRelationRequest) (*DeleteRelationResponse, error)
 }
 

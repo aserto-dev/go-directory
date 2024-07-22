@@ -28,8 +28,11 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ModelClient interface {
+	// get manifest instance
 	GetManifest(ctx context.Context, in *GetManifestRequest, opts ...grpc.CallOption) (Model_GetManifestClient, error)
+	// set manifest instance
 	SetManifest(ctx context.Context, opts ...grpc.CallOption) (Model_SetManifestClient, error)
+	// delete manifest instance
 	DeleteManifest(ctx context.Context, in *DeleteManifestRequest, opts ...grpc.CallOption) (*DeleteManifestResponse, error)
 }
 
@@ -120,8 +123,11 @@ func (c *modelClient) DeleteManifest(ctx context.Context, in *DeleteManifestRequ
 // All implementations should embed UnimplementedModelServer
 // for forward compatibility
 type ModelServer interface {
+	// get manifest instance
 	GetManifest(*GetManifestRequest, Model_GetManifestServer) error
+	// set manifest instance
 	SetManifest(Model_SetManifestServer) error
+	// delete manifest instance
 	DeleteManifest(context.Context, *DeleteManifestRequest) (*DeleteManifestResponse, error)
 }
 

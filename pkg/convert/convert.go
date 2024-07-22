@@ -1,3 +1,4 @@
+// nolint: staticcheck // do not flag use of deprecated funcs in convert package.
 package convert
 
 import (

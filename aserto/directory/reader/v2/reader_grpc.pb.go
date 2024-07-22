@@ -39,27 +39,55 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ReaderClient interface {
-	// object type metadata methods
+	// Deprecated: Do not use.
+	// get object type metadata
 	GetObjectType(ctx context.Context, in *GetObjectTypeRequest, opts ...grpc.CallOption) (*GetObjectTypeResponse, error)
+	// Deprecated: Do not use.
+	// list object type metadata
 	GetObjectTypes(ctx context.Context, in *GetObjectTypesRequest, opts ...grpc.CallOption) (*GetObjectTypesResponse, error)
-	// relation type metadata methods
+	// Deprecated: Do not use.
+	// get relation type metadata
 	GetRelationType(ctx context.Context, in *GetRelationTypeRequest, opts ...grpc.CallOption) (*GetRelationTypeResponse, error)
+	// Deprecated: Do not use.
+	// list relation type metadata
 	GetRelationTypes(ctx context.Context, in *GetRelationTypesRequest, opts ...grpc.CallOption) (*GetRelationTypesResponse, error)
-	// permission metadata methods
+	// Deprecated: Do not use.
+	// get permission metadata
 	GetPermission(ctx context.Context, in *GetPermissionRequest, opts ...grpc.CallOption) (*GetPermissionResponse, error)
+	// Deprecated: Do not use.
+	// list permission metadata
 	GetPermissions(ctx context.Context, in *GetPermissionsRequest, opts ...grpc.CallOption) (*GetPermissionsResponse, error)
-	// object methods
+	// Deprecated: Do not use.
+	// get object
+	// Deprecated: directory.v2.GetObject is deprecated, use directory.v3.GetObject.
 	GetObject(ctx context.Context, in *GetObjectRequest, opts ...grpc.CallOption) (*GetObjectResponse, error)
+	// Deprecated: Do not use.
+	// get multiple objects
+	// Deprecated: directory.v2.GetObjectMany is deprecated, update to use directory.v3.GetObjectMany.
 	GetObjectMany(ctx context.Context, in *GetObjectManyRequest, opts ...grpc.CallOption) (*GetObjectManyResponse, error)
+	// Deprecated: Do not use.
+	// list objects
+	// Deprecated: directory.v2.GetObjects is deprecated, update to use directory.v3.GetObjects.
 	GetObjects(ctx context.Context, in *GetObjectsRequest, opts ...grpc.CallOption) (*GetObjectsResponse, error)
-	// relation methods
+	// Deprecated: Do not use.
+	// get relation
+	// Deprecated: directory.v2.GetRelation is deprecated, update to use directory.v3.GetRelation.
 	GetRelation(ctx context.Context, in *GetRelationRequest, opts ...grpc.CallOption) (*GetRelationResponse, error)
+	// Deprecated: Do not use.
+	// list relations
+	// Deprecated: directory.v2.GetRelations is deprecated, update to use directory.v3.GetRelations.
 	GetRelations(ctx context.Context, in *GetRelationsRequest, opts ...grpc.CallOption) (*GetRelationsResponse, error)
-	// check permission method
+	// Deprecated: Do not use.
+	// check permission
+	// Deprecated: directory.v2.CheckPermission is deprecated, update to use directory.v3.Check.
 	CheckPermission(ctx context.Context, in *CheckPermissionRequest, opts ...grpc.CallOption) (*CheckPermissionResponse, error)
-	// check relation method
+	// Deprecated: Do not use.
+	// check relation
+	// Deprecated: directory.v2.CheckRelation is deprecated, update to use directory.v3.Check.
 	CheckRelation(ctx context.Context, in *CheckRelationRequest, opts ...grpc.CallOption) (*CheckRelationResponse, error)
-	// graph methods
+	// Deprecated: Do not use.
+	// get object relationship graph
+	// Deprecated: directory.v2.GetGraph is deprecated, update to use directory.v3.GetGraph.
 	GetGraph(ctx context.Context, in *GetGraphRequest, opts ...grpc.CallOption) (*GetGraphResponse, error)
 }
 
@@ -71,6 +99,7 @@ func NewReaderClient(cc grpc.ClientConnInterface) ReaderClient {
 	return &readerClient{cc}
 }
 
+// Deprecated: Do not use.
 func (c *readerClient) GetObjectType(ctx context.Context, in *GetObjectTypeRequest, opts ...grpc.CallOption) (*GetObjectTypeResponse, error) {
 	out := new(GetObjectTypeResponse)
 	err := c.cc.Invoke(ctx, Reader_GetObjectType_FullMethodName, in, out, opts...)
@@ -80,6 +109,7 @@ func (c *readerClient) GetObjectType(ctx context.Context, in *GetObjectTypeReque
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *readerClient) GetObjectTypes(ctx context.Context, in *GetObjectTypesRequest, opts ...grpc.CallOption) (*GetObjectTypesResponse, error) {
 	out := new(GetObjectTypesResponse)
 	err := c.cc.Invoke(ctx, Reader_GetObjectTypes_FullMethodName, in, out, opts...)
@@ -89,6 +119,7 @@ func (c *readerClient) GetObjectTypes(ctx context.Context, in *GetObjectTypesReq
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *readerClient) GetRelationType(ctx context.Context, in *GetRelationTypeRequest, opts ...grpc.CallOption) (*GetRelationTypeResponse, error) {
 	out := new(GetRelationTypeResponse)
 	err := c.cc.Invoke(ctx, Reader_GetRelationType_FullMethodName, in, out, opts...)
@@ -98,6 +129,7 @@ func (c *readerClient) GetRelationType(ctx context.Context, in *GetRelationTypeR
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *readerClient) GetRelationTypes(ctx context.Context, in *GetRelationTypesRequest, opts ...grpc.CallOption) (*GetRelationTypesResponse, error) {
 	out := new(GetRelationTypesResponse)
 	err := c.cc.Invoke(ctx, Reader_GetRelationTypes_FullMethodName, in, out, opts...)
@@ -107,6 +139,7 @@ func (c *readerClient) GetRelationTypes(ctx context.Context, in *GetRelationType
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *readerClient) GetPermission(ctx context.Context, in *GetPermissionRequest, opts ...grpc.CallOption) (*GetPermissionResponse, error) {
 	out := new(GetPermissionResponse)
 	err := c.cc.Invoke(ctx, Reader_GetPermission_FullMethodName, in, out, opts...)
@@ -116,6 +149,7 @@ func (c *readerClient) GetPermission(ctx context.Context, in *GetPermissionReque
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *readerClient) GetPermissions(ctx context.Context, in *GetPermissionsRequest, opts ...grpc.CallOption) (*GetPermissionsResponse, error) {
 	out := new(GetPermissionsResponse)
 	err := c.cc.Invoke(ctx, Reader_GetPermissions_FullMethodName, in, out, opts...)
@@ -125,6 +159,7 @@ func (c *readerClient) GetPermissions(ctx context.Context, in *GetPermissionsReq
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *readerClient) GetObject(ctx context.Context, in *GetObjectRequest, opts ...grpc.CallOption) (*GetObjectResponse, error) {
 	out := new(GetObjectResponse)
 	err := c.cc.Invoke(ctx, Reader_GetObject_FullMethodName, in, out, opts...)
@@ -134,6 +169,7 @@ func (c *readerClient) GetObject(ctx context.Context, in *GetObjectRequest, opts
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *readerClient) GetObjectMany(ctx context.Context, in *GetObjectManyRequest, opts ...grpc.CallOption) (*GetObjectManyResponse, error) {
 	out := new(GetObjectManyResponse)
 	err := c.cc.Invoke(ctx, Reader_GetObjectMany_FullMethodName, in, out, opts...)
@@ -143,6 +179,7 @@ func (c *readerClient) GetObjectMany(ctx context.Context, in *GetObjectManyReque
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *readerClient) GetObjects(ctx context.Context, in *GetObjectsRequest, opts ...grpc.CallOption) (*GetObjectsResponse, error) {
 	out := new(GetObjectsResponse)
 	err := c.cc.Invoke(ctx, Reader_GetObjects_FullMethodName, in, out, opts...)
@@ -152,6 +189,7 @@ func (c *readerClient) GetObjects(ctx context.Context, in *GetObjectsRequest, op
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *readerClient) GetRelation(ctx context.Context, in *GetRelationRequest, opts ...grpc.CallOption) (*GetRelationResponse, error) {
 	out := new(GetRelationResponse)
 	err := c.cc.Invoke(ctx, Reader_GetRelation_FullMethodName, in, out, opts...)
@@ -161,6 +199,7 @@ func (c *readerClient) GetRelation(ctx context.Context, in *GetRelationRequest, 
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *readerClient) GetRelations(ctx context.Context, in *GetRelationsRequest, opts ...grpc.CallOption) (*GetRelationsResponse, error) {
 	out := new(GetRelationsResponse)
 	err := c.cc.Invoke(ctx, Reader_GetRelations_FullMethodName, in, out, opts...)
@@ -170,6 +209,7 @@ func (c *readerClient) GetRelations(ctx context.Context, in *GetRelationsRequest
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *readerClient) CheckPermission(ctx context.Context, in *CheckPermissionRequest, opts ...grpc.CallOption) (*CheckPermissionResponse, error) {
 	out := new(CheckPermissionResponse)
 	err := c.cc.Invoke(ctx, Reader_CheckPermission_FullMethodName, in, out, opts...)
@@ -179,6 +219,7 @@ func (c *readerClient) CheckPermission(ctx context.Context, in *CheckPermissionR
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *readerClient) CheckRelation(ctx context.Context, in *CheckRelationRequest, opts ...grpc.CallOption) (*CheckRelationResponse, error) {
 	out := new(CheckRelationResponse)
 	err := c.cc.Invoke(ctx, Reader_CheckRelation_FullMethodName, in, out, opts...)
@@ -188,6 +229,7 @@ func (c *readerClient) CheckRelation(ctx context.Context, in *CheckRelationReque
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *readerClient) GetGraph(ctx context.Context, in *GetGraphRequest, opts ...grpc.CallOption) (*GetGraphResponse, error) {
 	out := new(GetGraphResponse)
 	err := c.cc.Invoke(ctx, Reader_GetGraph_FullMethodName, in, out, opts...)
@@ -201,27 +243,55 @@ func (c *readerClient) GetGraph(ctx context.Context, in *GetGraphRequest, opts .
 // All implementations should embed UnimplementedReaderServer
 // for forward compatibility
 type ReaderServer interface {
-	// object type metadata methods
+	// Deprecated: Do not use.
+	// get object type metadata
 	GetObjectType(context.Context, *GetObjectTypeRequest) (*GetObjectTypeResponse, error)
+	// Deprecated: Do not use.
+	// list object type metadata
 	GetObjectTypes(context.Context, *GetObjectTypesRequest) (*GetObjectTypesResponse, error)
-	// relation type metadata methods
+	// Deprecated: Do not use.
+	// get relation type metadata
 	GetRelationType(context.Context, *GetRelationTypeRequest) (*GetRelationTypeResponse, error)
+	// Deprecated: Do not use.
+	// list relation type metadata
 	GetRelationTypes(context.Context, *GetRelationTypesRequest) (*GetRelationTypesResponse, error)
-	// permission metadata methods
+	// Deprecated: Do not use.
+	// get permission metadata
 	GetPermission(context.Context, *GetPermissionRequest) (*GetPermissionResponse, error)
+	// Deprecated: Do not use.
+	// list permission metadata
 	GetPermissions(context.Context, *GetPermissionsRequest) (*GetPermissionsResponse, error)
-	// object methods
+	// Deprecated: Do not use.
+	// get object
+	// Deprecated: directory.v2.GetObject is deprecated, use directory.v3.GetObject.
 	GetObject(context.Context, *GetObjectRequest) (*GetObjectResponse, error)
+	// Deprecated: Do not use.
+	// get multiple objects
+	// Deprecated: directory.v2.GetObjectMany is deprecated, update to use directory.v3.GetObjectMany.
 	GetObjectMany(context.Context, *GetObjectManyRequest) (*GetObjectManyResponse, error)
+	// Deprecated: Do not use.
+	// list objects
+	// Deprecated: directory.v2.GetObjects is deprecated, update to use directory.v3.GetObjects.
 	GetObjects(context.Context, *GetObjectsRequest) (*GetObjectsResponse, error)
-	// relation methods
+	// Deprecated: Do not use.
+	// get relation
+	// Deprecated: directory.v2.GetRelation is deprecated, update to use directory.v3.GetRelation.
 	GetRelation(context.Context, *GetRelationRequest) (*GetRelationResponse, error)
+	// Deprecated: Do not use.
+	// list relations
+	// Deprecated: directory.v2.GetRelations is deprecated, update to use directory.v3.GetRelations.
 	GetRelations(context.Context, *GetRelationsRequest) (*GetRelationsResponse, error)
-	// check permission method
+	// Deprecated: Do not use.
+	// check permission
+	// Deprecated: directory.v2.CheckPermission is deprecated, update to use directory.v3.Check.
 	CheckPermission(context.Context, *CheckPermissionRequest) (*CheckPermissionResponse, error)
-	// check relation method
+	// Deprecated: Do not use.
+	// check relation
+	// Deprecated: directory.v2.CheckRelation is deprecated, update to use directory.v3.Check.
 	CheckRelation(context.Context, *CheckRelationRequest) (*CheckRelationResponse, error)
-	// graph methods
+	// Deprecated: Do not use.
+	// get object relationship graph
+	// Deprecated: directory.v2.GetGraph is deprecated, update to use directory.v3.GetGraph.
 	GetGraph(context.Context, *GetGraphRequest) (*GetGraphResponse, error)
 }
 
