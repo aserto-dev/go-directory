@@ -27,6 +27,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ExporterClient interface {
 	// Deprecated: Do not use.
+	// export objects and relations as a stream
 	Export(ctx context.Context, in *ExportRequest, opts ...grpc.CallOption) (Exporter_ExportClient, error)
 }
 
@@ -77,6 +78,7 @@ func (x *exporterExportClient) Recv() (*ExportResponse, error) {
 // for forward compatibility
 type ExporterServer interface {
 	// Deprecated: Do not use.
+	// export objects and relations as a stream
 	Export(*ExportRequest, Exporter_ExportServer) error
 }
 
