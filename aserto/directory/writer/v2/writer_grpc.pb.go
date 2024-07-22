@@ -35,20 +35,33 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type WriterClient interface {
-	// object type metadata methods
+	// Deprecated: Do not use.
 	SetObjectType(ctx context.Context, in *SetObjectTypeRequest, opts ...grpc.CallOption) (*SetObjectTypeResponse, error)
+	// Deprecated: Do not use.
 	DeleteObjectType(ctx context.Context, in *DeleteObjectTypeRequest, opts ...grpc.CallOption) (*DeleteObjectTypeResponse, error)
-	// relation type metadata methods
+	// Deprecated: Do not use.
 	SetRelationType(ctx context.Context, in *SetRelationTypeRequest, opts ...grpc.CallOption) (*SetRelationTypeResponse, error)
+	// Deprecated: Do not use.
 	DeleteRelationType(ctx context.Context, in *DeleteRelationTypeRequest, opts ...grpc.CallOption) (*DeleteRelationTypeResponse, error)
-	// permission metadata methods
+	// Deprecated: Do not use.
 	SetPermission(ctx context.Context, in *SetPermissionRequest, opts ...grpc.CallOption) (*SetPermissionResponse, error)
+	// Deprecated: Do not use.
 	DeletePermission(ctx context.Context, in *DeletePermissionRequest, opts ...grpc.CallOption) (*DeletePermissionResponse, error)
-	// object methods
+	// Deprecated: Do not use.
+	// set object instance
+	// Deprecated: directory.v2.SetObject is deprecated, use directory.v3.SetObject.
 	SetObject(ctx context.Context, in *SetObjectRequest, opts ...grpc.CallOption) (*SetObjectResponse, error)
+	// Deprecated: Do not use.
+	// delete object instance
+	// Deprecated: directory.v2.DeleteObject is deprecated, use directory.v3.DeleteObject.
 	DeleteObject(ctx context.Context, in *DeleteObjectRequest, opts ...grpc.CallOption) (*DeleteObjectResponse, error)
-	// relation methods
+	// Deprecated: Do not use.
+	// set relation instance
+	// Deprecated: directory.v2.SetRelation is deprecated, use directory.v3.SetRelation.
 	SetRelation(ctx context.Context, in *SetRelationRequest, opts ...grpc.CallOption) (*SetRelationResponse, error)
+	// Deprecated: Do not use.
+	// delete relation instance
+	// Deprecated: directory.v2.DeleteRelation is deprecated, use directory.v3.DeleteRelation.
 	DeleteRelation(ctx context.Context, in *DeleteRelationRequest, opts ...grpc.CallOption) (*DeleteRelationResponse, error)
 }
 
@@ -60,6 +73,7 @@ func NewWriterClient(cc grpc.ClientConnInterface) WriterClient {
 	return &writerClient{cc}
 }
 
+// Deprecated: Do not use.
 func (c *writerClient) SetObjectType(ctx context.Context, in *SetObjectTypeRequest, opts ...grpc.CallOption) (*SetObjectTypeResponse, error) {
 	out := new(SetObjectTypeResponse)
 	err := c.cc.Invoke(ctx, Writer_SetObjectType_FullMethodName, in, out, opts...)
@@ -69,6 +83,7 @@ func (c *writerClient) SetObjectType(ctx context.Context, in *SetObjectTypeReque
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *writerClient) DeleteObjectType(ctx context.Context, in *DeleteObjectTypeRequest, opts ...grpc.CallOption) (*DeleteObjectTypeResponse, error) {
 	out := new(DeleteObjectTypeResponse)
 	err := c.cc.Invoke(ctx, Writer_DeleteObjectType_FullMethodName, in, out, opts...)
@@ -78,6 +93,7 @@ func (c *writerClient) DeleteObjectType(ctx context.Context, in *DeleteObjectTyp
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *writerClient) SetRelationType(ctx context.Context, in *SetRelationTypeRequest, opts ...grpc.CallOption) (*SetRelationTypeResponse, error) {
 	out := new(SetRelationTypeResponse)
 	err := c.cc.Invoke(ctx, Writer_SetRelationType_FullMethodName, in, out, opts...)
@@ -87,6 +103,7 @@ func (c *writerClient) SetRelationType(ctx context.Context, in *SetRelationTypeR
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *writerClient) DeleteRelationType(ctx context.Context, in *DeleteRelationTypeRequest, opts ...grpc.CallOption) (*DeleteRelationTypeResponse, error) {
 	out := new(DeleteRelationTypeResponse)
 	err := c.cc.Invoke(ctx, Writer_DeleteRelationType_FullMethodName, in, out, opts...)
@@ -96,6 +113,7 @@ func (c *writerClient) DeleteRelationType(ctx context.Context, in *DeleteRelatio
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *writerClient) SetPermission(ctx context.Context, in *SetPermissionRequest, opts ...grpc.CallOption) (*SetPermissionResponse, error) {
 	out := new(SetPermissionResponse)
 	err := c.cc.Invoke(ctx, Writer_SetPermission_FullMethodName, in, out, opts...)
@@ -105,6 +123,7 @@ func (c *writerClient) SetPermission(ctx context.Context, in *SetPermissionReque
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *writerClient) DeletePermission(ctx context.Context, in *DeletePermissionRequest, opts ...grpc.CallOption) (*DeletePermissionResponse, error) {
 	out := new(DeletePermissionResponse)
 	err := c.cc.Invoke(ctx, Writer_DeletePermission_FullMethodName, in, out, opts...)
@@ -114,6 +133,7 @@ func (c *writerClient) DeletePermission(ctx context.Context, in *DeletePermissio
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *writerClient) SetObject(ctx context.Context, in *SetObjectRequest, opts ...grpc.CallOption) (*SetObjectResponse, error) {
 	out := new(SetObjectResponse)
 	err := c.cc.Invoke(ctx, Writer_SetObject_FullMethodName, in, out, opts...)
@@ -123,6 +143,7 @@ func (c *writerClient) SetObject(ctx context.Context, in *SetObjectRequest, opts
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *writerClient) DeleteObject(ctx context.Context, in *DeleteObjectRequest, opts ...grpc.CallOption) (*DeleteObjectResponse, error) {
 	out := new(DeleteObjectResponse)
 	err := c.cc.Invoke(ctx, Writer_DeleteObject_FullMethodName, in, out, opts...)
@@ -132,6 +153,7 @@ func (c *writerClient) DeleteObject(ctx context.Context, in *DeleteObjectRequest
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *writerClient) SetRelation(ctx context.Context, in *SetRelationRequest, opts ...grpc.CallOption) (*SetRelationResponse, error) {
 	out := new(SetRelationResponse)
 	err := c.cc.Invoke(ctx, Writer_SetRelation_FullMethodName, in, out, opts...)
@@ -141,6 +163,7 @@ func (c *writerClient) SetRelation(ctx context.Context, in *SetRelationRequest, 
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *writerClient) DeleteRelation(ctx context.Context, in *DeleteRelationRequest, opts ...grpc.CallOption) (*DeleteRelationResponse, error) {
 	out := new(DeleteRelationResponse)
 	err := c.cc.Invoke(ctx, Writer_DeleteRelation_FullMethodName, in, out, opts...)
@@ -154,20 +177,33 @@ func (c *writerClient) DeleteRelation(ctx context.Context, in *DeleteRelationReq
 // All implementations should embed UnimplementedWriterServer
 // for forward compatibility
 type WriterServer interface {
-	// object type metadata methods
+	// Deprecated: Do not use.
 	SetObjectType(context.Context, *SetObjectTypeRequest) (*SetObjectTypeResponse, error)
+	// Deprecated: Do not use.
 	DeleteObjectType(context.Context, *DeleteObjectTypeRequest) (*DeleteObjectTypeResponse, error)
-	// relation type metadata methods
+	// Deprecated: Do not use.
 	SetRelationType(context.Context, *SetRelationTypeRequest) (*SetRelationTypeResponse, error)
+	// Deprecated: Do not use.
 	DeleteRelationType(context.Context, *DeleteRelationTypeRequest) (*DeleteRelationTypeResponse, error)
-	// permission metadata methods
+	// Deprecated: Do not use.
 	SetPermission(context.Context, *SetPermissionRequest) (*SetPermissionResponse, error)
+	// Deprecated: Do not use.
 	DeletePermission(context.Context, *DeletePermissionRequest) (*DeletePermissionResponse, error)
-	// object methods
+	// Deprecated: Do not use.
+	// set object instance
+	// Deprecated: directory.v2.SetObject is deprecated, use directory.v3.SetObject.
 	SetObject(context.Context, *SetObjectRequest) (*SetObjectResponse, error)
+	// Deprecated: Do not use.
+	// delete object instance
+	// Deprecated: directory.v2.DeleteObject is deprecated, use directory.v3.DeleteObject.
 	DeleteObject(context.Context, *DeleteObjectRequest) (*DeleteObjectResponse, error)
-	// relation methods
+	// Deprecated: Do not use.
+	// set relation instance
+	// Deprecated: directory.v2.SetRelation is deprecated, use directory.v3.SetRelation.
 	SetRelation(context.Context, *SetRelationRequest) (*SetRelationResponse, error)
+	// Deprecated: Do not use.
+	// delete relation instance
+	// Deprecated: directory.v2.DeleteRelation is deprecated, use directory.v3.DeleteRelation.
 	DeleteRelation(context.Context, *DeleteRelationRequest) (*DeleteRelationResponse, error)
 }
 

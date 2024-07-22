@@ -19,7 +19,7 @@ const (
 	ManifestRequestDefault ManifestRequest = ""
 	// Only return the manifest metadata.
 	ManifestRequestMetadataOnly ManifestRequest = "metadata-only"
-	// Only return the manifest metadtata and model.
+	// Only return the manifest metadata and model.
 	ManifestRequestModelOnly ManifestRequest = "model-only"
 	// Return the manifest metadata, body, and model.
 	ManifestRequestWithModel ManifestRequest = "with-model"

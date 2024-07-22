@@ -34,20 +34,27 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ReaderClient interface {
-	// object methods
+	// get object
 	GetObject(ctx context.Context, in *GetObjectRequest, opts ...grpc.CallOption) (*GetObjectResponse, error)
+	// get multiple objects
 	GetObjectMany(ctx context.Context, in *GetObjectManyRequest, opts ...grpc.CallOption) (*GetObjectManyResponse, error)
+	// list objects
 	GetObjects(ctx context.Context, in *GetObjectsRequest, opts ...grpc.CallOption) (*GetObjectsResponse, error)
-	// relation methods
+	// get relation
 	GetRelation(ctx context.Context, in *GetRelationRequest, opts ...grpc.CallOption) (*GetRelationResponse, error)
+	// list relations
 	GetRelations(ctx context.Context, in *GetRelationsRequest, opts ...grpc.CallOption) (*GetRelationsResponse, error)
-	// check method
+	// check if subject has relation or permission with object
 	Check(ctx context.Context, in *CheckRequest, opts ...grpc.CallOption) (*CheckResponse, error)
-	// check permission method
+	// Deprecated: Do not use.
+	// check permission (deprecated, use the check method)
+	// Deprecated: use directory.v3.Check()
 	CheckPermission(ctx context.Context, in *CheckPermissionRequest, opts ...grpc.CallOption) (*CheckPermissionResponse, error)
-	// check relation method
+	// Deprecated: Do not use.
+	// check relation (deprecated, use the check method)
+	// Deprecated: use directory.v3.Check()
 	CheckRelation(ctx context.Context, in *CheckRelationRequest, opts ...grpc.CallOption) (*CheckRelationResponse, error)
-	// graph methods
+	// get object relationship graph
 	GetGraph(ctx context.Context, in *GetGraphRequest, opts ...grpc.CallOption) (*GetGraphResponse, error)
 }
 
@@ -113,6 +120,7 @@ func (c *readerClient) Check(ctx context.Context, in *CheckRequest, opts ...grpc
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *readerClient) CheckPermission(ctx context.Context, in *CheckPermissionRequest, opts ...grpc.CallOption) (*CheckPermissionResponse, error) {
 	out := new(CheckPermissionResponse)
 	err := c.cc.Invoke(ctx, Reader_CheckPermission_FullMethodName, in, out, opts...)
@@ -122,6 +130,7 @@ func (c *readerClient) CheckPermission(ctx context.Context, in *CheckPermissionR
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *readerClient) CheckRelation(ctx context.Context, in *CheckRelationRequest, opts ...grpc.CallOption) (*CheckRelationResponse, error) {
 	out := new(CheckRelationResponse)
 	err := c.cc.Invoke(ctx, Reader_CheckRelation_FullMethodName, in, out, opts...)
@@ -144,20 +153,27 @@ func (c *readerClient) GetGraph(ctx context.Context, in *GetGraphRequest, opts .
 // All implementations should embed UnimplementedReaderServer
 // for forward compatibility
 type ReaderServer interface {
-	// object methods
+	// get object
 	GetObject(context.Context, *GetObjectRequest) (*GetObjectResponse, error)
+	// get multiple objects
 	GetObjectMany(context.Context, *GetObjectManyRequest) (*GetObjectManyResponse, error)
+	// list objects
 	GetObjects(context.Context, *GetObjectsRequest) (*GetObjectsResponse, error)
-	// relation methods
+	// get relation
 	GetRelation(context.Context, *GetRelationRequest) (*GetRelationResponse, error)
+	// list relations
 	GetRelations(context.Context, *GetRelationsRequest) (*GetRelationsResponse, error)
-	// check method
+	// check if subject has relation or permission with object
 	Check(context.Context, *CheckRequest) (*CheckResponse, error)
-	// check permission method
+	// Deprecated: Do not use.
+	// check permission (deprecated, use the check method)
+	// Deprecated: use directory.v3.Check()
 	CheckPermission(context.Context, *CheckPermissionRequest) (*CheckPermissionResponse, error)
-	// check relation method
+	// Deprecated: Do not use.
+	// check relation (deprecated, use the check method)
+	// Deprecated: use directory.v3.Check()
 	CheckRelation(context.Context, *CheckRelationRequest) (*CheckRelationResponse, error)
-	// graph methods
+	// get object relationship graph
 	GetGraph(context.Context, *GetGraphRequest) (*GetGraphResponse, error)
 }
 
