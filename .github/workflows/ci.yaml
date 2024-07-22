@@ -73,7 +73,6 @@ jobs:
       name: Buf Generate
       run: |
         echo "${{ env.BUF_REPO }}:${{ steps.buf-latest.outputs.VERSION }}"
-        buf mod update .
         buf generate ${{ env.BUF_REPO }}:${{ steps.buf-latest.outputs.VERSION }}
     -
       name: Lint
