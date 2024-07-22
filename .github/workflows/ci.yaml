@@ -68,7 +68,7 @@ jobs:
       name: Get latest version tag from Buf Registry
       id: buf-latest
       run: |
-        echo "VERSION=$(buf beta registry label list buf.build/aserto-dev/directory --format json --reverse | jq -r '.results[0].name')" >> "$GITHUB_OUTPUT"
+        echo "VERSION=$(buf beta registry label list ${BUF_REPO} --format json --reverse | jq -r '.results[0].name')" >> "$GITHUB_OUTPUT"
     - 
       name: Buf Generate
       run: |
