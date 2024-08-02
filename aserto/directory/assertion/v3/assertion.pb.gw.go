@@ -201,6 +201,7 @@ func local_request_Assertion_DeleteAssertion_0(ctx context.Context, marshaler ru
 // UnaryRPC     :call AssertionServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterAssertionHandlerFromEndpoint instead.
+// GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterAssertionHandlerServer(ctx context.Context, mux *runtime.ServeMux, server AssertionServer) error {
 
 	mux.Handle("GET", pattern_Assertion_GetAssertion_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
@@ -341,7 +342,7 @@ func RegisterAssertionHandler(ctx context.Context, mux *runtime.ServeMux, conn *
 // to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "AssertionClient".
 // Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "AssertionClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "AssertionClient" to call the correct interceptors.
+// "AssertionClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterAssertionHandlerClient(ctx context.Context, mux *runtime.ServeMux, client AssertionClient) error {
 
 	mux.Handle("GET", pattern_Assertion_GetAssertion_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
