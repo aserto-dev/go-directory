@@ -1,19 +1,19 @@
-SHELL           := $(shell which bash)
-    
-NO_COLOR        := \033[0m
-OK_COLOR        := \033[32;01m
-ERR_COLOR       := \033[31;01m
-WARN_COLOR      := \033[36;01m
-ATTN_COLOR      := \033[33;01m
+SHELL              := $(shell which bash)
 
-GOOS            := $(shell go env GOOS)
-GOARCH          := $(shell go env GOARCH)
-GOPRIVATE       := "github.com/aserto-dev"
+NO_COLOR           := \033[0m
+OK_COLOR           := \033[32;01m
+ERR_COLOR          := \033[31;01m
+WARN_COLOR         := \033[36;01m
+ATTN_COLOR         := \033[33;01m
 
-BIN_DIR         := ./bin
-EXT_DIR         := ./.ext
-EXT_BIN_DIR     := ${EXT_DIR}/bin
-EXT_TMP_DIR     := ${EXT_DIR}/tmp
+GOOS               := $(shell go env GOOS)
+GOARCH             := $(shell go env GOARCH)
+GOPRIVATE          := "github.com/aserto-dev"
+
+BIN_DIR            := ./bin
+EXT_DIR            := ./.ext
+EXT_BIN_DIR        := ${EXT_DIR}/bin
+EXT_TMP_DIR        := ${EXT_DIR}/tmp
 
 GO_VER             := 1.23
 VAULT_VER	         := 1.8.12
@@ -23,41 +23,33 @@ GOLANGCI-LINT_VER  := 1.61.0
 GORELEASER_VER     := 2.3.2
 BUF_VER            := 1.34.0
 
-VAULT_VERSION   := 1.8.12
-SVU_VERSION     := 1.12.0
-WIRE_VERSION    := 0.6.0
-BUF_VERSION     := 1.34.0
-GOTESTSUM_VERSION := 1.11.0
-GOLANGCI-LINT_VERSION := 1.61.0
-GORELEASER_VERSION := 1.24.0
-
-PROJECT         := directory
+PROJECT            := directory
 BUF_USER           := $(shell ${EXT_BIN_DIR}/vault kv get -field ASERTO_BUF_USER kv/buf.build)
 BUF_TOKEN          := $(shell ${EXT_BIN_DIR}/vault kv get -field ASERTO_BUF_TOKEN kv/buf.build)
-BUF_REPO        := "buf.build/aserto-dev/${PROJECT}"
-BUF_LATEST      := $(shell BUF_BETA_SUPPRESS_WARNINGS=1 ${EXT_BIN_DIR}/buf beta registry label list ${BUF_REPO} --format json --reverse | jq -r '.results[0].name')
-BUF_DEV_IMAGE   := "${PROJECT}.bin"
-PROTO_REPO      := "pb-${PROJECT}"
+BUF_REPO           := "buf.build/aserto-dev/${PROJECT}"
+BUF_LATEST         := $(shell BUF_BETA_SUPPRESS_WARNINGS=1 ${EXT_BIN_DIR}/buf beta registry label list ${BUF_REPO} --format json --reverse | jq -r '.results[0].name')
+BUF_DEV_IMAGE      := "${PROJECT}.bin"
+PROTO_REPO         := "pb-${PROJECT}"
 
-GIT_ORG         := "https://github.com/aserto-dev"
+RELEASE_TAG        := $$(${EXT_BIN_DIR}/svu)
 
-RELEASE_TAG     := $$(svu)
+.DEFAULT_GOAL      := lint
 
 .PHONY: deps
 deps: info install-vault install-buf install-svu install-golangci-lint install-gotestsum
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
 
-.PHONY: build
-build:
+.PHONY: gover
+gover:
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
 	@(go env GOVERSION | grep "go${GO_VER}") || (echo "go version check failed expected go${GO_VER} got $$(go env GOVERSION)"; exit 1)
-	@${EXT_BIN_DIR}/goreleaser build --clean --snapshot --single-target
 
-lint:
+.PHONY: lint
+lint: gover
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
 	@${EXT_BIN_DIR}/golangci-lint run --config ${PWD}/.golangci.yaml
 
-test:
+test: gover
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
 	@${EXT_BIN_DIR}/gotestsum --format short-verbose -- -count=1 -v ${PWD}/... -coverprofile=cover.out -coverpkg=./... ${PWD}/...
 
