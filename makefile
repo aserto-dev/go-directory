@@ -15,17 +15,25 @@ EXT_DIR         := ./.ext
 EXT_BIN_DIR     := ${EXT_DIR}/bin
 EXT_TMP_DIR     := ${EXT_DIR}/tmp
 
+GO_VER             := 1.23
+VAULT_VER	         := 1.8.12
+SVU_VER 	         := 1.12.0
+GOTESTSUM_VER      := 1.11.0
+GOLANGCI-LINT_VER  := 1.61.0
+GORELEASER_VER     := 2.3.2
+BUF_VER            := 1.34.0
+
 VAULT_VERSION   := 1.8.12
 SVU_VERSION     := 1.12.0
 WIRE_VERSION    := 0.6.0
 BUF_VERSION     := 1.34.0
 GOTESTSUM_VERSION := 1.11.0
-GOLANGCI-LINT_VERSION := 1.56.2
+GOLANGCI-LINT_VERSION := 1.61.0
 GORELEASER_VERSION := 1.24.0
 
 PROJECT         := directory
-BUF_USER        := $(shell vault kv get -field ASERTO_BUF_USER kv/buf.build)
-BUF_TOKEN       := $(shell vault kv get -field ASERTO_BUF_TOKEN kv/buf.build)
+BUF_USER           := $(shell ${EXT_BIN_DIR}/vault kv get -field ASERTO_BUF_USER kv/buf.build)
+BUF_TOKEN          := $(shell ${EXT_BIN_DIR}/vault kv get -field ASERTO_BUF_TOKEN kv/buf.build)
 BUF_REPO        := "buf.build/aserto-dev/${PROJECT}"
 BUF_LATEST      := $(shell BUF_BETA_SUPPRESS_WARNINGS=1 ${EXT_BIN_DIR}/buf beta registry label list ${BUF_REPO} --format json --reverse | jq -r '.results[0].name')
 BUF_DEV_IMAGE   := "${PROJECT}.bin"
@@ -42,6 +50,7 @@ deps: info install-vault install-buf install-svu install-golangci-lint install-g
 .PHONY: build
 build:
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
+	@(go env GOVERSION | grep "go${GO_VER}") || (echo "go version check failed expected go${GO_VER} got $$(go env GOVERSION)"; exit 1)
 	@${EXT_BIN_DIR}/goreleaser build --clean --snapshot --single-target
 
 lint:
@@ -91,7 +100,7 @@ info:
 .PHONY: install-vault
 install-vault: ${EXT_BIN_DIR} ${EXT_TMP_DIR}
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
-	@curl -s -o ${EXT_TMP_DIR}/vault.zip https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_${GOOS}_${GOARCH}.zip
+	@curl -s -o ${EXT_TMP_DIR}/vault.zip https://releases.hashicorp.com/vault/${VAULT_VER}/vault_${VAULT_VER}_${GOOS}_${GOARCH}.zip
 	@unzip -o ${EXT_TMP_DIR}/vault.zip vault -d ${EXT_BIN_DIR}/  &> /dev/null
 	@chmod +x ${EXT_BIN_DIR}/vault
 	@${EXT_BIN_DIR}/vault --version 
@@ -99,7 +108,7 @@ install-vault: ${EXT_BIN_DIR} ${EXT_TMP_DIR}
 .PHONY: install-buf
 install-buf: ${EXT_BIN_DIR}
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
-	@gh release download v${BUF_VERSION} --repo https://github.com/bufbuild/buf --pattern "buf-$$(uname -s)-$$(uname -m)" --output "${EXT_BIN_DIR}/buf" --clobber
+	@gh release download v${BUF_VER} --repo https://github.com/bufbuild/buf --pattern "buf-$$(uname -s)-$$(uname -m)" --output "${EXT_BIN_DIR}/buf" --clobber
 	@chmod +x ${EXT_BIN_DIR}/buf
 	@${EXT_BIN_DIR}/buf --version
 
@@ -124,7 +133,7 @@ install-svu-linux: ${EXT_TMP_DIR} ${EXT_BIN_DIR}
 .PHONY: install-gotestsum
 install-gotestsum: ${EXT_TMP_DIR} ${EXT_BIN_DIR}
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
-	@gh release download v${GOTESTSUM_VERSION} --repo https://github.com/gotestyourself/gotestsum --pattern "gotestsum_${GOTESTSUM_VERSION}_${GOOS}_${GOARCH}.tar.gz" --output "${EXT_TMP_DIR}/gotestsum.tar.gz" --clobber
+	@gh release download v${GOTESTSUM_VER} --repo https://github.com/gotestyourself/gotestsum --pattern "gotestsum_${GOTESTSUM_VER}_${GOOS}_${GOARCH}.tar.gz" --output "${EXT_TMP_DIR}/gotestsum.tar.gz" --clobber
 	@tar -xvf ${EXT_TMP_DIR}/gotestsum.tar.gz --directory ${EXT_BIN_DIR} gotestsum &> /dev/null
 	@chmod +x ${EXT_BIN_DIR}/gotestsum
 	@${EXT_BIN_DIR}/gotestsum --version
@@ -132,7 +141,7 @@ install-gotestsum: ${EXT_TMP_DIR} ${EXT_BIN_DIR}
 .PHONY: install-golangci-lint
 install-golangci-lint: ${EXT_TMP_DIR} ${EXT_BIN_DIR}
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
-	@gh release download v${GOLANGCI-LINT_VERSION} --repo https://github.com/golangci/golangci-lint --pattern "golangci-lint-${GOLANGCI-LINT_VERSION}-${GOOS}-${GOARCH}.tar.gz" --output "${EXT_TMP_DIR}/golangci-lint.tar.gz" --clobber
+	@gh release download v${GOLANGCI-LINT_VER} --repo https://github.com/golangci/golangci-lint --pattern "golangci-lint-${GOLANGCI-LINT_VER}-${GOOS}-${GOARCH}.tar.gz" --output "${EXT_TMP_DIR}/golangci-lint.tar.gz" --clobber
 	@tar --strip=1 -xvf ${EXT_TMP_DIR}/golangci-lint.tar.gz --strip-components=1 --directory ${EXT_TMP_DIR} &> /dev/null
 	@mv ${EXT_TMP_DIR}/golangci-lint ${EXT_BIN_DIR}/golangci-lint
 	@chmod +x ${EXT_BIN_DIR}/golangci-lint
@@ -141,7 +150,7 @@ install-golangci-lint: ${EXT_TMP_DIR} ${EXT_BIN_DIR}
 .PHONY: install-goreleaser
 install-goreleaser: ${EXT_TMP_DIR} ${EXT_BIN_DIR}
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
-	@gh release download v${GORELEASER_VERSION} --repo https://github.com/goreleaser/goreleaser --pattern "goreleaser_$$(uname -s)_$$(uname -m).tar.gz" --output "${EXT_TMP_DIR}/goreleaser.tar.gz" --clobber
+	@gh release download v${GORELEASER_VER} --repo https://github.com/goreleaser/goreleaser --pattern "goreleaser_$$(uname -s)_$$(uname -m).tar.gz" --output "${EXT_TMP_DIR}/goreleaser.tar.gz" --clobber
 	@tar -xvf ${EXT_TMP_DIR}/goreleaser.tar.gz --directory ${EXT_BIN_DIR} goreleaser &> /dev/null
 	@chmod +x ${EXT_BIN_DIR}/goreleaser
 	@${EXT_BIN_DIR}/goreleaser --version
@@ -149,18 +158,14 @@ install-goreleaser: ${EXT_TMP_DIR} ${EXT_BIN_DIR}
 .PHONY: install-wire
 install-wire: ${EXT_TMP_DIR} ${EXT_BIN_DIR}
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
-	@GOBIN=${PWD}/${EXT_BIN_DIR} go install github.com/google/wire/cmd/wire@v${WIRE_VERSION}
+	@GOBIN=${PWD}/${EXT_BIN_DIR} go install github.com/google/wire/cmd/wire@v${WIRE_VER}
 
 .PHONY: clean
 clean:
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
-	@rm -rf ./.ext
-	@rm -rf ./bin
-
-.PHONY: clean-gen
-clean-gen:
-	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
-	@rm -rf ./aserto
+	@rm -rf ${EXT_DIR}
+	@rm -rf ${BIN_DIR}
+	@rm -rf ./dist
 
 ${BIN_DIR}:
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
