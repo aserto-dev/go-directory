@@ -67,6 +67,11 @@ buf-generate:
 	@echo -e "$(ATTN_COLOR)==> $@ ${BUF_REPO}:${BUF_LATEST}$(NO_COLOR)"
 	@${EXT_BIN_DIR}/buf generate ${BUF_REPO}:${BUF_LATEST}
 
+.PHONY: buf-generate-tag
+buf-generate-tag:
+	@echo -e "$(ATTN_COLOR)==> $@ ${BUF_REPO}:${BUF_TAG}$(NO_COLOR)"
+	@${EXT_BIN_DIR}/buf generate ${BUF_REPO}:${BUF_TAG}
+
 .PHONY: buf-generate-dev
 buf-generate-dev:
 	@echo -e "$(ATTN_COLOR)==> $@ ../${PROTO_REPO}/bin/${BUF_DEV_IMAGE}$(NO_COLOR)"
