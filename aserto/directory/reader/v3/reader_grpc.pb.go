@@ -25,6 +25,7 @@ const (
 	Reader_GetRelation_FullMethodName     = "/aserto.directory.reader.v3.Reader/GetRelation"
 	Reader_GetRelations_FullMethodName    = "/aserto.directory.reader.v3.Reader/GetRelations"
 	Reader_Check_FullMethodName           = "/aserto.directory.reader.v3.Reader/Check"
+	Reader_Checks_FullMethodName          = "/aserto.directory.reader.v3.Reader/Checks"
 	Reader_CheckPermission_FullMethodName = "/aserto.directory.reader.v3.Reader/CheckPermission"
 	Reader_CheckRelation_FullMethodName   = "/aserto.directory.reader.v3.Reader/CheckRelation"
 	Reader_GetGraph_FullMethodName        = "/aserto.directory.reader.v3.Reader/GetGraph"
@@ -46,6 +47,8 @@ type ReaderClient interface {
 	GetRelations(ctx context.Context, in *GetRelationsRequest, opts ...grpc.CallOption) (*GetRelationsResponse, error)
 	// check if subject has relation or permission with object
 	Check(ctx context.Context, in *CheckRequest, opts ...grpc.CallOption) (*CheckResponse, error)
+	// EXPERIMENTAL: checks validates a set of check requests in a single roundtrip
+	Checks(ctx context.Context, in *ChecksRequest, opts ...grpc.CallOption) (*ChecksResponse, error)
 	// Deprecated: Do not use.
 	// check permission (deprecated, use the check method)
 	// Deprecated: use directory.v3.Check()
@@ -126,6 +129,16 @@ func (c *readerClient) Check(ctx context.Context, in *CheckRequest, opts ...grpc
 	return out, nil
 }
 
+func (c *readerClient) Checks(ctx context.Context, in *ChecksRequest, opts ...grpc.CallOption) (*ChecksResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ChecksResponse)
+	err := c.cc.Invoke(ctx, Reader_Checks_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Deprecated: Do not use.
 func (c *readerClient) CheckPermission(ctx context.Context, in *CheckPermissionRequest, opts ...grpc.CallOption) (*CheckPermissionResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
@@ -174,6 +187,8 @@ type ReaderServer interface {
 	GetRelations(context.Context, *GetRelationsRequest) (*GetRelationsResponse, error)
 	// check if subject has relation or permission with object
 	Check(context.Context, *CheckRequest) (*CheckResponse, error)
+	// EXPERIMENTAL: checks validates a set of check requests in a single roundtrip
+	Checks(context.Context, *ChecksRequest) (*ChecksResponse, error)
 	// Deprecated: Do not use.
 	// check permission (deprecated, use the check method)
 	// Deprecated: use directory.v3.Check()
@@ -210,6 +225,9 @@ func (UnimplementedReaderServer) GetRelations(context.Context, *GetRelationsRequ
 }
 func (UnimplementedReaderServer) Check(context.Context, *CheckRequest) (*CheckResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Check not implemented")
+}
+func (UnimplementedReaderServer) Checks(context.Context, *ChecksRequest) (*ChecksResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Checks not implemented")
 }
 func (UnimplementedReaderServer) CheckPermission(context.Context, *CheckPermissionRequest) (*CheckPermissionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckPermission not implemented")
@@ -348,6 +366,24 @@ func _Reader_Check_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Reader_Checks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ChecksRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ReaderServer).Checks(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Reader_Checks_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ReaderServer).Checks(ctx, req.(*ChecksRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Reader_CheckPermission_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CheckPermissionRequest)
 	if err := dec(in); err != nil {
@@ -432,6 +468,10 @@ var Reader_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Check",
 			Handler:    _Reader_Check_Handler,
+		},
+		{
+			MethodName: "Checks",
+			Handler:    _Reader_Checks_Handler,
 		},
 		{
 			MethodName: "CheckPermission",
