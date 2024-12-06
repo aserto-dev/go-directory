@@ -493,6 +493,232 @@ func (x *PaginationResponse) GetNextToken() string {
 	return ""
 }
 
+// INTERNAL serialization message.
+type ObjKey struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ObjectType string `protobuf:"bytes,1,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"`
+	ObjectId   string `protobuf:"bytes,2,opt,name=object_id,json=objectId,proto3" json:"object_id,omitempty"`
+}
+
+func (x *ObjKey) Reset() {
+	*x = ObjKey{}
+	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ObjKey) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ObjKey) ProtoMessage() {}
+
+func (x *ObjKey) ProtoReflect() protoreflect.Message {
+	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ObjKey.ProtoReflect.Descriptor instead.
+func (*ObjKey) Descriptor() ([]byte, []int) {
+	return file_aserto_directory_common_v3_common_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *ObjKey) GetObjectType() string {
+	if x != nil {
+		return x.ObjectType
+	}
+	return ""
+}
+
+func (x *ObjKey) GetObjectId() string {
+	if x != nil {
+		return x.ObjectId
+	}
+	return ""
+}
+
+// INTERNAL serialization message.
+type RelObjKey struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ObjectType      string `protobuf:"bytes,1,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"`
+	ObjectId        string `protobuf:"bytes,2,opt,name=object_id,json=objectId,proto3" json:"object_id,omitempty"`
+	Relation        string `protobuf:"bytes,3,opt,name=relation,proto3" json:"relation,omitempty"`
+	SubjectType     string `protobuf:"bytes,4,opt,name=subject_type,json=subjectType,proto3" json:"subject_type,omitempty"`
+	SubjectId       string `protobuf:"bytes,5,opt,name=subject_id,json=subjectId,proto3" json:"subject_id,omitempty"`
+	SubjectRelation string `protobuf:"bytes,6,opt,name=subject_relation,json=subjectRelation,proto3" json:"subject_relation,omitempty"`
+}
+
+func (x *RelObjKey) Reset() {
+	*x = RelObjKey{}
+	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RelObjKey) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RelObjKey) ProtoMessage() {}
+
+func (x *RelObjKey) ProtoReflect() protoreflect.Message {
+	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RelObjKey.ProtoReflect.Descriptor instead.
+func (*RelObjKey) Descriptor() ([]byte, []int) {
+	return file_aserto_directory_common_v3_common_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *RelObjKey) GetObjectType() string {
+	if x != nil {
+		return x.ObjectType
+	}
+	return ""
+}
+
+func (x *RelObjKey) GetObjectId() string {
+	if x != nil {
+		return x.ObjectId
+	}
+	return ""
+}
+
+func (x *RelObjKey) GetRelation() string {
+	if x != nil {
+		return x.Relation
+	}
+	return ""
+}
+
+func (x *RelObjKey) GetSubjectType() string {
+	if x != nil {
+		return x.SubjectType
+	}
+	return ""
+}
+
+func (x *RelObjKey) GetSubjectId() string {
+	if x != nil {
+		return x.SubjectId
+	}
+	return ""
+}
+
+func (x *RelObjKey) GetSubjectRelation() string {
+	if x != nil {
+		return x.SubjectRelation
+	}
+	return ""
+}
+
+// INTERNAL serialization message.
+type RelSubKey struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	SubjectType     string `protobuf:"bytes,1,opt,name=subject_type,json=subjectType,proto3" json:"subject_type,omitempty"`
+	SubjectId       string `protobuf:"bytes,2,opt,name=subject_id,json=subjectId,proto3" json:"subject_id,omitempty"`
+	Relation        string `protobuf:"bytes,3,opt,name=relation,proto3" json:"relation,omitempty"`
+	ObjectType      string `protobuf:"bytes,4,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"`
+	ObjectId        string `protobuf:"bytes,5,opt,name=object_id,json=objectId,proto3" json:"object_id,omitempty"`
+	SubjectRelation string `protobuf:"bytes,6,opt,name=subject_relation,json=subjectRelation,proto3" json:"subject_relation,omitempty"`
+}
+
+func (x *RelSubKey) Reset() {
+	*x = RelSubKey{}
+	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RelSubKey) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RelSubKey) ProtoMessage() {}
+
+func (x *RelSubKey) ProtoReflect() protoreflect.Message {
+	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RelSubKey.ProtoReflect.Descriptor instead.
+func (*RelSubKey) Descriptor() ([]byte, []int) {
+	return file_aserto_directory_common_v3_common_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *RelSubKey) GetSubjectType() string {
+	if x != nil {
+		return x.SubjectType
+	}
+	return ""
+}
+
+func (x *RelSubKey) GetSubjectId() string {
+	if x != nil {
+		return x.SubjectId
+	}
+	return ""
+}
+
+func (x *RelSubKey) GetRelation() string {
+	if x != nil {
+		return x.Relation
+	}
+	return ""
+}
+
+func (x *RelSubKey) GetObjectType() string {
+	if x != nil {
+		return x.ObjectType
+	}
+	return ""
+}
+
+func (x *RelSubKey) GetObjectId() string {
+	if x != nil {
+		return x.ObjectId
+	}
+	return ""
+}
+
+func (x *RelSubKey) GetSubjectRelation() string {
+	if x != nil {
+		return x.SubjectRelation
+	}
+	return ""
+}
+
 var File_aserto_directory_common_v3_common_proto protoreflect.FileDescriptor
 
 var file_aserto_directory_common_v3_common_proto_rawDesc = []byte{
@@ -779,11 +1005,43 @@ var file_aserto_directory_common_v3_common_proto_rawDesc = []byte{
 	0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x22, 0x0a, 0x0a,
 	0x6e, 0x65, 0x78, 0x74, 0x5f, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
 	0x42, 0x03, 0xe0, 0x41, 0x03, 0x52, 0x09, 0x6e, 0x65, 0x78, 0x74, 0x54, 0x6f, 0x6b, 0x65, 0x6e,
-	0x42, 0x46, 0x5a, 0x44, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x61,
-	0x73, 0x65, 0x72, 0x74, 0x6f, 0x2d, 0x64, 0x65, 0x76, 0x2f, 0x67, 0x6f, 0x2d, 0x64, 0x69, 0x72,
-	0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2f, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2f, 0x64, 0x69,
-	0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2f, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2f, 0x76,
-	0x33, 0x3b, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x22, 0x46, 0x0a, 0x06, 0x4f, 0x62, 0x6a, 0x4b, 0x65, 0x79, 0x12, 0x1f, 0x0a, 0x0b, 0x6f, 0x62,
+	0x6a, 0x65, 0x63, 0x74, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x0a, 0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x54, 0x79, 0x70, 0x65, 0x12, 0x1b, 0x0a, 0x09, 0x6f,
+	0x62, 0x6a, 0x65, 0x63, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08,
+	0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x49, 0x64, 0x22, 0xd2, 0x01, 0x0a, 0x09, 0x52, 0x65, 0x6c,
+	0x4f, 0x62, 0x6a, 0x4b, 0x65, 0x79, 0x12, 0x1f, 0x0a, 0x0b, 0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74,
+	0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x6f, 0x62, 0x6a,
+	0x65, 0x63, 0x74, 0x54, 0x79, 0x70, 0x65, 0x12, 0x1b, 0x0a, 0x09, 0x6f, 0x62, 0x6a, 0x65, 0x63,
+	0x74, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6f, 0x62, 0x6a, 0x65,
+	0x63, 0x74, 0x49, 0x64, 0x12, 0x1a, 0x0a, 0x08, 0x72, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x72, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x12, 0x21, 0x0a, 0x0c, 0x73, 0x75, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x5f, 0x74, 0x79, 0x70, 0x65,
+	0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x73, 0x75, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x54,
+	0x79, 0x70, 0x65, 0x12, 0x1d, 0x0a, 0x0a, 0x73, 0x75, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x5f, 0x69,
+	0x64, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x73, 0x75, 0x62, 0x6a, 0x65, 0x63, 0x74,
+	0x49, 0x64, 0x12, 0x29, 0x0a, 0x10, 0x73, 0x75, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x5f, 0x72, 0x65,
+	0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0f, 0x73, 0x75,
+	0x62, 0x6a, 0x65, 0x63, 0x74, 0x52, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0xd2, 0x01,
+	0x0a, 0x09, 0x52, 0x65, 0x6c, 0x53, 0x75, 0x62, 0x4b, 0x65, 0x79, 0x12, 0x21, 0x0a, 0x0c, 0x73,
+	0x75, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x0b, 0x73, 0x75, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x54, 0x79, 0x70, 0x65, 0x12, 0x1d,
+	0x0a, 0x0a, 0x73, 0x75, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x09, 0x73, 0x75, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x49, 0x64, 0x12, 0x1a, 0x0a,
+	0x08, 0x72, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x08, 0x72, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x1f, 0x0a, 0x0b, 0x6f, 0x62, 0x6a,
+	0x65, 0x63, 0x74, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a,
+	0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x54, 0x79, 0x70, 0x65, 0x12, 0x1b, 0x0a, 0x09, 0x6f, 0x62,
+	0x6a, 0x65, 0x63, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6f,
+	0x62, 0x6a, 0x65, 0x63, 0x74, 0x49, 0x64, 0x12, 0x29, 0x0a, 0x10, 0x73, 0x75, 0x62, 0x6a, 0x65,
+	0x63, 0x74, 0x5f, 0x72, 0x65, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x06, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x0f, 0x73, 0x75, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x52, 0x65, 0x6c, 0x61, 0x74, 0x69,
+	0x6f, 0x6e, 0x42, 0x46, 0x5a, 0x44, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d,
+	0x2f, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2d, 0x64, 0x65, 0x76, 0x2f, 0x67, 0x6f, 0x2d, 0x64,
+	0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2f, 0x61, 0x73, 0x65, 0x72, 0x74, 0x6f, 0x2f,
+	0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x2f, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e,
+	0x2f, 0x76, 0x33, 0x3b, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x33,
 }
 
 var (
@@ -798,7 +1056,7 @@ func file_aserto_directory_common_v3_common_proto_rawDescGZIP() []byte {
 	return file_aserto_directory_common_v3_common_proto_rawDescData
 }
 
-var file_aserto_directory_common_v3_common_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_aserto_directory_common_v3_common_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_aserto_directory_common_v3_common_proto_goTypes = []any{
 	(*Object)(nil),                // 0: aserto.directory.common.v3.Object
 	(*Relation)(nil),              // 1: aserto.directory.common.v3.Relation
@@ -806,20 +1064,23 @@ var file_aserto_directory_common_v3_common_proto_goTypes = []any{
 	(*RelationIdentifier)(nil),    // 3: aserto.directory.common.v3.RelationIdentifier
 	(*PaginationRequest)(nil),     // 4: aserto.directory.common.v3.PaginationRequest
 	(*PaginationResponse)(nil),    // 5: aserto.directory.common.v3.PaginationResponse
-	(*structpb.Struct)(nil),       // 6: google.protobuf.Struct
-	(*timestamppb.Timestamp)(nil), // 7: google.protobuf.Timestamp
+	(*ObjKey)(nil),                // 6: aserto.directory.common.v3.ObjKey
+	(*RelObjKey)(nil),             // 7: aserto.directory.common.v3.RelObjKey
+	(*RelSubKey)(nil),             // 8: aserto.directory.common.v3.RelSubKey
+	(*structpb.Struct)(nil),       // 9: google.protobuf.Struct
+	(*timestamppb.Timestamp)(nil), // 10: google.protobuf.Timestamp
 }
 var file_aserto_directory_common_v3_common_proto_depIdxs = []int32{
-	6, // 0: aserto.directory.common.v3.Object.properties:type_name -> google.protobuf.Struct
-	7, // 1: aserto.directory.common.v3.Object.created_at:type_name -> google.protobuf.Timestamp
-	7, // 2: aserto.directory.common.v3.Object.updated_at:type_name -> google.protobuf.Timestamp
-	7, // 3: aserto.directory.common.v3.Relation.created_at:type_name -> google.protobuf.Timestamp
-	7, // 4: aserto.directory.common.v3.Relation.updated_at:type_name -> google.protobuf.Timestamp
-	5, // [5:5] is the sub-list for method output_type
-	5, // [5:5] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	9,  // 0: aserto.directory.common.v3.Object.properties:type_name -> google.protobuf.Struct
+	10, // 1: aserto.directory.common.v3.Object.created_at:type_name -> google.protobuf.Timestamp
+	10, // 2: aserto.directory.common.v3.Object.updated_at:type_name -> google.protobuf.Timestamp
+	10, // 3: aserto.directory.common.v3.Relation.created_at:type_name -> google.protobuf.Timestamp
+	10, // 4: aserto.directory.common.v3.Relation.updated_at:type_name -> google.protobuf.Timestamp
+	5,  // [5:5] is the sub-list for method output_type
+	5,  // [5:5] is the sub-list for method input_type
+	5,  // [5:5] is the sub-list for extension type_name
+	5,  // [5:5] is the sub-list for extension extendee
+	0,  // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_aserto_directory_common_v3_common_proto_init() }
@@ -833,7 +1094,7 @@ func file_aserto_directory_common_v3_common_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_aserto_directory_common_v3_common_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
