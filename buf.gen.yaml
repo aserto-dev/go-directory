@@ -13,7 +13,7 @@ plugins:
     out: .
     opt:
       - paths=source_relative
-      - features=marshal+unmarshal+size+pool
+      - features=marshal+unmarshal+size+pool+unmarshal_unsafe
       - pool=github.com/aserto-dev/go-directory/aserto/directory/common/v3.Relation
   - remote: buf.build/grpc-ecosystem/gateway:v2.22.0
     out: .
