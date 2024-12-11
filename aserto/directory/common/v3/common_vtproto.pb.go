@@ -14,7 +14,6 @@ import (
 	structpb "google.golang.org/protobuf/types/known/structpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	io "io"
-	sync "sync"
 )
 
 const (
@@ -94,7 +93,7 @@ func (m *RelationIdentifier) CloneVT() *RelationIdentifier {
 	if m == nil {
 		return (*RelationIdentifier)(nil)
 	}
-	r := RelationIdentifierFromVTPool()
+	r := new(RelationIdentifier)
 	r.ObjectType = m.ObjectType
 	r.ObjectId = m.ObjectId
 	r.Relation = m.Relation
@@ -736,26 +735,6 @@ func (m *PaginationResponse) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-var vtprotoPool_RelationIdentifier = sync.Pool{
-	New: func() interface{} {
-		return &RelationIdentifier{}
-	},
-}
-
-func (m *RelationIdentifier) ResetVT() {
-	if m != nil {
-		m.Reset()
-	}
-}
-func (m *RelationIdentifier) ReturnToVTPool() {
-	if m != nil {
-		m.ResetVT()
-		vtprotoPool_RelationIdentifier.Put(m)
-	}
-}
-func RelationIdentifierFromVTPool() *RelationIdentifier {
-	return vtprotoPool_RelationIdentifier.Get().(*RelationIdentifier)
-}
 func (m *Object) SizeVT() (n int) {
 	if m == nil {
 		return 0
