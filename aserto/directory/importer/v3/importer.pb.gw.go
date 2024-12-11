@@ -10,6 +10,7 @@ package importer
 
 import (
 	"context"
+	"errors"
 	"io"
 	"net/http"
 
@@ -24,30 +25,35 @@ import (
 )
 
 // Suppress "imported and not used" errors
-var _ codes.Code
-var _ io.Reader
-var _ status.Status
-var _ = runtime.String
-var _ = utilities.NewDoubleArray
-var _ = metadata.Join
+var (
+	_ codes.Code
+	_ io.Reader
+	_ status.Status
+	_ = errors.New
+	_ = runtime.String
+	_ = utilities.NewDoubleArray
+	_ = metadata.Join
+)
 
-func request_Importer_Import_0(ctx context.Context, marshaler runtime.Marshaler, client ImporterClient, req *http.Request, pathParams map[string]string) (Importer_ImportClient, runtime.ServerMetadata, error) {
+func request_Importer_Import_0(ctx context.Context, marshaler runtime.Marshaler, client ImporterClient, req *http.Request, pathParams map[string]string) (Importer_ImportClient, runtime.ServerMetadata, chan error, error) {
 	var metadata runtime.ServerMetadata
+	errChan := make(chan error, 1)
 	stream, err := client.Import(ctx)
 	if err != nil {
 		grpclog.Errorf("Failed to start streaming: %v", err)
-		return nil, metadata, err
+		close(errChan)
+		return nil, metadata, errChan, err
 	}
 	dec := marshaler.NewDecoder(req.Body)
 	handleSend := func() error {
 		var protoReq ImportRequest
 		err := dec.Decode(&protoReq)
-		if err == io.EOF {
+		if errors.Is(err, io.EOF) {
 			return err
 		}
 		if err != nil {
 			grpclog.Errorf("Failed to decode request: %v", err)
-			return err
+			return status.Errorf(codes.InvalidArgument, "Failed to decode request: %v", err)
 		}
 		if err := stream.Send(&protoReq); err != nil {
 			grpclog.Errorf("Failed to send request: %v", err)
@@ -56,8 +62,10 @@ func request_Importer_Import_0(ctx context.Context, marshaler runtime.Marshaler,
 		return nil
 	}
 	go func() {
+		defer close(errChan)
 		for {
 			if err := handleSend(); err != nil {
+				errChan <- err
 				break
 			}
 		}
@@ -68,10 +76,10 @@ func request_Importer_Import_0(ctx context.Context, marshaler runtime.Marshaler,
 	header, err := stream.Header()
 	if err != nil {
 		grpclog.Errorf("Failed to get header from client: %v", err)
-		return nil, metadata, err
+		return nil, metadata, errChan, err
 	}
 	metadata.HeaderMD = header
-	return stream, metadata, nil
+	return stream, metadata, errChan, nil
 }
 
 // RegisterImporterHandlerServer registers the http handlers for service Importer to "mux".
@@ -80,8 +88,7 @@ func request_Importer_Import_0(ctx context.Context, marshaler runtime.Marshaler,
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterImporterHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterImporterHandlerServer(ctx context.Context, mux *runtime.ServeMux, server ImporterServer) error {
-
-	mux.Handle("POST", pattern_Importer_Import_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Importer_Import_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
 		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -112,7 +119,6 @@ func RegisterImporterHandlerFromEndpoint(ctx context.Context, mux *runtime.Serve
 			}
 		}()
 	}()
-
 	return RegisterImporterHandler(ctx, mux, conn)
 }
 
@@ -128,29 +134,31 @@ func RegisterImporterHandler(ctx context.Context, mux *runtime.ServeMux, conn *g
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "ImporterClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterImporterHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ImporterClient) error {
-
-	mux.Handle("POST", pattern_Importer_Import_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Importer_Import_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.importer.v3.Importer/Import", runtime.WithHTTPPathPattern("/aserto.directory.importer.v3.Importer/Import"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/aserto.directory.importer.v3.Importer/Import", runtime.WithHTTPPathPattern("/aserto.directory.importer.v3.Importer/Import"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Importer_Import_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+
+		resp, md, reqErrChan, err := request_Importer_Import_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
+		go func() {
+			for err := range reqErrChan {
+				if err != nil && !errors.Is(err, io.EOF) {
+					runtime.HTTPStreamError(annotatedContext, mux, outboundMarshaler, w, req, err)
+				}
+			}
+		}()
 		forward_Importer_Import_0(annotatedContext, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
