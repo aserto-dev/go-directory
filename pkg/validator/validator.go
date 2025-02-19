@@ -9,12 +9,12 @@ import (
 // default: N/A
 // min length: 3
 // max length: 64
-// format: ^[a-z][a-z0-9._-]{1,62}[a-z0-9]$
-// desc: must be all lowercase, start with a letter, can contain letters, digits, dots, underscores, and dashes, and must end with a letter or digit.
+// format: ^[a-zA-Z][a-zA-Z0-9._-]{1,62}[a-zA-Z0-9]$
+// desc: must start with a letter, can contain mixed case letters, digits, dots, underscores, and dashes, and must end with a letter or digit.
 const maxTypeIdentifierLength int = 64
 
 var (
-	ErrInvalidTypeIdentifier = errors.New("must be all lowercase, start with a letter, can contain letters, digits, dots, underscores, and dashes, and must end with a letter or digit")
+	ErrInvalidTypeIdentifier = errors.New("must start with a letter, can contain mixed case letters, digits, dots, underscores, and dashes, and must end with a letter or digit")
 	ErrLengthTypeIdentifier  = errors.New("max length of 64 characters exceeded")
 	typeIdentifierMatch      = regexp.MustCompile(`(?m)^[a-z][a-z0-9._-]{1,62}[a-z0-9]$`)
 )
