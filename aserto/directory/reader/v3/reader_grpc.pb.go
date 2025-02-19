@@ -51,11 +51,11 @@ type ReaderClient interface {
 	Checks(ctx context.Context, in *ChecksRequest, opts ...grpc.CallOption) (*ChecksResponse, error)
 	// Deprecated: Do not use.
 	// check permission (deprecated, use the check method)
-	// Deprecated: use directory.v3.Check()
+	// Deprecated: use directory.reader.v3.Check()
 	CheckPermission(ctx context.Context, in *CheckPermissionRequest, opts ...grpc.CallOption) (*CheckPermissionResponse, error)
 	// Deprecated: Do not use.
 	// check relation (deprecated, use the check method)
-	// Deprecated: use directory.v3.Check()
+	// Deprecated: use directory.reader.v3.Check()
 	CheckRelation(ctx context.Context, in *CheckRelationRequest, opts ...grpc.CallOption) (*CheckRelationResponse, error)
 	// get object relationship graph
 	GetGraph(ctx context.Context, in *GetGraphRequest, opts ...grpc.CallOption) (*GetGraphResponse, error)
@@ -191,11 +191,11 @@ type ReaderServer interface {
 	Checks(context.Context, *ChecksRequest) (*ChecksResponse, error)
 	// Deprecated: Do not use.
 	// check permission (deprecated, use the check method)
-	// Deprecated: use directory.v3.Check()
+	// Deprecated: use directory.reader.v3.Check()
 	CheckPermission(context.Context, *CheckPermissionRequest) (*CheckPermissionResponse, error)
 	// Deprecated: Do not use.
 	// check relation (deprecated, use the check method)
-	// Deprecated: use directory.v3.Check()
+	// Deprecated: use directory.reader.v3.Check()
 	CheckRelation(context.Context, *CheckRelationRequest) (*CheckRelationResponse, error)
 	// get object relationship graph
 	GetGraph(context.Context, *GetGraphRequest) (*GetGraphResponse, error)

@@ -19,14 +19,14 @@ var (
 	typeIdentifierMatch      = regexp.MustCompile(`(?m)^[a-z][a-z0-9._-]{1,62}[a-z0-9]$`)
 )
 
-func TypeIdentifier(identrifier string) error {
-	if identrifier == "" {
+func TypeIdentifier(ident string) error {
+	if ident == "" {
 		return nil
 	}
-	if len(identrifier) > maxTypeIdentifierLength {
+	if len(ident) > maxTypeIdentifierLength {
 		return ErrLengthTypeIdentifier
 	}
-	if !typeIdentifierMatch.MatchString(identrifier) {
+	if !typeIdentifierMatch.MatchString(ident) {
 		return ErrInvalidTypeIdentifier
 	}
 	return nil
@@ -46,14 +46,14 @@ var (
 	instanceIdentifierMatch      = regexp.MustCompile(`(?m)^\S{1,256}$`)
 )
 
-func InstanceIdentifier(identifier string) error {
-	if identifier == "" {
+func InstanceIdentifier(ident string) error {
+	if ident == "" {
 		return nil
 	}
-	if len(identifier) > maxInstanceIdentifierLength {
+	if len(ident) > maxInstanceIdentifierLength {
 		return ErrLengthInstanceIdentifier
 	}
-	if !instanceIdentifierMatch.MatchString(identifier) {
+	if !instanceIdentifierMatch.MatchString(ident) {
 		return ErrInvalidInstanceIdentifier
 	}
 	return nil
