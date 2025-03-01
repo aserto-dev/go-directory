@@ -19,7 +19,7 @@ GO_VER             := 1.23
 VAULT_VER	         := 1.8.12
 SVU_VER 	         := 2.2.0
 GOTESTSUM_VER      := 1.11.0
-GOLANGCI-LINT_VER  := 1.61.0
+GOLANGCI-LINT_VER  := 1.64.5
 GORELEASER_VER     := 2.3.2
 BUF_VER            := 1.34.0
 
