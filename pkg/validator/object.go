@@ -10,16 +10,16 @@ func Object(msg *dsc3.Object) error {
 	if msg == nil {
 		return nil
 	}
-	if err := TypeIdentifier(msg.GetType()); err != nil {
+	if err := TypeIdentifier(fieldType, msg.GetType()); err != nil {
 		return err
 	}
-	if err := InstanceIdentifier(msg.GetId()); err != nil {
+	if err := InstanceIdentifier(fieldID, msg.GetId()); err != nil {
 		return err
 	}
-	if err := DisplayName(msg.GetDisplayName()); err != nil {
+	if err := DisplayName(fieldDisplayName, msg.GetDisplayName()); err != nil {
 		return err
 	}
-	if err := Etag(msg.GetEtag()); err != nil {
+	if err := Etag(fieldETag, msg.GetEtag()); err != nil {
 		return err
 	}
 	return nil
@@ -29,10 +29,10 @@ func ObjectIdentifier(msg *dsc3.ObjectIdentifier) error {
 	if msg == nil {
 		return nil
 	}
-	if err := TypeIdentifier(msg.GetObjectType()); err != nil {
+	if err := TypeIdentifier(fieldObjectType, msg.GetObjectType()); err != nil {
 		return err
 	}
-	if err := InstanceIdentifier(msg.GetObjectId()); err != nil {
+	if err := InstanceIdentifier(fieldObjectID, msg.GetObjectId()); err != nil {
 		return err
 	}
 	return nil
@@ -42,10 +42,10 @@ func GetObjectRequest(msg *dsr3.GetObjectRequest) error {
 	if msg == nil {
 		return nil
 	}
-	if err := TypeIdentifier(msg.GetObjectType()); err != nil {
+	if err := TypeIdentifier(fieldObjectType, msg.GetObjectType()); err != nil {
 		return err
 	}
-	if err := InstanceIdentifier(msg.GetObjectId()); err != nil {
+	if err := InstanceIdentifier(fieldObjectID, msg.GetObjectId()); err != nil {
 		return err
 	}
 	if err := PaginationRequest(msg.GetPage()); err != nil {
@@ -58,7 +58,7 @@ func GetObjectsRequest(msg *dsr3.GetObjectsRequest) error {
 	if msg == nil {
 		return nil
 	}
-	if err := TypeIdentifier(msg.GetObjectType()); err != nil {
+	if err := TypeIdentifier(fieldObjectType, msg.GetObjectType()); err != nil {
 		return err
 	}
 	if err := PaginationRequest(msg.GetPage()); err != nil {
@@ -93,10 +93,10 @@ func DeleteObjectRequest(msg *dsw3.DeleteObjectRequest) error {
 	if msg == nil {
 		return nil
 	}
-	if err := TypeIdentifier(msg.GetObjectType()); err != nil {
+	if err := TypeIdentifier(fieldObjectType, msg.GetObjectType()); err != nil {
 		return err
 	}
-	if err := InstanceIdentifier(msg.GetObjectId()); err != nil {
+	if err := InstanceIdentifier(fieldObjectID, msg.GetObjectId()); err != nil {
 		return err
 	}
 	return nil

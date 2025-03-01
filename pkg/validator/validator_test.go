@@ -5,27 +5,30 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/aserto-dev/go-directory/pkg/derr"
 	"github.com/aserto-dev/go-directory/pkg/validator"
 	"github.com/stretchr/testify/assert"
 )
 
 type tc struct {
+	field    validator.Field
 	value    string
 	expected error
 }
 
-// message: "must be all lowercase, start with a letter, can contain letters, digits, dots, underscores, and dashes, and must end with a letter or digit".
-// expression: "this.matches('^[a-z][a-z0-9\\\\._-]{1,62}[a-z0-9]$')".
 var typeIdentifierTests = []tc{
 	{
+		field:    "ident_1",
 		value:    "", // no type specified
 		expected: nil,
 	},
 	{
+		field:    "ident_2",
 		value:    "aaa", // min length
 		expected: nil,
 	},
 	{
+		field:    "ident_3",
 		value:    "aaa4567890123456678901234566789012345667890123456678901234567890", // max length
 		expected: nil,
 	},
@@ -33,7 +36,7 @@ var typeIdentifierTests = []tc{
 
 func TestTypeIdentifier(t *testing.T) {
 	for i, tc := range typeIdentifierTests {
-		err := validator.TypeIdentifier(tc.value)
+		err := validator.TypeIdentifier(tc.field, tc.value)
 		if tc.expected == nil {
 			assert.NoError(t, err, "test %d", i)
 		} else {
@@ -42,26 +45,27 @@ func TestTypeIdentifier(t *testing.T) {
 	}
 }
 
-// message: "cannot contain any spaces or other whitespace characters".
-// expression: "this.matches('^[\\\\S]+$')".
 var instanceIdentifierTests = []tc{
 	{
+		field:    "inst_1",
 		value:    "aaa", // min length
 		expected: nil,
 	},
 	{
+		field:    "inst_2",
 		value:    fmt.Sprintf("a23456%s", strings.Repeat("1234567890", 25)), // max length (256)
 		expected: nil,
 	},
 	{
+		field:    "inst_3",
 		value:    fmt.Sprintf("a234567%s", strings.Repeat("1234567890", 25)), // max length exceeded (256+)
-		expected: validator.ErrLengthInstanceIdentifier,
+		expected: derr.ErrInstanceIdentifierLength,
 	},
 }
 
 func TestInstanceIdentifier(t *testing.T) {
 	for _, tc := range instanceIdentifierTests {
-		err := validator.InstanceIdentifier(tc.value)
+		err := validator.InstanceIdentifier(tc.field, tc.value)
 		if tc.expected == nil {
 			assert.NoError(t, err)
 		} else {
@@ -72,18 +76,22 @@ func TestInstanceIdentifier(t *testing.T) {
 
 var displayNameTests = []tc{
 	{
+		field:    "dn_1",
 		value:    "aaa", // min length
 		expected: nil,
 	},
 	{
+		field:    "dn_2",
 		value:    strings.Repeat("1234567890", 10), // max length (100)
 		expected: nil,
 	},
 	{
+		field:    "dn_3",
 		value:    "a" + strings.Repeat("1234567890", 10), // exceeds max length (100+)
-		expected: validator.ErrLengthDisplayName,
+		expected: derr.ErrDisplayNameLength,
 	},
 	{
+		field:    "dn_4",
 		value:    fmt.Sprintf("%s \t \n ", "Hello World"),
 		expected: nil,
 	},
@@ -91,7 +99,7 @@ var displayNameTests = []tc{
 
 func TestDisplayName(t *testing.T) {
 	for _, tc := range displayNameTests {
-		err := validator.DisplayName(tc.value)
+		err := validator.DisplayName(tc.field, tc.value)
 		if tc.expected == nil {
 			assert.NoError(t, err)
 		} else {
@@ -100,39 +108,52 @@ func TestDisplayName(t *testing.T) {
 	}
 }
 
-// digits only (Etag is a stringified int64).
-// default: "0".
-// max_len: 20 characters/digits.
 var etagTests = []tc{
 	{
+		field:    "etag_1",
 		value:    "0", // min length & default value
 		expected: nil,
 	},
 	{
+		field:    "etag_2",
 		value:    strings.Repeat("1234567890", 2), // max length (20)
 		expected: nil,
 	},
 	{
+		field:    "etag_3",
 		value:    strings.Repeat("1234567890", 2) + "1", // larger then max length (20+)
-		expected: validator.ErrLengthEtag,
+		expected: derr.ErrETagLength,
 	},
 	{
+		field:    "etag_4",
 		value:    "abc", // no digits
-		expected: validator.ErrInvalidEtag,
+		expected: derr.ErrETagFormat,
 	},
 	{
+		field:    "etag_5",
 		value:    "123 456 678", // digits with spaces
-		expected: validator.ErrInvalidEtag,
+		expected: derr.ErrETagFormat,
 	},
 }
 
 func TestEtag(t *testing.T) {
 	for _, tc := range etagTests {
-		err := validator.DisplayName(tc.value)
+		err := validator.Etag(tc.field, tc.value)
 		if tc.expected == nil {
 			assert.NoError(t, err)
 		} else {
 			assert.Error(t, tc.expected, err)
 		}
 	}
+}
+
+func TestTypeIdentifierPresence(t *testing.T) {
+	assert.NoError(t, validator.IdentifierTypePresence("object_id", "object_type", "", ""))
+	assert.NoError(t, validator.IdentifierTypePresence("object_id", "object_type", "", "user"))
+	assert.NoError(t, validator.IdentifierTypePresence("object_id", "object_type", "123", "user"))
+
+	assert.Error(t,
+		derr.ErrMissingTypeIdentifier,
+		validator.IdentifierTypePresence("object_id", "object_type", "123", ""),
+	)
 }

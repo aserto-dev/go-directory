@@ -1,60 +1,59 @@
 package validator
 
 import (
-	"errors"
 	"regexp"
+
+	"github.com/aserto-dev/go-directory/pkg/derr"
 )
 
 // TypeIdentifier:
-// default: N/A
 // min length: 3
 // max length: 64
 // format: ^[a-zA-Z][a-zA-Z0-9._-]{1,62}[a-zA-Z0-9]$
 // desc: must start with a letter, can contain mixed case letters, digits, dots, underscores, and dashes, and must end with a letter or digit.
 const maxTypeIdentifierLength int = 64
 
-var (
-	ErrInvalidTypeIdentifier = errors.New("must start with a letter, can contain mixed case letters, digits, dots, underscores, and dashes, and must end with a letter or digit")
-	ErrLengthTypeIdentifier  = errors.New("max length of 64 characters exceeded")
-	typeIdentifierMatch      = regexp.MustCompile(`(?m)^[a-z][a-z0-9._-]{1,62}[a-z0-9]$`)
-)
+var typeIdentifierMatch = regexp.MustCompile(`(?m)^[a-zA-Z][a-zA-Z0-9._-]{1,62}[a-zA-Z0-9]$`)
 
-func TypeIdentifier(ident string) error {
-	if ident == "" {
+func TypeIdentifier(fld Field, val string) error {
+	if val == "" {
 		return nil
 	}
-	if len(ident) > maxTypeIdentifierLength {
-		return ErrLengthTypeIdentifier
+	if len(val) > maxTypeIdentifierLength {
+		return derr.ErrTypeIdentifierLength.Msgf(
+			"%q: max length of 64 characters exceeded", fld,
+		)
 	}
-	if !typeIdentifierMatch.MatchString(ident) {
-		return ErrInvalidTypeIdentifier
+	if !typeIdentifierMatch.MatchString(val) {
+		return derr.ErrTypeIdentifierFormat.Msgf(
+			"%q: must start with a letter, can contain mixed case letters, digits, dots, underscores, and dashes, and must end with a letter or digit", fld,
+		)
 	}
 	return nil
 }
 
 // InstanceIdentifier:
-// default: N/A
 // min length: 1
 // max length: 256
 // format: ^[S]{1,256}$
 // desc: cannot contain any spaces or other whitespace characters.
 const maxInstanceIdentifierLength int = 256
 
-var (
-	ErrInvalidInstanceIdentifier = errors.New("cannot contain any spaces or other whitespace characters")
-	ErrLengthInstanceIdentifier  = errors.New("max length of 256 characters exceeded")
-	instanceIdentifierMatch      = regexp.MustCompile(`(?m)^\S{1,256}$`)
-)
+var instanceIdentifierMatch = regexp.MustCompile(`(?m)^\S{1,256}$`)
 
-func InstanceIdentifier(ident string) error {
-	if ident == "" {
+func InstanceIdentifier(fld Field, val string) error {
+	if val == "" {
 		return nil
 	}
-	if len(ident) > maxInstanceIdentifierLength {
-		return ErrLengthInstanceIdentifier
+	if len(val) > maxInstanceIdentifierLength {
+		return derr.ErrInstanceIdentifierLength.Msgf(
+			"%q: max length of 256 characters exceeded", fld,
+		)
 	}
-	if !instanceIdentifierMatch.MatchString(ident) {
-		return ErrInvalidInstanceIdentifier
+	if !instanceIdentifierMatch.MatchString(val) {
+		return derr.ErrInstanceIdentifierFormat.Msgf(
+			"%q: cannot contain any spaces or other whitespace characters", fld,
+		)
 	}
 	return nil
 }
@@ -67,21 +66,21 @@ func InstanceIdentifier(ident string) error {
 // desc: must not contain angled brackets, ampersands, or double quotes
 const maxDisplayNameLength int = 100
 
-var (
-	ErrInvalidDisplayName = errors.New("display name can only contain printable characters")
-	ErrLengthDisplayName  = errors.New("max length of 100 characters exceeded")
-	displayNameMatch      = regexp.MustCompile(`(?m)^[[:print:]]{0,100}$`)
-)
+var displayNameMatch = regexp.MustCompile(`(?m)^[[:print:]]{0,100}$`)
 
-func DisplayName(dn string) error {
-	if dn == "" {
+func DisplayName(fld Field, val string) error {
+	if val == "" {
 		return nil
 	}
-	if len(dn) > maxDisplayNameLength {
-		return ErrLengthDisplayName
+	if len(val) > maxDisplayNameLength {
+		return derr.ErrDisplayNameLength.Msgf(
+			"%q: max length of 100 characters exceeded", fld,
+		)
 	}
-	if !displayNameMatch.MatchString(dn) {
-		return ErrInvalidDisplayName
+	if !displayNameMatch.MatchString(val) {
+		return derr.ErrDisplayNameFormat.Msgf(
+			"%q: can only contain printable characters", fld,
+		)
 	}
 	return nil
 }
@@ -93,21 +92,36 @@ func DisplayName(dn string) error {
 // format: digits only.
 const maxEtagLength int = 20
 
-var (
-	ErrInvalidEtag = errors.New("can only contain digits")
-	ErrLengthEtag  = errors.New("max length of 20 characters exceeded")
-	etagMatch      = regexp.MustCompile(`(?m)^\d{1,20}$`)
-)
+var etagMatch = regexp.MustCompile(`(?m)^\d{1,20}$`)
 
-func Etag(etag string) error {
-	if etag == "" {
+func Etag(fld Field, val string) error {
+	if val == "" {
 		return nil
 	}
-	if len(etag) > maxEtagLength {
-		return ErrLengthEtag
+	if len(val) > maxEtagLength {
+		return derr.ErrETagLength.Msgf(
+			"%q: max length of 20 characters exceeded", fld,
+		)
 	}
-	if !etagMatch.MatchString(etag) {
-		return ErrInvalidEtag
+	if !etagMatch.MatchString(val) {
+		return derr.ErrETagFormat.Msgf(
+			"%q: can only contain digits", fld,
+		)
 	}
 	return nil
 }
+
+// IdentifierTypePresence
+// desc: Identifiers always require a type to be specified.
+func IdentifierTypePresence(idFld, typeFld Field, idVal, typeVal string) error {
+	if idVal != "" && typeVal == "" {
+		return derr.ErrMissingTypeIdentifier.Msgf(
+			"%q: no type specified for identifier %q, %q must be set", typeFld, idFld, typeFld,
+		)
+	}
+	return nil
+}
+
+// TODO - missing checks
+// required: true
+// ignore_empty: true

@@ -8,19 +8,20 @@ func CheckRequest(msg *dsr3.CheckRequest) error {
 	if msg == nil {
 		return nil
 	}
-	if err := TypeIdentifier(msg.GetObjectType()); err != nil {
+
+	if err := TypeIdentifier(fieldObjectType, msg.GetObjectType()); err != nil {
 		return err
 	}
-	if err := InstanceIdentifier(msg.GetObjectId()); err != nil {
+	if err := InstanceIdentifier(fieldObjectID, msg.GetObjectId()); err != nil {
 		return err
 	}
-	if err := TypeIdentifier(msg.GetRelation()); err != nil {
+	if err := TypeIdentifier(fieldRelation, msg.GetRelation()); err != nil {
 		return err
 	}
-	if err := TypeIdentifier(msg.GetSubjectType()); err != nil {
+	if err := TypeIdentifier(fieldSubjectType, msg.GetSubjectType()); err != nil {
 		return err
 	}
-	if err := InstanceIdentifier(msg.GetSubjectId()); err != nil {
+	if err := InstanceIdentifier(fieldSubjectID, msg.GetSubjectId()); err != nil {
 		return err
 	}
 	return nil
@@ -57,22 +58,22 @@ func GetGraphRequest(msg *dsr3.GetGraphRequest) error {
 	if msg == nil {
 		return nil
 	}
-	if err := TypeIdentifier(msg.GetObjectType()); err != nil {
+	if err := TypeIdentifier(fieldObjectType, msg.GetObjectType()); err != nil {
 		return err
 	}
-	if err := InstanceIdentifier(msg.GetObjectId()); err != nil {
+	if err := InstanceIdentifier(fieldObjectID, msg.GetObjectId()); err != nil {
 		return err
 	}
-	if err := TypeIdentifier(msg.GetRelation()); err != nil {
+	if err := TypeIdentifier(fieldRelation, msg.GetRelation()); err != nil {
 		return err
 	}
-	if err := TypeIdentifier(msg.GetSubjectType()); err != nil {
+	if err := TypeIdentifier(fieldSubjectType, msg.GetSubjectType()); err != nil {
 		return err
 	}
-	if err := InstanceIdentifier(msg.GetSubjectId()); err != nil {
+	if err := InstanceIdentifier(fieldSubjectID, msg.GetSubjectId()); err != nil {
 		return err
 	}
-	if err := TypeIdentifier((msg.SubjectRelation)); err != nil {
+	if err := TypeIdentifier(fieldSubjectRelation, msg.GetSubjectRelation()); err != nil {
 		return err
 	}
 	return nil
