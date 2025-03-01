@@ -40,7 +40,7 @@ func TestTypeIdentifier(t *testing.T) {
 		if tc.expected == nil {
 			assert.NoError(t, err, "test %d", i)
 		} else {
-			assert.Error(t, tc.expected, err, "test %d", i)
+			assert.ErrorIs(t, tc.expected, err, "test %d", i)
 		}
 	}
 }
@@ -69,7 +69,7 @@ func TestInstanceIdentifier(t *testing.T) {
 		if tc.expected == nil {
 			assert.NoError(t, err)
 		} else {
-			assert.Error(t, tc.expected, err)
+			assert.ErrorIs(t, tc.expected, err)
 		}
 	}
 }
@@ -103,7 +103,7 @@ func TestDisplayName(t *testing.T) {
 		if tc.expected == nil {
 			assert.NoError(t, err)
 		} else {
-			assert.Error(t, tc.expected, err)
+			assert.ErrorIs(t, tc.expected, err)
 		}
 	}
 }
@@ -142,7 +142,7 @@ func TestEtag(t *testing.T) {
 		if tc.expected == nil {
 			assert.NoError(t, err)
 		} else {
-			assert.Error(t, tc.expected, err)
+			assert.ErrorIs(t, tc.expected, err)
 		}
 	}
 }
@@ -152,7 +152,7 @@ func TestTypeIdentifierPresence(t *testing.T) {
 	assert.NoError(t, validator.IdentifierTypePresence("object_id", "object_type", "", "user"))
 	assert.NoError(t, validator.IdentifierTypePresence("object_id", "object_type", "123", "user"))
 
-	assert.Error(t,
+	assert.ErrorIs(t,
 		derr.ErrMissingTypeIdentifier,
 		validator.IdentifierTypePresence("object_id", "object_type", "123", ""),
 	)
