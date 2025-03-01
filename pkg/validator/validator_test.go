@@ -8,6 +8,8 @@ import (
 	"github.com/aserto-dev/go-directory/pkg/derr"
 	"github.com/aserto-dev/go-directory/pkg/validator"
 	"github.com/stretchr/testify/assert"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
 type tc struct {
@@ -40,7 +42,7 @@ func TestTypeIdentifier(t *testing.T) {
 		if tc.expected == nil {
 			assert.NoError(t, err, "test %d", i)
 		} else {
-			assert.ErrorIs(t, tc.expected, err, "test %d", i)
+			assert.Equal(t, codes.InvalidArgument, status.Convert(err).Code())
 		}
 	}
 }
@@ -69,7 +71,7 @@ func TestInstanceIdentifier(t *testing.T) {
 		if tc.expected == nil {
 			assert.NoError(t, err)
 		} else {
-			assert.ErrorIs(t, tc.expected, err)
+			assert.Equal(t, codes.InvalidArgument, status.Convert(err).Code())
 		}
 	}
 }
@@ -103,7 +105,7 @@ func TestDisplayName(t *testing.T) {
 		if tc.expected == nil {
 			assert.NoError(t, err)
 		} else {
-			assert.ErrorIs(t, tc.expected, err)
+			assert.Equal(t, codes.InvalidArgument, status.Convert(err).Code())
 		}
 	}
 }
@@ -142,7 +144,7 @@ func TestEtag(t *testing.T) {
 		if tc.expected == nil {
 			assert.NoError(t, err)
 		} else {
-			assert.ErrorIs(t, tc.expected, err)
+			assert.Equal(t, codes.InvalidArgument, status.Convert(err).Code())
 		}
 	}
 }
@@ -152,8 +154,8 @@ func TestTypeIdentifierPresence(t *testing.T) {
 	assert.NoError(t, validator.IdentifierTypePresence("object_id", "object_type", "", "user"))
 	assert.NoError(t, validator.IdentifierTypePresence("object_id", "object_type", "123", "user"))
 
-	assert.ErrorIs(t,
-		derr.ErrMissingTypeIdentifier,
+	assert.ErrorAs(t,
 		validator.IdentifierTypePresence("object_id", "object_type", "123", ""),
+		&derr.ErrMissingTypeIdentifier,
 	)
 }
