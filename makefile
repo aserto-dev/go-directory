@@ -19,7 +19,7 @@ GO_VER             := 1.23
 VAULT_VER	         := 1.8.12
 SVU_VER 	         := 2.2.0
 GOTESTSUM_VER      := 1.11.0
-GOLANGCI-LINT_VER  := 1.61.0
+GOLANGCI-LINT_VER  := 1.64.5
 GORELEASER_VER     := 2.3.2
 BUF_VER            := 1.34.0
 
@@ -47,6 +47,9 @@ gover:
 .PHONY: lint
 lint: gover
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
+	@${EXT_BIN_DIR}/golangci-lint config path
+	@${EXT_BIN_DIR}/golangci-lint config verify
+	@${EXT_BIN_DIR}/golangci-lint run --timeout=30m
 	@${EXT_BIN_DIR}/golangci-lint run --config ${PWD}/.golangci.yaml
 
 PHONY: test

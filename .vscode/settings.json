@@ -4,6 +4,7 @@
         "cerr",
         "derr",
         "emptypb",
+        "Msgf",
         "oneof",
         "protobuf",
         "protoc",

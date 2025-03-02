@@ -2,7 +2,7 @@
 version: v2
 
 plugins:
-  - remote: buf.build/protocolbuffers/go:v1.35.2
+  - remote: buf.build/protocolbuffers/go:v1.36.5
     out: .
     opt: paths=source_relative
 
@@ -19,7 +19,7 @@ plugins:
       - features=marshal+unmarshal+size+clone+pool+equal
       - pool=github.com/aserto-dev/go-directory/aserto/directory/common/v3.RelationIdentifier
 
-  - remote: buf.build/grpc-ecosystem/gateway:v2.24.0
+  - remote: buf.build/grpc-ecosystem/gateway:v2.26.1
     out: .
     opt:
       - paths=source_relative
