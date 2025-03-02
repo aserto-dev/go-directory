@@ -77,7 +77,7 @@ jobs:
       id: buf-latest
       run: |
         echo "VERSION=$(buf beta registry label list ${BUF_REPO} --format json --reverse | jq -r '.results[0].name')" >> "$GITHUB_OUTPUT"
-    -
+    -  
       name: Buf Generate
       run: |
         echo "${{ env.BUF_REPO }}:${{ steps.buf-latest.outputs.VERSION }}"
