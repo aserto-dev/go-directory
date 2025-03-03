@@ -17,21 +17,21 @@ EXT_TMP_DIR        := ${EXT_DIR}/tmp
 
 GO_VER             := 1.23
 VAULT_VER	         := 1.8.12
-SVU_VER 	         := 2.2.0
+SVU_VER 	         := 3.1.0
 GOTESTSUM_VER      := 1.11.0
 GOLANGCI-LINT_VER  := 1.64.5
 GORELEASER_VER     := 2.3.2
-BUF_VER            := 1.34.0
+BUF_VER            := 1.50.0
 
 PROJECT            := directory
 BUF_USER           := $(shell ${EXT_BIN_DIR}/vault kv get -field ASERTO_BUF_USER kv/buf.build)
 BUF_TOKEN          := $(shell ${EXT_BIN_DIR}/vault kv get -field ASERTO_BUF_TOKEN kv/buf.build)
 BUF_REPO           := "buf.build/aserto-dev/${PROJECT}"
-BUF_LATEST         := $(shell BUF_BETA_SUPPRESS_WARNINGS=1 ${EXT_BIN_DIR}/buf beta registry label list ${BUF_REPO} --format json --reverse | jq -r '.results[0].name')
+BUF_LATEST         := $(shell ${EXT_BIN_DIR}/buf registry module label list ${BUF_REPO} --format json | jq -r '.labels[0].name')
 BUF_DEV_IMAGE      := "${PROJECT}.bin"
 PROTO_REPO         := "pb-${PROJECT}"
 
-RELEASE_TAG        := $$(${EXT_BIN_DIR}/svu)
+RELEASE_TAG        := $$(${EXT_BIN_DIR}/svu current)
 
 .DEFAULT_GOAL      := lint
 
@@ -50,7 +50,6 @@ lint: gover
 	@${EXT_BIN_DIR}/golangci-lint config path
 	@${EXT_BIN_DIR}/golangci-lint config verify
 	@${EXT_BIN_DIR}/golangci-lint run --timeout=30m
-	@${EXT_BIN_DIR}/golangci-lint run --config ${PWD}/.golangci.yaml
 
 PHONY: test
 test: gover
@@ -83,14 +82,12 @@ info:
 	@echo "PROJECT:       ${PROJECT}"
 	@echo "GOOS:          ${GOOS}"
 	@echo "GOARCH:        ${GOARCH}"
-	@echo "BIN_DIR:       ${BIN_DIR}"
-	@echo "EXT_DIR:       ${EXT_DIR}"
 	@echo "EXT_BIN_DIR:   ${EXT_BIN_DIR}"
 	@echo "EXT_TMP_DIR:   ${EXT_TMP_DIR}"
 	@echo "RELEASE_TAG:   ${RELEASE_TAG}"
 	@echo "BUF_REPO:      ${BUF_REPO}"
 	@echo "BUF_LATEST:    ${BUF_LATEST}"
-	@echo "BUF_DEV_IMAGE: ${BUF_DEV_IMAGE}"
+	@echo "BUF_DEV_IMAGE: ${BIN_DIR}/${BUF_DEV_IMAGE}"
 	@echo "PROTO_REPO:    ${PROTO_REPO}"
 
 .PHONY: install-vault

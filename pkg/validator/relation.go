@@ -90,6 +90,7 @@ func GetRelationRequest(msg *dsr3.GetRelationRequest) error {
 	return nil
 }
 
+// nolint: cyclop
 func GetRelationsRequest(msg *dsr3.GetRelationsRequest) error {
 	if msg == nil {
 		return nil

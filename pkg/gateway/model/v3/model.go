@@ -25,6 +25,7 @@ const (
 	MetadataOnly metadataOption = true
 )
 
+// nolint: nonamedreturns
 func RegisterModelStreamHandlersFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.NewClient(endpoint, opts...)
 	if err != nil {
@@ -76,6 +77,7 @@ func RegisterModelStreamHandlerClient(ctx context.Context, mux *runtime.ServeMux
 	return nil
 }
 
+// nolint: gocognit,cyclop
 func getManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient, mdOpt metadataOption) runtime.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -110,7 +112,7 @@ func getManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient, mdOpt me
 		)
 		for {
 			msg, err := stream.Recv()
-			if err == io.EOF {
+			if errors.Is(err, io.EOF) {
 				break
 			}
 			if err != nil {
@@ -132,7 +134,6 @@ func getManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient, mdOpt me
 					runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 					return
 				}
-
 			}
 
 			// We send either the body or the model, never both.
