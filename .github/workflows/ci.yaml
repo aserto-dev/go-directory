@@ -21,7 +21,7 @@ env:
   VAULT_ADDR: https://vault.eng.aserto.com/
   BUF_REPO: "buf.build/aserto-dev/directory"
 
-  BUF_VERSION: "1.34.0"
+  BUF_VERSION: "1.50.0"
   BUF_BETA_SUPPRESS_WARNINGS: 1
   GO_VERSION: "1.23"
   GO_LANGCI_LINT_VERSION: "v1.64.5"
@@ -62,12 +62,12 @@ jobs:
         go-version: ${{ env.GO_VERSION }}
     -
       name: Setup buf
-      uses: bufbuild/buf-setup-action@v1
+      uses: bufbuild/buf-action@v1
       with:
-        version: ${{ env.BUF_VERSION }}
-        github_token: ${{ github.token }}
-        buf_user: ${{ steps.vault.outputs.BUF_USER }}
-        buf_api_token: ${{ steps.vault.outputs.BUF_TOKEN}}
+        version:  ${{ env.BUF_VERSION }}
+        token: ${{ steps.vault.outputs.ASERTO_BUF_TOKEN}}
+        github_token: ${{ steps.vault.outputs.GH_TOKEN}}
+        setup_only: true
     -
       name: Delete generated code
       run: |
@@ -76,7 +76,7 @@ jobs:
       name: Get latest version tag from Buf Registry
       id: buf-latest
       run: |
-        echo "VERSION=$(buf beta registry label list ${BUF_REPO} --format json --reverse | jq -r '.results[0].name')" >> "$GITHUB_OUTPUT"
+        echo "VERSION=$(buf registry module label list ${BUF_REPO} --format json | jq -r '.labels[0].name')" >> "$GITHUB_OUTPUT"
     -  
       name: Buf Generate
       run: |
