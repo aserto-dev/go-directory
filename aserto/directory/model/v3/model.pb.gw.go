@@ -42,6 +42,7 @@ func request_Model_DeleteManifest_0(ctx context.Context, marshaler runtime.Marsh
 		protoReq DeleteManifestRequest
 		metadata runtime.ServerMetadata
 	)
+	io.Copy(io.Discard, req.Body)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
