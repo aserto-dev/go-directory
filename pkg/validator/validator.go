@@ -19,16 +19,19 @@ func TypeIdentifier(fld Field, val string) error {
 	if val == "" {
 		return nil
 	}
+
 	if len(val) > maxTypeIdentifierLength {
 		return derr.ErrTypeIdentifierLength.Msgf(
 			"%q: max length of 64 characters exceeded", fld,
 		)
 	}
+
 	if !typeIdentifierMatch.MatchString(val) {
 		return derr.ErrTypeIdentifierFormat.Msgf(
 			"%q: must start with a letter, can contain mixed case letters, digits, dots, underscores, and dashes, and must end with a letter or digit", fld,
 		)
 	}
+
 	return nil
 }
 
@@ -45,16 +48,19 @@ func InstanceIdentifier(fld Field, val string) error {
 	if val == "" {
 		return nil
 	}
+
 	if len(val) > maxInstanceIdentifierLength {
 		return derr.ErrInstanceIdentifierLength.Msgf(
 			"%q: max length of 256 characters exceeded", fld,
 		)
 	}
+
 	if !instanceIdentifierMatch.MatchString(val) {
 		return derr.ErrInstanceIdentifierFormat.Msgf(
 			"%q: cannot contain any spaces or other whitespace characters", fld,
 		)
 	}
+
 	return nil
 }
 
@@ -72,16 +78,19 @@ func DisplayName(fld Field, val string) error {
 	if val == "" {
 		return nil
 	}
+
 	if len(val) > maxDisplayNameLength {
 		return derr.ErrDisplayNameLength.Msgf(
 			"%q: max length of 100 characters exceeded", fld,
 		)
 	}
+
 	if !displayNameMatch.MatchString(val) {
 		return derr.ErrDisplayNameFormat.Msgf(
 			"%q: can only contain printable characters", fld,
 		)
 	}
+
 	return nil
 }
 
@@ -98,16 +107,19 @@ func Etag(fld Field, val string) error {
 	if val == "" {
 		return nil
 	}
+
 	if len(val) > maxEtagLength {
 		return derr.ErrETagLength.Msgf(
 			"%q: max length of 20 characters exceeded", fld,
 		)
 	}
+
 	if !etagMatch.MatchString(val) {
 		return derr.ErrETagFormat.Msgf(
 			"%q: can only contain digits", fld,
 		)
 	}
+
 	return nil
 }
 
@@ -119,9 +131,10 @@ func IdentifierTypePresence(idFld, typeFld Field, idVal, typeVal string) error {
 			"%q: no type specified for identifier %q, %q must be set", typeFld, idFld, typeFld,
 		)
 	}
+
 	return nil
 }
 
-// TODO - missing checks
+// Missing checks
 // required: true
 // ignore_empty: true

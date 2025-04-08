@@ -7,6 +7,7 @@ import (
 	"google.golang.org/grpc/codes"
 )
 
+//nolint:lll
 var (
 	ErrUnknown                      = cerr.NewAsertoError("E20000", codes.Internal, http.StatusInternalServerError, "an unknown error has occurred")
 	ErrInvalidJSON                  = cerr.NewAsertoError("E20001", codes.Internal, http.StatusInternalServerError, "invalid json")

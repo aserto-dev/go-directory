@@ -2,8 +2,6 @@ module github.com/aserto-dev/go-directory
 
 go 1.23.0
 
-toolchain go1.23.6
-
 require (
 	github.com/aserto-dev/errors v0.0.15
 	github.com/go-http-utils/headers v0.0.0-20181008091004-fed159eddc2a

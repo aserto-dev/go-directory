@@ -28,6 +28,7 @@ const (
 func IncomingManifestRequest(ctx context.Context) ManifestRequest {
 	md := metautils.ExtractIncoming(ctx)
 	amr := ManifestRequest(md.Get(HeaderAsertoManifestRequest))
+
 	if !lo.Contains([]ManifestRequest{ManifestRequestMetadataOnly, ManifestRequestModelOnly, ManifestRequestWithModel}, amr) {
 		amr = ManifestRequestDefault
 	}
