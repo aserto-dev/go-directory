@@ -25,21 +25,24 @@ const (
 	MetadataOnly metadataOption = true
 )
 
-// nolint: nonamedreturns
-func RegisterModelStreamHandlersFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterModelStreamHandlersFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) error {
 	conn, err := grpc.NewClient(endpoint, opts...)
 	if err != nil {
 		return err
 	}
+
 	defer func() {
 		if err != nil {
 			if cerr := conn.Close(); cerr != nil {
 				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
 			}
+
 			return
 		}
+
 		go func() {
 			<-ctx.Done()
+
 			if cerr := conn.Close(); cerr != nil {
 				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
 			}
@@ -77,10 +80,11 @@ func RegisterModelStreamHandlerClient(ctx context.Context, mux *runtime.ServeMux
 	return nil
 }
 
-// nolint: gocognit,cyclop
+//nolint:gocognit,cyclop
 func getManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient, mdOpt metadataOption) runtime.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+
 		ctx, err := runtime.AnnotateContext(
 			req.Context(),
 			mux,
@@ -110,27 +114,29 @@ func getManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient, mdOpt me
 			hasBody     bool
 			hasModel    bool
 		)
+
 		for {
 			msg, err := stream.Recv()
 			if errors.Is(err, io.EOF) {
 				break
-			}
-			if err != nil {
+			} else if err != nil {
 				runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 				return
 			}
 
-			if md := msg.GetMetadata(); md != nil && md.Etag != "" {
-				w.Header().Set(manifest.HeaderAsertoUpdatedAt, md.UpdatedAt.AsTime().Format(http.TimeFormat))
-				w.Header().Set(headers.ETag, md.Etag)
+			if md := msg.GetMetadata(); md != nil && md.GetEtag() != "" {
+				w.Header().Set(manifest.HeaderAsertoUpdatedAt, md.GetUpdatedAt().AsTime().Format(http.TimeFormat))
+				w.Header().Set(headers.ETag, md.GetEtag())
+
 				hasManifest = true
 			}
 
 			if body := msg.GetBody(); body != nil {
 				hasBody = true
+
 				w.Header().Set(headers.ContentType, "application/yaml")
 
-				if _, err := w.Write(body.Data); err != nil {
+				if _, err := w.Write(body.GetData()); err != nil {
 					runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 					return
 				}
@@ -139,6 +145,7 @@ func getManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient, mdOpt me
 			// We send either the body or the model, never both.
 			if model := msg.GetModel(); model != nil && !hasBody {
 				hasModel = true
+
 				w.Header().Set(headers.ContentType, "application/json")
 
 				if err := pb.ProtoToBuf(w, model); err != nil {
@@ -157,6 +164,7 @@ func getManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient, mdOpt me
 func setManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient) runtime.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+
 		ctx, err := runtime.AnnotateContext(
 			req.Context(),
 			mux,
@@ -168,6 +176,7 @@ func setManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient) runtime.
 			runtime.HTTPError(req.Context(), mux, outboundMarshaler, w, req, err)
 			return
 		}
+
 		stream, err := client.SetManifest(ctx)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -175,8 +184,10 @@ func setManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient) runtime.
 		}
 
 		reader := req.Body
-		defer reader.Close()
+		defer func() { _ = reader.Close() }()
+
 		buf := make([]byte, MaxChunkSizeBytes)
+
 		for {
 			n, err := reader.Read(buf)
 			if err != nil && err != io.EOF {

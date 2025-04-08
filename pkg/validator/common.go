@@ -12,8 +12,10 @@ func PaginationRequest(msg *dsc3.PaginationRequest) error {
 	if msg == nil {
 		return nil
 	}
-	if msg.Size < 1 || msg.Size > 100 {
+
+	if msg.GetSize() < 1 || msg.GetSize() > 100 {
 		return ErrPaginationSize
 	}
+
 	return nil
 }

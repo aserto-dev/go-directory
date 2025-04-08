@@ -16,12 +16,12 @@ EXT_BIN_DIR        := ${EXT_DIR}/bin
 EXT_TMP_DIR        := ${EXT_DIR}/tmp
 
 GO_VER             := 1.24
-VAULT_VER	         := 1.8.12
-SVU_VER 	         := 3.1.0
-GOTESTSUM_VER      := 1.11.0
-GOLANGCI-LINT_VER  := 1.64.5
-GORELEASER_VER     := 2.3.2
-BUF_VER            := 1.50.0
+VAULT_VER          := 1.8.12
+SVU_VER            := 3.2.3
+GOTESTSUM_VER      := 1.12.1
+GOLANGCI-LINT_VER  := 2.0.2
+GORELEASER_VER     := 2.8.2
+BUF_VER            := 1.52.1
 
 PROJECT            := directory
 BUF_USER           := $(shell ${EXT_BIN_DIR}/vault kv get -field ASERTO_BUF_USER kv/buf.build)
@@ -96,7 +96,7 @@ install-vault: ${EXT_BIN_DIR} ${EXT_TMP_DIR}
 	@curl -s -o ${EXT_TMP_DIR}/vault.zip https://releases.hashicorp.com/vault/${VAULT_VER}/vault_${VAULT_VER}_${GOOS}_${GOARCH}.zip
 	@unzip -o ${EXT_TMP_DIR}/vault.zip vault -d ${EXT_BIN_DIR}/  &> /dev/null
 	@chmod +x ${EXT_BIN_DIR}/vault
-	@${EXT_BIN_DIR}/vault --version 
+	@${EXT_BIN_DIR}/vault --version
 
 .PHONY: install-buf
 install-buf: ${EXT_BIN_DIR}
@@ -108,9 +108,7 @@ install-buf: ${EXT_BIN_DIR}
 .PHONY: install-svu
 install-svu: ${EXT_BIN_DIR} ${EXT_TMP_DIR}
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
-	@gh release download v${SVU_VER} --repo https://github.com/caarlos0/svu --pattern "*${GOOS}_all.tar.gz" --output "${EXT_TMP_DIR}/svu.tar.gz" --clobber
-	@tar -xvf ${EXT_TMP_DIR}/svu.tar.gz --directory ${EXT_BIN_DIR} svu &> /dev/null
-	@chmod +x ${EXT_BIN_DIR}/svu
+	@GOBIN=${EXT_BIN_DIR} go install github.com/caarlos0/svu/v3@v${SVU_VER}
 	@${EXT_BIN_DIR}/svu --version
 
 .PHONY: install-gotestsum
@@ -143,8 +141,8 @@ clean:
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
 	@rm -rf ${EXT_DIR}
 	@rm -rf ${BIN_DIR}
-	@rm -rf ./dist
-	
+	@rm -rf ./aserto
+
 ${BIN_DIR}:
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
 	@mkdir -p ${BIN_DIR}

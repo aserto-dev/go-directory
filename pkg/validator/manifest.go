@@ -29,8 +29,10 @@ func Body(msg *dsm3.Body) error {
 	if msg == nil {
 		return nil
 	}
+
 	if len(msg.GetData()) > model.MaxChunkSizeBytes {
 		return ErrBodyDataSize
 	}
+
 	return nil
 }
