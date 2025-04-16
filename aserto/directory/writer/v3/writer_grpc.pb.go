@@ -23,6 +23,9 @@ const (
 	Writer_DeleteObject_FullMethodName   = "/aserto.directory.writer.v3.Writer/DeleteObject"
 	Writer_SetRelation_FullMethodName    = "/aserto.directory.writer.v3.Writer/SetRelation"
 	Writer_DeleteRelation_FullMethodName = "/aserto.directory.writer.v3.Writer/DeleteRelation"
+	Writer_SetManifest_FullMethodName    = "/aserto.directory.writer.v3.Writer/SetManifest"
+	Writer_DeleteManifest_FullMethodName = "/aserto.directory.writer.v3.Writer/DeleteManifest"
+	Writer_Import_FullMethodName         = "/aserto.directory.writer.v3.Writer/Import"
 )
 
 // WriterClient is the client API for Writer service.
@@ -37,6 +40,12 @@ type WriterClient interface {
 	SetRelation(ctx context.Context, in *SetRelationRequest, opts ...grpc.CallOption) (*SetRelationResponse, error)
 	// delete relation instance
 	DeleteRelation(ctx context.Context, in *DeleteRelationRequest, opts ...grpc.CallOption) (*DeleteRelationResponse, error)
+	// set manifest instance
+	SetManifest(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[SetManifestRequest, SetManifestResponse], error)
+	// delete manifest instance
+	DeleteManifest(ctx context.Context, in *DeleteManifestRequest, opts ...grpc.CallOption) (*DeleteManifestResponse, error)
+	// import stream of objects and relations
+	Import(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[ImportRequest, ImportResponse], error)
 }
 
 type writerClient struct {
@@ -87,6 +96,42 @@ func (c *writerClient) DeleteRelation(ctx context.Context, in *DeleteRelationReq
 	return out, nil
 }
 
+func (c *writerClient) SetManifest(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[SetManifestRequest, SetManifestResponse], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &Writer_ServiceDesc.Streams[0], Writer_SetManifest_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[SetManifestRequest, SetManifestResponse]{ClientStream: stream}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type Writer_SetManifestClient = grpc.ClientStreamingClient[SetManifestRequest, SetManifestResponse]
+
+func (c *writerClient) DeleteManifest(ctx context.Context, in *DeleteManifestRequest, opts ...grpc.CallOption) (*DeleteManifestResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteManifestResponse)
+	err := c.cc.Invoke(ctx, Writer_DeleteManifest_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *writerClient) Import(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[ImportRequest, ImportResponse], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &Writer_ServiceDesc.Streams[1], Writer_Import_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[ImportRequest, ImportResponse]{ClientStream: stream}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type Writer_ImportClient = grpc.BidiStreamingClient[ImportRequest, ImportResponse]
+
 // WriterServer is the server API for Writer service.
 // All implementations should embed UnimplementedWriterServer
 // for forward compatibility.
@@ -99,6 +144,12 @@ type WriterServer interface {
 	SetRelation(context.Context, *SetRelationRequest) (*SetRelationResponse, error)
 	// delete relation instance
 	DeleteRelation(context.Context, *DeleteRelationRequest) (*DeleteRelationResponse, error)
+	// set manifest instance
+	SetManifest(grpc.ClientStreamingServer[SetManifestRequest, SetManifestResponse]) error
+	// delete manifest instance
+	DeleteManifest(context.Context, *DeleteManifestRequest) (*DeleteManifestResponse, error)
+	// import stream of objects and relations
+	Import(grpc.BidiStreamingServer[ImportRequest, ImportResponse]) error
 }
 
 // UnimplementedWriterServer should be embedded to have
@@ -119,6 +170,15 @@ func (UnimplementedWriterServer) SetRelation(context.Context, *SetRelationReques
 }
 func (UnimplementedWriterServer) DeleteRelation(context.Context, *DeleteRelationRequest) (*DeleteRelationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteRelation not implemented")
+}
+func (UnimplementedWriterServer) SetManifest(grpc.ClientStreamingServer[SetManifestRequest, SetManifestResponse]) error {
+	return status.Errorf(codes.Unimplemented, "method SetManifest not implemented")
+}
+func (UnimplementedWriterServer) DeleteManifest(context.Context, *DeleteManifestRequest) (*DeleteManifestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteManifest not implemented")
+}
+func (UnimplementedWriterServer) Import(grpc.BidiStreamingServer[ImportRequest, ImportResponse]) error {
+	return status.Errorf(codes.Unimplemented, "method Import not implemented")
 }
 func (UnimplementedWriterServer) testEmbeddedByValue() {}
 
@@ -212,6 +272,38 @@ func _Writer_DeleteRelation_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Writer_SetManifest_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(WriterServer).SetManifest(&grpc.GenericServerStream[SetManifestRequest, SetManifestResponse]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type Writer_SetManifestServer = grpc.ClientStreamingServer[SetManifestRequest, SetManifestResponse]
+
+func _Writer_DeleteManifest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteManifestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WriterServer).DeleteManifest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Writer_DeleteManifest_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WriterServer).DeleteManifest(ctx, req.(*DeleteManifestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Writer_Import_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(WriterServer).Import(&grpc.GenericServerStream[ImportRequest, ImportResponse]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type Writer_ImportServer = grpc.BidiStreamingServer[ImportRequest, ImportResponse]
+
 // Writer_ServiceDesc is the grpc.ServiceDesc for Writer service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -235,7 +327,23 @@ var Writer_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "DeleteRelation",
 			Handler:    _Writer_DeleteRelation_Handler,
 		},
+		{
+			MethodName: "DeleteManifest",
+			Handler:    _Writer_DeleteManifest_Handler,
+		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "SetManifest",
+			Handler:       _Writer_SetManifest_Handler,
+			ClientStreams: true,
+		},
+		{
+			StreamName:    "Import",
+			Handler:       _Writer_Import_Handler,
+			ServerStreams: true,
+			ClientStreams: true,
+		},
+	},
 	Metadata: "aserto/directory/writer/v3/writer.proto",
 }

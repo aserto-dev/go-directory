@@ -52,16 +52,6 @@ func ChecksRequest(msg *dsr3.ChecksRequest) error {
 	return nil
 }
 
-// CheckPermissionRequest gets handled by CheckRequest, hence returns nil.
-func CheckPermissionRequest(msg *dsr3.CheckPermissionRequest) error {
-	return nil
-}
-
-// CheckRelationRequest gets handled by CheckRequest, hence returns nil.
-func CheckRelationRequest(msg *dsr3.CheckRelationRequest) error {
-	return nil
-}
-
 func GetGraphRequest(msg *dsr3.GetGraphRequest) error {
 	if msg == nil {
 		return nil

@@ -6,12 +6,17 @@
         "emptypb",
         "Msgf",
         "oneof",
+        "planetscale",
         "protobuf",
         "protoc",
         "protoimpl",
         "protojson",
         "protoreflect",
+        "samber",
+        "stretchr",
         "structpb",
-        "timestamppb"
+        "timestamppb",
+        "vtprotobuf",
+        "zerolog"
     ]
 }

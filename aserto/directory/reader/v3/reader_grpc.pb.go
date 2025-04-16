@@ -19,16 +19,16 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Reader_GetObject_FullMethodName       = "/aserto.directory.reader.v3.Reader/GetObject"
-	Reader_GetObjectMany_FullMethodName   = "/aserto.directory.reader.v3.Reader/GetObjectMany"
-	Reader_GetObjects_FullMethodName      = "/aserto.directory.reader.v3.Reader/GetObjects"
-	Reader_GetRelation_FullMethodName     = "/aserto.directory.reader.v3.Reader/GetRelation"
-	Reader_GetRelations_FullMethodName    = "/aserto.directory.reader.v3.Reader/GetRelations"
-	Reader_Check_FullMethodName           = "/aserto.directory.reader.v3.Reader/Check"
-	Reader_Checks_FullMethodName          = "/aserto.directory.reader.v3.Reader/Checks"
-	Reader_CheckPermission_FullMethodName = "/aserto.directory.reader.v3.Reader/CheckPermission"
-	Reader_CheckRelation_FullMethodName   = "/aserto.directory.reader.v3.Reader/CheckRelation"
-	Reader_GetGraph_FullMethodName        = "/aserto.directory.reader.v3.Reader/GetGraph"
+	Reader_GetObject_FullMethodName     = "/aserto.directory.reader.v3.Reader/GetObject"
+	Reader_GetObjectMany_FullMethodName = "/aserto.directory.reader.v3.Reader/GetObjectMany"
+	Reader_GetObjects_FullMethodName    = "/aserto.directory.reader.v3.Reader/GetObjects"
+	Reader_GetRelation_FullMethodName   = "/aserto.directory.reader.v3.Reader/GetRelation"
+	Reader_GetRelations_FullMethodName  = "/aserto.directory.reader.v3.Reader/GetRelations"
+	Reader_Check_FullMethodName         = "/aserto.directory.reader.v3.Reader/Check"
+	Reader_Checks_FullMethodName        = "/aserto.directory.reader.v3.Reader/Checks"
+	Reader_GetGraph_FullMethodName      = "/aserto.directory.reader.v3.Reader/GetGraph"
+	Reader_GetManifest_FullMethodName   = "/aserto.directory.reader.v3.Reader/GetManifest"
+	Reader_Export_FullMethodName        = "/aserto.directory.reader.v3.Reader/Export"
 )
 
 // ReaderClient is the client API for Reader service.
@@ -47,18 +47,14 @@ type ReaderClient interface {
 	GetRelations(ctx context.Context, in *GetRelationsRequest, opts ...grpc.CallOption) (*GetRelationsResponse, error)
 	// check if subject has relation or permission with object
 	Check(ctx context.Context, in *CheckRequest, opts ...grpc.CallOption) (*CheckResponse, error)
-	// EXPERIMENTAL: checks validates a set of check requests in a single roundtrip
+	// checks validates a set of check requests in a single roundtrip
 	Checks(ctx context.Context, in *ChecksRequest, opts ...grpc.CallOption) (*ChecksResponse, error)
-	// Deprecated: Do not use.
-	// check permission (deprecated, use the check method)
-	// Deprecated: use directory.reader.v3.Check()
-	CheckPermission(ctx context.Context, in *CheckPermissionRequest, opts ...grpc.CallOption) (*CheckPermissionResponse, error)
-	// Deprecated: Do not use.
-	// check relation (deprecated, use the check method)
-	// Deprecated: use directory.reader.v3.Check()
-	CheckRelation(ctx context.Context, in *CheckRelationRequest, opts ...grpc.CallOption) (*CheckRelationResponse, error)
 	// get object relationship graph
 	GetGraph(ctx context.Context, in *GetGraphRequest, opts ...grpc.CallOption) (*GetGraphResponse, error)
+	// get manifest
+	GetManifest(ctx context.Context, in *GetManifestRequest, opts ...grpc.CallOption) (*GetManifestResponse, error)
+	// export manifests, objects and relations as a stream
+	Export(ctx context.Context, in *ExportRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ExportResponse], error)
 }
 
 type readerClient struct {
@@ -139,28 +135,6 @@ func (c *readerClient) Checks(ctx context.Context, in *ChecksRequest, opts ...gr
 	return out, nil
 }
 
-// Deprecated: Do not use.
-func (c *readerClient) CheckPermission(ctx context.Context, in *CheckPermissionRequest, opts ...grpc.CallOption) (*CheckPermissionResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CheckPermissionResponse)
-	err := c.cc.Invoke(ctx, Reader_CheckPermission_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// Deprecated: Do not use.
-func (c *readerClient) CheckRelation(ctx context.Context, in *CheckRelationRequest, opts ...grpc.CallOption) (*CheckRelationResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CheckRelationResponse)
-	err := c.cc.Invoke(ctx, Reader_CheckRelation_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *readerClient) GetGraph(ctx context.Context, in *GetGraphRequest, opts ...grpc.CallOption) (*GetGraphResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetGraphResponse)
@@ -170,6 +144,35 @@ func (c *readerClient) GetGraph(ctx context.Context, in *GetGraphRequest, opts .
 	}
 	return out, nil
 }
+
+func (c *readerClient) GetManifest(ctx context.Context, in *GetManifestRequest, opts ...grpc.CallOption) (*GetManifestResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetManifestResponse)
+	err := c.cc.Invoke(ctx, Reader_GetManifest_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *readerClient) Export(ctx context.Context, in *ExportRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ExportResponse], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &Reader_ServiceDesc.Streams[0], Reader_Export_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[ExportRequest, ExportResponse]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type Reader_ExportClient = grpc.ServerStreamingClient[ExportResponse]
 
 // ReaderServer is the server API for Reader service.
 // All implementations should embed UnimplementedReaderServer
@@ -187,18 +190,14 @@ type ReaderServer interface {
 	GetRelations(context.Context, *GetRelationsRequest) (*GetRelationsResponse, error)
 	// check if subject has relation or permission with object
 	Check(context.Context, *CheckRequest) (*CheckResponse, error)
-	// EXPERIMENTAL: checks validates a set of check requests in a single roundtrip
+	// checks validates a set of check requests in a single roundtrip
 	Checks(context.Context, *ChecksRequest) (*ChecksResponse, error)
-	// Deprecated: Do not use.
-	// check permission (deprecated, use the check method)
-	// Deprecated: use directory.reader.v3.Check()
-	CheckPermission(context.Context, *CheckPermissionRequest) (*CheckPermissionResponse, error)
-	// Deprecated: Do not use.
-	// check relation (deprecated, use the check method)
-	// Deprecated: use directory.reader.v3.Check()
-	CheckRelation(context.Context, *CheckRelationRequest) (*CheckRelationResponse, error)
 	// get object relationship graph
 	GetGraph(context.Context, *GetGraphRequest) (*GetGraphResponse, error)
+	// get manifest
+	GetManifest(context.Context, *GetManifestRequest) (*GetManifestResponse, error)
+	// export manifests, objects and relations as a stream
+	Export(*ExportRequest, grpc.ServerStreamingServer[ExportResponse]) error
 }
 
 // UnimplementedReaderServer should be embedded to have
@@ -229,14 +228,14 @@ func (UnimplementedReaderServer) Check(context.Context, *CheckRequest) (*CheckRe
 func (UnimplementedReaderServer) Checks(context.Context, *ChecksRequest) (*ChecksResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Checks not implemented")
 }
-func (UnimplementedReaderServer) CheckPermission(context.Context, *CheckPermissionRequest) (*CheckPermissionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CheckPermission not implemented")
-}
-func (UnimplementedReaderServer) CheckRelation(context.Context, *CheckRelationRequest) (*CheckRelationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CheckRelation not implemented")
-}
 func (UnimplementedReaderServer) GetGraph(context.Context, *GetGraphRequest) (*GetGraphResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGraph not implemented")
+}
+func (UnimplementedReaderServer) GetManifest(context.Context, *GetManifestRequest) (*GetManifestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetManifest not implemented")
+}
+func (UnimplementedReaderServer) Export(*ExportRequest, grpc.ServerStreamingServer[ExportResponse]) error {
+	return status.Errorf(codes.Unimplemented, "method Export not implemented")
 }
 func (UnimplementedReaderServer) testEmbeddedByValue() {}
 
@@ -384,42 +383,6 @@ func _Reader_Checks_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Reader_CheckPermission_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CheckPermissionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ReaderServer).CheckPermission(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Reader_CheckPermission_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ReaderServer).CheckPermission(ctx, req.(*CheckPermissionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Reader_CheckRelation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CheckRelationRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ReaderServer).CheckRelation(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Reader_CheckRelation_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ReaderServer).CheckRelation(ctx, req.(*CheckRelationRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Reader_GetGraph_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetGraphRequest)
 	if err := dec(in); err != nil {
@@ -437,6 +400,35 @@ func _Reader_GetGraph_Handler(srv interface{}, ctx context.Context, dec func(int
 	}
 	return interceptor(ctx, in, info, handler)
 }
+
+func _Reader_GetManifest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetManifestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ReaderServer).GetManifest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Reader_GetManifest_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ReaderServer).GetManifest(ctx, req.(*GetManifestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Reader_Export_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(ExportRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(ReaderServer).Export(m, &grpc.GenericServerStream[ExportRequest, ExportResponse]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type Reader_ExportServer = grpc.ServerStreamingServer[ExportResponse]
 
 // Reader_ServiceDesc is the grpc.ServiceDesc for Reader service.
 // It's only intended for direct use with grpc.RegisterService,
@@ -474,18 +466,20 @@ var Reader_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Reader_Checks_Handler,
 		},
 		{
-			MethodName: "CheckPermission",
-			Handler:    _Reader_CheckPermission_Handler,
-		},
-		{
-			MethodName: "CheckRelation",
-			Handler:    _Reader_CheckRelation_Handler,
-		},
-		{
 			MethodName: "GetGraph",
 			Handler:    _Reader_GetGraph_Handler,
 		},
+		{
+			MethodName: "GetManifest",
+			Handler:    _Reader_GetManifest_Handler,
+		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "Export",
+			Handler:       _Reader_Export_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "aserto/directory/reader/v3/reader.proto",
 }
