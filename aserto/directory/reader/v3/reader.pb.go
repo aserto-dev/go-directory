@@ -1543,7 +1543,7 @@ const file_aserto_directory_reader_v3_reader_proto_rawDesc = "" +
 	"\vOPTION_DATA\x10\x18\x12\x0e\n" +
 	"\n" +
 	"OPTION_ALL\x10\"\x12\x10\n" +
-	"\fOPTION_STATS\x10@2\xe7\x14\n" +
+	"\fOPTION_STATS\x10@2\xe8\x14\n" +
 	"\x06Reader\x12\xe9\x02\n" +
 	"\tGetObject\x12,.aserto.directory.reader.v3.GetObjectRequest\x1a-.aserto.directory.reader.v3.GetObjectResponse\"\xfe\x01\x92A\xc0\x01\n" +
 	"\tdirectory\x12\x13Get object instance\x1a:Returns single object instance, optionally with relations.*\x1edirectory.reader.v3.object.getJ\x1d\n" +
@@ -1592,9 +1592,9 @@ const file_aserto_directory_reader_v3_reader_proto_rawDesc = "" +
 	"\x13\n" +
 	"\x0fDirectoryAPIKey\x12\x00\n" +
 	"\f\n" +
-	"\bTenantID\x12\x00\x82\xd3\xe4\x93\x02A\x12?/api/v3/directory/graph/{object_type}/{relation}/{subject_type}\x12\xaa\x02\n" +
-	"\vGetManifest\x12..aserto.directory.reader.v3.GetManifestRequest\x1a/.aserto.directory.reader.v3.GetManifestResponse\"\xb9\x01\x92A\x93\x01\n" +
-	"\tdirectory\x12\fGet manifest\x1a2Returns manifest or manifest model representation.*\x1fdirectory.model.v3.manifest.getb#\n" +
+	"\bTenantID\x12\x00\x82\xd3\xe4\x93\x02A\x12?/api/v3/directory/graph/{object_type}/{relation}/{subject_type}\x12\xab\x02\n" +
+	"\vGetManifest\x12..aserto.directory.reader.v3.GetManifestRequest\x1a/.aserto.directory.reader.v3.GetManifestResponse\"\xba\x01\x92A\x94\x01\n" +
+	"\tdirectory\x12\fGet manifest\x1a2Returns manifest or manifest model representation.* directory.reader.v3.manifest.getb#\n" +
 	"\x13\n" +
 	"\x0fDirectoryAPIKey\x12\x00\n" +
 	"\f\n" +

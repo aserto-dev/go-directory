@@ -1107,15 +1107,15 @@ const file_aserto_directory_writer_v3_writer_proto_rawDesc = "" +
 	"\x13\n" +
 	"\x0fDirectoryAPIKey\x12\x00\n" +
 	"\f\n" +
-	"\bTenantID\x12\x00\x82\xd3\xe4\x93\x02\x1c*\x1a/api/v3/directory/relation\x12\x86\x02\n" +
-	"\vSetManifest\x12..aserto.directory.writer.v3.SetManifestRequest\x1a/.aserto.directory.writer.v3.SetManifestResponse\"\x93\x01\x92An\n" +
-	"\tdirectory\x12\fSet manifest\x1a\rSet manifest.*\x1fdirectory.model.v3.manifest.setb#\n" +
+	"\bTenantID\x12\x00\x82\xd3\xe4\x93\x02\x1c*\x1a/api/v3/directory/relation\x12\x85\x02\n" +
+	"\vSetManifest\x12..aserto.directory.writer.v3.SetManifestRequest\x1a/.aserto.directory.writer.v3.SetManifestResponse\"\x94\x01\x92Ao\n" +
+	"\tdirectory\x12\fSet manifest\x1a\rSet manifest.* directory.writer.v3.manifest.setb#\n" +
 	"\x13\n" +
 	"\x0fDirectoryAPIKey\x12\x00\n" +
 	"\f\n" +
-	"\bTenantID\x12\x00\x82\xd3\xe4\x93\x02\x1c\"\x1a/api/v3/directory/manifest(\x01\x12\x96\x02\n" +
-	"\x0eDeleteManifest\x121.aserto.directory.writer.v3.DeleteManifestRequest\x1a2.aserto.directory.writer.v3.DeleteManifestResponse\"\x9c\x01\x92Aw\n" +
-	"\tdirectory\x12\x0fDelete manifest\x1a\x10Delete manifest.*\"directory.model.v3.manifest.deleteb#\n" +
+	"\bTenantID\x12\x00\x82\xd3\xe4\x93\x02\x1c\"\x1a/api/v3/directory/manifest\x12\x97\x02\n" +
+	"\x0eDeleteManifest\x121.aserto.directory.writer.v3.DeleteManifestRequest\x1a2.aserto.directory.writer.v3.DeleteManifestResponse\"\x9d\x01\x92Ax\n" +
+	"\tdirectory\x12\x0fDelete manifest\x1a\x10Delete manifest.*#directory.writer.v3.manifest.deleteb#\n" +
 	"\x13\n" +
 	"\x0fDirectoryAPIKey\x12\x00\n" +
 	"\f\n" +
