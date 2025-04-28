@@ -28,6 +28,7 @@ const (
 	Reader_Checks_FullMethodName        = "/aserto.directory.reader.v3.Reader/Checks"
 	Reader_GetGraph_FullMethodName      = "/aserto.directory.reader.v3.Reader/GetGraph"
 	Reader_GetManifest_FullMethodName   = "/aserto.directory.reader.v3.Reader/GetManifest"
+	Reader_GetModel_FullMethodName      = "/aserto.directory.reader.v3.Reader/GetModel"
 	Reader_Export_FullMethodName        = "/aserto.directory.reader.v3.Reader/Export"
 )
 
@@ -53,6 +54,8 @@ type ReaderClient interface {
 	GetGraph(ctx context.Context, in *GetGraphRequest, opts ...grpc.CallOption) (*GetGraphResponse, error)
 	// get manifest
 	GetManifest(ctx context.Context, in *GetManifestRequest, opts ...grpc.CallOption) (*GetManifestResponse, error)
+	// get model
+	GetModel(ctx context.Context, in *GetModelRequest, opts ...grpc.CallOption) (*GetModelResponse, error)
 	// export manifests, objects and relations as a stream
 	Export(ctx context.Context, in *ExportRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ExportResponse], error)
 }
@@ -155,6 +158,16 @@ func (c *readerClient) GetManifest(ctx context.Context, in *GetManifestRequest, 
 	return out, nil
 }
 
+func (c *readerClient) GetModel(ctx context.Context, in *GetModelRequest, opts ...grpc.CallOption) (*GetModelResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetModelResponse)
+	err := c.cc.Invoke(ctx, Reader_GetModel_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *readerClient) Export(ctx context.Context, in *ExportRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ExportResponse], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	stream, err := c.cc.NewStream(ctx, &Reader_ServiceDesc.Streams[0], Reader_Export_FullMethodName, cOpts...)
@@ -196,6 +209,8 @@ type ReaderServer interface {
 	GetGraph(context.Context, *GetGraphRequest) (*GetGraphResponse, error)
 	// get manifest
 	GetManifest(context.Context, *GetManifestRequest) (*GetManifestResponse, error)
+	// get model
+	GetModel(context.Context, *GetModelRequest) (*GetModelResponse, error)
 	// export manifests, objects and relations as a stream
 	Export(*ExportRequest, grpc.ServerStreamingServer[ExportResponse]) error
 }
@@ -233,6 +248,9 @@ func (UnimplementedReaderServer) GetGraph(context.Context, *GetGraphRequest) (*G
 }
 func (UnimplementedReaderServer) GetManifest(context.Context, *GetManifestRequest) (*GetManifestResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetManifest not implemented")
+}
+func (UnimplementedReaderServer) GetModel(context.Context, *GetModelRequest) (*GetModelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetModel not implemented")
 }
 func (UnimplementedReaderServer) Export(*ExportRequest, grpc.ServerStreamingServer[ExportResponse]) error {
 	return status.Errorf(codes.Unimplemented, "method Export not implemented")
@@ -419,6 +437,24 @@ func _Reader_GetManifest_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Reader_GetModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetModelRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ReaderServer).GetModel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Reader_GetModel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ReaderServer).GetModel(ctx, req.(*GetModelRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Reader_Export_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(ExportRequest)
 	if err := stream.RecvMsg(m); err != nil {
@@ -472,6 +508,10 @@ var Reader_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetManifest",
 			Handler:    _Reader_GetManifest_Handler,
+		},
+		{
+			MethodName: "GetModel",
+			Handler:    _Reader_GetModel_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

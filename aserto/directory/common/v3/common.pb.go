@@ -29,8 +29,6 @@ type Manifest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Manifest payload
 	Body []byte `protobuf:"bytes,1,opt,name=body,proto3" json:"body,omitempty"`
-	// Model representation of manifest
-	Model *structpb.Struct `protobuf:"bytes,3,opt,name=model,proto3" json:"model,omitempty"`
 	// last updated timestamp (UTC)
 	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,21,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	// manifest instance etag
@@ -76,13 +74,6 @@ func (x *Manifest) GetBody() []byte {
 	return nil
 }
 
-func (x *Manifest) GetModel() *structpb.Struct {
-	if x != nil {
-		return x.Model
-	}
-	return nil
-}
-
 func (x *Manifest) GetUpdatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.UpdatedAt
@@ -91,6 +82,69 @@ func (x *Manifest) GetUpdatedAt() *timestamppb.Timestamp {
 }
 
 func (x *Manifest) GetEtag() string {
+	if x != nil {
+		return x.Etag
+	}
+	return ""
+}
+
+type Model struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Model representation of manifest
+	Model *structpb.Struct `protobuf:"bytes,1,opt,name=model,proto3" json:"model,omitempty"`
+	// last updated timestamp (UTC)
+	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,21,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	// manifest instance etag
+	Etag          string `protobuf:"bytes,23,opt,name=etag,proto3" json:"etag,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Model) Reset() {
+	*x = Model{}
+	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Model) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Model) ProtoMessage() {}
+
+func (x *Model) ProtoReflect() protoreflect.Message {
+	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Model.ProtoReflect.Descriptor instead.
+func (*Model) Descriptor() ([]byte, []int) {
+	return file_aserto_directory_common_v3_common_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *Model) GetModel() *structpb.Struct {
+	if x != nil {
+		return x.Model
+	}
+	return nil
+}
+
+func (x *Model) GetUpdatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return nil
+}
+
+func (x *Model) GetEtag() string {
 	if x != nil {
 		return x.Etag
 	}
@@ -119,7 +173,7 @@ type Object struct {
 
 func (x *Object) Reset() {
 	*x = Object{}
-	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[1]
+	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -131,7 +185,7 @@ func (x *Object) String() string {
 func (*Object) ProtoMessage() {}
 
 func (x *Object) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[1]
+	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -144,7 +198,7 @@ func (x *Object) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Object.ProtoReflect.Descriptor instead.
 func (*Object) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_common_v3_common_proto_rawDescGZIP(), []int{1}
+	return file_aserto_directory_common_v3_common_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *Object) GetType() string {
@@ -222,7 +276,7 @@ type Relation struct {
 
 func (x *Relation) Reset() {
 	*x = Relation{}
-	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[2]
+	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -234,7 +288,7 @@ func (x *Relation) String() string {
 func (*Relation) ProtoMessage() {}
 
 func (x *Relation) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[2]
+	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -247,7 +301,7 @@ func (x *Relation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Relation.ProtoReflect.Descriptor instead.
 func (*Relation) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_common_v3_common_proto_rawDescGZIP(), []int{2}
+	return file_aserto_directory_common_v3_common_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *Relation) GetObjectType() string {
@@ -326,7 +380,7 @@ type ObjectIdentifier struct {
 
 func (x *ObjectIdentifier) Reset() {
 	*x = ObjectIdentifier{}
-	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[3]
+	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -338,7 +392,7 @@ func (x *ObjectIdentifier) String() string {
 func (*ObjectIdentifier) ProtoMessage() {}
 
 func (x *ObjectIdentifier) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[3]
+	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -351,7 +405,7 @@ func (x *ObjectIdentifier) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ObjectIdentifier.ProtoReflect.Descriptor instead.
 func (*ObjectIdentifier) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_common_v3_common_proto_rawDescGZIP(), []int{3}
+	return file_aserto_directory_common_v3_common_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *ObjectIdentifier) GetObjectType() string {
@@ -389,7 +443,7 @@ type RelationIdentifier struct {
 
 func (x *RelationIdentifier) Reset() {
 	*x = RelationIdentifier{}
-	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[4]
+	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -401,7 +455,7 @@ func (x *RelationIdentifier) String() string {
 func (*RelationIdentifier) ProtoMessage() {}
 
 func (x *RelationIdentifier) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[4]
+	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -414,7 +468,7 @@ func (x *RelationIdentifier) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RelationIdentifier.ProtoReflect.Descriptor instead.
 func (*RelationIdentifier) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_common_v3_common_proto_rawDescGZIP(), []int{4}
+	return file_aserto_directory_common_v3_common_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *RelationIdentifier) GetObjectType() string {
@@ -472,7 +526,7 @@ type PaginationRequest struct {
 
 func (x *PaginationRequest) Reset() {
 	*x = PaginationRequest{}
-	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[5]
+	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -484,7 +538,7 @@ func (x *PaginationRequest) String() string {
 func (*PaginationRequest) ProtoMessage() {}
 
 func (x *PaginationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[5]
+	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -497,7 +551,7 @@ func (x *PaginationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PaginationRequest.ProtoReflect.Descriptor instead.
 func (*PaginationRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_common_v3_common_proto_rawDescGZIP(), []int{5}
+	return file_aserto_directory_common_v3_common_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *PaginationRequest) GetSize() int32 {
@@ -525,7 +579,7 @@ type PaginationResponse struct {
 
 func (x *PaginationResponse) Reset() {
 	*x = PaginationResponse{}
-	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[6]
+	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -537,7 +591,7 @@ func (x *PaginationResponse) String() string {
 func (*PaginationResponse) ProtoMessage() {}
 
 func (x *PaginationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[6]
+	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -550,7 +604,7 @@ func (x *PaginationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PaginationResponse.ProtoReflect.Descriptor instead.
 func (*PaginationResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_common_v3_common_proto_rawDescGZIP(), []int{6}
+	return file_aserto_directory_common_v3_common_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *PaginationResponse) GetNextToken() string {
@@ -564,13 +618,17 @@ var File_aserto_directory_common_v3_common_proto protoreflect.FileDescriptor
 
 const file_aserto_directory_common_v3_common_proto_rawDesc = "" +
 	"\n" +
-	"'aserto/directory/common/v3/common.proto\x12\x1aaserto.directory.common.v3\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xab\x01\n" +
+	"'aserto/directory/common/v3/common.proto\x12\x1aaserto.directory.common.v3\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"w\n" +
 	"\bManifest\x12\x12\n" +
-	"\x04body\x18\x01 \x01(\fR\x04body\x122\n" +
-	"\x05model\x18\x03 \x01(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\x05model\x12>\n" +
+	"\x04body\x18\x01 \x01(\fR\x04body\x12>\n" +
 	"\n" +
 	"updated_at\x18\x15 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\tupdatedAt\x12\x17\n" +
-	"\x04etag\x18\x17 \x01(\tB\x03\xe0A\x01R\x04etag\"\xb5\x02\n" +
+	"\x04etag\x18\x17 \x01(\tB\x03\xe0A\x01R\x04etag\"\x94\x01\n" +
+	"\x05Model\x122\n" +
+	"\x05model\x18\x01 \x01(\v2\x17.google.protobuf.StructB\x03\xe0A\x03R\x05model\x12>\n" +
+	"\n" +
+	"updated_at\x18\x15 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\tupdatedAt\x12\x17\n" +
+	"\x04etag\x18\x17 \x01(\tB\x03\xe0A\x03R\x04etag\"\xb5\x02\n" +
 	"\x06Object\x12\x17\n" +
 	"\x04type\x18\x01 \x01(\tB\x03\xe0A\x02R\x04type\x12\x13\n" +
 	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x02R\x02id\x12&\n" +
@@ -629,31 +687,33 @@ func file_aserto_directory_common_v3_common_proto_rawDescGZIP() []byte {
 	return file_aserto_directory_common_v3_common_proto_rawDescData
 }
 
-var file_aserto_directory_common_v3_common_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_aserto_directory_common_v3_common_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_aserto_directory_common_v3_common_proto_goTypes = []any{
 	(*Manifest)(nil),              // 0: aserto.directory.common.v3.Manifest
-	(*Object)(nil),                // 1: aserto.directory.common.v3.Object
-	(*Relation)(nil),              // 2: aserto.directory.common.v3.Relation
-	(*ObjectIdentifier)(nil),      // 3: aserto.directory.common.v3.ObjectIdentifier
-	(*RelationIdentifier)(nil),    // 4: aserto.directory.common.v3.RelationIdentifier
-	(*PaginationRequest)(nil),     // 5: aserto.directory.common.v3.PaginationRequest
-	(*PaginationResponse)(nil),    // 6: aserto.directory.common.v3.PaginationResponse
-	(*structpb.Struct)(nil),       // 7: google.protobuf.Struct
+	(*Model)(nil),                 // 1: aserto.directory.common.v3.Model
+	(*Object)(nil),                // 2: aserto.directory.common.v3.Object
+	(*Relation)(nil),              // 3: aserto.directory.common.v3.Relation
+	(*ObjectIdentifier)(nil),      // 4: aserto.directory.common.v3.ObjectIdentifier
+	(*RelationIdentifier)(nil),    // 5: aserto.directory.common.v3.RelationIdentifier
+	(*PaginationRequest)(nil),     // 6: aserto.directory.common.v3.PaginationRequest
+	(*PaginationResponse)(nil),    // 7: aserto.directory.common.v3.PaginationResponse
 	(*timestamppb.Timestamp)(nil), // 8: google.protobuf.Timestamp
+	(*structpb.Struct)(nil),       // 9: google.protobuf.Struct
 }
 var file_aserto_directory_common_v3_common_proto_depIdxs = []int32{
-	7, // 0: aserto.directory.common.v3.Manifest.model:type_name -> google.protobuf.Struct
-	8, // 1: aserto.directory.common.v3.Manifest.updated_at:type_name -> google.protobuf.Timestamp
-	7, // 2: aserto.directory.common.v3.Object.properties:type_name -> google.protobuf.Struct
-	8, // 3: aserto.directory.common.v3.Object.created_at:type_name -> google.protobuf.Timestamp
-	8, // 4: aserto.directory.common.v3.Object.updated_at:type_name -> google.protobuf.Timestamp
-	8, // 5: aserto.directory.common.v3.Relation.created_at:type_name -> google.protobuf.Timestamp
-	8, // 6: aserto.directory.common.v3.Relation.updated_at:type_name -> google.protobuf.Timestamp
-	7, // [7:7] is the sub-list for method output_type
-	7, // [7:7] is the sub-list for method input_type
-	7, // [7:7] is the sub-list for extension type_name
-	7, // [7:7] is the sub-list for extension extendee
-	0, // [0:7] is the sub-list for field type_name
+	8, // 0: aserto.directory.common.v3.Manifest.updated_at:type_name -> google.protobuf.Timestamp
+	9, // 1: aserto.directory.common.v3.Model.model:type_name -> google.protobuf.Struct
+	8, // 2: aserto.directory.common.v3.Model.updated_at:type_name -> google.protobuf.Timestamp
+	9, // 3: aserto.directory.common.v3.Object.properties:type_name -> google.protobuf.Struct
+	8, // 4: aserto.directory.common.v3.Object.created_at:type_name -> google.protobuf.Timestamp
+	8, // 5: aserto.directory.common.v3.Object.updated_at:type_name -> google.protobuf.Timestamp
+	8, // 6: aserto.directory.common.v3.Relation.created_at:type_name -> google.protobuf.Timestamp
+	8, // 7: aserto.directory.common.v3.Relation.updated_at:type_name -> google.protobuf.Timestamp
+	8, // [8:8] is the sub-list for method output_type
+	8, // [8:8] is the sub-list for method input_type
+	8, // [8:8] is the sub-list for extension type_name
+	8, // [8:8] is the sub-list for extension extendee
+	0, // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_aserto_directory_common_v3_common_proto_init() }
@@ -667,7 +727,7 @@ func file_aserto_directory_common_v3_common_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_aserto_directory_common_v3_common_proto_rawDesc), len(file_aserto_directory_common_v3_common_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   7,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
