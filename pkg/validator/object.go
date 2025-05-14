@@ -35,11 +35,11 @@ func ObjectIdentifier(msg *dsc3.ObjectIdentifier) error {
 		return nil
 	}
 
-	if err := TypeIdentifier(fieldObjectType, msg.GetObjectType()); err != nil {
+	if err := TypeIdentifier(fieldObjectType, msg.GetType()); err != nil {
 		return err
 	}
 
-	if err := InstanceIdentifier(fieldObjectID, msg.GetObjectId()); err != nil {
+	if err := InstanceIdentifier(fieldObjectID, msg.GetId()); err != nil {
 		return err
 	}
 

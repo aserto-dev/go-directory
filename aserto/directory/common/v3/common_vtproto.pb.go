@@ -119,8 +119,8 @@ func (m *ObjectIdentifier) CloneVT() *ObjectIdentifier {
 		return (*ObjectIdentifier)(nil)
 	}
 	r := new(ObjectIdentifier)
-	r.ObjectType = m.ObjectType
-	r.ObjectId = m.ObjectId
+	r.Type = m.Type
+	r.Id = m.Id
 	if len(m.unknownFields) > 0 {
 		r.unknownFields = make([]byte, len(m.unknownFields))
 		copy(r.unknownFields, m.unknownFields)
@@ -325,10 +325,10 @@ func (this *ObjectIdentifier) EqualVT(that *ObjectIdentifier) bool {
 	} else if this == nil || that == nil {
 		return false
 	}
-	if this.ObjectType != that.ObjectType {
+	if this.Type != that.Type {
 		return false
 	}
-	if this.ObjectId != that.ObjectId {
+	if this.Id != that.Id {
 		return false
 	}
 	return string(this.unknownFields) == string(that.unknownFields)
@@ -776,17 +776,17 @@ func (m *ObjectIdentifier) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		i -= len(m.unknownFields)
 		copy(dAtA[i:], m.unknownFields)
 	}
-	if len(m.ObjectId) > 0 {
-		i -= len(m.ObjectId)
-		copy(dAtA[i:], m.ObjectId)
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(len(m.ObjectId)))
+	if len(m.Id) > 0 {
+		i -= len(m.Id)
+		copy(dAtA[i:], m.Id)
+		i = protohelpers.EncodeVarint(dAtA, i, uint64(len(m.Id)))
 		i--
 		dAtA[i] = 0x12
 	}
-	if len(m.ObjectType) > 0 {
-		i -= len(m.ObjectType)
-		copy(dAtA[i:], m.ObjectType)
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(len(m.ObjectType)))
+	if len(m.Type) > 0 {
+		i -= len(m.Type)
+		copy(dAtA[i:], m.Type)
+		i = protohelpers.EncodeVarint(dAtA, i, uint64(len(m.Type)))
 		i--
 		dAtA[i] = 0xa
 	}
@@ -1107,11 +1107,11 @@ func (m *ObjectIdentifier) SizeVT() (n int) {
 	}
 	var l int
 	_ = l
-	l = len(m.ObjectType)
+	l = len(m.Type)
 	if l > 0 {
 		n += 1 + l + protohelpers.SizeOfVarint(uint64(l))
 	}
-	l = len(m.ObjectId)
+	l = len(m.Id)
 	if l > 0 {
 		n += 1 + l + protohelpers.SizeOfVarint(uint64(l))
 	}
@@ -2157,7 +2157,7 @@ func (m *ObjectIdentifier) UnmarshalVT(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field ObjectType", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Type", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -2185,11 +2185,11 @@ func (m *ObjectIdentifier) UnmarshalVT(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.ObjectType = string(dAtA[iNdEx:postIndex])
+			m.Type = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field ObjectId", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -2217,7 +2217,7 @@ func (m *ObjectIdentifier) UnmarshalVT(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.ObjectId = string(dAtA[iNdEx:postIndex])
+			m.Id = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex

@@ -370,10 +370,10 @@ func (x *Relation) GetEtag() string {
 // object identifier
 type ObjectIdentifier struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// object type (lc-string)
-	ObjectType string `protobuf:"bytes,1,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"`
-	// object identifier (cs-string)
-	ObjectId      string `protobuf:"bytes,2,opt,name=object_id,json=objectId,proto3" json:"object_id,omitempty"`
+	// object type name
+	Type string `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
+	// external object identifier (cs-string, no spaces or tabs)
+	Id            string `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -408,16 +408,16 @@ func (*ObjectIdentifier) Descriptor() ([]byte, []int) {
 	return file_aserto_directory_common_v3_common_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *ObjectIdentifier) GetObjectType() string {
+func (x *ObjectIdentifier) GetType() string {
 	if x != nil {
-		return x.ObjectType
+		return x.Type
 	}
 	return ""
 }
 
-func (x *ObjectIdentifier) GetObjectId() string {
+func (x *ObjectIdentifier) GetId() string {
 	if x != nil {
-		return x.ObjectId
+		return x.Id
 	}
 	return ""
 }
@@ -654,11 +654,10 @@ const file_aserto_directory_common_v3_common_proto_rawDesc = "" +
 	"created_at\x18\x14 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\tcreatedAt\x12>\n" +
 	"\n" +
 	"updated_at\x18\x15 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\tupdatedAt\x12\x17\n" +
-	"\x04etag\x18\x17 \x01(\tB\x03\xe0A\x01R\x04etag\"Z\n" +
-	"\x10ObjectIdentifier\x12$\n" +
-	"\vobject_type\x18\x01 \x01(\tB\x03\xe0A\x02R\n" +
-	"objectType\x12 \n" +
-	"\tobject_id\x18\x02 \x01(\tB\x03\xe0A\x02R\bobjectId\"\xf9\x01\n" +
+	"\x04etag\x18\x17 \x01(\tB\x03\xe0A\x01R\x04etag\"@\n" +
+	"\x10ObjectIdentifier\x12\x17\n" +
+	"\x04type\x18\x01 \x01(\tB\x03\xe0A\x02R\x04type\x12\x13\n" +
+	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x02R\x02id\"\xf9\x01\n" +
 	"\x12RelationIdentifier\x12$\n" +
 	"\vobject_type\x18\x01 \x01(\tB\x03\xe0A\x02R\n" +
 	"objectType\x12 \n" +

@@ -24,12 +24,10 @@ GORELEASER_VER     := 2.8.2
 BUF_VER            := 1.52.1
 
 PROJECT            := directory
-BUF_USER           := $(shell ${EXT_BIN_DIR}/vault kv get -field ASERTO_BUF_USER kv/buf.build)
 BUF_TOKEN          := $(shell ${EXT_BIN_DIR}/vault kv get -field ASERTO_BUF_TOKEN kv/buf.build)
 BUF_REPO           := "buf.build/aserto-dev/${PROJECT}"
 BUF_LATEST         := $(shell ${EXT_BIN_DIR}/buf registry module label list ${BUF_REPO} --format json | jq -r '.labels[0].name')
-BUF_DEV_IMAGE      := "${PROJECT}.bin"
-PROTO_REPO         := "pb-${PROJECT}"
+BUF_DEV_IMAGE      := "../pb-${PROJECT}/bin/${PROJECT}.bin"
 
 RELEASE_TAG        := $$(${EXT_BIN_DIR}/svu current)
 
@@ -64,7 +62,7 @@ vault-login:
 .PHONY: buf-login
 buf-login:
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
-	@echo ${BUF_TOKEN} | ${EXT_BIN_DIR}/buf registry login --username ${BUF_USER} --token-stdin
+	@echo ${BUF_TOKEN} | ${EXT_BIN_DIR}/buf registry login --token-stdin
 
 .PHONY: buf-generate
 buf-generate:
@@ -74,7 +72,7 @@ buf-generate:
 .PHONY: buf-generate-dev
 buf-generate-dev:
 	@echo -e "$(ATTN_COLOR)==> $@ ../${PROTO_REPO}/bin/${BUF_DEV_IMAGE}$(NO_COLOR)"
-	@${EXT_BIN_DIR}/buf generate "../${PROTO_REPO}/bin/${BUF_DEV_IMAGE}"
+	@${EXT_BIN_DIR}/buf generate ${BUF_DEV_IMAGE}
 
 .PHONY: info
 info:
@@ -87,9 +85,8 @@ info:
 	@echo "RELEASE_TAG:   ${RELEASE_TAG}"
 	@echo "BUF_REPO:      ${BUF_REPO}"
 	@echo "BUF_LATEST:    ${BUF_LATEST}"
-	@echo "BUF_DEV_IMAGE: ${BIN_DIR}/${BUF_DEV_IMAGE}"
-	@echo "PROTO_REPO:    ${PROTO_REPO}"
-
+	@echo "BUF_DEV_IMAGE: ${BUF_DEV_IMAGE}"
+	
 .PHONY: install-vault
 install-vault: ${EXT_BIN_DIR} ${EXT_TMP_DIR}
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
