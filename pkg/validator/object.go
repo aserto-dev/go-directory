@@ -1,12 +1,12 @@
 package validator
 
 import (
-	dsc3 "github.com/aserto-dev/go-directory/aserto/directory/common/v3"
-	dsr3 "github.com/aserto-dev/go-directory/aserto/directory/reader/v3"
-	dsw3 "github.com/aserto-dev/go-directory/aserto/directory/writer/v3"
+	"github.com/aserto-dev/go-directory/aserto/directory/common/v3"
+	"github.com/aserto-dev/go-directory/aserto/directory/reader/v3"
+	"github.com/aserto-dev/go-directory/aserto/directory/writer/v3"
 )
 
-func Object(msg *dsc3.Object) error {
+func Object(msg *common.Object) error {
 	if msg == nil {
 		return nil
 	}
@@ -30,7 +30,7 @@ func Object(msg *dsc3.Object) error {
 	return nil
 }
 
-func ObjectIdentifier(msg *dsc3.ObjectIdentifier) error {
+func ObjectIdentifier(msg *common.ObjectIdentifier) error {
 	if msg == nil {
 		return nil
 	}
@@ -46,7 +46,7 @@ func ObjectIdentifier(msg *dsc3.ObjectIdentifier) error {
 	return nil
 }
 
-func GetObjectRequest(msg *dsr3.GetObjectRequest) error {
+func GetObjectRequest(msg *reader.GetObjectRequest) error {
 	if msg == nil {
 		return nil
 	}
@@ -66,7 +66,7 @@ func GetObjectRequest(msg *dsr3.GetObjectRequest) error {
 	return nil
 }
 
-func GetObjectsRequest(msg *dsr3.GetObjectsRequest) error {
+func GetObjectsRequest(msg *reader.GetObjectsRequest) error {
 	if msg == nil {
 		return nil
 	}
@@ -82,7 +82,7 @@ func GetObjectsRequest(msg *dsr3.GetObjectsRequest) error {
 	return nil
 }
 
-func GetObjectManyRequest(msg *dsr3.GetObjectManyRequest) error {
+func GetObjectManyRequest(msg *reader.GetObjectManyRequest) error {
 	if msg == nil || msg.GetParam() == nil || len(msg.GetParam()) == 0 {
 		return nil
 	}
@@ -96,7 +96,7 @@ func GetObjectManyRequest(msg *dsr3.GetObjectManyRequest) error {
 	return nil
 }
 
-func SetObjectRequest(msg *dsw3.SetObjectRequest) error {
+func SetObjectRequest(msg *writer.SetObjectRequest) error {
 	if msg == nil || msg.GetObject() == nil {
 		return nil
 	}
@@ -108,7 +108,7 @@ func SetObjectRequest(msg *dsw3.SetObjectRequest) error {
 	return nil
 }
 
-func DeleteObjectRequest(msg *dsw3.DeleteObjectRequest) error {
+func DeleteObjectRequest(msg *writer.DeleteObjectRequest) error {
 	if msg == nil {
 		return nil
 	}

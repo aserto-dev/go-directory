@@ -1,12 +1,12 @@
 package validator
 
 import (
-	dsc3 "github.com/aserto-dev/go-directory/aserto/directory/common/v3"
-	dsr3 "github.com/aserto-dev/go-directory/aserto/directory/reader/v3"
-	dsw3 "github.com/aserto-dev/go-directory/aserto/directory/writer/v3"
+	"github.com/aserto-dev/go-directory/aserto/directory/common/v3"
+	"github.com/aserto-dev/go-directory/aserto/directory/reader/v3"
+	"github.com/aserto-dev/go-directory/aserto/directory/writer/v3"
 )
 
-func Relation(msg *dsc3.Relation) error {
+func Relation(msg *common.Relation) error {
 	if msg == nil {
 		return nil
 	}
@@ -42,7 +42,7 @@ func Relation(msg *dsc3.Relation) error {
 	return nil
 }
 
-func RelationIdentifier(msg *dsc3.RelationIdentifier) error {
+func RelationIdentifier(msg *common.RelationIdentifier) error {
 	if msg == nil {
 		return nil
 	}
@@ -74,7 +74,7 @@ func RelationIdentifier(msg *dsc3.RelationIdentifier) error {
 	return nil
 }
 
-func GetRelationRequest(msg *dsr3.GetRelationRequest) error {
+func GetRelationRequest(msg *reader.GetRelationRequest) error {
 	if msg == nil {
 		return nil
 	}
@@ -114,7 +114,7 @@ func GetRelationRequest(msg *dsr3.GetRelationRequest) error {
 	return nil
 }
 
-func GetRelationsRequest(msg *dsr3.GetRelationsRequest) error {
+func GetRelationsRequest(msg *reader.GetRelationsRequest) error {
 	if msg == nil {
 		return nil
 	}
@@ -158,7 +158,7 @@ func GetRelationsRequest(msg *dsr3.GetRelationsRequest) error {
 	return nil
 }
 
-func SetRelationRequest(msg *dsw3.SetRelationRequest) error {
+func SetRelationRequest(msg *writer.SetRelationRequest) error {
 	if msg == nil || msg.GetRelation() == nil {
 		return nil
 	}
@@ -170,7 +170,7 @@ func SetRelationRequest(msg *dsw3.SetRelationRequest) error {
 	return nil
 }
 
-func DeleteRelationRequest(msg *dsw3.DeleteRelationRequest) error {
+func DeleteRelationRequest(msg *writer.DeleteRelationRequest) error {
 	if msg == nil {
 		return nil
 	}

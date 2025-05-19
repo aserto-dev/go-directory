@@ -1,10 +1,10 @@
 package validator
 
 import (
-	dsr3 "github.com/aserto-dev/go-directory/aserto/directory/reader/v3"
+	"github.com/aserto-dev/go-directory/aserto/directory/reader/v3"
 )
 
-func CheckRequest(msg *dsr3.CheckRequest) error {
+func CheckRequest(msg *reader.CheckRequest) error {
 	if msg == nil {
 		return nil
 	}
@@ -32,7 +32,7 @@ func CheckRequest(msg *dsr3.CheckRequest) error {
 	return nil
 }
 
-func ChecksRequest(msg *dsr3.ChecksRequest) error {
+func ChecksRequest(msg *reader.ChecksRequest) error {
 	if msg == nil {
 		return nil
 	}
@@ -52,7 +52,7 @@ func ChecksRequest(msg *dsr3.ChecksRequest) error {
 	return nil
 }
 
-func GetGraphRequest(msg *dsr3.GetGraphRequest) error {
+func GetGraphRequest(msg *reader.GetGraphRequest) error {
 	if msg == nil {
 		return nil
 	}
