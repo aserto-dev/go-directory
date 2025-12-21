@@ -75,7 +75,7 @@ func NewStruct() *structpb.Struct {
 	return &structpb.Struct{Fields: make(map[string]*structpb.Value)}
 }
 
-// ProtoToBuf, marshal proto message to buffer.
+// ProtoToBytes, marshal proto message to buffer.
 func ProtoToBytes(msg proto.Message) ([]byte, error) {
 	return protojson.MarshalOptions{
 		Multiline:       false,
@@ -109,12 +109,12 @@ func BytesToStruct(b []byte) (*structpb.Struct, error) {
 	return v, nil
 }
 
-// JSONconverts a map decoded from JSON to a protobuf struct.
+// JSONToStruct converts a map decoded from JSON to a protobuf struct.
 // The reason that the map can't be directly converted to a struct using structpb.NewStruct is that
 // when gqlgen decodes a JSON object it calls decoder.UseNumber() on the json.Decoder.
 // As a result, numeric values are decoded as json.Number, instead of float, and structpb.NewStruct doesn't know
 // how to handle that.
-func JSONToStruct(val map[string]interface{}) (*structpb.Struct, error) {
+func JSONToStruct(val map[string]any) (*structpb.Struct, error) {
 	encoded, err := json.Marshal(val)
 	if err != nil {
 		return nil, err

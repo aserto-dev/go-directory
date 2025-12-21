@@ -15,13 +15,13 @@ const (
 type ManifestRequest string
 
 const (
-	// Return the manifest metadata and body.
+	// ManifestRequestDefault return the manifest metadata and body.
 	ManifestRequestDefault ManifestRequest = ""
-	// Only return the manifest metadata.
+	// ManifestRequestMetadataOnly only return the manifest metadata.
 	ManifestRequestMetadataOnly ManifestRequest = "metadata-only"
-	// Only return the manifest metadata and model.
+	// ManifestRequestModelOnly only return the manifest metadata and model.
 	ManifestRequestModelOnly ManifestRequest = "model-only"
-	// Return the manifest metadata, body, and model.
+	// ManifestRequestWithModel return the manifest metadata, body, and model.
 	ManifestRequestWithModel ManifestRequest = "with-model"
 )
 
