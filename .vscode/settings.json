@@ -2,16 +2,28 @@
     "cSpell.words": [
         "aserto",
         "cerr",
+        "davecgh",
         "derr",
+        "difflib",
         "emptypb",
+        "genproto",
+        "gopkg",
+        "isatty",
+        "mattn",
         "Msgf",
         "oneof",
+        "planetscale",
+        "pmezard",
         "protobuf",
         "protoc",
         "protoimpl",
         "protojson",
         "protoreflect",
+        "samber",
+        "stretchr",
         "structpb",
-        "timestamppb"
+        "timestamppb",
+        "vtprotobuf",
+        "zerolog"
     ]
 }
