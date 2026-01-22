@@ -389,7 +389,7 @@ func (x *RelationIdentifier) GetSubjectRelation() string {
 // Pagination request
 type PaginationRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// requested page size, valid value between 1-100 rows (optional, default 100l
+	// requested page size, valid value between 1-100 rows (optional, default 100)
 	Size int32 `protobuf:"varint,1,opt,name=size,proto3" json:"size,omitempty"`
 	// pagination start token (optional, default "")
 	Token         string `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`

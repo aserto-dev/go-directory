@@ -102,7 +102,6 @@ func (m *GetObjectRequest) CloneVT() *GetObjectRequest {
 	r.ObjectType = m.ObjectType
 	r.ObjectId = m.ObjectId
 	r.WithRelations = m.WithRelations
-	r.Page = m.Page.CloneVT()
 	if len(m.unknownFields) > 0 {
 		r.unknownFields = make([]byte, len(m.unknownFields))
 		copy(r.unknownFields, m.unknownFields)
@@ -686,9 +685,6 @@ func (this *GetObjectRequest) EqualVT(that *GetObjectRequest) bool {
 		return false
 	}
 	if this.WithRelations != that.WithRelations {
-		return false
-	}
-	if !this.Page.EqualVT(that.Page) {
 		return false
 	}
 	return string(this.unknownFields) == string(that.unknownFields)
@@ -1683,16 +1679,6 @@ func (m *GetObjectRequest) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 	if m.unknownFields != nil {
 		i -= len(m.unknownFields)
 		copy(dAtA[i:], m.unknownFields)
-	}
-	if m.Page != nil {
-		size, err := m.Page.MarshalToSizedBufferVT(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(size))
-		i--
-		dAtA[i] = 0x4a
 	}
 	if m.WithRelations {
 		i--
@@ -3050,10 +3036,6 @@ func (m *GetObjectRequest) SizeVT() (n int) {
 	if m.WithRelations {
 		n += 2
 	}
-	if m.Page != nil {
-		l = m.Page.SizeVT()
-		n += 1 + l + protohelpers.SizeOfVarint(uint64(l))
-	}
 	n += len(m.unknownFields)
 	return n
 }
@@ -4025,42 +4007,6 @@ func (m *GetObjectRequest) UnmarshalVT(dAtA []byte) error {
 				}
 			}
 			m.WithRelations = bool(v != 0)
-		case 9:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Page", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return protohelpers.ErrIntOverflow
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return protohelpers.ErrInvalidLength
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return protohelpers.ErrInvalidLength
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if m.Page == nil {
-				m.Page = &v4.PaginationRequest{}
-			}
-			if err := m.Page.UnmarshalVT(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
 			skippy, err := protohelpers.Skip(dAtA[iNdEx:])

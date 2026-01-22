@@ -283,8 +283,6 @@ type GetObjectRequest struct {
 	ObjectId string `protobuf:"bytes,2,opt,name=object_id,json=objectId,proto3" json:"object_id,omitempty"`
 	// materialize the object relations objects (optional)
 	WithRelations bool `protobuf:"varint,3,opt,name=with_relations,json=withRelations,proto3" json:"with_relations,omitempty"`
-	// pagination request (optional)
-	Page          *v4.PaginationRequest `protobuf:"bytes,9,opt,name=page,proto3" json:"page,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -338,13 +336,6 @@ func (x *GetObjectRequest) GetWithRelations() bool {
 		return x.WithRelations
 	}
 	return false
-}
-
-func (x *GetObjectRequest) GetPage() *v4.PaginationRequest {
-	if x != nil {
-		return x.Page
-	}
-	return nil
 }
 
 type GetObjectResponse struct {
@@ -1655,13 +1646,12 @@ const file_aserto_directory_reader_v4_reader_proto_rawDesc = "" +
 	"\x0fGetModelRequest\x12,\n" +
 	"\x05empty\x18\x01 \x01(\v2\x16.google.protobuf.EmptyR\x05empty\"M\n" +
 	"\x10GetModelResponse\x129\n" +
-	"\x06result\x18\x01 \x01(\v2!.aserto.directory.common.v4.ModelR\x06result\"\xce\x01\n" +
+	"\x06result\x18\x01 \x01(\v2!.aserto.directory.common.v4.ModelR\x06result\"\x86\x01\n" +
 	"\x10GetObjectRequest\x12$\n" +
 	"\vobject_type\x18\x01 \x01(\tB\x03\xe0A\x02R\n" +
 	"objectType\x12 \n" +
 	"\tobject_id\x18\x02 \x01(\tB\x03\xe0A\x02R\bobjectId\x12*\n" +
-	"\x0ewith_relations\x18\x03 \x01(\bB\x03\xe0A\x01R\rwithRelations\x12F\n" +
-	"\x04page\x18\t \x01(\v2-.aserto.directory.common.v4.PaginationRequestB\x03\xe0A\x01R\x04page\"\x93\x01\n" +
+	"\x0ewith_relations\x18\x03 \x01(\bB\x03\xe0A\x01R\rwithRelations\"\x93\x01\n" +
 	"\x11GetObjectResponse\x12:\n" +
 	"\x06result\x18\x01 \x01(\v2\".aserto.directory.common.v4.ObjectR\x06result\x12B\n" +
 	"\trelations\x18\x04 \x03(\v2$.aserto.directory.common.v4.RelationR\trelations\"\\\n" +
@@ -1859,10 +1849,10 @@ var file_aserto_directory_reader_v4_reader_proto_goTypes = []any{
 	(*emptypb.Empty)(nil),         // 26: google.protobuf.Empty
 	(*v4.Manifest)(nil),           // 27: aserto.directory.common.v4.Manifest
 	(*v4.Model)(nil),              // 28: aserto.directory.common.v4.Model
-	(*v4.PaginationRequest)(nil),  // 29: aserto.directory.common.v4.PaginationRequest
-	(*v4.Object)(nil),             // 30: aserto.directory.common.v4.Object
-	(*v4.Relation)(nil),           // 31: aserto.directory.common.v4.Relation
-	(*v4.ObjectIdentifier)(nil),   // 32: aserto.directory.common.v4.ObjectIdentifier
+	(*v4.Object)(nil),             // 29: aserto.directory.common.v4.Object
+	(*v4.Relation)(nil),           // 30: aserto.directory.common.v4.Relation
+	(*v4.ObjectIdentifier)(nil),   // 31: aserto.directory.common.v4.ObjectIdentifier
+	(*v4.PaginationRequest)(nil),  // 32: aserto.directory.common.v4.PaginationRequest
 	(*v4.PaginationResponse)(nil), // 33: aserto.directory.common.v4.PaginationResponse
 	(*v4.RelationIdentifier)(nil), // 34: aserto.directory.common.v4.RelationIdentifier
 	(*structpb.Struct)(nil),       // 35: google.protobuf.Struct
@@ -1873,65 +1863,64 @@ var file_aserto_directory_reader_v4_reader_proto_depIdxs = []int32{
 	27, // 1: aserto.directory.reader.v4.GetManifestResponse.result:type_name -> aserto.directory.common.v4.Manifest
 	26, // 2: aserto.directory.reader.v4.GetModelRequest.empty:type_name -> google.protobuf.Empty
 	28, // 3: aserto.directory.reader.v4.GetModelResponse.result:type_name -> aserto.directory.common.v4.Model
-	29, // 4: aserto.directory.reader.v4.GetObjectRequest.page:type_name -> aserto.directory.common.v4.PaginationRequest
-	30, // 5: aserto.directory.reader.v4.GetObjectResponse.result:type_name -> aserto.directory.common.v4.Object
-	31, // 6: aserto.directory.reader.v4.GetObjectResponse.relations:type_name -> aserto.directory.common.v4.Relation
-	32, // 7: aserto.directory.reader.v4.GetObjectsRequest.param:type_name -> aserto.directory.common.v4.ObjectIdentifier
-	30, // 8: aserto.directory.reader.v4.GetObjectsResponse.results:type_name -> aserto.directory.common.v4.Object
-	29, // 9: aserto.directory.reader.v4.ListObjectsRequest.page:type_name -> aserto.directory.common.v4.PaginationRequest
-	30, // 10: aserto.directory.reader.v4.ListObjectsResponse.results:type_name -> aserto.directory.common.v4.Object
-	33, // 11: aserto.directory.reader.v4.ListObjectsResponse.page:type_name -> aserto.directory.common.v4.PaginationResponse
-	31, // 12: aserto.directory.reader.v4.GetRelationResponse.result:type_name -> aserto.directory.common.v4.Relation
-	30, // 13: aserto.directory.reader.v4.GetRelationResponse.object:type_name -> aserto.directory.common.v4.Object
-	30, // 14: aserto.directory.reader.v4.GetRelationResponse.subject:type_name -> aserto.directory.common.v4.Object
-	34, // 15: aserto.directory.reader.v4.GetRelationsRequest.param:type_name -> aserto.directory.common.v4.RelationIdentifier
-	31, // 16: aserto.directory.reader.v4.GetRelationsResponse.results:type_name -> aserto.directory.common.v4.Relation
-	29, // 17: aserto.directory.reader.v4.ListRelationsRequest.page:type_name -> aserto.directory.common.v4.PaginationRequest
-	31, // 18: aserto.directory.reader.v4.ListRelationsResponse.results:type_name -> aserto.directory.common.v4.Relation
-	25, // 19: aserto.directory.reader.v4.ListRelationsResponse.objects:type_name -> aserto.directory.reader.v4.ListRelationsResponse.ObjectsEntry
-	33, // 20: aserto.directory.reader.v4.ListRelationsResponse.page:type_name -> aserto.directory.common.v4.PaginationResponse
-	35, // 21: aserto.directory.reader.v4.CheckResponse.context:type_name -> google.protobuf.Struct
-	17, // 22: aserto.directory.reader.v4.ChecksRequest.default:type_name -> aserto.directory.reader.v4.CheckRequest
-	17, // 23: aserto.directory.reader.v4.ChecksRequest.checks:type_name -> aserto.directory.reader.v4.CheckRequest
-	18, // 24: aserto.directory.reader.v4.ChecksResponse.checks:type_name -> aserto.directory.reader.v4.CheckResponse
-	32, // 25: aserto.directory.reader.v4.GetGraphResponse.results:type_name -> aserto.directory.common.v4.ObjectIdentifier
-	35, // 26: aserto.directory.reader.v4.GetGraphResponse.explanation:type_name -> google.protobuf.Struct
-	36, // 27: aserto.directory.reader.v4.ExportRequest.start_from:type_name -> google.protobuf.Timestamp
-	27, // 28: aserto.directory.reader.v4.ExportResponse.manifest:type_name -> aserto.directory.common.v4.Manifest
-	28, // 29: aserto.directory.reader.v4.ExportResponse.model:type_name -> aserto.directory.common.v4.Model
-	30, // 30: aserto.directory.reader.v4.ExportResponse.object:type_name -> aserto.directory.common.v4.Object
-	31, // 31: aserto.directory.reader.v4.ExportResponse.relation:type_name -> aserto.directory.common.v4.Relation
-	35, // 32: aserto.directory.reader.v4.ExportResponse.stats:type_name -> google.protobuf.Struct
-	30, // 33: aserto.directory.reader.v4.ListRelationsResponse.ObjectsEntry.value:type_name -> aserto.directory.common.v4.Object
-	1,  // 34: aserto.directory.reader.v4.Reader.GetManifest:input_type -> aserto.directory.reader.v4.GetManifestRequest
-	3,  // 35: aserto.directory.reader.v4.Reader.GetModel:input_type -> aserto.directory.reader.v4.GetModelRequest
-	5,  // 36: aserto.directory.reader.v4.Reader.GetObject:input_type -> aserto.directory.reader.v4.GetObjectRequest
-	7,  // 37: aserto.directory.reader.v4.Reader.GetObjects:input_type -> aserto.directory.reader.v4.GetObjectsRequest
-	9,  // 38: aserto.directory.reader.v4.Reader.ListObjects:input_type -> aserto.directory.reader.v4.ListObjectsRequest
-	11, // 39: aserto.directory.reader.v4.Reader.GetRelation:input_type -> aserto.directory.reader.v4.GetRelationRequest
-	13, // 40: aserto.directory.reader.v4.Reader.GetRelations:input_type -> aserto.directory.reader.v4.GetRelationsRequest
-	15, // 41: aserto.directory.reader.v4.Reader.ListRelations:input_type -> aserto.directory.reader.v4.ListRelationsRequest
-	17, // 42: aserto.directory.reader.v4.Reader.Check:input_type -> aserto.directory.reader.v4.CheckRequest
-	19, // 43: aserto.directory.reader.v4.Reader.Checks:input_type -> aserto.directory.reader.v4.ChecksRequest
-	21, // 44: aserto.directory.reader.v4.Reader.GetGraph:input_type -> aserto.directory.reader.v4.GetGraphRequest
-	23, // 45: aserto.directory.reader.v4.Reader.Export:input_type -> aserto.directory.reader.v4.ExportRequest
-	2,  // 46: aserto.directory.reader.v4.Reader.GetManifest:output_type -> aserto.directory.reader.v4.GetManifestResponse
-	4,  // 47: aserto.directory.reader.v4.Reader.GetModel:output_type -> aserto.directory.reader.v4.GetModelResponse
-	6,  // 48: aserto.directory.reader.v4.Reader.GetObject:output_type -> aserto.directory.reader.v4.GetObjectResponse
-	8,  // 49: aserto.directory.reader.v4.Reader.GetObjects:output_type -> aserto.directory.reader.v4.GetObjectsResponse
-	10, // 50: aserto.directory.reader.v4.Reader.ListObjects:output_type -> aserto.directory.reader.v4.ListObjectsResponse
-	12, // 51: aserto.directory.reader.v4.Reader.GetRelation:output_type -> aserto.directory.reader.v4.GetRelationResponse
-	14, // 52: aserto.directory.reader.v4.Reader.GetRelations:output_type -> aserto.directory.reader.v4.GetRelationsResponse
-	16, // 53: aserto.directory.reader.v4.Reader.ListRelations:output_type -> aserto.directory.reader.v4.ListRelationsResponse
-	18, // 54: aserto.directory.reader.v4.Reader.Check:output_type -> aserto.directory.reader.v4.CheckResponse
-	20, // 55: aserto.directory.reader.v4.Reader.Checks:output_type -> aserto.directory.reader.v4.ChecksResponse
-	22, // 56: aserto.directory.reader.v4.Reader.GetGraph:output_type -> aserto.directory.reader.v4.GetGraphResponse
-	24, // 57: aserto.directory.reader.v4.Reader.Export:output_type -> aserto.directory.reader.v4.ExportResponse
-	46, // [46:58] is the sub-list for method output_type
-	34, // [34:46] is the sub-list for method input_type
-	34, // [34:34] is the sub-list for extension type_name
-	34, // [34:34] is the sub-list for extension extendee
-	0,  // [0:34] is the sub-list for field type_name
+	29, // 4: aserto.directory.reader.v4.GetObjectResponse.result:type_name -> aserto.directory.common.v4.Object
+	30, // 5: aserto.directory.reader.v4.GetObjectResponse.relations:type_name -> aserto.directory.common.v4.Relation
+	31, // 6: aserto.directory.reader.v4.GetObjectsRequest.param:type_name -> aserto.directory.common.v4.ObjectIdentifier
+	29, // 7: aserto.directory.reader.v4.GetObjectsResponse.results:type_name -> aserto.directory.common.v4.Object
+	32, // 8: aserto.directory.reader.v4.ListObjectsRequest.page:type_name -> aserto.directory.common.v4.PaginationRequest
+	29, // 9: aserto.directory.reader.v4.ListObjectsResponse.results:type_name -> aserto.directory.common.v4.Object
+	33, // 10: aserto.directory.reader.v4.ListObjectsResponse.page:type_name -> aserto.directory.common.v4.PaginationResponse
+	30, // 11: aserto.directory.reader.v4.GetRelationResponse.result:type_name -> aserto.directory.common.v4.Relation
+	29, // 12: aserto.directory.reader.v4.GetRelationResponse.object:type_name -> aserto.directory.common.v4.Object
+	29, // 13: aserto.directory.reader.v4.GetRelationResponse.subject:type_name -> aserto.directory.common.v4.Object
+	34, // 14: aserto.directory.reader.v4.GetRelationsRequest.param:type_name -> aserto.directory.common.v4.RelationIdentifier
+	30, // 15: aserto.directory.reader.v4.GetRelationsResponse.results:type_name -> aserto.directory.common.v4.Relation
+	32, // 16: aserto.directory.reader.v4.ListRelationsRequest.page:type_name -> aserto.directory.common.v4.PaginationRequest
+	30, // 17: aserto.directory.reader.v4.ListRelationsResponse.results:type_name -> aserto.directory.common.v4.Relation
+	25, // 18: aserto.directory.reader.v4.ListRelationsResponse.objects:type_name -> aserto.directory.reader.v4.ListRelationsResponse.ObjectsEntry
+	33, // 19: aserto.directory.reader.v4.ListRelationsResponse.page:type_name -> aserto.directory.common.v4.PaginationResponse
+	35, // 20: aserto.directory.reader.v4.CheckResponse.context:type_name -> google.protobuf.Struct
+	17, // 21: aserto.directory.reader.v4.ChecksRequest.default:type_name -> aserto.directory.reader.v4.CheckRequest
+	17, // 22: aserto.directory.reader.v4.ChecksRequest.checks:type_name -> aserto.directory.reader.v4.CheckRequest
+	18, // 23: aserto.directory.reader.v4.ChecksResponse.checks:type_name -> aserto.directory.reader.v4.CheckResponse
+	31, // 24: aserto.directory.reader.v4.GetGraphResponse.results:type_name -> aserto.directory.common.v4.ObjectIdentifier
+	35, // 25: aserto.directory.reader.v4.GetGraphResponse.explanation:type_name -> google.protobuf.Struct
+	36, // 26: aserto.directory.reader.v4.ExportRequest.start_from:type_name -> google.protobuf.Timestamp
+	27, // 27: aserto.directory.reader.v4.ExportResponse.manifest:type_name -> aserto.directory.common.v4.Manifest
+	28, // 28: aserto.directory.reader.v4.ExportResponse.model:type_name -> aserto.directory.common.v4.Model
+	29, // 29: aserto.directory.reader.v4.ExportResponse.object:type_name -> aserto.directory.common.v4.Object
+	30, // 30: aserto.directory.reader.v4.ExportResponse.relation:type_name -> aserto.directory.common.v4.Relation
+	35, // 31: aserto.directory.reader.v4.ExportResponse.stats:type_name -> google.protobuf.Struct
+	29, // 32: aserto.directory.reader.v4.ListRelationsResponse.ObjectsEntry.value:type_name -> aserto.directory.common.v4.Object
+	1,  // 33: aserto.directory.reader.v4.Reader.GetManifest:input_type -> aserto.directory.reader.v4.GetManifestRequest
+	3,  // 34: aserto.directory.reader.v4.Reader.GetModel:input_type -> aserto.directory.reader.v4.GetModelRequest
+	5,  // 35: aserto.directory.reader.v4.Reader.GetObject:input_type -> aserto.directory.reader.v4.GetObjectRequest
+	7,  // 36: aserto.directory.reader.v4.Reader.GetObjects:input_type -> aserto.directory.reader.v4.GetObjectsRequest
+	9,  // 37: aserto.directory.reader.v4.Reader.ListObjects:input_type -> aserto.directory.reader.v4.ListObjectsRequest
+	11, // 38: aserto.directory.reader.v4.Reader.GetRelation:input_type -> aserto.directory.reader.v4.GetRelationRequest
+	13, // 39: aserto.directory.reader.v4.Reader.GetRelations:input_type -> aserto.directory.reader.v4.GetRelationsRequest
+	15, // 40: aserto.directory.reader.v4.Reader.ListRelations:input_type -> aserto.directory.reader.v4.ListRelationsRequest
+	17, // 41: aserto.directory.reader.v4.Reader.Check:input_type -> aserto.directory.reader.v4.CheckRequest
+	19, // 42: aserto.directory.reader.v4.Reader.Checks:input_type -> aserto.directory.reader.v4.ChecksRequest
+	21, // 43: aserto.directory.reader.v4.Reader.GetGraph:input_type -> aserto.directory.reader.v4.GetGraphRequest
+	23, // 44: aserto.directory.reader.v4.Reader.Export:input_type -> aserto.directory.reader.v4.ExportRequest
+	2,  // 45: aserto.directory.reader.v4.Reader.GetManifest:output_type -> aserto.directory.reader.v4.GetManifestResponse
+	4,  // 46: aserto.directory.reader.v4.Reader.GetModel:output_type -> aserto.directory.reader.v4.GetModelResponse
+	6,  // 47: aserto.directory.reader.v4.Reader.GetObject:output_type -> aserto.directory.reader.v4.GetObjectResponse
+	8,  // 48: aserto.directory.reader.v4.Reader.GetObjects:output_type -> aserto.directory.reader.v4.GetObjectsResponse
+	10, // 49: aserto.directory.reader.v4.Reader.ListObjects:output_type -> aserto.directory.reader.v4.ListObjectsResponse
+	12, // 50: aserto.directory.reader.v4.Reader.GetRelation:output_type -> aserto.directory.reader.v4.GetRelationResponse
+	14, // 51: aserto.directory.reader.v4.Reader.GetRelations:output_type -> aserto.directory.reader.v4.GetRelationsResponse
+	16, // 52: aserto.directory.reader.v4.Reader.ListRelations:output_type -> aserto.directory.reader.v4.ListRelationsResponse
+	18, // 53: aserto.directory.reader.v4.Reader.Check:output_type -> aserto.directory.reader.v4.CheckResponse
+	20, // 54: aserto.directory.reader.v4.Reader.Checks:output_type -> aserto.directory.reader.v4.ChecksResponse
+	22, // 55: aserto.directory.reader.v4.Reader.GetGraph:output_type -> aserto.directory.reader.v4.GetGraphResponse
+	24, // 56: aserto.directory.reader.v4.Reader.Export:output_type -> aserto.directory.reader.v4.ExportResponse
+	45, // [45:57] is the sub-list for method output_type
+	33, // [33:45] is the sub-list for method input_type
+	33, // [33:33] is the sub-list for extension type_name
+	33, // [33:33] is the sub-list for extension extendee
+	0,  // [0:33] is the sub-list for field type_name
 }
 
 func init() { file_aserto_directory_reader_v4_reader_proto_init() }
