@@ -59,10 +59,6 @@ func GetObjectRequest(msg *dsr3.GetObjectRequest) error {
 		return err
 	}
 
-	if err := PaginationRequest(msg.GetPage()); err != nil {
-		return err
-	}
-
 	return nil
 }
 
