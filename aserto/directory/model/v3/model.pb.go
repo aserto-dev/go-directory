@@ -501,16 +501,14 @@ const file_aserto_directory_model_v3_model_proto_rawDesc = "" +
 	"updated_at\x18\x15 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\tupdatedAt\x12\x17\n" +
 	"\x04etag\x18\x17 \x01(\tB\x03\xe0A\x01R\x04etag\"\x1a\n" +
 	"\x04Body\x12\x12\n" +
-	"\x04data\x18\x02 \x01(\fR\x04data2\x8e\x04\n" +
+	"\x04data\x18\x02 \x01(\fR\x04data2\x84\x04\n" +
 	"\x05Model\x12v\n" +
 	"\vGetManifest\x12-.aserto.directory.model.v3.GetManifestRequest\x1a..aserto.directory.model.v3.GetManifestResponse\"\x06\x82\xd3\xe4\x93\x02\x000\x01\x12v\n" +
-	"\vSetManifest\x12-.aserto.directory.model.v3.SetManifestRequest\x1a..aserto.directory.model.v3.SetManifestResponse\"\x06\x82\xd3\xe4\x93\x02\x00(\x01\x12\x94\x02\n" +
-	"\x0eDeleteManifest\x120.aserto.directory.model.v3.DeleteManifestRequest\x1a1.aserto.directory.model.v3.DeleteManifestResponse\"\x9c\x01\x92Aw\n" +
-	"\tdirectory\x12\x0fDelete manifest\x1a\x10Delete manifest.*\"directory.model.v3.manifest.deleteb#\n" +
-	"\x13\n" +
-	"\x0fDirectoryAPIKey\x12\x00\n" +
-	"\f\n" +
-	"\bTenantID\x12\x00\x82\xd3\xe4\x93\x02\x1c*\x1a/api/v3/directory/manifestBDZBgithub.com/aserto-dev/go-directory/aserto/directory/model/v3;modelb\x06proto3"
+	"\vSetManifest\x12-.aserto.directory.model.v3.SetManifestRequest\x1a..aserto.directory.model.v3.SetManifestResponse\"\x06\x82\xd3\xe4\x93\x02\x00(\x01\x12\x8a\x02\n" +
+	"\x0eDeleteManifest\x120.aserto.directory.model.v3.DeleteManifestRequest\x1a1.aserto.directory.model.v3.DeleteManifestResponse\"\x92\x01\x92Am\n" +
+	"\tdirectory\x12\x0fDelete manifest\x1a\x10Delete manifest.*\"directory.model.v3.manifest.deleteb\x19\n" +
+	"\x17\n" +
+	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02\x1c*\x1a/api/v3/directory/manifestBDZBgithub.com/aserto-dev/go-directory/aserto/directory/model/v3;modelb\x06proto3"
 
 var (
 	file_aserto_directory_model_v3_model_proto_rawDescOnce sync.Once

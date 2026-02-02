@@ -25,15 +25,15 @@ var File_aserto_directory_openapi_v4_openapi_proto protoreflect.FileDescriptor
 
 const file_aserto_directory_openapi_v4_openapi_proto_rawDesc = "" +
 	"\n" +
-	")aserto/directory/openapi/v4/openapi.proto\x12\x13aserto.directory.v4\x1a.protoc-gen-openapiv2/options/annotations.protoB\xa9\x03\x92A\xe3\x02\x12\xbc\x01\n" +
+	")aserto/directory/openapi/v4/openapi.proto\x12\x13aserto.directory.v4\x1a.protoc-gen-openapiv2/options/annotations.protoB\xd9\x03\x92A\x93\x03\x12\xbc\x01\n" +
 	"\x11Directory Service\"N\n" +
 	"\fAserto, Inc.\x12*https://github.com/aserto-dev/pb-directory\x1a\x12support@aserto.com*R\n" +
 	"\x12Apache 2.0 License\x12<https://github.com/aserto-dev/pb-directory/blob/main/LICENSE2\x034.0*\x03\x01\x02\x042\x10application/json:\x10application/jsonZ,\n" +
 	"*\n" +
 	"\x13AuthorizationHeader\x12\x13\b\x02\x1a\rauthorization \x02b\x19\n" +
 	"\x17\n" +
-	"\x13AuthorizationHeader\x12\x00r0\n" +
-	"\x15Aserto API Reference.\x12\x17https://docs.aserto.comZ@github.com/aserto-dev/go-directory/aserto/directory/v4;directoryb\x06proto3"
+	"\x13AuthorizationHeader\x12\x00r`\n" +
+	"\x18Directory API Reference.\x12Dhttps://github.com/aserto-dev/pb-directory/blob/main/html/index.htmlZ@github.com/aserto-dev/go-directory/aserto/directory/v4;directoryb\x06proto3"
 
 var file_aserto_directory_openapi_v4_openapi_proto_goTypes = []any{}
 var file_aserto_directory_openapi_v4_openapi_proto_depIdxs = []int32{

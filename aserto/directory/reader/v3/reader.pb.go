@@ -1501,68 +1501,50 @@ const file_aserto_directory_reader_v3_reader_proto_rawDesc = "" +
 	"\x10GetGraphResponse\x12F\n" +
 	"\aresults\x18\x02 \x03(\v2,.aserto.directory.common.v3.ObjectIdentifierR\aresults\x129\n" +
 	"\vexplanation\x18\x03 \x01(\v2\x17.google.protobuf.StructR\vexplanation\x12\x14\n" +
-	"\x05trace\x18\x04 \x03(\tR\x05traceJ\x04\b\x01\x10\x022\xc5\x16\n" +
-	"\x06Reader\x12\xe9\x02\n" +
-	"\tGetObject\x12,.aserto.directory.reader.v3.GetObjectRequest\x1a-.aserto.directory.reader.v3.GetObjectResponse\"\xfe\x01\x92A\xc0\x01\n" +
+	"\x05trace\x18\x04 \x03(\tR\x05traceJ\x04\b\x01\x10\x022\xea\x15\n" +
+	"\x06Reader\x12\xdf\x02\n" +
+	"\tGetObject\x12,.aserto.directory.reader.v3.GetObjectRequest\x1a-.aserto.directory.reader.v3.GetObjectResponse\"\xf4\x01\x92A\xb6\x01\n" +
 	"\tdirectory\x12\x13Get object instance\x1a:Returns single object instance, optionally with relations.*\x1edirectory.reader.v3.object.getJ\x1d\n" +
 	"\x03304\x12\x16\n" +
-	"\x14Object not modified.b#\n" +
-	"\x13\n" +
-	"\x0fDirectoryAPIKey\x12\x00\n" +
-	"\f\n" +
-	"\bTenantID\x12\x00\x82\xd3\xe4\x93\x024\x122/api/v3/directory/object/{object_type}/{object_id}\x12v\n" +
-	"\rGetObjectMany\x120.aserto.directory.reader.v3.GetObjectManyRequest\x1a1.aserto.directory.reader.v3.GetObjectManyResponse\"\x00\x12\x9f\x02\n" +
+	"\x14Object not modified.b\x19\n" +
+	"\x17\n" +
+	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x024\x122/api/v3/directory/object/{object_type}/{object_id}\x12v\n" +
+	"\rGetObjectMany\x120.aserto.directory.reader.v3.GetObjectManyRequest\x1a1.aserto.directory.reader.v3.GetObjectManyResponse\"\x00\x12\x95\x02\n" +
 	"\n" +
-	"GetObjects\x12-.aserto.directory.reader.v3.GetObjectsRequest\x1a..aserto.directory.reader.v3.GetObjectsResponse\"\xb1\x01\x92A\x8c\x01\n" +
-	"\tdirectory\x12\x15List object instances\x1a!Returns list of object instances.* directory.reader.v3.objects.listb#\n" +
-	"\x13\n" +
-	"\x0fDirectoryAPIKey\x12\x00\n" +
-	"\f\n" +
-	"\bTenantID\x12\x00\x82\xd3\xe4\x93\x02\x1b\x12\x19/api/v3/directory/objects\x12\xdd\x02\n" +
-	"\vGetRelation\x12..aserto.directory.reader.v3.GetRelationRequest\x1a/.aserto.directory.reader.v3.GetRelationResponse\"\xec\x01\x92A\xc6\x01\n" +
+	"GetObjects\x12-.aserto.directory.reader.v3.GetObjectsRequest\x1a..aserto.directory.reader.v3.GetObjectsResponse\"\xa7\x01\x92A\x82\x01\n" +
+	"\tdirectory\x12\x15List object instances\x1a!Returns list of object instances.* directory.reader.v3.objects.listb\x19\n" +
+	"\x17\n" +
+	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02\x1b\x12\x19/api/v3/directory/objects\x12\xd3\x02\n" +
+	"\vGetRelation\x12..aserto.directory.reader.v3.GetRelationRequest\x1a/.aserto.directory.reader.v3.GetRelationResponse\"\xe2\x01\x92A\xbc\x01\n" +
 	"\tdirectory\x12\x15Get relation instance\x1a:Returns single relation instance, optionally with objects.* directory.reader.v3.relation.getJ\x1f\n" +
 	"\x03304\x12\x18\n" +
-	"\x16Relation not modified.b#\n" +
-	"\x13\n" +
-	"\x0fDirectoryAPIKey\x12\x00\n" +
-	"\f\n" +
-	"\bTenantID\x12\x00\x82\xd3\xe4\x93\x02\x1c\x12\x1a/api/v3/directory/relation\x12\xae\x02\n" +
-	"\fGetRelations\x12/.aserto.directory.reader.v3.GetRelationsRequest\x1a0.aserto.directory.reader.v3.GetRelationsResponse\"\xba\x01\x92A\x93\x01\n" +
-	"\tdirectory\x12\x18List relations instances\x1a#Returns list of relation instances.*\"directory.reader.v3.relations.listb#\n" +
-	"\x13\n" +
-	"\x0fDirectoryAPIKey\x12\x00\n" +
-	"\f\n" +
-	"\bTenantID\x12\x00\x82\xd3\xe4\x93\x02\x1d\x12\x1b/api/v3/directory/relations\x12\xee\x01\n" +
-	"\x05Check\x12(.aserto.directory.reader.v3.CheckRequest\x1a).aserto.directory.reader.v3.CheckResponse\"\x8f\x01\x92Aj\n" +
-	"\tdirectory\x12\x05Check\x1a\x16Returns check outcome.*\x19directory.reader.v3.checkb#\n" +
-	"\x13\n" +
-	"\x0fDirectoryAPIKey\x12\x00\n" +
-	"\f\n" +
-	"\bTenantID\x12\x00\x82\xd3\xe4\x93\x02\x1c:\x01*\"\x17/api/v3/directory/check\x12\xfe\x01\n" +
-	"\x06Checks\x12).aserto.directory.reader.v3.ChecksRequest\x1a*.aserto.directory.reader.v3.ChecksResponse\"\x9c\x01\x92Av\n" +
-	"\tdirectory\x12\x06Checks\x1a Returns multiple check outcomes.*\x1adirectory.reader.v3.checksb#\n" +
-	"\x13\n" +
-	"\x0fDirectoryAPIKey\x12\x00\n" +
-	"\f\n" +
-	"\bTenantID\x12\x00\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/api/v3/directory/checks\x12\xbc\x02\n" +
-	"\x0fCheckPermission\x122.aserto.directory.reader.v3.CheckPermissionRequest\x1a3.aserto.directory.reader.v3.CheckPermissionResponse\"\xbf\x01\x92A\x8b\x01\n" +
-	"\tdirectory\x12\x10Check permission\x1a!Returns check permission outcome.*$directory.reader.v3.check.permissionb#\n" +
-	"\x13\n" +
-	"\x0fDirectoryAPIKey\x12\x00\n" +
-	"\f\n" +
-	"\bTenantID\x12\x00\x82\xd3\xe4\x93\x02':\x01*\"\"/api/v3/directory/check/permission\x88\x02\x01\x12\xae\x02\n" +
-	"\rCheckRelation\x120.aserto.directory.reader.v3.CheckRelationRequest\x1a1.aserto.directory.reader.v3.CheckRelationResponse\"\xb7\x01\x92A\x85\x01\n" +
-	"\tdirectory\x12\x0eCheck relation\x1a\x1fReturns check relation outcome.*\"directory.reader.v3.check.relationb#\n" +
-	"\x13\n" +
-	"\x0fDirectoryAPIKey\x12\x00\n" +
-	"\f\n" +
-	"\bTenantID\x12\x00\x82\xd3\xe4\x93\x02%:\x01*\" /api/v3/directory/check/relation\x88\x02\x01\x12\xc1\x02\n" +
-	"\bGetGraph\x12+.aserto.directory.reader.v3.GetGraphRequest\x1a,.aserto.directory.reader.v3.GetGraphResponse\"\xd9\x01\x92A\x8e\x01\n" +
-	"\tdirectory\x12\tGet graph\x1a6Returns object graph from anchor to subject or object.*\x19directory.reader.v3.graphb#\n" +
-	"\x13\n" +
-	"\x0fDirectoryAPIKey\x12\x00\n" +
-	"\f\n" +
-	"\bTenantID\x12\x00\x82\xd3\xe4\x93\x02A\x12?/api/v3/directory/graph/{object_type}/{relation}/{subject_type}BFZDgithub.com/aserto-dev/go-directory/aserto/directory/reader/v3;readerb\x06proto3"
+	"\x16Relation not modified.b\x19\n" +
+	"\x17\n" +
+	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02\x1c\x12\x1a/api/v3/directory/relation\x12\xa4\x02\n" +
+	"\fGetRelations\x12/.aserto.directory.reader.v3.GetRelationsRequest\x1a0.aserto.directory.reader.v3.GetRelationsResponse\"\xb0\x01\x92A\x89\x01\n" +
+	"\tdirectory\x12\x18List relations instances\x1a#Returns list of relation instances.*\"directory.reader.v3.relations.listb\x19\n" +
+	"\x17\n" +
+	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02\x1d\x12\x1b/api/v3/directory/relations\x12\xe4\x01\n" +
+	"\x05Check\x12(.aserto.directory.reader.v3.CheckRequest\x1a).aserto.directory.reader.v3.CheckResponse\"\x85\x01\x92A`\n" +
+	"\tdirectory\x12\x05Check\x1a\x16Returns check outcome.*\x19directory.reader.v3.checkb\x19\n" +
+	"\x17\n" +
+	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02\x1c:\x01*\"\x17/api/v3/directory/check\x12\xf4\x01\n" +
+	"\x06Checks\x12).aserto.directory.reader.v3.ChecksRequest\x1a*.aserto.directory.reader.v3.ChecksResponse\"\x92\x01\x92Al\n" +
+	"\tdirectory\x12\x06Checks\x1a Returns multiple check outcomes.*\x1adirectory.reader.v3.checksb\x19\n" +
+	"\x17\n" +
+	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/api/v3/directory/checks\x12\xb2\x02\n" +
+	"\x0fCheckPermission\x122.aserto.directory.reader.v3.CheckPermissionRequest\x1a3.aserto.directory.reader.v3.CheckPermissionResponse\"\xb5\x01\x92A\x81\x01\n" +
+	"\tdirectory\x12\x10Check permission\x1a!Returns check permission outcome.*$directory.reader.v3.check.permissionb\x19\n" +
+	"\x17\n" +
+	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02':\x01*\"\"/api/v3/directory/check/permission\x88\x02\x01\x12\xa3\x02\n" +
+	"\rCheckRelation\x120.aserto.directory.reader.v3.CheckRelationRequest\x1a1.aserto.directory.reader.v3.CheckRelationResponse\"\xac\x01\x92A{\n" +
+	"\tdirectory\x12\x0eCheck relation\x1a\x1fReturns check relation outcome.*\"directory.reader.v3.check.relationb\x19\n" +
+	"\x17\n" +
+	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02%:\x01*\" /api/v3/directory/check/relation\x88\x02\x01\x12\xb7\x02\n" +
+	"\bGetGraph\x12+.aserto.directory.reader.v3.GetGraphRequest\x1a,.aserto.directory.reader.v3.GetGraphResponse\"\xcf\x01\x92A\x84\x01\n" +
+	"\tdirectory\x12\tGet graph\x1a6Returns object graph from anchor to subject or object.*\x19directory.reader.v3.graphb\x19\n" +
+	"\x17\n" +
+	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02A\x12?/api/v3/directory/graph/{object_type}/{relation}/{subject_type}BFZDgithub.com/aserto-dev/go-directory/aserto/directory/reader/v3;readerb\x06proto3"
 
 var (
 	file_aserto_directory_reader_v3_reader_proto_rawDescOnce sync.Once

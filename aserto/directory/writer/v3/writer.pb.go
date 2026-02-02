@@ -478,33 +478,25 @@ const file_aserto_directory_writer_v3_writer_proto_rawDesc = "" +
 	"subject_id\x18\x05 \x01(\tB\x03\xe0A\x02R\tsubjectId\x12.\n" +
 	"\x10subject_relation\x18\x06 \x01(\tB\x03\xe0A\x01R\x0fsubjectRelation\"H\n" +
 	"\x16DeleteRelationResponse\x12.\n" +
-	"\x06result\x18\x01 \x01(\v2\x16.google.protobuf.EmptyR\x06result2\xd0\b\n" +
-	"\x06Writer\x12\xfa\x01\n" +
-	"\tSetObject\x12,.aserto.directory.writer.v3.SetObjectRequest\x1a-.aserto.directory.writer.v3.SetObjectResponse\"\x8f\x01\x92Ai\n" +
+	"\x06result\x18\x01 \x01(\v2\x16.google.protobuf.EmptyR\x06result2\xa8\b\n" +
+	"\x06Writer\x12\xf0\x01\n" +
+	"\tSetObject\x12,.aserto.directory.writer.v3.SetObjectRequest\x1a-.aserto.directory.writer.v3.SetObjectResponse\"\x85\x01\x92A_\n" +
 	"\tdirectory\x12\n" +
-	"Set object\x1a\vSet object.*\x1edirectory.writer.v3.object.setb#\n" +
-	"\x13\n" +
-	"\x0fDirectoryAPIKey\x12\x00\n" +
-	"\f\n" +
-	"\bTenantID\x12\x00\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/api/v3/directory/object\x12\xa3\x02\n" +
-	"\fDeleteObject\x12/.aserto.directory.writer.v3.DeleteObjectRequest\x1a0.aserto.directory.writer.v3.DeleteObjectResponse\"\xaf\x01\x92Ar\n" +
-	"\tdirectory\x12\rDelete object\x1a\x0eDelete object.*!directory.writer.v3.object.deleteb#\n" +
-	"\x13\n" +
-	"\x0fDirectoryAPIKey\x12\x00\n" +
-	"\f\n" +
-	"\bTenantID\x12\x00\x82\xd3\xe4\x93\x024*2/api/v3/directory/object/{object_type}/{object_id}\x12\x88\x02\n" +
-	"\vSetRelation\x12..aserto.directory.writer.v3.SetRelationRequest\x1a/.aserto.directory.writer.v3.SetRelationResponse\"\x97\x01\x92Ao\n" +
-	"\tdirectory\x12\fSet relation\x1a\rSet relation.* directory.writer.v3.relation.setb#\n" +
-	"\x13\n" +
-	"\x0fDirectoryAPIKey\x12\x00\n" +
-	"\f\n" +
-	"\bTenantID\x12\x00\x82\xd3\xe4\x93\x02\x1f:\x01*\"\x1a/api/v3/directory/relation\x12\x97\x02\n" +
-	"\x0eDeleteRelation\x121.aserto.directory.writer.v3.DeleteRelationRequest\x1a2.aserto.directory.writer.v3.DeleteRelationResponse\"\x9d\x01\x92Ax\n" +
-	"\tdirectory\x12\x0fDelete relation\x1a\x10Delete relation.*#directory.writer.v3.relation.deleteb#\n" +
-	"\x13\n" +
-	"\x0fDirectoryAPIKey\x12\x00\n" +
-	"\f\n" +
-	"\bTenantID\x12\x00\x82\xd3\xe4\x93\x02\x1c*\x1a/api/v3/directory/relationBFZDgithub.com/aserto-dev/go-directory/aserto/directory/writer/v3;writerb\x06proto3"
+	"Set object\x1a\vSet object.*\x1edirectory.writer.v3.object.setb\x19\n" +
+	"\x17\n" +
+	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/api/v3/directory/object\x12\x99\x02\n" +
+	"\fDeleteObject\x12/.aserto.directory.writer.v3.DeleteObjectRequest\x1a0.aserto.directory.writer.v3.DeleteObjectResponse\"\xa5\x01\x92Ah\n" +
+	"\tdirectory\x12\rDelete object\x1a\x0eDelete object.*!directory.writer.v3.object.deleteb\x19\n" +
+	"\x17\n" +
+	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x024*2/api/v3/directory/object/{object_type}/{object_id}\x12\xfe\x01\n" +
+	"\vSetRelation\x12..aserto.directory.writer.v3.SetRelationRequest\x1a/.aserto.directory.writer.v3.SetRelationResponse\"\x8d\x01\x92Ae\n" +
+	"\tdirectory\x12\fSet relation\x1a\rSet relation.* directory.writer.v3.relation.setb\x19\n" +
+	"\x17\n" +
+	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02\x1f:\x01*\"\x1a/api/v3/directory/relation\x12\x8d\x02\n" +
+	"\x0eDeleteRelation\x121.aserto.directory.writer.v3.DeleteRelationRequest\x1a2.aserto.directory.writer.v3.DeleteRelationResponse\"\x93\x01\x92An\n" +
+	"\tdirectory\x12\x0fDelete relation\x1a\x10Delete relation.*#directory.writer.v3.relation.deleteb\x19\n" +
+	"\x17\n" +
+	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02\x1c*\x1a/api/v3/directory/relationBFZDgithub.com/aserto-dev/go-directory/aserto/directory/writer/v3;writerb\x06proto3"
 
 var (
 	file_aserto_directory_writer_v3_writer_proto_rawDescOnce sync.Once
