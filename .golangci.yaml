@@ -65,6 +65,9 @@ linters:
   exclusions:
     generated: lax
 
+    paths:
+      - aserto/directory/
+
 formatters:
   enable:
     - gofmt
