@@ -17,12 +17,8 @@ on:
   pull_request:
 
 env:
-  VAULT_ADDR: https://vault.aserto.com/
   BUF_REPO: "buf.build/aserto-dev/directory"
-
-  BUF_VERSION: 1.61.0
-  BUF_BETA_SUPPRESS_WARNINGS: 1
-
+  BUF_VERSION: 1.64.0
   GO_VERSION: 1.25
   GO_LANGCI_LINT_VERSION: 2.6.2
   GO_TESTSUM_VERSION: 1.13.0
@@ -32,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       -
-        uses: actions/create-github-app-token@v1
+        uses: actions/create-github-app-token@v2
         id: app-token
         with:
           app-id: ${{ vars.CODEGEN_APP_ID }}
