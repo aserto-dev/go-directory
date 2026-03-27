@@ -1,8 +1,8 @@
 module github.com/aserto-dev/go-directory
 
-go 1.24.0
+go 1.25.0
 
-toolchain go1.25.6
+toolchain go1.26.1
 
 require (
 	github.com/aserto-dev/errors v0.0.17
