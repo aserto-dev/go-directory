@@ -19,7 +19,7 @@ func Object(msg *dsc3.Object) error {
 		return err
 	}
 
-	if err := DisplayName(fieldDisplayName, msg.GetDisplayName()); err != nil {
+	if err := DisplayName(fieldDisplayName, msg.GetDisplayName()); err != nil { //nolint:staticcheck
 		return err
 	}
 
