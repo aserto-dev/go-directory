@@ -30,11 +30,15 @@ type Object struct {
 	Type string `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
 	// object instance identifier
 	Id string `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
-	// display name object (optional)
+	// display name object (optional) (DEPRECATED)
+	//
+	// Deprecated: Marked as deprecated in aserto/directory/common/v3/common.proto.
 	DisplayName string `protobuf:"bytes,3,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
 	// property bag (optional)
 	Properties *structpb.Struct `protobuf:"bytes,4,opt,name=properties,proto3" json:"properties,omitempty"`
-	// created at timestamp (UTC)
+	// created at timestamp (UTC) (DEPRECATED)
+	//
+	// Deprecated: Marked as deprecated in aserto/directory/common/v3/common.proto.
 	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	// last updated timestamp (UTC)
 	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,21,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
@@ -88,6 +92,7 @@ func (x *Object) GetId() string {
 	return ""
 }
 
+// Deprecated: Marked as deprecated in aserto/directory/common/v3/common.proto.
 func (x *Object) GetDisplayName() string {
 	if x != nil {
 		return x.DisplayName
@@ -102,6 +107,7 @@ func (x *Object) GetProperties() *structpb.Struct {
 	return nil
 }
 
+// Deprecated: Marked as deprecated in aserto/directory/common/v3/common.proto.
 func (x *Object) GetCreatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreatedAt
@@ -137,7 +143,9 @@ type Relation struct {
 	SubjectId string `protobuf:"bytes,5,opt,name=subject_id,json=subjectId,proto3" json:"subject_id,omitempty"`
 	// subject relation name (optional)
 	SubjectRelation string `protobuf:"bytes,6,opt,name=subject_relation,json=subjectRelation,proto3" json:"subject_relation,omitempty"`
-	// created at timestamp (UTC)
+	// created at timestamp (UTC) (DEPRECATED)
+	//
+	// Deprecated: Marked as deprecated in aserto/directory/common/v3/common.proto.
 	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	// last updated timestamp (UTC)
 	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,21,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
@@ -219,6 +227,7 @@ func (x *Relation) GetSubjectRelation() string {
 	return ""
 }
 
+// Deprecated: Marked as deprecated in aserto/directory/common/v3/common.proto.
 func (x *Relation) GetCreatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreatedAt
@@ -491,19 +500,19 @@ var File_aserto_directory_common_v3_common_proto protoreflect.FileDescriptor
 
 const file_aserto_directory_common_v3_common_proto_rawDesc = "" +
 	"\n" +
-	"'aserto/directory/common/v3/common.proto\x12\x1aaserto.directory.common.v3\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb5\x02\n" +
+	"'aserto/directory/common/v3/common.proto\x12\x1aaserto.directory.common.v3\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb9\x02\n" +
 	"\x06Object\x12\x17\n" +
 	"\x04type\x18\x01 \x01(\tB\x03\xe0A\x02R\x04type\x12\x13\n" +
-	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x02R\x02id\x12&\n" +
-	"\fdisplay_name\x18\x03 \x01(\tB\x03\xe0A\x01R\vdisplayName\x12<\n" +
+	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x02R\x02id\x12(\n" +
+	"\fdisplay_name\x18\x03 \x01(\tB\x05\xe0A\x01\x18\x01R\vdisplayName\x12<\n" +
 	"\n" +
 	"properties\x18\x04 \x01(\v2\x17.google.protobuf.StructB\x03\xe0A\x01R\n" +
-	"properties\x12>\n" +
+	"properties\x12@\n" +
 	"\n" +
-	"created_at\x18\x14 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\tcreatedAt\x12>\n" +
+	"created_at\x18\x14 \x01(\v2\x1a.google.protobuf.TimestampB\x05\xe0A\x03\x18\x01R\tcreatedAt\x12>\n" +
 	"\n" +
 	"updated_at\x18\x15 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\tupdatedAt\x12\x17\n" +
-	"\x04etag\x18\x17 \x01(\tB\x03\xe0A\x01R\x04etag\"\x88\x03\n" +
+	"\x04etag\x18\x17 \x01(\tB\x03\xe0A\x01R\x04etag\"\x8a\x03\n" +
 	"\bRelation\x12$\n" +
 	"\vobject_type\x18\x01 \x01(\tB\x03\xe0A\x02R\n" +
 	"objectType\x12 \n" +
@@ -512,9 +521,9 @@ const file_aserto_directory_common_v3_common_proto_rawDesc = "" +
 	"\fsubject_type\x18\x04 \x01(\tB\x03\xe0A\x02R\vsubjectType\x12\"\n" +
 	"\n" +
 	"subject_id\x18\x05 \x01(\tB\x03\xe0A\x02R\tsubjectId\x12.\n" +
-	"\x10subject_relation\x18\x06 \x01(\tB\x03\xe0A\x01R\x0fsubjectRelation\x12>\n" +
+	"\x10subject_relation\x18\x06 \x01(\tB\x03\xe0A\x01R\x0fsubjectRelation\x12@\n" +
 	"\n" +
-	"created_at\x18\x14 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\tcreatedAt\x12>\n" +
+	"created_at\x18\x14 \x01(\v2\x1a.google.protobuf.TimestampB\x05\xe0A\x03\x18\x01R\tcreatedAt\x12>\n" +
 	"\n" +
 	"updated_at\x18\x15 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\tupdatedAt\x12\x17\n" +
 	"\x04etag\x18\x17 \x01(\tB\x03\xe0A\x01R\x04etag\"Z\n" +
