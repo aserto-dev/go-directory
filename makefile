@@ -17,9 +17,9 @@ EXT_TMP_DIR        := ${EXT_DIR}/tmp
 GO_VER             := 1.26
 SVU_VER 	         := 3.3.0
 GOTESTSUM_VER      := 1.13.0
-GOLANGCI-LINT_VER  := 2.10.1
-GORELEASER_VER     := 2.14.1..
-BUF_VER            := 1.66.1
+GOLANGCI-LINT_VER  := 2.12.2
+GORELEASER_VER     := 2.14.1
+BUF_VER            := 1.71.0
 
 PROJECT            := directory
 PROTO_REPO         := pb-${PROJECT}

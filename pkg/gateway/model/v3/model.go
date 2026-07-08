@@ -136,7 +136,7 @@ func getManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient, mdOpt me
 
 				w.Header().Set(headers.ContentType, "application/yaml")
 
-				if _, err := w.Write(body.GetData()); err != nil { //nolint:gosec // data comes from store which passed parser validation.
+				if _, err := w.Write(body.GetData()); err != nil {
 					runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 					return
 				}

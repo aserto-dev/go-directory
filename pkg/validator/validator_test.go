@@ -1,3 +1,4 @@
+//nolint:goconst
 package validator_test
 
 import (
