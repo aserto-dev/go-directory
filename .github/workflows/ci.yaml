@@ -18,9 +18,9 @@ on:
 
 env:
   BUF_REPO: "buf.build/aserto-dev/directory"
-  BUF_VERSION: 1.66.1
+  BUF_VERSION: 1.71.0
   GO_VERSION: 1.26
-  GO_LANGCI_LINT_VERSION: 2.10.1
+  GO_LANGCI_LINT_VERSION: 2.12.2
   GO_TESTSUM_VERSION: 1.13.0
 
 jobs:
@@ -35,7 +35,7 @@ jobs:
           private-key: ${{ secrets.CODEGEN_APP_KEY }}
       -
         name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
           token: ${{ steps.app-token.outputs.token }}
@@ -50,6 +50,10 @@ jobs:
         with:
           version: ${{ env.BUF_VERSION }}
           setup_only: true
+      -
+        name: Test Setup
+        run: |
+          make install-gotestsum
       -
         name: Delete generated code
         run: |
@@ -71,14 +75,9 @@ jobs:
           version: v${{ env.GO_LANGCI_LINT_VERSION }}
           args: --timeout=5m
       -
-        name: Test Setup
-        uses: gertd/action-gotestsum@v3.0.0
-        with:
-          gotestsum_version: ${{ env.GO_TESTSUM_VERSION }}
-      -
         name: Test
         run: |
-          gotestsum --format short-verbose -- -count=1 -parallel=1 -v -timeout=240s -coverprofile=cover.out -coverpkg=./... ./...
+          .ext/bin/gotestsum --format short-verbose -- -count=1 -parallel=1 -v -timeout=240s -coverprofile=cover.out -coverpkg=./... ./...
       -
         name: Commit changes
         if: github.event_name == 'workflow_dispatch'

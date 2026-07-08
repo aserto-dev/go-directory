@@ -18,6 +18,10 @@ type tc struct {
 	expected error
 }
 
+const (
+	minLengthIdentifier string = "aaa"
+)
+
 func typeIdentifierTests() []tc {
 	return []tc{
 		{
@@ -27,7 +31,7 @@ func typeIdentifierTests() []tc {
 		},
 		{
 			field:    "ident_2",
-			value:    "aaa", // min length
+			value:    minLengthIdentifier, // min length
 			expected: nil,
 		},
 		{
@@ -53,7 +57,7 @@ func instanceIdentifierTests() []tc {
 	return []tc{
 		{
 			field:    "inst_1",
-			value:    "aaa", // min length
+			value:    minLengthIdentifier, // min length
 			expected: nil,
 		},
 		{
@@ -84,7 +88,7 @@ func displayNameTests() []tc {
 	return []tc{
 		{
 			field:    "dn_1",
-			value:    "aaa", // min length
+			value:    minLengthIdentifier, // min length
 			expected: nil,
 		},
 		{

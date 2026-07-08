@@ -496,6 +496,152 @@ func (x *PaginationResponse) GetNextToken() string {
 	return ""
 }
 
+// Manifest
+type Manifest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// manifest identifier
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// manifest data stream
+	Content []byte `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
+	// last updated timestamp (UTC)
+	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,21,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	// object instance etag (optional)
+	Etag          string `protobuf:"bytes,23,opt,name=etag,proto3" json:"etag,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Manifest) Reset() {
+	*x = Manifest{}
+	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Manifest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Manifest) ProtoMessage() {}
+
+func (x *Manifest) ProtoReflect() protoreflect.Message {
+	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Manifest.ProtoReflect.Descriptor instead.
+func (*Manifest) Descriptor() ([]byte, []int) {
+	return file_aserto_directory_common_v3_common_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *Manifest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Manifest) GetContent() []byte {
+	if x != nil {
+		return x.Content
+	}
+	return nil
+}
+
+func (x *Manifest) GetUpdatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return nil
+}
+
+func (x *Manifest) GetEtag() string {
+	if x != nil {
+		return x.Etag
+	}
+	return ""
+}
+
+// Model
+type Model struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// model identifier
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// model data stream
+	Content []byte `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
+	// last updated timestamp (UTC)
+	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,21,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	// object instance etag (optional)
+	Etag          string `protobuf:"bytes,23,opt,name=etag,proto3" json:"etag,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Model) Reset() {
+	*x = Model{}
+	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Model) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Model) ProtoMessage() {}
+
+func (x *Model) ProtoReflect() protoreflect.Message {
+	mi := &file_aserto_directory_common_v3_common_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Model.ProtoReflect.Descriptor instead.
+func (*Model) Descriptor() ([]byte, []int) {
+	return file_aserto_directory_common_v3_common_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *Model) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Model) GetContent() []byte {
+	if x != nil {
+		return x.Content
+	}
+	return nil
+}
+
+func (x *Model) GetUpdatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return nil
+}
+
+func (x *Model) GetEtag() string {
+	if x != nil {
+		return x.Etag
+	}
+	return ""
+}
+
 var File_aserto_directory_common_v3_common_proto protoreflect.FileDescriptor
 
 const file_aserto_directory_common_v3_common_proto_rawDesc = "" +
@@ -545,7 +691,19 @@ const file_aserto_directory_common_v3_common_proto_rawDesc = "" +
 	"\x05token\x18\x02 \x01(\tB\x03\xe0A\x01R\x05token\"8\n" +
 	"\x12PaginationResponse\x12\"\n" +
 	"\n" +
-	"next_token\x18\x01 \x01(\tB\x03\xe0A\x03R\tnextTokenBFZDgithub.com/aserto-dev/go-directory/aserto/directory/common/v3;commonb\x06proto3"
+	"next_token\x18\x01 \x01(\tB\x03\xe0A\x03R\tnextToken\"\x8d\x01\n" +
+	"\bManifest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x18\n" +
+	"\acontent\x18\x02 \x01(\fR\acontent\x12>\n" +
+	"\n" +
+	"updated_at\x18\x15 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\tupdatedAt\x12\x17\n" +
+	"\x04etag\x18\x17 \x01(\tB\x03\xe0A\x03R\x04etag\"\x8a\x01\n" +
+	"\x05Model\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x18\n" +
+	"\acontent\x18\x02 \x01(\fR\acontent\x12>\n" +
+	"\n" +
+	"updated_at\x18\x15 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\tupdatedAt\x12\x17\n" +
+	"\x04etag\x18\x17 \x01(\tB\x03\xe0A\x03R\x04etagBFZDgithub.com/aserto-dev/go-directory/aserto/directory/common/v3;commonb\x06proto3"
 
 var (
 	file_aserto_directory_common_v3_common_proto_rawDescOnce sync.Once
@@ -559,7 +717,7 @@ func file_aserto_directory_common_v3_common_proto_rawDescGZIP() []byte {
 	return file_aserto_directory_common_v3_common_proto_rawDescData
 }
 
-var file_aserto_directory_common_v3_common_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_aserto_directory_common_v3_common_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_aserto_directory_common_v3_common_proto_goTypes = []any{
 	(*Object)(nil),                // 0: aserto.directory.common.v3.Object
 	(*Relation)(nil),              // 1: aserto.directory.common.v3.Relation
@@ -567,20 +725,24 @@ var file_aserto_directory_common_v3_common_proto_goTypes = []any{
 	(*RelationIdentifier)(nil),    // 3: aserto.directory.common.v3.RelationIdentifier
 	(*PaginationRequest)(nil),     // 4: aserto.directory.common.v3.PaginationRequest
 	(*PaginationResponse)(nil),    // 5: aserto.directory.common.v3.PaginationResponse
-	(*structpb.Struct)(nil),       // 6: google.protobuf.Struct
-	(*timestamppb.Timestamp)(nil), // 7: google.protobuf.Timestamp
+	(*Manifest)(nil),              // 6: aserto.directory.common.v3.Manifest
+	(*Model)(nil),                 // 7: aserto.directory.common.v3.Model
+	(*structpb.Struct)(nil),       // 8: google.protobuf.Struct
+	(*timestamppb.Timestamp)(nil), // 9: google.protobuf.Timestamp
 }
 var file_aserto_directory_common_v3_common_proto_depIdxs = []int32{
-	6, // 0: aserto.directory.common.v3.Object.properties:type_name -> google.protobuf.Struct
-	7, // 1: aserto.directory.common.v3.Object.created_at:type_name -> google.protobuf.Timestamp
-	7, // 2: aserto.directory.common.v3.Object.updated_at:type_name -> google.protobuf.Timestamp
-	7, // 3: aserto.directory.common.v3.Relation.created_at:type_name -> google.protobuf.Timestamp
-	7, // 4: aserto.directory.common.v3.Relation.updated_at:type_name -> google.protobuf.Timestamp
-	5, // [5:5] is the sub-list for method output_type
-	5, // [5:5] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	8, // 0: aserto.directory.common.v3.Object.properties:type_name -> google.protobuf.Struct
+	9, // 1: aserto.directory.common.v3.Object.created_at:type_name -> google.protobuf.Timestamp
+	9, // 2: aserto.directory.common.v3.Object.updated_at:type_name -> google.protobuf.Timestamp
+	9, // 3: aserto.directory.common.v3.Relation.created_at:type_name -> google.protobuf.Timestamp
+	9, // 4: aserto.directory.common.v3.Relation.updated_at:type_name -> google.protobuf.Timestamp
+	9, // 5: aserto.directory.common.v3.Manifest.updated_at:type_name -> google.protobuf.Timestamp
+	9, // 6: aserto.directory.common.v3.Model.updated_at:type_name -> google.protobuf.Timestamp
+	7, // [7:7] is the sub-list for method output_type
+	7, // [7:7] is the sub-list for method input_type
+	7, // [7:7] is the sub-list for extension type_name
+	7, // [7:7] is the sub-list for extension extendee
+	0, // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_aserto_directory_common_v3_common_proto_init() }
@@ -594,7 +756,7 @@ func file_aserto_directory_common_v3_common_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_aserto_directory_common_v3_common_proto_rawDesc), len(file_aserto_directory_common_v3_common_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

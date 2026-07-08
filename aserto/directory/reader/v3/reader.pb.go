@@ -12,7 +12,9 @@ import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	structpb "google.golang.org/protobuf/types/known/structpb"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -24,6 +26,254 @@ const (
 	// Verify that runtime/protoimpl is sufficiently up-to-date.
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
+
+type Option int32
+
+const (
+	// nothing selected (default initialization value)
+	Option_OPTION_UNKNOWN Option = 0
+	// manifest
+	Option_OPTION_MANIFESTS Option = 1
+	// models
+	Option_OPTION_MODELS Option = 2
+	// schema instance OPTION_MANIFESTS | OPTION_MODELS
+	Option_OPTION_SCHEMA Option = 3
+	// object instances
+	Option_OPTION_DATA_OBJECTS Option = 8
+	// relation instances
+	Option_OPTION_DATA_RELATIONS Option = 16
+	// all data = OPTION_DATA_OBJECTS | OPTION_DATA_RELATIONS
+	Option_OPTION_DATA Option = 24
+	// stats
+	Option_OPTION_STATS Option = 64
+)
+
+// Enum value maps for Option.
+var (
+	Option_name = map[int32]string{
+		0:  "OPTION_UNKNOWN",
+		1:  "OPTION_MANIFESTS",
+		2:  "OPTION_MODELS",
+		3:  "OPTION_SCHEMA",
+		8:  "OPTION_DATA_OBJECTS",
+		16: "OPTION_DATA_RELATIONS",
+		24: "OPTION_DATA",
+		64: "OPTION_STATS",
+	}
+	Option_value = map[string]int32{
+		"OPTION_UNKNOWN":        0,
+		"OPTION_MANIFESTS":      1,
+		"OPTION_MODELS":         2,
+		"OPTION_SCHEMA":         3,
+		"OPTION_DATA_OBJECTS":   8,
+		"OPTION_DATA_RELATIONS": 16,
+		"OPTION_DATA":           24,
+		"OPTION_STATS":          64,
+	}
+)
+
+func (x Option) Enum() *Option {
+	p := new(Option)
+	*p = x
+	return p
+}
+
+func (x Option) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (Option) Descriptor() protoreflect.EnumDescriptor {
+	return file_aserto_directory_reader_v3_reader_proto_enumTypes[0].Descriptor()
+}
+
+func (Option) Type() protoreflect.EnumType {
+	return &file_aserto_directory_reader_v3_reader_proto_enumTypes[0]
+}
+
+func (x Option) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use Option.Descriptor instead.
+func (Option) EnumDescriptor() ([]byte, []int) {
+	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{0}
+}
+
+type GetManifestRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetManifestRequest) Reset() {
+	*x = GetManifestRequest{}
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetManifestRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetManifestRequest) ProtoMessage() {}
+
+func (x *GetManifestRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetManifestRequest.ProtoReflect.Descriptor instead.
+func (*GetManifestRequest) Descriptor() ([]byte, []int) {
+	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *GetManifestRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type GetManifestResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Manifest      *v3.Manifest           `protobuf:"bytes,1,opt,name=manifest,proto3" json:"manifest,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetManifestResponse) Reset() {
+	*x = GetManifestResponse{}
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetManifestResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetManifestResponse) ProtoMessage() {}
+
+func (x *GetManifestResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetManifestResponse.ProtoReflect.Descriptor instead.
+func (*GetManifestResponse) Descriptor() ([]byte, []int) {
+	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *GetManifestResponse) GetManifest() *v3.Manifest {
+	if x != nil {
+		return x.Manifest
+	}
+	return nil
+}
+
+type GetModelRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Result        *emptypb.Empty         `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetModelRequest) Reset() {
+	*x = GetModelRequest{}
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetModelRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetModelRequest) ProtoMessage() {}
+
+func (x *GetModelRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetModelRequest.ProtoReflect.Descriptor instead.
+func (*GetModelRequest) Descriptor() ([]byte, []int) {
+	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *GetModelRequest) GetResult() *emptypb.Empty {
+	if x != nil {
+		return x.Result
+	}
+	return nil
+}
+
+type GetModelResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Model         *v3.Model              `protobuf:"bytes,1,opt,name=model,proto3" json:"model,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetModelResponse) Reset() {
+	*x = GetModelResponse{}
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetModelResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetModelResponse) ProtoMessage() {}
+
+func (x *GetModelResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetModelResponse.ProtoReflect.Descriptor instead.
+func (*GetModelResponse) Descriptor() ([]byte, []int) {
+	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *GetModelResponse) GetModel() *v3.Model {
+	if x != nil {
+		return x.Model
+	}
+	return nil
+}
 
 type GetObjectRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -39,7 +289,7 @@ type GetObjectRequest struct {
 
 func (x *GetObjectRequest) Reset() {
 	*x = GetObjectRequest{}
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[0]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -51,7 +301,7 @@ func (x *GetObjectRequest) String() string {
 func (*GetObjectRequest) ProtoMessage() {}
 
 func (x *GetObjectRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[0]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -64,7 +314,7 @@ func (x *GetObjectRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetObjectRequest.ProtoReflect.Descriptor instead.
 func (*GetObjectRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{0}
+	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *GetObjectRequest) GetObjectType() string {
@@ -100,7 +350,7 @@ type GetObjectResponse struct {
 
 func (x *GetObjectResponse) Reset() {
 	*x = GetObjectResponse{}
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[1]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -112,7 +362,7 @@ func (x *GetObjectResponse) String() string {
 func (*GetObjectResponse) ProtoMessage() {}
 
 func (x *GetObjectResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[1]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -125,7 +375,7 @@ func (x *GetObjectResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetObjectResponse.ProtoReflect.Descriptor instead.
 func (*GetObjectResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{1}
+	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *GetObjectResponse) GetResult() *v3.Object {
@@ -152,7 +402,7 @@ type GetObjectManyRequest struct {
 
 func (x *GetObjectManyRequest) Reset() {
 	*x = GetObjectManyRequest{}
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[2]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -164,7 +414,7 @@ func (x *GetObjectManyRequest) String() string {
 func (*GetObjectManyRequest) ProtoMessage() {}
 
 func (x *GetObjectManyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[2]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -177,7 +427,7 @@ func (x *GetObjectManyRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetObjectManyRequest.ProtoReflect.Descriptor instead.
 func (*GetObjectManyRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{2}
+	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *GetObjectManyRequest) GetParam() []*v3.ObjectIdentifier {
@@ -197,7 +447,7 @@ type GetObjectManyResponse struct {
 
 func (x *GetObjectManyResponse) Reset() {
 	*x = GetObjectManyResponse{}
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[3]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -209,7 +459,7 @@ func (x *GetObjectManyResponse) String() string {
 func (*GetObjectManyResponse) ProtoMessage() {}
 
 func (x *GetObjectManyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[3]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -222,7 +472,7 @@ func (x *GetObjectManyResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetObjectManyResponse.ProtoReflect.Descriptor instead.
 func (*GetObjectManyResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{3}
+	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *GetObjectManyResponse) GetResults() []*v3.Object {
@@ -244,7 +494,7 @@ type GetObjectsRequest struct {
 
 func (x *GetObjectsRequest) Reset() {
 	*x = GetObjectsRequest{}
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[4]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -256,7 +506,7 @@ func (x *GetObjectsRequest) String() string {
 func (*GetObjectsRequest) ProtoMessage() {}
 
 func (x *GetObjectsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[4]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -269,7 +519,7 @@ func (x *GetObjectsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetObjectsRequest.ProtoReflect.Descriptor instead.
 func (*GetObjectsRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{4}
+	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *GetObjectsRequest) GetObjectType() string {
@@ -298,7 +548,7 @@ type GetObjectsResponse struct {
 
 func (x *GetObjectsResponse) Reset() {
 	*x = GetObjectsResponse{}
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[5]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -310,7 +560,7 @@ func (x *GetObjectsResponse) String() string {
 func (*GetObjectsResponse) ProtoMessage() {}
 
 func (x *GetObjectsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[5]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -323,7 +573,7 @@ func (x *GetObjectsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetObjectsResponse.ProtoReflect.Descriptor instead.
 func (*GetObjectsResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{5}
+	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *GetObjectsResponse) GetResults() []*v3.Object {
@@ -334,6 +584,114 @@ func (x *GetObjectsResponse) GetResults() []*v3.Object {
 }
 
 func (x *GetObjectsResponse) GetPage() *v3.PaginationResponse {
+	if x != nil {
+		return x.Page
+	}
+	return nil
+}
+
+type ListObjectsRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// object type identifier (optional)
+	ObjectType string `protobuf:"bytes,1,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"`
+	// pagination request (optional)
+	Page          *v3.PaginationRequest `protobuf:"bytes,9,opt,name=page,proto3" json:"page,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListObjectsRequest) Reset() {
+	*x = ListObjectsRequest{}
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListObjectsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListObjectsRequest) ProtoMessage() {}
+
+func (x *ListObjectsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListObjectsRequest.ProtoReflect.Descriptor instead.
+func (*ListObjectsRequest) Descriptor() ([]byte, []int) {
+	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *ListObjectsRequest) GetObjectType() string {
+	if x != nil {
+		return x.ObjectType
+	}
+	return ""
+}
+
+func (x *ListObjectsRequest) GetPage() *v3.PaginationRequest {
+	if x != nil {
+		return x.Page
+	}
+	return nil
+}
+
+type ListObjectsResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// array of object instances
+	Results []*v3.Object `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
+	// pagination response
+	Page          *v3.PaginationResponse `protobuf:"bytes,9,opt,name=page,proto3" json:"page,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListObjectsResponse) Reset() {
+	*x = ListObjectsResponse{}
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListObjectsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListObjectsResponse) ProtoMessage() {}
+
+func (x *ListObjectsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListObjectsResponse.ProtoReflect.Descriptor instead.
+func (*ListObjectsResponse) Descriptor() ([]byte, []int) {
+	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *ListObjectsResponse) GetResults() []*v3.Object {
+	if x != nil {
+		return x.Results
+	}
+	return nil
+}
+
+func (x *ListObjectsResponse) GetPage() *v3.PaginationResponse {
 	if x != nil {
 		return x.Page
 	}
@@ -362,7 +720,7 @@ type GetRelationRequest struct {
 
 func (x *GetRelationRequest) Reset() {
 	*x = GetRelationRequest{}
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[6]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -374,7 +732,7 @@ func (x *GetRelationRequest) String() string {
 func (*GetRelationRequest) ProtoMessage() {}
 
 func (x *GetRelationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[6]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -387,7 +745,7 @@ func (x *GetRelationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRelationRequest.ProtoReflect.Descriptor instead.
 func (*GetRelationRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{6}
+	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *GetRelationRequest) GetObjectType() string {
@@ -451,7 +809,7 @@ type GetRelationResponse struct {
 
 func (x *GetRelationResponse) Reset() {
 	*x = GetRelationResponse{}
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[7]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -463,7 +821,7 @@ func (x *GetRelationResponse) String() string {
 func (*GetRelationResponse) ProtoMessage() {}
 
 func (x *GetRelationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[7]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -476,7 +834,7 @@ func (x *GetRelationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRelationResponse.ProtoReflect.Descriptor instead.
 func (*GetRelationResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{7}
+	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *GetRelationResponse) GetResult() *v3.Relation {
@@ -519,7 +877,7 @@ type GetRelationsRequest struct {
 
 func (x *GetRelationsRequest) Reset() {
 	*x = GetRelationsRequest{}
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[8]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -531,7 +889,7 @@ func (x *GetRelationsRequest) String() string {
 func (*GetRelationsRequest) ProtoMessage() {}
 
 func (x *GetRelationsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[8]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -544,7 +902,7 @@ func (x *GetRelationsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRelationsRequest.ProtoReflect.Descriptor instead.
 func (*GetRelationsRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{8}
+	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *GetRelationsRequest) GetObjectType() string {
@@ -624,7 +982,7 @@ type GetRelationsResponse struct {
 
 func (x *GetRelationsResponse) Reset() {
 	*x = GetRelationsResponse{}
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[9]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -636,7 +994,7 @@ func (x *GetRelationsResponse) String() string {
 func (*GetRelationsResponse) ProtoMessage() {}
 
 func (x *GetRelationsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[9]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -649,7 +1007,7 @@ func (x *GetRelationsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRelationsResponse.ProtoReflect.Descriptor instead.
 func (*GetRelationsResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{9}
+	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *GetRelationsResponse) GetResults() []*v3.Relation {
@@ -667,6 +1025,186 @@ func (x *GetRelationsResponse) GetObjects() map[string]*v3.Object {
 }
 
 func (x *GetRelationsResponse) GetPage() *v3.PaginationResponse {
+	if x != nil {
+		return x.Page
+	}
+	return nil
+}
+
+type ListRelationsRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// object type identifier (optional)
+	ObjectType string `protobuf:"bytes,1,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"`
+	// object instance identifier (optional)
+	ObjectId string `protobuf:"bytes,2,opt,name=object_id,json=objectId,proto3" json:"object_id,omitempty"`
+	// relation name (optional)
+	Relation string `protobuf:"bytes,3,opt,name=relation,proto3" json:"relation,omitempty"`
+	// subject type identifier (optional)
+	SubjectType string `protobuf:"bytes,4,opt,name=subject_type,json=subjectType,proto3" json:"subject_type,omitempty"`
+	// subject instance identifier (optional)
+	SubjectId string `protobuf:"bytes,5,opt,name=subject_id,json=subjectId,proto3" json:"subject_id,omitempty"`
+	// subject relation name (optional)
+	SubjectRelation string `protobuf:"bytes,6,opt,name=subject_relation,json=subjectRelation,proto3" json:"subject_relation,omitempty"`
+	// materialize relation objects (optional)
+	WithObjects bool `protobuf:"varint,7,opt,name=with_objects,json=withObjects,proto3" json:"with_objects,omitempty"`
+	// only return relations that do not have a subject relation  (optional)
+	WithEmptySubjectRelation bool `protobuf:"varint,8,opt,name=with_empty_subject_relation,json=withEmptySubjectRelation,proto3" json:"with_empty_subject_relation,omitempty"`
+	// pagination request (optional)
+	Page          *v3.PaginationRequest `protobuf:"bytes,9,opt,name=page,proto3" json:"page,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListRelationsRequest) Reset() {
+	*x = ListRelationsRequest{}
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListRelationsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListRelationsRequest) ProtoMessage() {}
+
+func (x *ListRelationsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListRelationsRequest.ProtoReflect.Descriptor instead.
+func (*ListRelationsRequest) Descriptor() ([]byte, []int) {
+	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *ListRelationsRequest) GetObjectType() string {
+	if x != nil {
+		return x.ObjectType
+	}
+	return ""
+}
+
+func (x *ListRelationsRequest) GetObjectId() string {
+	if x != nil {
+		return x.ObjectId
+	}
+	return ""
+}
+
+func (x *ListRelationsRequest) GetRelation() string {
+	if x != nil {
+		return x.Relation
+	}
+	return ""
+}
+
+func (x *ListRelationsRequest) GetSubjectType() string {
+	if x != nil {
+		return x.SubjectType
+	}
+	return ""
+}
+
+func (x *ListRelationsRequest) GetSubjectId() string {
+	if x != nil {
+		return x.SubjectId
+	}
+	return ""
+}
+
+func (x *ListRelationsRequest) GetSubjectRelation() string {
+	if x != nil {
+		return x.SubjectRelation
+	}
+	return ""
+}
+
+func (x *ListRelationsRequest) GetWithObjects() bool {
+	if x != nil {
+		return x.WithObjects
+	}
+	return false
+}
+
+func (x *ListRelationsRequest) GetWithEmptySubjectRelation() bool {
+	if x != nil {
+		return x.WithEmptySubjectRelation
+	}
+	return false
+}
+
+func (x *ListRelationsRequest) GetPage() *v3.PaginationRequest {
+	if x != nil {
+		return x.Page
+	}
+	return nil
+}
+
+type ListRelationsResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// array of relation instances
+	Results []*v3.Relation `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
+	// map of materialized relation objects
+	Objects map[string]*v3.Object `protobuf:"bytes,2,rep,name=objects,proto3" json:"objects,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	// pagination response
+	Page          *v3.PaginationResponse `protobuf:"bytes,9,opt,name=page,proto3" json:"page,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListRelationsResponse) Reset() {
+	*x = ListRelationsResponse{}
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListRelationsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListRelationsResponse) ProtoMessage() {}
+
+func (x *ListRelationsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListRelationsResponse.ProtoReflect.Descriptor instead.
+func (*ListRelationsResponse) Descriptor() ([]byte, []int) {
+	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *ListRelationsResponse) GetResults() []*v3.Relation {
+	if x != nil {
+		return x.Results
+	}
+	return nil
+}
+
+func (x *ListRelationsResponse) GetObjects() map[string]*v3.Object {
+	if x != nil {
+		return x.Objects
+	}
+	return nil
+}
+
+func (x *ListRelationsResponse) GetPage() *v3.PaginationResponse {
 	if x != nil {
 		return x.Page
 	}
@@ -693,7 +1231,7 @@ type CheckRequest struct {
 
 func (x *CheckRequest) Reset() {
 	*x = CheckRequest{}
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[10]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -705,7 +1243,7 @@ func (x *CheckRequest) String() string {
 func (*CheckRequest) ProtoMessage() {}
 
 func (x *CheckRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[10]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -718,7 +1256,7 @@ func (x *CheckRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckRequest.ProtoReflect.Descriptor instead.
 func (*CheckRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{10}
+	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *CheckRequest) GetObjectType() string {
@@ -777,7 +1315,7 @@ type CheckResponse struct {
 
 func (x *CheckResponse) Reset() {
 	*x = CheckResponse{}
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[11]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -789,7 +1327,7 @@ func (x *CheckResponse) String() string {
 func (*CheckResponse) ProtoMessage() {}
 
 func (x *CheckResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[11]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -802,7 +1340,7 @@ func (x *CheckResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckResponse.ProtoReflect.Descriptor instead.
 func (*CheckResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{11}
+	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *CheckResponse) GetCheck() bool {
@@ -836,7 +1374,7 @@ type ChecksRequest struct {
 
 func (x *ChecksRequest) Reset() {
 	*x = ChecksRequest{}
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[12]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -848,7 +1386,7 @@ func (x *ChecksRequest) String() string {
 func (*ChecksRequest) ProtoMessage() {}
 
 func (x *ChecksRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[12]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -861,7 +1399,7 @@ func (x *ChecksRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChecksRequest.ProtoReflect.Descriptor instead.
 func (*ChecksRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{12}
+	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *ChecksRequest) GetDefault() *CheckRequest {
@@ -887,7 +1425,7 @@ type ChecksResponse struct {
 
 func (x *ChecksResponse) Reset() {
 	*x = ChecksResponse{}
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[13]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -899,7 +1437,7 @@ func (x *ChecksResponse) String() string {
 func (*ChecksResponse) ProtoMessage() {}
 
 func (x *ChecksResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[13]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -912,7 +1450,7 @@ func (x *ChecksResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChecksResponse.ProtoReflect.Descriptor instead.
 func (*ChecksResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{13}
+	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *ChecksResponse) GetChecks() []*CheckResponse {
@@ -942,7 +1480,7 @@ type CheckPermissionRequest struct {
 
 func (x *CheckPermissionRequest) Reset() {
 	*x = CheckPermissionRequest{}
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[14]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -954,7 +1492,7 @@ func (x *CheckPermissionRequest) String() string {
 func (*CheckPermissionRequest) ProtoMessage() {}
 
 func (x *CheckPermissionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[14]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -967,7 +1505,7 @@ func (x *CheckPermissionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckPermissionRequest.ProtoReflect.Descriptor instead.
 func (*CheckPermissionRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{14}
+	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *CheckPermissionRequest) GetObjectType() string {
@@ -1024,7 +1562,7 @@ type CheckPermissionResponse struct {
 
 func (x *CheckPermissionResponse) Reset() {
 	*x = CheckPermissionResponse{}
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[15]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1036,7 +1574,7 @@ func (x *CheckPermissionResponse) String() string {
 func (*CheckPermissionResponse) ProtoMessage() {}
 
 func (x *CheckPermissionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[15]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1049,7 +1587,7 @@ func (x *CheckPermissionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckPermissionResponse.ProtoReflect.Descriptor instead.
 func (*CheckPermissionResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{15}
+	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *CheckPermissionResponse) GetCheck() bool {
@@ -1086,7 +1624,7 @@ type CheckRelationRequest struct {
 
 func (x *CheckRelationRequest) Reset() {
 	*x = CheckRelationRequest{}
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[16]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1098,7 +1636,7 @@ func (x *CheckRelationRequest) String() string {
 func (*CheckRelationRequest) ProtoMessage() {}
 
 func (x *CheckRelationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[16]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1111,7 +1649,7 @@ func (x *CheckRelationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckRelationRequest.ProtoReflect.Descriptor instead.
 func (*CheckRelationRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{16}
+	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *CheckRelationRequest) GetObjectType() string {
@@ -1168,7 +1706,7 @@ type CheckRelationResponse struct {
 
 func (x *CheckRelationResponse) Reset() {
 	*x = CheckRelationResponse{}
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[17]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1180,7 +1718,7 @@ func (x *CheckRelationResponse) String() string {
 func (*CheckRelationResponse) ProtoMessage() {}
 
 func (x *CheckRelationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[17]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1193,7 +1731,7 @@ func (x *CheckRelationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckRelationResponse.ProtoReflect.Descriptor instead.
 func (*CheckRelationResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{17}
+	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *CheckRelationResponse) GetCheck() bool {
@@ -1234,7 +1772,7 @@ type GetGraphRequest struct {
 
 func (x *GetGraphRequest) Reset() {
 	*x = GetGraphRequest{}
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[18]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1246,7 +1784,7 @@ func (x *GetGraphRequest) String() string {
 func (*GetGraphRequest) ProtoMessage() {}
 
 func (x *GetGraphRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[18]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1259,7 +1797,7 @@ func (x *GetGraphRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGraphRequest.ProtoReflect.Descriptor instead.
 func (*GetGraphRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{18}
+	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *GetGraphRequest) GetObjectType() string {
@@ -1332,7 +1870,7 @@ type GetGraphResponse struct {
 
 func (x *GetGraphResponse) Reset() {
 	*x = GetGraphResponse{}
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[19]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1344,7 +1882,7 @@ func (x *GetGraphResponse) String() string {
 func (*GetGraphResponse) ProtoMessage() {}
 
 func (x *GetGraphResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[19]
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1357,7 +1895,7 @@ func (x *GetGraphResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGraphResponse.ProtoReflect.Descriptor instead.
 func (*GetGraphResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{19}
+	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *GetGraphResponse) GetResults() []*v3.ObjectIdentifier {
@@ -1381,11 +1919,208 @@ func (x *GetGraphResponse) GetTrace() []string {
 	return nil
 }
 
+type ExportRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// data export options mask
+	Options uint32 `protobuf:"varint,1,opt,name=options,proto3" json:"options,omitempty"`
+	// start export from timestamp (UTC)
+	StartFrom     *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=start_from,json=startFrom,proto3" json:"start_from,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ExportRequest) Reset() {
+	*x = ExportRequest{}
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[28]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ExportRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ExportRequest) ProtoMessage() {}
+
+func (x *ExportRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[28]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ExportRequest.ProtoReflect.Descriptor instead.
+func (*ExportRequest) Descriptor() ([]byte, []int) {
+	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{28}
+}
+
+func (x *ExportRequest) GetOptions() uint32 {
+	if x != nil {
+		return x.Options
+	}
+	return 0
+}
+
+func (x *ExportRequest) GetStartFrom() *timestamppb.Timestamp {
+	if x != nil {
+		return x.StartFrom
+	}
+	return nil
+}
+
+type ExportResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to Msg:
+	//
+	//	*ExportResponse_Manifest
+	//	*ExportResponse_Model
+	//	*ExportResponse_Object
+	//	*ExportResponse_Relation
+	//	*ExportResponse_Stats
+	Msg           isExportResponse_Msg `protobuf_oneof:"msg"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ExportResponse) Reset() {
+	*x = ExportResponse{}
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[29]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ExportResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ExportResponse) ProtoMessage() {}
+
+func (x *ExportResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_aserto_directory_reader_v3_reader_proto_msgTypes[29]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ExportResponse.ProtoReflect.Descriptor instead.
+func (*ExportResponse) Descriptor() ([]byte, []int) {
+	return file_aserto_directory_reader_v3_reader_proto_rawDescGZIP(), []int{29}
+}
+
+func (x *ExportResponse) GetMsg() isExportResponse_Msg {
+	if x != nil {
+		return x.Msg
+	}
+	return nil
+}
+
+func (x *ExportResponse) GetManifest() *v3.Manifest {
+	if x != nil {
+		if x, ok := x.Msg.(*ExportResponse_Manifest); ok {
+			return x.Manifest
+		}
+	}
+	return nil
+}
+
+func (x *ExportResponse) GetModel() *v3.Model {
+	if x != nil {
+		if x, ok := x.Msg.(*ExportResponse_Model); ok {
+			return x.Model
+		}
+	}
+	return nil
+}
+
+func (x *ExportResponse) GetObject() *v3.Object {
+	if x != nil {
+		if x, ok := x.Msg.(*ExportResponse_Object); ok {
+			return x.Object
+		}
+	}
+	return nil
+}
+
+func (x *ExportResponse) GetRelation() *v3.Relation {
+	if x != nil {
+		if x, ok := x.Msg.(*ExportResponse_Relation); ok {
+			return x.Relation
+		}
+	}
+	return nil
+}
+
+func (x *ExportResponse) GetStats() *structpb.Struct {
+	if x != nil {
+		if x, ok := x.Msg.(*ExportResponse_Stats); ok {
+			return x.Stats
+		}
+	}
+	return nil
+}
+
+type isExportResponse_Msg interface {
+	isExportResponse_Msg()
+}
+
+type ExportResponse_Manifest struct {
+	// manifest instance
+	Manifest *v3.Manifest `protobuf:"bytes,1,opt,name=manifest,proto3,oneof"`
+}
+
+type ExportResponse_Model struct {
+	// model instance
+	Model *v3.Model `protobuf:"bytes,2,opt,name=model,proto3,oneof"`
+}
+
+type ExportResponse_Object struct {
+	// object instance (data)
+	Object *v3.Object `protobuf:"bytes,4,opt,name=object,proto3,oneof"`
+}
+
+type ExportResponse_Relation struct {
+	// relation instance (data)
+	Relation *v3.Relation `protobuf:"bytes,8,opt,name=relation,proto3,oneof"`
+}
+
+type ExportResponse_Stats struct {
+	// object and/or relation stats (no data)
+	Stats *structpb.Struct `protobuf:"bytes,16,opt,name=stats,proto3,oneof"`
+}
+
+func (*ExportResponse_Manifest) isExportResponse_Msg() {}
+
+func (*ExportResponse_Model) isExportResponse_Msg() {}
+
+func (*ExportResponse_Object) isExportResponse_Msg() {}
+
+func (*ExportResponse_Relation) isExportResponse_Msg() {}
+
+func (*ExportResponse_Stats) isExportResponse_Msg() {}
+
 var File_aserto_directory_reader_v3_reader_proto protoreflect.FileDescriptor
 
 const file_aserto_directory_reader_v3_reader_proto_rawDesc = "" +
 	"\n" +
-	"'aserto/directory/reader/v3/reader.proto\x12\x1aaserto.directory.reader.v3\x1a'aserto/directory/common/v3/common.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\x92\x01\n" +
+	"'aserto/directory/reader/v3/reader.proto\x12\x1aaserto.directory.reader.v3\x1a'aserto/directory/common/v3/common.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"$\n" +
+	"\x12GetManifestRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"W\n" +
+	"\x13GetManifestResponse\x12@\n" +
+	"\bmanifest\x18\x01 \x01(\v2$.aserto.directory.common.v3.ManifestR\bmanifest\"A\n" +
+	"\x0fGetModelRequest\x12.\n" +
+	"\x06result\x18\x01 \x01(\v2\x16.google.protobuf.EmptyR\x06result\"K\n" +
+	"\x10GetModelResponse\x127\n" +
+	"\x05model\x18\x01 \x01(\v2!.aserto.directory.common.v3.ModelR\x05model\"\x92\x01\n" +
 	"\x10GetObjectRequest\x12$\n" +
 	"\vobject_type\x18\x01 \x01(\tB\x03\xe0A\x02R\n" +
 	"objectType\x12 \n" +
@@ -1405,6 +2140,13 @@ const file_aserto_directory_reader_v3_reader_proto_rawDesc = "" +
 	"objectType\x12F\n" +
 	"\x04page\x18\t \x01(\v2-.aserto.directory.common.v3.PaginationRequestB\x03\xe0A\x01R\x04page\"\x96\x01\n" +
 	"\x12GetObjectsResponse\x12<\n" +
+	"\aresults\x18\x01 \x03(\v2\".aserto.directory.common.v3.ObjectR\aresults\x12B\n" +
+	"\x04page\x18\t \x01(\v2..aserto.directory.common.v3.PaginationResponseR\x04page\"\x82\x01\n" +
+	"\x12ListObjectsRequest\x12$\n" +
+	"\vobject_type\x18\x01 \x01(\tB\x03\xe0A\x01R\n" +
+	"objectType\x12F\n" +
+	"\x04page\x18\t \x01(\v2-.aserto.directory.common.v3.PaginationRequestB\x03\xe0A\x01R\x04page\"\x97\x01\n" +
+	"\x13ListObjectsResponse\x12<\n" +
 	"\aresults\x18\x01 \x03(\v2\".aserto.directory.common.v3.ObjectR\aresults\x12B\n" +
 	"\x04page\x18\t \x01(\v2..aserto.directory.common.v3.PaginationResponseR\x04page\"\xa1\x02\n" +
 	"\x12GetRelationRequest\x12$\n" +
@@ -1438,6 +2180,25 @@ const file_aserto_directory_reader_v3_reader_proto_rawDesc = "" +
 	"\x14GetRelationsResponse\x12>\n" +
 	"\aresults\x18\x01 \x03(\v2$.aserto.directory.common.v3.RelationR\aresults\x12W\n" +
 	"\aobjects\x18\x02 \x03(\v2=.aserto.directory.reader.v3.GetRelationsResponse.ObjectsEntryR\aobjects\x12B\n" +
+	"\x04page\x18\t \x01(\v2..aserto.directory.common.v3.PaginationResponseR\x04page\x1a^\n" +
+	"\fObjectsEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x128\n" +
+	"\x05value\x18\x02 \x01(\v2\".aserto.directory.common.v3.ObjectR\x05value:\x028\x01\"\xaf\x03\n" +
+	"\x14ListRelationsRequest\x12$\n" +
+	"\vobject_type\x18\x01 \x01(\tB\x03\xe0A\x01R\n" +
+	"objectType\x12 \n" +
+	"\tobject_id\x18\x02 \x01(\tB\x03\xe0A\x01R\bobjectId\x12\x1f\n" +
+	"\brelation\x18\x03 \x01(\tB\x03\xe0A\x01R\brelation\x12&\n" +
+	"\fsubject_type\x18\x04 \x01(\tB\x03\xe0A\x01R\vsubjectType\x12\"\n" +
+	"\n" +
+	"subject_id\x18\x05 \x01(\tB\x03\xe0A\x01R\tsubjectId\x12.\n" +
+	"\x10subject_relation\x18\x06 \x01(\tB\x03\xe0A\x01R\x0fsubjectRelation\x12&\n" +
+	"\fwith_objects\x18\a \x01(\bB\x03\xe0A\x01R\vwithObjects\x12B\n" +
+	"\x1bwith_empty_subject_relation\x18\b \x01(\bB\x03\xe0A\x01R\x18withEmptySubjectRelation\x12F\n" +
+	"\x04page\x18\t \x01(\v2-.aserto.directory.common.v3.PaginationRequestB\x03\xe0A\x01R\x04page\"\xd5\x02\n" +
+	"\x15ListRelationsResponse\x12>\n" +
+	"\aresults\x18\x01 \x03(\v2$.aserto.directory.common.v3.RelationR\aresults\x12X\n" +
+	"\aobjects\x18\x02 \x03(\v2>.aserto.directory.reader.v3.ListRelationsResponse.ObjectsEntryR\aobjects\x12B\n" +
 	"\x04page\x18\t \x01(\v2..aserto.directory.common.v3.PaginationResponseR\x04page\x1a^\n" +
 	"\fObjectsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x128\n" +
@@ -1501,18 +2262,51 @@ const file_aserto_directory_reader_v3_reader_proto_rawDesc = "" +
 	"\x10GetGraphResponse\x12F\n" +
 	"\aresults\x18\x02 \x03(\v2,.aserto.directory.common.v3.ObjectIdentifierR\aresults\x129\n" +
 	"\vexplanation\x18\x03 \x01(\v2\x17.google.protobuf.StructR\vexplanation\x12\x14\n" +
-	"\x05trace\x18\x04 \x03(\tR\x05traceJ\x04\b\x01\x10\x022\xea\x15\n" +
-	"\x06Reader\x12\xdf\x02\n" +
+	"\x05trace\x18\x04 \x03(\tR\x05traceJ\x04\b\x01\x10\x02\"d\n" +
+	"\rExportRequest\x12\x18\n" +
+	"\aoptions\x18\x01 \x01(\rR\aoptions\x129\n" +
+	"\n" +
+	"start_from\x18\x14 \x01(\v2\x1a.google.protobuf.TimestampR\tstartFrom\"\xc9\x02\n" +
+	"\x0eExportResponse\x12B\n" +
+	"\bmanifest\x18\x01 \x01(\v2$.aserto.directory.common.v3.ManifestH\x00R\bmanifest\x129\n" +
+	"\x05model\x18\x02 \x01(\v2!.aserto.directory.common.v3.ModelH\x00R\x05model\x12<\n" +
+	"\x06object\x18\x04 \x01(\v2\".aserto.directory.common.v3.ObjectH\x00R\x06object\x12B\n" +
+	"\brelation\x18\b \x01(\v2$.aserto.directory.common.v3.RelationH\x00R\brelation\x12/\n" +
+	"\x05stats\x18\x10 \x01(\v2\x17.google.protobuf.StructH\x00R\x05statsB\x05\n" +
+	"\x03msg*\xaf\x01\n" +
+	"\x06Option\x12\x12\n" +
+	"\x0eOPTION_UNKNOWN\x10\x00\x12\x14\n" +
+	"\x10OPTION_MANIFESTS\x10\x01\x12\x11\n" +
+	"\rOPTION_MODELS\x10\x02\x12\x11\n" +
+	"\rOPTION_SCHEMA\x10\x03\x12\x17\n" +
+	"\x13OPTION_DATA_OBJECTS\x10\b\x12\x19\n" +
+	"\x15OPTION_DATA_RELATIONS\x10\x10\x12\x0f\n" +
+	"\vOPTION_DATA\x10\x18\x12\x10\n" +
+	"\fOPTION_STATS\x10@2\xfb\x1c\n" +
+	"\x06Reader\x12\xae\x02\n" +
+	"\vGetManifest\x12..aserto.directory.reader.v3.GetManifestRequest\x1a/.aserto.directory.reader.v3.GetManifestResponse\"\xbd\x01\x92A\x92\x01\n" +
+	"\tdirectory\x12\fGet manifest\x1a\x1bReturns directory manifest.* directory.reader.v3.manifest.getJ\x1d\n" +
+	"\x03304\x12\x16\n" +
+	"\x14Object not modified.b\x19\n" +
+	"\x17\n" +
+	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02!\x12\x1f/api/v3/directory/manifest/{id}\x12\x94\x02\n" +
+	"\bGetModel\x12+.aserto.directory.reader.v3.GetModelRequest\x1a,.aserto.directory.reader.v3.GetModelResponse\"\xac\x01\x92A\x89\x01\n" +
+	"\tdirectory\x12\tGet model\x1a\x18Returns directory model.*\x1ddirectory.reader.v3.model.getJ\x1d\n" +
+	"\x03304\x12\x16\n" +
+	"\x14Object not modified.b\x19\n" +
+	"\x17\n" +
+	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02\x19\x12\x17/api/v3/directory/model\x12\xdf\x02\n" +
 	"\tGetObject\x12,.aserto.directory.reader.v3.GetObjectRequest\x1a-.aserto.directory.reader.v3.GetObjectResponse\"\xf4\x01\x92A\xb6\x01\n" +
 	"\tdirectory\x12\x13Get object instance\x1a:Returns single object instance, optionally with relations.*\x1edirectory.reader.v3.object.getJ\x1d\n" +
 	"\x03304\x12\x16\n" +
 	"\x14Object not modified.b\x19\n" +
 	"\x17\n" +
-	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x024\x122/api/v3/directory/object/{object_type}/{object_id}\x12v\n" +
-	"\rGetObjectMany\x120.aserto.directory.reader.v3.GetObjectManyRequest\x1a1.aserto.directory.reader.v3.GetObjectManyResponse\"\x00\x12\x95\x02\n" +
+	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x024\x122/api/v3/directory/object/{object_type}/{object_id}\x12y\n" +
+	"\rGetObjectMany\x120.aserto.directory.reader.v3.GetObjectManyRequest\x1a1.aserto.directory.reader.v3.GetObjectManyResponse\"\x03\x88\x02\x01\x12p\n" +
 	"\n" +
-	"GetObjects\x12-.aserto.directory.reader.v3.GetObjectsRequest\x1a..aserto.directory.reader.v3.GetObjectsResponse\"\xa7\x01\x92A\x82\x01\n" +
-	"\tdirectory\x12\x15List object instances\x1a!Returns list of object instances.* directory.reader.v3.objects.listb\x19\n" +
+	"GetObjects\x12-.aserto.directory.reader.v3.GetObjectsRequest\x1a..aserto.directory.reader.v3.GetObjectsResponse\"\x03\x88\x02\x01\x12\x90\x02\n" +
+	"\vListObjects\x12..aserto.directory.reader.v3.ListObjectsRequest\x1a/.aserto.directory.reader.v3.ListObjectsResponse\"\x9f\x01\x92A{\n" +
+	"\tdirectory\x12\x15List object instances\x1a!Returns list of object instances.*\x19directory.v3.objects.listb\x19\n" +
 	"\x17\n" +
 	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02\x1b\x12\x19/api/v3/directory/objects\x12\xd3\x02\n" +
 	"\vGetRelation\x12..aserto.directory.reader.v3.GetRelationRequest\x1a/.aserto.directory.reader.v3.GetRelationResponse\"\xe2\x01\x92A\xbc\x01\n" +
@@ -1520,9 +2314,10 @@ const file_aserto_directory_reader_v3_reader_proto_rawDesc = "" +
 	"\x03304\x12\x18\n" +
 	"\x16Relation not modified.b\x19\n" +
 	"\x17\n" +
-	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02\x1c\x12\x1a/api/v3/directory/relation\x12\xa4\x02\n" +
-	"\fGetRelations\x12/.aserto.directory.reader.v3.GetRelationsRequest\x1a0.aserto.directory.reader.v3.GetRelationsResponse\"\xb0\x01\x92A\x89\x01\n" +
-	"\tdirectory\x12\x18List relations instances\x1a#Returns list of relation instances.*\"directory.reader.v3.relations.listb\x19\n" +
+	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02\x1c\x12\x1a/api/v3/directory/relation\x12v\n" +
+	"\fGetRelations\x12/.aserto.directory.reader.v3.GetRelationsRequest\x1a0.aserto.directory.reader.v3.GetRelationsResponse\"\x03\x88\x02\x01\x12\xa0\x02\n" +
+	"\rListRelations\x120.aserto.directory.reader.v3.ListRelationsRequest\x1a1.aserto.directory.reader.v3.ListRelationsResponse\"\xa9\x01\x92A\x82\x01\n" +
+	"\tdirectory\x12\x18List relations instances\x1a#Returns list of relation instances.*\x1bdirectory.v3.relations.listb\x19\n" +
 	"\x17\n" +
 	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02\x1d\x12\x1b/api/v3/directory/relations\x12\xe4\x01\n" +
 	"\x05Check\x12(.aserto.directory.reader.v3.CheckRequest\x1a).aserto.directory.reader.v3.CheckResponse\"\x85\x01\x92A`\n" +
@@ -1544,7 +2339,8 @@ const file_aserto_directory_reader_v3_reader_proto_rawDesc = "" +
 	"\bGetGraph\x12+.aserto.directory.reader.v3.GetGraphRequest\x1a,.aserto.directory.reader.v3.GetGraphResponse\"\xcf\x01\x92A\x84\x01\n" +
 	"\tdirectory\x12\tGet graph\x1a6Returns object graph from anchor to subject or object.*\x19directory.reader.v3.graphb\x19\n" +
 	"\x17\n" +
-	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02A\x12?/api/v3/directory/graph/{object_type}/{relation}/{subject_type}BFZDgithub.com/aserto-dev/go-directory/aserto/directory/reader/v3;readerb\x06proto3"
+	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02A\x12?/api/v3/directory/graph/{object_type}/{relation}/{subject_type}\x12c\n" +
+	"\x06Export\x12).aserto.directory.reader.v3.ExportRequest\x1a*.aserto.directory.reader.v3.ExportResponse\"\x000\x01BFZDgithub.com/aserto-dev/go-directory/aserto/directory/reader/v3;readerb\x06proto3"
 
 var (
 	file_aserto_directory_reader_v3_reader_proto_rawDescOnce sync.Once
@@ -1558,84 +2354,128 @@ func file_aserto_directory_reader_v3_reader_proto_rawDescGZIP() []byte {
 	return file_aserto_directory_reader_v3_reader_proto_rawDescData
 }
 
-var file_aserto_directory_reader_v3_reader_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
+var file_aserto_directory_reader_v3_reader_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_aserto_directory_reader_v3_reader_proto_msgTypes = make([]protoimpl.MessageInfo, 33)
 var file_aserto_directory_reader_v3_reader_proto_goTypes = []any{
-	(*GetObjectRequest)(nil),        // 0: aserto.directory.reader.v3.GetObjectRequest
-	(*GetObjectResponse)(nil),       // 1: aserto.directory.reader.v3.GetObjectResponse
-	(*GetObjectManyRequest)(nil),    // 2: aserto.directory.reader.v3.GetObjectManyRequest
-	(*GetObjectManyResponse)(nil),   // 3: aserto.directory.reader.v3.GetObjectManyResponse
-	(*GetObjectsRequest)(nil),       // 4: aserto.directory.reader.v3.GetObjectsRequest
-	(*GetObjectsResponse)(nil),      // 5: aserto.directory.reader.v3.GetObjectsResponse
-	(*GetRelationRequest)(nil),      // 6: aserto.directory.reader.v3.GetRelationRequest
-	(*GetRelationResponse)(nil),     // 7: aserto.directory.reader.v3.GetRelationResponse
-	(*GetRelationsRequest)(nil),     // 8: aserto.directory.reader.v3.GetRelationsRequest
-	(*GetRelationsResponse)(nil),    // 9: aserto.directory.reader.v3.GetRelationsResponse
-	(*CheckRequest)(nil),            // 10: aserto.directory.reader.v3.CheckRequest
-	(*CheckResponse)(nil),           // 11: aserto.directory.reader.v3.CheckResponse
-	(*ChecksRequest)(nil),           // 12: aserto.directory.reader.v3.ChecksRequest
-	(*ChecksResponse)(nil),          // 13: aserto.directory.reader.v3.ChecksResponse
-	(*CheckPermissionRequest)(nil),  // 14: aserto.directory.reader.v3.CheckPermissionRequest
-	(*CheckPermissionResponse)(nil), // 15: aserto.directory.reader.v3.CheckPermissionResponse
-	(*CheckRelationRequest)(nil),    // 16: aserto.directory.reader.v3.CheckRelationRequest
-	(*CheckRelationResponse)(nil),   // 17: aserto.directory.reader.v3.CheckRelationResponse
-	(*GetGraphRequest)(nil),         // 18: aserto.directory.reader.v3.GetGraphRequest
-	(*GetGraphResponse)(nil),        // 19: aserto.directory.reader.v3.GetGraphResponse
-	nil,                             // 20: aserto.directory.reader.v3.GetRelationResponse.ObjectsEntry
-	nil,                             // 21: aserto.directory.reader.v3.GetRelationsResponse.ObjectsEntry
-	(*v3.Object)(nil),               // 22: aserto.directory.common.v3.Object
-	(*v3.Relation)(nil),             // 23: aserto.directory.common.v3.Relation
-	(*v3.ObjectIdentifier)(nil),     // 24: aserto.directory.common.v3.ObjectIdentifier
-	(*v3.PaginationRequest)(nil),    // 25: aserto.directory.common.v3.PaginationRequest
-	(*v3.PaginationResponse)(nil),   // 26: aserto.directory.common.v3.PaginationResponse
-	(*structpb.Struct)(nil),         // 27: google.protobuf.Struct
+	(Option)(0),                     // 0: aserto.directory.reader.v3.Option
+	(*GetManifestRequest)(nil),      // 1: aserto.directory.reader.v3.GetManifestRequest
+	(*GetManifestResponse)(nil),     // 2: aserto.directory.reader.v3.GetManifestResponse
+	(*GetModelRequest)(nil),         // 3: aserto.directory.reader.v3.GetModelRequest
+	(*GetModelResponse)(nil),        // 4: aserto.directory.reader.v3.GetModelResponse
+	(*GetObjectRequest)(nil),        // 5: aserto.directory.reader.v3.GetObjectRequest
+	(*GetObjectResponse)(nil),       // 6: aserto.directory.reader.v3.GetObjectResponse
+	(*GetObjectManyRequest)(nil),    // 7: aserto.directory.reader.v3.GetObjectManyRequest
+	(*GetObjectManyResponse)(nil),   // 8: aserto.directory.reader.v3.GetObjectManyResponse
+	(*GetObjectsRequest)(nil),       // 9: aserto.directory.reader.v3.GetObjectsRequest
+	(*GetObjectsResponse)(nil),      // 10: aserto.directory.reader.v3.GetObjectsResponse
+	(*ListObjectsRequest)(nil),      // 11: aserto.directory.reader.v3.ListObjectsRequest
+	(*ListObjectsResponse)(nil),     // 12: aserto.directory.reader.v3.ListObjectsResponse
+	(*GetRelationRequest)(nil),      // 13: aserto.directory.reader.v3.GetRelationRequest
+	(*GetRelationResponse)(nil),     // 14: aserto.directory.reader.v3.GetRelationResponse
+	(*GetRelationsRequest)(nil),     // 15: aserto.directory.reader.v3.GetRelationsRequest
+	(*GetRelationsResponse)(nil),    // 16: aserto.directory.reader.v3.GetRelationsResponse
+	(*ListRelationsRequest)(nil),    // 17: aserto.directory.reader.v3.ListRelationsRequest
+	(*ListRelationsResponse)(nil),   // 18: aserto.directory.reader.v3.ListRelationsResponse
+	(*CheckRequest)(nil),            // 19: aserto.directory.reader.v3.CheckRequest
+	(*CheckResponse)(nil),           // 20: aserto.directory.reader.v3.CheckResponse
+	(*ChecksRequest)(nil),           // 21: aserto.directory.reader.v3.ChecksRequest
+	(*ChecksResponse)(nil),          // 22: aserto.directory.reader.v3.ChecksResponse
+	(*CheckPermissionRequest)(nil),  // 23: aserto.directory.reader.v3.CheckPermissionRequest
+	(*CheckPermissionResponse)(nil), // 24: aserto.directory.reader.v3.CheckPermissionResponse
+	(*CheckRelationRequest)(nil),    // 25: aserto.directory.reader.v3.CheckRelationRequest
+	(*CheckRelationResponse)(nil),   // 26: aserto.directory.reader.v3.CheckRelationResponse
+	(*GetGraphRequest)(nil),         // 27: aserto.directory.reader.v3.GetGraphRequest
+	(*GetGraphResponse)(nil),        // 28: aserto.directory.reader.v3.GetGraphResponse
+	(*ExportRequest)(nil),           // 29: aserto.directory.reader.v3.ExportRequest
+	(*ExportResponse)(nil),          // 30: aserto.directory.reader.v3.ExportResponse
+	nil,                             // 31: aserto.directory.reader.v3.GetRelationResponse.ObjectsEntry
+	nil,                             // 32: aserto.directory.reader.v3.GetRelationsResponse.ObjectsEntry
+	nil,                             // 33: aserto.directory.reader.v3.ListRelationsResponse.ObjectsEntry
+	(*v3.Manifest)(nil),             // 34: aserto.directory.common.v3.Manifest
+	(*emptypb.Empty)(nil),           // 35: google.protobuf.Empty
+	(*v3.Model)(nil),                // 36: aserto.directory.common.v3.Model
+	(*v3.Object)(nil),               // 37: aserto.directory.common.v3.Object
+	(*v3.Relation)(nil),             // 38: aserto.directory.common.v3.Relation
+	(*v3.ObjectIdentifier)(nil),     // 39: aserto.directory.common.v3.ObjectIdentifier
+	(*v3.PaginationRequest)(nil),    // 40: aserto.directory.common.v3.PaginationRequest
+	(*v3.PaginationResponse)(nil),   // 41: aserto.directory.common.v3.PaginationResponse
+	(*structpb.Struct)(nil),         // 42: google.protobuf.Struct
+	(*timestamppb.Timestamp)(nil),   // 43: google.protobuf.Timestamp
 }
 var file_aserto_directory_reader_v3_reader_proto_depIdxs = []int32{
-	22, // 0: aserto.directory.reader.v3.GetObjectResponse.result:type_name -> aserto.directory.common.v3.Object
-	23, // 1: aserto.directory.reader.v3.GetObjectResponse.relations:type_name -> aserto.directory.common.v3.Relation
-	24, // 2: aserto.directory.reader.v3.GetObjectManyRequest.param:type_name -> aserto.directory.common.v3.ObjectIdentifier
-	22, // 3: aserto.directory.reader.v3.GetObjectManyResponse.results:type_name -> aserto.directory.common.v3.Object
-	25, // 4: aserto.directory.reader.v3.GetObjectsRequest.page:type_name -> aserto.directory.common.v3.PaginationRequest
-	22, // 5: aserto.directory.reader.v3.GetObjectsResponse.results:type_name -> aserto.directory.common.v3.Object
-	26, // 6: aserto.directory.reader.v3.GetObjectsResponse.page:type_name -> aserto.directory.common.v3.PaginationResponse
-	23, // 7: aserto.directory.reader.v3.GetRelationResponse.result:type_name -> aserto.directory.common.v3.Relation
-	20, // 8: aserto.directory.reader.v3.GetRelationResponse.objects:type_name -> aserto.directory.reader.v3.GetRelationResponse.ObjectsEntry
-	25, // 9: aserto.directory.reader.v3.GetRelationsRequest.page:type_name -> aserto.directory.common.v3.PaginationRequest
-	23, // 10: aserto.directory.reader.v3.GetRelationsResponse.results:type_name -> aserto.directory.common.v3.Relation
-	21, // 11: aserto.directory.reader.v3.GetRelationsResponse.objects:type_name -> aserto.directory.reader.v3.GetRelationsResponse.ObjectsEntry
-	26, // 12: aserto.directory.reader.v3.GetRelationsResponse.page:type_name -> aserto.directory.common.v3.PaginationResponse
-	27, // 13: aserto.directory.reader.v3.CheckResponse.context:type_name -> google.protobuf.Struct
-	10, // 14: aserto.directory.reader.v3.ChecksRequest.default:type_name -> aserto.directory.reader.v3.CheckRequest
-	10, // 15: aserto.directory.reader.v3.ChecksRequest.checks:type_name -> aserto.directory.reader.v3.CheckRequest
-	11, // 16: aserto.directory.reader.v3.ChecksResponse.checks:type_name -> aserto.directory.reader.v3.CheckResponse
-	24, // 17: aserto.directory.reader.v3.GetGraphResponse.results:type_name -> aserto.directory.common.v3.ObjectIdentifier
-	27, // 18: aserto.directory.reader.v3.GetGraphResponse.explanation:type_name -> google.protobuf.Struct
-	22, // 19: aserto.directory.reader.v3.GetRelationResponse.ObjectsEntry.value:type_name -> aserto.directory.common.v3.Object
-	22, // 20: aserto.directory.reader.v3.GetRelationsResponse.ObjectsEntry.value:type_name -> aserto.directory.common.v3.Object
-	0,  // 21: aserto.directory.reader.v3.Reader.GetObject:input_type -> aserto.directory.reader.v3.GetObjectRequest
-	2,  // 22: aserto.directory.reader.v3.Reader.GetObjectMany:input_type -> aserto.directory.reader.v3.GetObjectManyRequest
-	4,  // 23: aserto.directory.reader.v3.Reader.GetObjects:input_type -> aserto.directory.reader.v3.GetObjectsRequest
-	6,  // 24: aserto.directory.reader.v3.Reader.GetRelation:input_type -> aserto.directory.reader.v3.GetRelationRequest
-	8,  // 25: aserto.directory.reader.v3.Reader.GetRelations:input_type -> aserto.directory.reader.v3.GetRelationsRequest
-	10, // 26: aserto.directory.reader.v3.Reader.Check:input_type -> aserto.directory.reader.v3.CheckRequest
-	12, // 27: aserto.directory.reader.v3.Reader.Checks:input_type -> aserto.directory.reader.v3.ChecksRequest
-	14, // 28: aserto.directory.reader.v3.Reader.CheckPermission:input_type -> aserto.directory.reader.v3.CheckPermissionRequest
-	16, // 29: aserto.directory.reader.v3.Reader.CheckRelation:input_type -> aserto.directory.reader.v3.CheckRelationRequest
-	18, // 30: aserto.directory.reader.v3.Reader.GetGraph:input_type -> aserto.directory.reader.v3.GetGraphRequest
-	1,  // 31: aserto.directory.reader.v3.Reader.GetObject:output_type -> aserto.directory.reader.v3.GetObjectResponse
-	3,  // 32: aserto.directory.reader.v3.Reader.GetObjectMany:output_type -> aserto.directory.reader.v3.GetObjectManyResponse
-	5,  // 33: aserto.directory.reader.v3.Reader.GetObjects:output_type -> aserto.directory.reader.v3.GetObjectsResponse
-	7,  // 34: aserto.directory.reader.v3.Reader.GetRelation:output_type -> aserto.directory.reader.v3.GetRelationResponse
-	9,  // 35: aserto.directory.reader.v3.Reader.GetRelations:output_type -> aserto.directory.reader.v3.GetRelationsResponse
-	11, // 36: aserto.directory.reader.v3.Reader.Check:output_type -> aserto.directory.reader.v3.CheckResponse
-	13, // 37: aserto.directory.reader.v3.Reader.Checks:output_type -> aserto.directory.reader.v3.ChecksResponse
-	15, // 38: aserto.directory.reader.v3.Reader.CheckPermission:output_type -> aserto.directory.reader.v3.CheckPermissionResponse
-	17, // 39: aserto.directory.reader.v3.Reader.CheckRelation:output_type -> aserto.directory.reader.v3.CheckRelationResponse
-	19, // 40: aserto.directory.reader.v3.Reader.GetGraph:output_type -> aserto.directory.reader.v3.GetGraphResponse
-	31, // [31:41] is the sub-list for method output_type
-	21, // [21:31] is the sub-list for method input_type
-	21, // [21:21] is the sub-list for extension type_name
-	21, // [21:21] is the sub-list for extension extendee
-	0,  // [0:21] is the sub-list for field type_name
+	34, // 0: aserto.directory.reader.v3.GetManifestResponse.manifest:type_name -> aserto.directory.common.v3.Manifest
+	35, // 1: aserto.directory.reader.v3.GetModelRequest.result:type_name -> google.protobuf.Empty
+	36, // 2: aserto.directory.reader.v3.GetModelResponse.model:type_name -> aserto.directory.common.v3.Model
+	37, // 3: aserto.directory.reader.v3.GetObjectResponse.result:type_name -> aserto.directory.common.v3.Object
+	38, // 4: aserto.directory.reader.v3.GetObjectResponse.relations:type_name -> aserto.directory.common.v3.Relation
+	39, // 5: aserto.directory.reader.v3.GetObjectManyRequest.param:type_name -> aserto.directory.common.v3.ObjectIdentifier
+	37, // 6: aserto.directory.reader.v3.GetObjectManyResponse.results:type_name -> aserto.directory.common.v3.Object
+	40, // 7: aserto.directory.reader.v3.GetObjectsRequest.page:type_name -> aserto.directory.common.v3.PaginationRequest
+	37, // 8: aserto.directory.reader.v3.GetObjectsResponse.results:type_name -> aserto.directory.common.v3.Object
+	41, // 9: aserto.directory.reader.v3.GetObjectsResponse.page:type_name -> aserto.directory.common.v3.PaginationResponse
+	40, // 10: aserto.directory.reader.v3.ListObjectsRequest.page:type_name -> aserto.directory.common.v3.PaginationRequest
+	37, // 11: aserto.directory.reader.v3.ListObjectsResponse.results:type_name -> aserto.directory.common.v3.Object
+	41, // 12: aserto.directory.reader.v3.ListObjectsResponse.page:type_name -> aserto.directory.common.v3.PaginationResponse
+	38, // 13: aserto.directory.reader.v3.GetRelationResponse.result:type_name -> aserto.directory.common.v3.Relation
+	31, // 14: aserto.directory.reader.v3.GetRelationResponse.objects:type_name -> aserto.directory.reader.v3.GetRelationResponse.ObjectsEntry
+	40, // 15: aserto.directory.reader.v3.GetRelationsRequest.page:type_name -> aserto.directory.common.v3.PaginationRequest
+	38, // 16: aserto.directory.reader.v3.GetRelationsResponse.results:type_name -> aserto.directory.common.v3.Relation
+	32, // 17: aserto.directory.reader.v3.GetRelationsResponse.objects:type_name -> aserto.directory.reader.v3.GetRelationsResponse.ObjectsEntry
+	41, // 18: aserto.directory.reader.v3.GetRelationsResponse.page:type_name -> aserto.directory.common.v3.PaginationResponse
+	40, // 19: aserto.directory.reader.v3.ListRelationsRequest.page:type_name -> aserto.directory.common.v3.PaginationRequest
+	38, // 20: aserto.directory.reader.v3.ListRelationsResponse.results:type_name -> aserto.directory.common.v3.Relation
+	33, // 21: aserto.directory.reader.v3.ListRelationsResponse.objects:type_name -> aserto.directory.reader.v3.ListRelationsResponse.ObjectsEntry
+	41, // 22: aserto.directory.reader.v3.ListRelationsResponse.page:type_name -> aserto.directory.common.v3.PaginationResponse
+	42, // 23: aserto.directory.reader.v3.CheckResponse.context:type_name -> google.protobuf.Struct
+	19, // 24: aserto.directory.reader.v3.ChecksRequest.default:type_name -> aserto.directory.reader.v3.CheckRequest
+	19, // 25: aserto.directory.reader.v3.ChecksRequest.checks:type_name -> aserto.directory.reader.v3.CheckRequest
+	20, // 26: aserto.directory.reader.v3.ChecksResponse.checks:type_name -> aserto.directory.reader.v3.CheckResponse
+	39, // 27: aserto.directory.reader.v3.GetGraphResponse.results:type_name -> aserto.directory.common.v3.ObjectIdentifier
+	42, // 28: aserto.directory.reader.v3.GetGraphResponse.explanation:type_name -> google.protobuf.Struct
+	43, // 29: aserto.directory.reader.v3.ExportRequest.start_from:type_name -> google.protobuf.Timestamp
+	34, // 30: aserto.directory.reader.v3.ExportResponse.manifest:type_name -> aserto.directory.common.v3.Manifest
+	36, // 31: aserto.directory.reader.v3.ExportResponse.model:type_name -> aserto.directory.common.v3.Model
+	37, // 32: aserto.directory.reader.v3.ExportResponse.object:type_name -> aserto.directory.common.v3.Object
+	38, // 33: aserto.directory.reader.v3.ExportResponse.relation:type_name -> aserto.directory.common.v3.Relation
+	42, // 34: aserto.directory.reader.v3.ExportResponse.stats:type_name -> google.protobuf.Struct
+	37, // 35: aserto.directory.reader.v3.GetRelationResponse.ObjectsEntry.value:type_name -> aserto.directory.common.v3.Object
+	37, // 36: aserto.directory.reader.v3.GetRelationsResponse.ObjectsEntry.value:type_name -> aserto.directory.common.v3.Object
+	37, // 37: aserto.directory.reader.v3.ListRelationsResponse.ObjectsEntry.value:type_name -> aserto.directory.common.v3.Object
+	1,  // 38: aserto.directory.reader.v3.Reader.GetManifest:input_type -> aserto.directory.reader.v3.GetManifestRequest
+	3,  // 39: aserto.directory.reader.v3.Reader.GetModel:input_type -> aserto.directory.reader.v3.GetModelRequest
+	5,  // 40: aserto.directory.reader.v3.Reader.GetObject:input_type -> aserto.directory.reader.v3.GetObjectRequest
+	7,  // 41: aserto.directory.reader.v3.Reader.GetObjectMany:input_type -> aserto.directory.reader.v3.GetObjectManyRequest
+	9,  // 42: aserto.directory.reader.v3.Reader.GetObjects:input_type -> aserto.directory.reader.v3.GetObjectsRequest
+	11, // 43: aserto.directory.reader.v3.Reader.ListObjects:input_type -> aserto.directory.reader.v3.ListObjectsRequest
+	13, // 44: aserto.directory.reader.v3.Reader.GetRelation:input_type -> aserto.directory.reader.v3.GetRelationRequest
+	15, // 45: aserto.directory.reader.v3.Reader.GetRelations:input_type -> aserto.directory.reader.v3.GetRelationsRequest
+	17, // 46: aserto.directory.reader.v3.Reader.ListRelations:input_type -> aserto.directory.reader.v3.ListRelationsRequest
+	19, // 47: aserto.directory.reader.v3.Reader.Check:input_type -> aserto.directory.reader.v3.CheckRequest
+	21, // 48: aserto.directory.reader.v3.Reader.Checks:input_type -> aserto.directory.reader.v3.ChecksRequest
+	23, // 49: aserto.directory.reader.v3.Reader.CheckPermission:input_type -> aserto.directory.reader.v3.CheckPermissionRequest
+	25, // 50: aserto.directory.reader.v3.Reader.CheckRelation:input_type -> aserto.directory.reader.v3.CheckRelationRequest
+	27, // 51: aserto.directory.reader.v3.Reader.GetGraph:input_type -> aserto.directory.reader.v3.GetGraphRequest
+	29, // 52: aserto.directory.reader.v3.Reader.Export:input_type -> aserto.directory.reader.v3.ExportRequest
+	2,  // 53: aserto.directory.reader.v3.Reader.GetManifest:output_type -> aserto.directory.reader.v3.GetManifestResponse
+	4,  // 54: aserto.directory.reader.v3.Reader.GetModel:output_type -> aserto.directory.reader.v3.GetModelResponse
+	6,  // 55: aserto.directory.reader.v3.Reader.GetObject:output_type -> aserto.directory.reader.v3.GetObjectResponse
+	8,  // 56: aserto.directory.reader.v3.Reader.GetObjectMany:output_type -> aserto.directory.reader.v3.GetObjectManyResponse
+	10, // 57: aserto.directory.reader.v3.Reader.GetObjects:output_type -> aserto.directory.reader.v3.GetObjectsResponse
+	12, // 58: aserto.directory.reader.v3.Reader.ListObjects:output_type -> aserto.directory.reader.v3.ListObjectsResponse
+	14, // 59: aserto.directory.reader.v3.Reader.GetRelation:output_type -> aserto.directory.reader.v3.GetRelationResponse
+	16, // 60: aserto.directory.reader.v3.Reader.GetRelations:output_type -> aserto.directory.reader.v3.GetRelationsResponse
+	18, // 61: aserto.directory.reader.v3.Reader.ListRelations:output_type -> aserto.directory.reader.v3.ListRelationsResponse
+	20, // 62: aserto.directory.reader.v3.Reader.Check:output_type -> aserto.directory.reader.v3.CheckResponse
+	22, // 63: aserto.directory.reader.v3.Reader.Checks:output_type -> aserto.directory.reader.v3.ChecksResponse
+	24, // 64: aserto.directory.reader.v3.Reader.CheckPermission:output_type -> aserto.directory.reader.v3.CheckPermissionResponse
+	26, // 65: aserto.directory.reader.v3.Reader.CheckRelation:output_type -> aserto.directory.reader.v3.CheckRelationResponse
+	28, // 66: aserto.directory.reader.v3.Reader.GetGraph:output_type -> aserto.directory.reader.v3.GetGraphResponse
+	30, // 67: aserto.directory.reader.v3.Reader.Export:output_type -> aserto.directory.reader.v3.ExportResponse
+	53, // [53:68] is the sub-list for method output_type
+	38, // [38:53] is the sub-list for method input_type
+	38, // [38:38] is the sub-list for extension type_name
+	38, // [38:38] is the sub-list for extension extendee
+	0,  // [0:38] is the sub-list for field type_name
 }
 
 func init() { file_aserto_directory_reader_v3_reader_proto_init() }
@@ -1643,18 +2483,26 @@ func file_aserto_directory_reader_v3_reader_proto_init() {
 	if File_aserto_directory_reader_v3_reader_proto != nil {
 		return
 	}
+	file_aserto_directory_reader_v3_reader_proto_msgTypes[29].OneofWrappers = []any{
+		(*ExportResponse_Manifest)(nil),
+		(*ExportResponse_Model)(nil),
+		(*ExportResponse_Object)(nil),
+		(*ExportResponse_Relation)(nil),
+		(*ExportResponse_Stats)(nil),
+	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_aserto_directory_reader_v3_reader_proto_rawDesc), len(file_aserto_directory_reader_v3_reader_proto_rawDesc)),
-			NumEnums:      0,
-			NumMessages:   22,
+			NumEnums:      1,
+			NumMessages:   33,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_aserto_directory_reader_v3_reader_proto_goTypes,
 		DependencyIndexes: file_aserto_directory_reader_v3_reader_proto_depIdxs,
+		EnumInfos:         file_aserto_directory_reader_v3_reader_proto_enumTypes,
 		MessageInfos:      file_aserto_directory_reader_v3_reader_proto_msgTypes,
 	}.Build()
 	File_aserto_directory_reader_v3_reader_proto = out.File
