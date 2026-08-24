@@ -13,6 +13,7 @@ linters:
     - depguard
     - exhaustruct
     - gochecknoglobals  # no configuration options
+    - gomodguard # is deprecated (since v2.12.0) due to: new major version.
     - nlreturn  # redundant with wsl
     - noinlineerr 
     - paralleltest
@@ -32,6 +33,10 @@ linters:
         - fmt.Fprintf
         - fmt.Fprintln
         - os.Close
+    exhaustruct_v5:
+      ignore-patterns:
+        - '.*/protojson\.MarshalOptions$'
+        - '.*/protojson\.UnmarshalOptions$'
 
     funlen:
       lines: 80
