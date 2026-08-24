@@ -1,7 +1,7 @@
 cloud.google.com/go v0.26.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMTw=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
-github.com/aserto-dev/errors v0.34.1-0.20260824131513-21f43c970ba0 h1:whM2KufeDLlsWizTXPbTy6NZaKLdKai9+1q1Pg23HYg=
-github.com/aserto-dev/errors v0.34.1-0.20260824131513-21f43c970ba0/go.mod h1:DjH9+A2lmK8q4p+Ml0djJEDwkMVDdRHFabURPPpfM/k=
+github.com/aserto-dev/errors v0.34.1 h1:nLLqNdH0WdqXluXoilawT67ZcQYfDFjD17tKcCVn5jA=
+github.com/aserto-dev/errors v0.34.1/go.mod h1:DjH9+A2lmK8q4p+Ml0djJEDwkMVDdRHFabURPPpfM/k=
 github.com/benbjohnson/clock v1.1.0/go.mod h1:J11/hYXuz8f4ySSvYwY0FKfm+ezbsZBKZxNJlLklBHA=
 github.com/census-instrumentation/opencensus-proto v0.2.1/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=
 github.com/cespare/xxhash/v2 v2.3.0 h1:UL815xU9SqsFlibzuggzjXhog7bL6oX9BbNZnL2UFvs=
