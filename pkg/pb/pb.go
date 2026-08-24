@@ -14,12 +14,14 @@ import (
 // ProtoToBuf, marshal proto message to buffer.
 func ProtoToBuf(w io.Writer, msg proto.Message) error {
 	b, err := protojson.MarshalOptions{
-		Multiline:       false,
-		Indent:          "",
-		AllowPartial:    false,
-		UseProtoNames:   true,
-		UseEnumNumbers:  false,
-		EmitUnpopulated: false,
+		Multiline:         false,
+		Indent:            "",
+		AllowPartial:      false,
+		UseProtoNames:     true,
+		UseEnumNumbers:    false,
+		EmitUnpopulated:   false,
+		EmitDefaultValues: false,
+		Resolver:          nil,
 	}.Marshal(msg)
 	if err != nil {
 		return err
@@ -41,7 +43,10 @@ func BufToProto(r io.Reader, msg proto.Message) error {
 	}
 
 	return protojson.UnmarshalOptions{
+		AllowPartial:   false,
 		DiscardUnknown: true,
+		Resolver:       nil,
+		RecursionLimit: 0,
 	}.Unmarshal(buf.Bytes(), msg)
 }
 
@@ -55,18 +60,22 @@ func UnmarshalNext(d *json.Decoder, m proto.Message) error {
 	return protojson.UnmarshalOptions{
 		AllowPartial:   true,
 		DiscardUnknown: false,
+		Resolver:       nil,
+		RecursionLimit: 0,
 	}.Unmarshal(b, m)
 }
 
 // ProtoToStr, marshal proto message to string representation.
 func ProtoToStr(msg proto.Message) string {
 	return protojson.MarshalOptions{
-		Multiline:       false,
-		Indent:          "  ",
-		AllowPartial:    false,
-		UseProtoNames:   true,
-		UseEnumNumbers:  false,
-		EmitUnpopulated: true,
+		Multiline:         false,
+		Indent:            "  ",
+		AllowPartial:      false,
+		UseProtoNames:     true,
+		UseEnumNumbers:    false,
+		EmitUnpopulated:   true,
+		EmitDefaultValues: false,
+		Resolver:          nil,
 	}.Format(msg)
 }
 
@@ -78,18 +87,23 @@ func NewStruct() *structpb.Struct {
 // ProtoToBytes, marshal proto message to buffer.
 func ProtoToBytes(msg proto.Message) ([]byte, error) {
 	return protojson.MarshalOptions{
-		Multiline:       false,
-		Indent:          "",
-		AllowPartial:    false,
-		UseProtoNames:   true,
-		UseEnumNumbers:  false,
-		EmitUnpopulated: false,
+		Multiline:         false,
+		Indent:            "",
+		AllowPartial:      false,
+		UseProtoNames:     true,
+		UseEnumNumbers:    false,
+		EmitUnpopulated:   false,
+		EmitDefaultValues: false,
+		Resolver:          nil,
 	}.Marshal(msg)
 }
 
 func BytesToProto(b []byte, msg proto.Message) error {
 	return protojson.UnmarshalOptions{
+		AllowPartial:   false,
 		DiscardUnknown: true,
+		Resolver:       nil,
+		RecursionLimit: 0,
 	}.Unmarshal(b, msg)
 }
 
@@ -100,7 +114,10 @@ func BytesToStruct(b []byte) (*structpb.Struct, error) {
 	}
 
 	err := protojson.UnmarshalOptions{
+		AllowPartial:   false,
 		DiscardUnknown: true,
+		Resolver:       nil,
+		RecursionLimit: 0,
 	}.Unmarshal(b, v)
 	if err != nil {
 		return NewStruct(), err
@@ -120,7 +137,7 @@ func JSONToStruct(val map[string]any) (*structpb.Struct, error) {
 		return nil, err
 	}
 
-	pb := structpb.Struct{}
+	pb := structpb.Struct{Fields: map[string]*structpb.Value{}}
 	if err := pb.UnmarshalJSON(encoded); err != nil {
 		return nil, err
 	}

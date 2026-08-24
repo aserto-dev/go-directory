@@ -1,3 +1,4 @@
+//nolint:goconst
 package validator_test
 
 import (
@@ -162,7 +163,8 @@ func TestTypeIdentifierPresence(t *testing.T) {
 	assert.NoError(t, validator.IdentifierTypePresence("object_id", "object_type", "", "user"))
 	assert.NoError(t, validator.IdentifierTypePresence("object_id", "object_type", "123", "user"))
 
-	assert.ErrorAs(t,
+	assert.ErrorAs(
+		t,
 		validator.IdentifierTypePresence("object_id", "object_type", "123", ""),
 		&derr.ErrMissingTypeIdentifier,
 	)
