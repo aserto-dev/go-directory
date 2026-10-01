@@ -1,5 +1,16 @@
 # go-directory
 
-gRPC bindings of the Directory Service
+Directory Service protobuf & gRPC definitions
 
-Generated from the Protobuf definition published to https://buf.build/aserto-dev/directory using [Buf](https://buf.build/).
+## API Documentation:
+
+* [Type Constraints](./docs/constraints.md)
+
+* [Directory API](./docs/api.md) 
+
+* [API Change List](./docs/changelist.md)
+
+## Publication:
+
+Buf image is published to [https://buf.build/aserto-dev/directory](https://buf.build/aserto-dev/directory)
+

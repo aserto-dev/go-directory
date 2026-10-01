@@ -18,9 +18,8 @@ on:
 
 env:
   BUF_REPO: "buf.build/aserto-dev/directory"
-  BUF_VERSION: 1.72.0
-  GO_LANGCI_LINT_VERSION: 2.13.1
-  GO_TESTSUM_VERSION: 1.13.0
+  BUF_VERSION: 1.73.0
+  GO_LANGCI_LINT_VERSION: 2.14.0
 
 jobs:
   build:
