@@ -141,7 +141,7 @@ upd-openapi:
 .PHONY: buf-clean
 buf-clean:
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
-	@rm -rf ./aserto
+	@rm -rf ./aserto/directory
 
 .PHONY: info
 info:
