@@ -18,8 +18,8 @@ on:
 
 env:
   BUF_REPO: "buf.build/aserto-dev/directory"
-  BUF_VERSION: 1.73.0
-  GO_LANGCI_LINT_VERSION: 2.14.0
+  BUF_VER: 1.73.0
+  GO_LANGCI_LINT_VER: 2.14.0
 
 jobs:
   build:
@@ -51,7 +51,7 @@ jobs:
         name: Setup buf
         uses: bufbuild/buf-action@v1
         with:
-          version: ${{ env.BUF_VERSION }}
+          version: ${{ env.BUF_VER }}
           setup_only: true
       -
         name: Delete generated code
@@ -71,7 +71,7 @@ jobs:
         name: Lint
         uses: golangci/golangci-lint-action@v9
         with:
-          version: v${{ env.GO_LANGCI_LINT_VERSION }}
+          version: v${{ env.GO_LANGCI_LINT_VER }}
           args: --timeout=5m
       -
         name: Test
