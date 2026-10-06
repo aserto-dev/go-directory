@@ -8,7 +8,9 @@ option go_package = "github.com/aserto-dev/go-directory/aserto/directory/importe
 
 service Importer {
   // import stream of objects and relations
-  rpc Import(stream ImportRequest) returns (stream ImportResponse) {}
+  rpc Import(stream ImportRequest) returns (stream ImportResponse) {
+    option deprecated = true;
+  }
 }
 
 message ImportRequest {

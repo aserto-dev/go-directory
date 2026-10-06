@@ -4,18 +4,37 @@ import (
 	dsc3 "github.com/aserto-dev/go-directory/aserto/directory/common/v3"
 	dsr3 "github.com/aserto-dev/go-directory/aserto/directory/reader/v3"
 	dsw3 "github.com/aserto-dev/go-directory/aserto/directory/writer/v3"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
+//nolint:staticcheck
 func Object(msg *dsc3.Object) error {
 	if msg == nil {
 		return nil
 	}
 
-	if err := TypeIdentifier(fieldType, msg.GetType()); err != nil {
+	if msg.GetType() != "" {
+		if msg.GetType() != msg.GetObjectType() {
+			return status.Errorf(codes.Internal, "drift .type %q != .object_type %q", msg.GetType(), msg.GetObjectType())
+		}
+
+		if err := TypeIdentifier(fieldType, msg.GetType()); err != nil {
+			return err
+		}
+	}
+
+	if err := TypeIdentifier(fieldType, msg.GetObjectType()); err != nil {
 		return err
 	}
 
-	if err := InstanceIdentifier(fieldID, msg.GetId()); err != nil {
+	if msg.GetId() != "" {
+		if msg.GetId() != msg.GetObjectId() {
+			return status.Errorf(codes.Internal, "drift .id %q != .object_id diversion %q", msg.GetId(), msg.GetObjectId())
+		}
+	}
+
+	if err := InstanceIdentifier(fieldID, msg.GetObjectId()); err != nil {
 		return err
 	}
 
@@ -78,6 +97,7 @@ func GetObjectsRequest(msg *dsr3.GetObjectsRequest) error {
 	return nil
 }
 
+//nolint:staticcheck
 func GetObjectManyRequest(msg *dsr3.GetObjectManyRequest) error {
 	if msg == nil || msg.GetParam() == nil || len(msg.GetParam()) == 0 {
 		return nil

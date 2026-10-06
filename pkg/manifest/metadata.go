@@ -3,7 +3,7 @@ package manifest
 import (
 	"context"
 
-	"github.com/grpc-ecosystem/go-grpc-middleware/util/metautils"
+	"github.com/grpc-ecosystem/go-grpc-middleware/v2/metadata"
 	"github.com/samber/lo"
 )
 
@@ -26,7 +26,7 @@ const (
 )
 
 func IncomingManifestRequest(ctx context.Context) ManifestRequest {
-	md := metautils.ExtractIncoming(ctx)
+	md := metadata.ExtractIncoming(ctx)
 	amr := ManifestRequest(md.Get(HeaderAsertoManifestRequest))
 
 	if !lo.Contains([]ManifestRequest{ManifestRequestMetadataOnly, ManifestRequestModelOnly, ManifestRequestWithModel}, amr) {

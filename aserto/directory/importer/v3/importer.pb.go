@@ -450,9 +450,9 @@ const file_aserto_directory_importer_v3_importer_proto_rawDesc = "" +
 	"\n" +
 	"OPCODE_SET\x10\x01\x12\x11\n" +
 	"\rOPCODE_DELETE\x10\x02\x12 \n" +
-	"\x1cOPCODE_DELETE_WITH_RELATIONS\x10\x032u\n" +
-	"\bImporter\x12i\n" +
-	"\x06Import\x12+.aserto.directory.importer.v3.ImportRequest\x1a,.aserto.directory.importer.v3.ImportResponse\"\x00(\x010\x01BJZHgithub.com/aserto-dev/go-directory/aserto/directory/importer/v3;importerb\x06proto3"
+	"\x1cOPCODE_DELETE_WITH_RELATIONS\x10\x032x\n" +
+	"\bImporter\x12l\n" +
+	"\x06Import\x12+.aserto.directory.importer.v3.ImportRequest\x1a,.aserto.directory.importer.v3.ImportResponse\"\x03\x88\x02\x01(\x010\x01BJZHgithub.com/aserto-dev/go-directory/aserto/directory/importer/v3;importerb\x06proto3"
 
 var (
 	file_aserto_directory_importer_v3_importer_proto_rawDescOnce sync.Once

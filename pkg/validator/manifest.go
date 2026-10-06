@@ -1,10 +1,7 @@
 package validator
 
 import (
-	"errors"
-
 	dsm3 "github.com/aserto-dev/go-directory/aserto/directory/model/v3"
-	"github.com/aserto-dev/go-directory/pkg/gateway/model/v3"
 )
 
 func GetManifestRequest(msg *dsm3.GetManifestRequest) error {
@@ -23,16 +20,16 @@ func Metadata(msg *dsm3.Metadata) error {
 	return nil
 }
 
-var ErrBodyDataSize = errors.New("data size exceeds max chunk size of 65536 bytes")
+// var ErrBodyDataSize = errors.New("data size exceeds max chunk size of 65536 bytes")
 
-func Body(msg *dsm3.Body) error {
-	if msg == nil {
-		return nil
-	}
+// func Body(msg *dsm3.Body) error {
+// 	// if msg == nil {
+// 	// 	return nil
+// 	// }
 
-	if len(msg.GetData()) > model.MaxChunkSizeBytes {
-		return ErrBodyDataSize
-	}
+// 	// if len(msg.GetData()) > model.MaxChunkSizeBytes {
+// 	// 	return ErrBodyDataSize
+// 	// }
 
-	return nil
-}
+// 	return nil
+// }

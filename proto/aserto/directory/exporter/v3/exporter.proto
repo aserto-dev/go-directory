@@ -10,7 +10,9 @@ option go_package = "github.com/aserto-dev/go-directory/aserto/directory/exporte
 
 service Exporter {
   // export objects and relations as a stream
-  rpc Export(ExportRequest) returns (stream ExportResponse) {}
+  rpc Export(ExportRequest) returns (stream ExportResponse) {
+    option deprecated = true;
+  }
 }
 
 message ExportRequest {

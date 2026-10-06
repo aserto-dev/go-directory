@@ -7,7 +7,6 @@
 package model
 
 import (
-	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -380,7 +379,7 @@ type Metadata struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// last updated timestamp (UTC)
 	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,21,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	// object instance etag (optional)
+	// object instance etag
 	Etag          string `protobuf:"bytes,23,opt,name=etag,proto3" json:"etag,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -479,7 +478,7 @@ var File_aserto_directory_model_v3_model_proto protoreflect.FileDescriptor
 
 const file_aserto_directory_model_v3_model_proto_rawDesc = "" +
 	"\n" +
-	"%aserto/directory/model/v3/model.proto\x12\x19aserto.directory.model.v3\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"B\n" +
+	"%aserto/directory/model/v3/model.proto\x12\x19aserto.directory.model.v3\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"B\n" +
 	"\x12GetManifestRequest\x12,\n" +
 	"\x05empty\x18\x01 \x01(\v2\x16.google.protobuf.EmptyR\x05empty\"\xc7\x01\n" +
 	"\x13GetManifestResponse\x12A\n" +
@@ -499,16 +498,13 @@ const file_aserto_directory_model_v3_model_proto_rawDesc = "" +
 	"\bMetadata\x12>\n" +
 	"\n" +
 	"updated_at\x18\x15 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\tupdatedAt\x12\x17\n" +
-	"\x04etag\x18\x17 \x01(\tB\x03\xe0A\x01R\x04etag\"\x1a\n" +
+	"\x04etag\x18\x17 \x01(\tB\x03\xe0A\x03R\x04etag\"\x1a\n" +
 	"\x04Body\x12\x12\n" +
-	"\x04data\x18\x02 \x01(\fR\x04data2\x84\x04\n" +
-	"\x05Model\x12v\n" +
-	"\vGetManifest\x12-.aserto.directory.model.v3.GetManifestRequest\x1a..aserto.directory.model.v3.GetManifestResponse\"\x06\x82\xd3\xe4\x93\x02\x000\x01\x12v\n" +
-	"\vSetManifest\x12-.aserto.directory.model.v3.SetManifestRequest\x1a..aserto.directory.model.v3.SetManifestResponse\"\x06\x82\xd3\xe4\x93\x02\x00(\x01\x12\x8a\x02\n" +
-	"\x0eDeleteManifest\x120.aserto.directory.model.v3.DeleteManifestRequest\x1a1.aserto.directory.model.v3.DeleteManifestResponse\"\x92\x01\x92Am\n" +
-	"\tdirectory\x12\x0fDelete manifest\x1a\x10Delete manifest.*\"directory.model.v3.manifest.deleteb\x19\n" +
-	"\x17\n" +
-	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02\x1c*\x1a/api/v3/directory/manifestBDZBgithub.com/aserto-dev/go-directory/aserto/directory/model/v3;modelb\x06proto3"
+	"\x04data\x18\x02 \x01(\fR\x04data2\xed\x02\n" +
+	"\x05Model\x12s\n" +
+	"\vGetManifest\x12-.aserto.directory.model.v3.GetManifestRequest\x1a..aserto.directory.model.v3.GetManifestResponse\"\x03\x88\x02\x010\x01\x12s\n" +
+	"\vSetManifest\x12-.aserto.directory.model.v3.SetManifestRequest\x1a..aserto.directory.model.v3.SetManifestResponse\"\x03\x88\x02\x01(\x01\x12z\n" +
+	"\x0eDeleteManifest\x120.aserto.directory.model.v3.DeleteManifestRequest\x1a1.aserto.directory.model.v3.DeleteManifestResponse\"\x03\x88\x02\x01BDZBgithub.com/aserto-dev/go-directory/aserto/directory/model/v3;modelb\x06proto3"
 
 var (
 	file_aserto_directory_model_v3_model_proto_rawDescOnce sync.Once

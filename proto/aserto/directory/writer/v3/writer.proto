@@ -6,47 +6,141 @@ import "aserto/directory/common/v3/common.proto";
 import "google/api/annotations.proto";
 import "google/api/field_behavior.proto";
 import "google/protobuf/empty.proto";
-import "protoc-gen-openapiv2/options/annotations.proto";
+import "protoc-gen-openapiv3/options/annotations.proto";
 
 option go_package = "github.com/aserto-dev/go-directory/aserto/directory/writer/v3;writer";
+option (grpc.gateway.protoc_gen_openapiv3.options.openapiv3_document) = {
+  info: {
+    title: "Topaz Directory Service"
+    // summary: ""
+    // description: ""
+    // terms_of_service: ""
+    contact: {
+      name: "Topaz Authorization Project"
+      url: "https://github.com/aserto-dev/go-directory"
+      email: "support@aserto.com"
+    }
+    license: {
+      name: "Apache 2.0 License"
+      url: "https://github.com/aserto-dev/go-directory/blob/main/LICENSE"
+    }
+    version: "3.1"
+    // extensions: {}
+  }
 
+  servers: [
+    {
+      url: "{{.Scheme}}://{{.Host}}"
+      description: "Topaz Directory service"
+    }
+  ]
+
+  tags: [
+    {name: "directory"},
+    {name: "manifest"},
+    {name: "model"},
+    {name: "object"},
+    {name: "relation"},
+    {name: "get"},
+    {name: "list"},
+    {name: "set"},
+    {name: "graph"},
+    {name: "delete"},
+    {name: "check"},
+    {name: "checks"}
+  ]
+
+  external_docs: {
+    description: "Topaz Directory API Reference."
+    url: "https://github.com/aserto-dev/go-directory/blob/main/html/index.html"
+  }
+
+  // extensions: {}
+};
+
+// Directory Writer Service
 service Writer {
+  // set manifest
+  rpc SetManifest(SetManifestRequest) returns (SetManifestResponse) {
+    option (google.api.http) = {
+      post: "/api/v3/directory/manifest"
+      body: "*"
+    };
+
+    option (grpc.gateway.protoc_gen_openapiv3.options.openapiv3_operation) = {
+      tags: [
+        "directory",
+        "manifest",
+        "set"
+      ]
+      summary: "Set manifest"
+      description: "Set directory manifest."
+      // external_docs: {}
+      operation_id: "directory.model.v3.manifest.set"
+      deprecated: false
+      // servers: {}
+      // extensions: {}
+    };
+  }
+
+  // delete manifest
+  rpc DeleteManifest(DeleteManifestRequest) returns (DeleteManifestResponse) {
+    option (google.api.http) = {delete: "/api/v3/directory/manifest"};
+
+    option (grpc.gateway.protoc_gen_openapiv3.options.openapiv3_operation) = {
+      tags: [
+        "directory",
+        "manifest",
+        "delete"
+      ]
+      summary: "Delete manifest"
+      description: "Delete directory manifest."
+      // external_docs: {}
+      operation_id: "directory.model.v3.manifest.delete"
+      deprecated: false
+      // servers: {}
+      // extensions: {}
+    };
+  }
+
   // set object instance
   rpc SetObject(SetObjectRequest) returns (SetObjectResponse) {
     option (google.api.http) = {
       post: "/api/v3/directory/object"
       body: "*"
     };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      tags: "directory"
+    option (grpc.gateway.protoc_gen_openapiv3.options.openapiv3_operation) = {
+      tags: [
+        "directory",
+        "object",
+        "set"
+      ]
       summary: "Set object"
       description: "Set object."
+      // external_docs: {}
       operation_id: "directory.writer.v3.object.set"
       deprecated: false
-      security: {
-        security_requirement: {
-          key: "AuthorizationHeader"
-          value: {}
-        }
-      }
+      // servers: {}
+      // extensions: {}
     };
   }
 
   // delete object instance
   rpc DeleteObject(DeleteObjectRequest) returns (DeleteObjectResponse) {
     option (google.api.http) = {delete: "/api/v3/directory/object/{object_type}/{object_id}"};
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      tags: "directory"
+    option (grpc.gateway.protoc_gen_openapiv3.options.openapiv3_operation) = {
+      tags: [
+        "directory",
+        "object",
+        "delete"
+      ]
       summary: "Delete object"
       description: "Delete object."
+      // external_docs: {}
       operation_id: "directory.writer.v3.object.delete"
       deprecated: false
-      security: {
-        security_requirement: {
-          key: "AuthorizationHeader"
-          value: {}
-        }
-      }
+      // servers: {}
+      // extensions: {}
     };
   }
 
@@ -56,90 +150,349 @@ service Writer {
       post: "/api/v3/directory/relation"
       body: "*"
     };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      tags: "directory"
+    option (grpc.gateway.protoc_gen_openapiv3.options.openapiv3_operation) = {
+      tags: [
+        "directory",
+        "relation",
+        "set"
+      ]
       summary: "Set relation"
       description: "Set relation."
+      // external_docs: {}
       operation_id: "directory.writer.v3.relation.set"
       deprecated: false
-      security: {
-        security_requirement: {
-          key: "AuthorizationHeader"
-          value: {}
-        }
-      }
+      // servers: {}
+      // extensions: {}
     };
   }
 
   // delete relation instance
   rpc DeleteRelation(DeleteRelationRequest) returns (DeleteRelationResponse) {
     option (google.api.http) = {delete: "/api/v3/directory/relation"};
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      tags: "directory"
+    option (grpc.gateway.protoc_gen_openapiv3.options.openapiv3_operation) = {
+      tags: [
+        "directory",
+        "relation",
+        "delete"
+      ]
       summary: "Delete relation"
       description: "Delete relation."
+      // external_docs: {}
       operation_id: "directory.writer.v3.relation.delete"
       deprecated: false
-      security: {
-        security_requirement: {
-          key: "AuthorizationHeader"
-          value: {}
-        }
-      }
+      // servers: {}
+      // extensions: {}
     };
   }
+
+  // import stream of objects and relations
+  rpc Import(stream ImportRequest) returns (stream ImportResponse) {}
+
+  // batch writer requests
+  rpc Batch(BatchRequest) returns (BatchResponse) {}
+}
+
+message SetManifestRequest {
+  aserto.directory.common.v3.Manifest manifest = 1 [
+    json_name = "manifest",
+    deprecated = false
+  ];
+}
+
+message SetManifestResponse {
+  aserto.directory.common.v3.Manifest manifest = 1 [
+    json_name = "manifest",
+    deprecated = false
+  ];
+}
+
+message DeleteManifestRequest {
+  // empty request
+  google.protobuf.Empty empty = 1 [
+    json_name = "empty",
+    deprecated = false
+  ];
+}
+
+message DeleteManifestResponse {
+  // empty result
+  google.protobuf.Empty result = 1 [
+    json_name = "result",
+    deprecated = false
+  ];
 }
 
 message SetObjectRequest {
   // object instance
-  aserto.directory.common.v3.Object object = 1 [(google.api.field_behavior) = REQUIRED];
+  aserto.directory.common.v3.Object object = 1 [
+    json_name = "object",
+    (google.api.field_behavior) = REQUIRED,
+    deprecated = false
+  ];
 }
 
 message SetObjectResponse {
   // object instance
-  aserto.directory.common.v3.Object result = 1;
+  aserto.directory.common.v3.Object result = 1 [
+    json_name = "result",
+    deprecated = false
+  ];
 }
 
 message DeleteObjectRequest {
   // object type identifier
-  string object_type = 1 [(google.api.field_behavior) = REQUIRED];
+  string object_type = 1 [
+    json_name = "object_type",
+    (google.api.field_behavior) = REQUIRED,
+    deprecated = false
+  ];
   // object instance identifier
-  string object_id = 2 [(google.api.field_behavior) = REQUIRED];
+  string object_id = 2 [
+    json_name = "object_id",
+    (google.api.field_behavior) = REQUIRED,
+    deprecated = false
+  ];
   // delete object relations, both object and subject relations  (optional)
-  bool with_relations = 3 [(google.api.field_behavior) = OPTIONAL];
+  bool with_relations = 3 [
+    json_name = "with_relations",
+    (google.api.field_behavior) = OPTIONAL,
+    deprecated = false
+  ];
 }
 
 message DeleteObjectResponse {
   // empty result
-  google.protobuf.Empty result = 1;
+  google.protobuf.Empty result = 1 [
+    json_name = "result",
+    deprecated = false
+  ];
 }
 
 message SetRelationRequest {
   // relation instance
-  aserto.directory.common.v3.Relation relation = 1 [(google.api.field_behavior) = REQUIRED];
+  aserto.directory.common.v3.Relation relation = 1 [
+    json_name = "relation",
+    (google.api.field_behavior) = REQUIRED,
+    deprecated = false
+  ];
 }
 
 message SetRelationResponse {
   // relation instance
-  aserto.directory.common.v3.Relation result = 1;
+  aserto.directory.common.v3.Relation result = 1 [
+    json_name = "result",
+    deprecated = false
+  ];
 }
 
 message DeleteRelationRequest {
   // object type identifier
-  string object_type = 1 [(google.api.field_behavior) = REQUIRED];
+  string object_type = 1 [
+    json_name = "object_type",
+    (google.api.field_behavior) = REQUIRED,
+    deprecated = false
+  ];
   // object instance identifier
-  string object_id = 2 [(google.api.field_behavior) = REQUIRED];
+  string object_id = 2 [
+    json_name = "object_id",
+    (google.api.field_behavior) = REQUIRED,
+    deprecated = false
+  ];
   // object relation name
-  string relation = 3 [(google.api.field_behavior) = REQUIRED];
+  string relation = 3 [
+    json_name = "relation",
+    (google.api.field_behavior) = REQUIRED,
+    deprecated = false
+  ];
   // subject type identifier
-  string subject_type = 4 [(google.api.field_behavior) = REQUIRED];
+  string subject_type = 4 [
+    json_name = "subject_type",
+    (google.api.field_behavior) = REQUIRED,
+    deprecated = false
+  ];
   // subject instance identifier
-  string subject_id = 5 [(google.api.field_behavior) = REQUIRED];
+  string subject_id = 5 [
+    json_name = "subject_id",
+    (google.api.field_behavior) = REQUIRED,
+    deprecated = false
+  ];
   // subject relation name  (optional)
-  string subject_relation = 6 [(google.api.field_behavior) = OPTIONAL];
+  string subject_relation = 6 [
+    json_name = "subject_relation",
+    (google.api.field_behavior) = OPTIONAL,
+    deprecated = false
+  ];
 }
 
 message DeleteRelationResponse {
   // empty result
-  google.protobuf.Empty result = 1;
+  google.protobuf.Empty result = 1 [
+    json_name = "result",
+    deprecated = false
+  ];
+}
+
+message ImportRequest {
+  // operation Opcode enum value
+  Opcode op_code = 1;
+  oneof msg {
+    // manifest import message
+    aserto.directory.common.v3.Manifest manifest = 2 [
+      json_name = "manifest",
+      deprecated = false
+    ];
+    // object import message
+    aserto.directory.common.v3.Object object = 5 [
+      json_name = "object",
+      deprecated = false
+    ];
+    // relation import message
+    aserto.directory.common.v3.Relation relation = 6 [
+      json_name = "relation",
+      deprecated = false
+    ];
+  }
+}
+
+message ImportResponse {
+  oneof msg {
+    // import status message
+    ImportStatus status = 4 [
+      json_name = "status",
+      deprecated = false
+    ];
+    // import counter per type
+    ImportCounter counter = 5 [
+      json_name = "counter",
+      deprecated = false
+    ];
+  }
+}
+
+enum Opcode {
+  OPCODE_UNKNOWN = 0;
+  OPCODE_SET = 1;
+  OPCODE_DELETE = 2;
+  OPCODE_DELETE_WITH_RELATIONS = 3;
+}
+
+message ImportStatus {
+  // gRPC status code (google.golang.org/grpc/codes)
+  uint32 code = 1 [json_name = "code"];
+  // gRPC status message (google.golang.org/grpc/status)
+  string msg = 2 [json_name = "msg"];
+  // req contains the original import request message
+  ImportRequest req = 3 [json_name = "req"];
+}
+
+message ImportCounter {
+  // number of messages received
+  uint64 recv = 1 [
+    json_name = "recv",
+    deprecated = false
+  ];
+  // number of messages with OPCODE_SET
+  uint64 set = 2 [
+    json_name = "set",
+    deprecated = false
+  ];
+  // number of messages with OPCODE_DELETE
+  uint64 delete = 3 [
+    json_name = "delete",
+    deprecated = false
+  ];
+  // number of messages resulting in error
+  uint64 error = 4 [
+    json_name = "error",
+    deprecated = false
+  ];
+  // counter of type (object|relation)
+  string type = 5 [
+    json_name = "type",
+    deprecated = false
+  ];
+}
+
+message BatchRequest {
+  repeated BatchRequest requests = 1 [
+    json_name = "requests",
+    deprecated = false
+  ];
+}
+
+message BatchResponse {
+  repeated BatchResponses responses = 1 [
+    json_name = "responses",
+    deprecated = false
+  ];
+}
+
+message BatchRequests {
+  oneof msg {
+    // set manifest request
+    aserto.directory.writer.v3.SetManifestRequest set_manifest = 12 [
+      json_name = "set_manifest",
+      deprecated = false
+    ];
+    // delete manifest request
+    aserto.directory.writer.v3.DeleteManifestRequest delete_manifest = 13 [
+      json_name = "delete_manifest",
+      deprecated = false
+    ];
+    // set object request
+    aserto.directory.writer.v3.SetObjectRequest set_object = 22 [
+      json_name = "set_object",
+      deprecated = false
+    ];
+    // delete object request
+    aserto.directory.writer.v3.DeleteObjectRequest delete_object = 23 [
+      json_name = "delete_object",
+      deprecated = false
+    ];
+    // set relation request
+    aserto.directory.writer.v3.SetRelationRequest set_relation = 32 [
+      json_name = "set_relation",
+      deprecated = false
+    ];
+    // delete relation request
+    aserto.directory.writer.v3.DeleteRelationRequest delete_relation = 33 [
+      json_name = "delete_relation",
+      deprecated = false
+    ];
+  }
+}
+
+message BatchResponses {
+  oneof msg {
+    // set manifest response
+    aserto.directory.writer.v3.SetManifestResponse set_manifest = 12 [
+      json_name = "set_manifest",
+      deprecated = false
+    ];
+    // delete manifest response
+    aserto.directory.writer.v3.DeleteManifestResponse delete_manifest = 13 [
+      json_name = "delete_manifest",
+      deprecated = false
+    ];
+    // set object response
+    aserto.directory.writer.v3.SetObjectResponse set_object = 22 [
+      json_name = "set_object",
+      deprecated = false
+    ];
+    // delete object response
+    aserto.directory.writer.v3.DeleteObjectResponse delete_object = 23 [
+      json_name = "delete_object",
+      deprecated = false
+    ];
+    // set relation response
+    aserto.directory.writer.v3.SetRelationResponse set_relation = 32 [
+      json_name = "set_relation",
+      deprecated = false
+    ];
+    // delete relation response
+    aserto.directory.writer.v3.DeleteRelationResponse delete_relation = 33 [
+      json_name = "delete_relation",
+      deprecated = false
+    ];
+  }
 }

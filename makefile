@@ -35,7 +35,7 @@ RELEASE_TAG        := $$(${EXT_BIN_DIR}/svu current)
 .DEFAULT_GOAL      := lint
 
 .PHONY: deps
-deps: info install-buf install-svu install-golangci-lint install-gotestsum install-openapi-spec-converter install-merge-json
+deps: info install-buf install-svu install-golangci-lint install-gotestsum install-merge-json
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
 
 .PHONY: gover
@@ -119,11 +119,11 @@ buf-push:
 	@${EXT_BIN_DIR}/buf push --label ${RELEASE_TAG}
 
 .PHONY: buf-generate
-buf-generate: buf-clean generate upd-openapi
+buf-generate: buf-clean generate merge-json
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
 
 .PHONY: buf-generate-dev
-buf-generate-dev: ${BUF_DEV_IMAGE} buf-clean generate-dev upd-openapi
+buf-generate-dev: ${BUF_DEV_IMAGE} buf-clean generate-dev merge-json
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
 
 generate:
@@ -134,9 +134,12 @@ generate-dev:
 	@echo -e "$(ATTN_COLOR)==> $@ ${BUF_DEV_IMAGE}$(NO_COLOR)"
 	@${EXT_BIN_DIR}/buf generate ${BUF_DEV_IMAGE}
 
-upd-openapi:
+.PHONY: merge-json
+merge-json:
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
-	@${PWD}/scripts/upd-openapi.sh
+	@${EXT_BIN_DIR}/merge-json -output ./openapi/directory.openapi.json \
+	./tmp/aserto/directory/reader/v3/reader.openapi.json \
+	./tmp/aserto/directory/writer/v3/writer.openapi.json 
 
 .PHONY: buf-clean
 buf-clean:
@@ -194,11 +197,6 @@ install-goreleaser: ${EXT_TMP_DIR} ${EXT_BIN_DIR}
 	@tar -xvf ${EXT_TMP_DIR}/goreleaser.tar.gz --directory ${EXT_BIN_DIR} goreleaser &> /dev/null
 	@chmod +x ${EXT_BIN_DIR}/goreleaser
 	@${EXT_BIN_DIR}/goreleaser --version
-
-.PHONY: install-openapi-spec-converter
-install-openapi-spec-converter: ${EXT_BIN_DIR}
-	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
-	@GOBIN=${EXT_BIN_DIR} go install github.com/dense-analysis/openapi-spec-converter/cmd/openapi-spec-converter@latest
 
 .PHONY: install-merge-json
 install-merge-json: ${EXT_BIN_DIR}

@@ -258,9 +258,9 @@ const file_aserto_directory_exporter_v3_exporter_proto_rawDesc = "" +
 	"\x13OPTION_DATA_OBJECTS\x10\b\x12\x19\n" +
 	"\x15OPTION_DATA_RELATIONS\x10\x10\x12\x0f\n" +
 	"\vOPTION_DATA\x10\x18\x12\x10\n" +
-	"\fOPTION_STATS\x10@2s\n" +
-	"\bExporter\x12g\n" +
-	"\x06Export\x12+.aserto.directory.exporter.v3.ExportRequest\x1a,.aserto.directory.exporter.v3.ExportResponse\"\x000\x01BJZHgithub.com/aserto-dev/go-directory/aserto/directory/exporter/v3;exporterb\x06proto3"
+	"\fOPTION_STATS\x10@2v\n" +
+	"\bExporter\x12j\n" +
+	"\x06Export\x12+.aserto.directory.exporter.v3.ExportRequest\x1a,.aserto.directory.exporter.v3.ExportResponse\"\x03\x88\x02\x010\x01BJZHgithub.com/aserto-dev/go-directory/aserto/directory/exporter/v3;exporterb\x06proto3"
 
 var (
 	file_aserto_directory_exporter_v3_exporter_proto_rawDescOnce sync.Once

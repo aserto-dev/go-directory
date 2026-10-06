@@ -8,7 +8,7 @@ package writer
 
 import (
 	v3 "github.com/aserto-dev/go-directory/aserto/directory/common/v3"
-	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
+	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv3/options"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -25,6 +25,236 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type Opcode int32
+
+const (
+	Opcode_OPCODE_UNKNOWN               Opcode = 0
+	Opcode_OPCODE_SET                   Opcode = 1
+	Opcode_OPCODE_DELETE                Opcode = 2
+	Opcode_OPCODE_DELETE_WITH_RELATIONS Opcode = 3
+)
+
+// Enum value maps for Opcode.
+var (
+	Opcode_name = map[int32]string{
+		0: "OPCODE_UNKNOWN",
+		1: "OPCODE_SET",
+		2: "OPCODE_DELETE",
+		3: "OPCODE_DELETE_WITH_RELATIONS",
+	}
+	Opcode_value = map[string]int32{
+		"OPCODE_UNKNOWN":               0,
+		"OPCODE_SET":                   1,
+		"OPCODE_DELETE":                2,
+		"OPCODE_DELETE_WITH_RELATIONS": 3,
+	}
+)
+
+func (x Opcode) Enum() *Opcode {
+	p := new(Opcode)
+	*p = x
+	return p
+}
+
+func (x Opcode) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (Opcode) Descriptor() protoreflect.EnumDescriptor {
+	return file_aserto_directory_writer_v3_writer_proto_enumTypes[0].Descriptor()
+}
+
+func (Opcode) Type() protoreflect.EnumType {
+	return &file_aserto_directory_writer_v3_writer_proto_enumTypes[0]
+}
+
+func (x Opcode) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use Opcode.Descriptor instead.
+func (Opcode) EnumDescriptor() ([]byte, []int) {
+	return file_aserto_directory_writer_v3_writer_proto_rawDescGZIP(), []int{0}
+}
+
+type SetManifestRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Manifest      *v3.Manifest           `protobuf:"bytes,1,opt,name=manifest,proto3" json:"manifest,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SetManifestRequest) Reset() {
+	*x = SetManifestRequest{}
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SetManifestRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetManifestRequest) ProtoMessage() {}
+
+func (x *SetManifestRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetManifestRequest.ProtoReflect.Descriptor instead.
+func (*SetManifestRequest) Descriptor() ([]byte, []int) {
+	return file_aserto_directory_writer_v3_writer_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *SetManifestRequest) GetManifest() *v3.Manifest {
+	if x != nil {
+		return x.Manifest
+	}
+	return nil
+}
+
+type SetManifestResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Manifest      *v3.Manifest           `protobuf:"bytes,1,opt,name=manifest,proto3" json:"manifest,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SetManifestResponse) Reset() {
+	*x = SetManifestResponse{}
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SetManifestResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetManifestResponse) ProtoMessage() {}
+
+func (x *SetManifestResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetManifestResponse.ProtoReflect.Descriptor instead.
+func (*SetManifestResponse) Descriptor() ([]byte, []int) {
+	return file_aserto_directory_writer_v3_writer_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *SetManifestResponse) GetManifest() *v3.Manifest {
+	if x != nil {
+		return x.Manifest
+	}
+	return nil
+}
+
+type DeleteManifestRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// empty request
+	Empty         *emptypb.Empty `protobuf:"bytes,1,opt,name=empty,proto3" json:"empty,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteManifestRequest) Reset() {
+	*x = DeleteManifestRequest{}
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteManifestRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteManifestRequest) ProtoMessage() {}
+
+func (x *DeleteManifestRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteManifestRequest.ProtoReflect.Descriptor instead.
+func (*DeleteManifestRequest) Descriptor() ([]byte, []int) {
+	return file_aserto_directory_writer_v3_writer_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *DeleteManifestRequest) GetEmpty() *emptypb.Empty {
+	if x != nil {
+		return x.Empty
+	}
+	return nil
+}
+
+type DeleteManifestResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// empty result
+	Result        *emptypb.Empty `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteManifestResponse) Reset() {
+	*x = DeleteManifestResponse{}
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteManifestResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteManifestResponse) ProtoMessage() {}
+
+func (x *DeleteManifestResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteManifestResponse.ProtoReflect.Descriptor instead.
+func (*DeleteManifestResponse) Descriptor() ([]byte, []int) {
+	return file_aserto_directory_writer_v3_writer_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *DeleteManifestResponse) GetResult() *emptypb.Empty {
+	if x != nil {
+		return x.Result
+	}
+	return nil
+}
+
 type SetObjectRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// object instance
@@ -35,7 +265,7 @@ type SetObjectRequest struct {
 
 func (x *SetObjectRequest) Reset() {
 	*x = SetObjectRequest{}
-	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[0]
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -47,7 +277,7 @@ func (x *SetObjectRequest) String() string {
 func (*SetObjectRequest) ProtoMessage() {}
 
 func (x *SetObjectRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[0]
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -60,7 +290,7 @@ func (x *SetObjectRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetObjectRequest.ProtoReflect.Descriptor instead.
 func (*SetObjectRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_writer_v3_writer_proto_rawDescGZIP(), []int{0}
+	return file_aserto_directory_writer_v3_writer_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *SetObjectRequest) GetObject() *v3.Object {
@@ -80,7 +310,7 @@ type SetObjectResponse struct {
 
 func (x *SetObjectResponse) Reset() {
 	*x = SetObjectResponse{}
-	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[1]
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -92,7 +322,7 @@ func (x *SetObjectResponse) String() string {
 func (*SetObjectResponse) ProtoMessage() {}
 
 func (x *SetObjectResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[1]
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -105,7 +335,7 @@ func (x *SetObjectResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetObjectResponse.ProtoReflect.Descriptor instead.
 func (*SetObjectResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_writer_v3_writer_proto_rawDescGZIP(), []int{1}
+	return file_aserto_directory_writer_v3_writer_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *SetObjectResponse) GetResult() *v3.Object {
@@ -118,18 +348,18 @@ func (x *SetObjectResponse) GetResult() *v3.Object {
 type DeleteObjectRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// object type identifier
-	ObjectType string `protobuf:"bytes,1,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"`
+	ObjectType string `protobuf:"bytes,1,opt,name=object_type,proto3" json:"object_type,omitempty"`
 	// object instance identifier
-	ObjectId string `protobuf:"bytes,2,opt,name=object_id,json=objectId,proto3" json:"object_id,omitempty"`
+	ObjectId string `protobuf:"bytes,2,opt,name=object_id,proto3" json:"object_id,omitempty"`
 	// delete object relations, both object and subject relations  (optional)
-	WithRelations bool `protobuf:"varint,3,opt,name=with_relations,json=withRelations,proto3" json:"with_relations,omitempty"`
+	WithRelations bool `protobuf:"varint,3,opt,name=with_relations,proto3" json:"with_relations,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *DeleteObjectRequest) Reset() {
 	*x = DeleteObjectRequest{}
-	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[2]
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -141,7 +371,7 @@ func (x *DeleteObjectRequest) String() string {
 func (*DeleteObjectRequest) ProtoMessage() {}
 
 func (x *DeleteObjectRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[2]
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -154,7 +384,7 @@ func (x *DeleteObjectRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteObjectRequest.ProtoReflect.Descriptor instead.
 func (*DeleteObjectRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_writer_v3_writer_proto_rawDescGZIP(), []int{2}
+	return file_aserto_directory_writer_v3_writer_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *DeleteObjectRequest) GetObjectType() string {
@@ -188,7 +418,7 @@ type DeleteObjectResponse struct {
 
 func (x *DeleteObjectResponse) Reset() {
 	*x = DeleteObjectResponse{}
-	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[3]
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -200,7 +430,7 @@ func (x *DeleteObjectResponse) String() string {
 func (*DeleteObjectResponse) ProtoMessage() {}
 
 func (x *DeleteObjectResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[3]
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -213,7 +443,7 @@ func (x *DeleteObjectResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteObjectResponse.ProtoReflect.Descriptor instead.
 func (*DeleteObjectResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_writer_v3_writer_proto_rawDescGZIP(), []int{3}
+	return file_aserto_directory_writer_v3_writer_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *DeleteObjectResponse) GetResult() *emptypb.Empty {
@@ -233,7 +463,7 @@ type SetRelationRequest struct {
 
 func (x *SetRelationRequest) Reset() {
 	*x = SetRelationRequest{}
-	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[4]
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -245,7 +475,7 @@ func (x *SetRelationRequest) String() string {
 func (*SetRelationRequest) ProtoMessage() {}
 
 func (x *SetRelationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[4]
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -258,7 +488,7 @@ func (x *SetRelationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetRelationRequest.ProtoReflect.Descriptor instead.
 func (*SetRelationRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_writer_v3_writer_proto_rawDescGZIP(), []int{4}
+	return file_aserto_directory_writer_v3_writer_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *SetRelationRequest) GetRelation() *v3.Relation {
@@ -278,7 +508,7 @@ type SetRelationResponse struct {
 
 func (x *SetRelationResponse) Reset() {
 	*x = SetRelationResponse{}
-	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[5]
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -290,7 +520,7 @@ func (x *SetRelationResponse) String() string {
 func (*SetRelationResponse) ProtoMessage() {}
 
 func (x *SetRelationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[5]
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -303,7 +533,7 @@ func (x *SetRelationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetRelationResponse.ProtoReflect.Descriptor instead.
 func (*SetRelationResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_writer_v3_writer_proto_rawDescGZIP(), []int{5}
+	return file_aserto_directory_writer_v3_writer_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *SetRelationResponse) GetResult() *v3.Relation {
@@ -316,24 +546,24 @@ func (x *SetRelationResponse) GetResult() *v3.Relation {
 type DeleteRelationRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// object type identifier
-	ObjectType string `protobuf:"bytes,1,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"`
+	ObjectType string `protobuf:"bytes,1,opt,name=object_type,proto3" json:"object_type,omitempty"`
 	// object instance identifier
-	ObjectId string `protobuf:"bytes,2,opt,name=object_id,json=objectId,proto3" json:"object_id,omitempty"`
+	ObjectId string `protobuf:"bytes,2,opt,name=object_id,proto3" json:"object_id,omitempty"`
 	// object relation name
 	Relation string `protobuf:"bytes,3,opt,name=relation,proto3" json:"relation,omitempty"`
 	// subject type identifier
-	SubjectType string `protobuf:"bytes,4,opt,name=subject_type,json=subjectType,proto3" json:"subject_type,omitempty"`
+	SubjectType string `protobuf:"bytes,4,opt,name=subject_type,proto3" json:"subject_type,omitempty"`
 	// subject instance identifier
-	SubjectId string `protobuf:"bytes,5,opt,name=subject_id,json=subjectId,proto3" json:"subject_id,omitempty"`
+	SubjectId string `protobuf:"bytes,5,opt,name=subject_id,proto3" json:"subject_id,omitempty"`
 	// subject relation name  (optional)
-	SubjectRelation string `protobuf:"bytes,6,opt,name=subject_relation,json=subjectRelation,proto3" json:"subject_relation,omitempty"`
+	SubjectRelation string `protobuf:"bytes,6,opt,name=subject_relation,proto3" json:"subject_relation,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
 
 func (x *DeleteRelationRequest) Reset() {
 	*x = DeleteRelationRequest{}
-	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[6]
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -345,7 +575,7 @@ func (x *DeleteRelationRequest) String() string {
 func (*DeleteRelationRequest) ProtoMessage() {}
 
 func (x *DeleteRelationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[6]
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -358,7 +588,7 @@ func (x *DeleteRelationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRelationRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRelationRequest) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_writer_v3_writer_proto_rawDescGZIP(), []int{6}
+	return file_aserto_directory_writer_v3_writer_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *DeleteRelationRequest) GetObjectType() string {
@@ -413,7 +643,7 @@ type DeleteRelationResponse struct {
 
 func (x *DeleteRelationResponse) Reset() {
 	*x = DeleteRelationResponse{}
-	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[7]
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -425,7 +655,7 @@ func (x *DeleteRelationResponse) String() string {
 func (*DeleteRelationResponse) ProtoMessage() {}
 
 func (x *DeleteRelationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[7]
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -438,7 +668,7 @@ func (x *DeleteRelationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRelationResponse.ProtoReflect.Descriptor instead.
 func (*DeleteRelationResponse) Descriptor() ([]byte, []int) {
-	return file_aserto_directory_writer_v3_writer_proto_rawDescGZIP(), []int{7}
+	return file_aserto_directory_writer_v3_writer_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *DeleteRelationResponse) GetResult() *emptypb.Empty {
@@ -448,55 +678,872 @@ func (x *DeleteRelationResponse) GetResult() *emptypb.Empty {
 	return nil
 }
 
+type ImportRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// operation Opcode enum value
+	OpCode Opcode `protobuf:"varint,1,opt,name=op_code,json=opCode,proto3,enum=aserto.directory.writer.v3.Opcode" json:"op_code,omitempty"`
+	// Types that are valid to be assigned to Msg:
+	//
+	//	*ImportRequest_Manifest
+	//	*ImportRequest_Object
+	//	*ImportRequest_Relation
+	Msg           isImportRequest_Msg `protobuf_oneof:"msg"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ImportRequest) Reset() {
+	*x = ImportRequest{}
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ImportRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ImportRequest) ProtoMessage() {}
+
+func (x *ImportRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ImportRequest.ProtoReflect.Descriptor instead.
+func (*ImportRequest) Descriptor() ([]byte, []int) {
+	return file_aserto_directory_writer_v3_writer_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *ImportRequest) GetOpCode() Opcode {
+	if x != nil {
+		return x.OpCode
+	}
+	return Opcode_OPCODE_UNKNOWN
+}
+
+func (x *ImportRequest) GetMsg() isImportRequest_Msg {
+	if x != nil {
+		return x.Msg
+	}
+	return nil
+}
+
+func (x *ImportRequest) GetManifest() *v3.Manifest {
+	if x != nil {
+		if x, ok := x.Msg.(*ImportRequest_Manifest); ok {
+			return x.Manifest
+		}
+	}
+	return nil
+}
+
+func (x *ImportRequest) GetObject() *v3.Object {
+	if x != nil {
+		if x, ok := x.Msg.(*ImportRequest_Object); ok {
+			return x.Object
+		}
+	}
+	return nil
+}
+
+func (x *ImportRequest) GetRelation() *v3.Relation {
+	if x != nil {
+		if x, ok := x.Msg.(*ImportRequest_Relation); ok {
+			return x.Relation
+		}
+	}
+	return nil
+}
+
+type isImportRequest_Msg interface {
+	isImportRequest_Msg()
+}
+
+type ImportRequest_Manifest struct {
+	// manifest import message
+	Manifest *v3.Manifest `protobuf:"bytes,2,opt,name=manifest,proto3,oneof"`
+}
+
+type ImportRequest_Object struct {
+	// object import message
+	Object *v3.Object `protobuf:"bytes,5,opt,name=object,proto3,oneof"`
+}
+
+type ImportRequest_Relation struct {
+	// relation import message
+	Relation *v3.Relation `protobuf:"bytes,6,opt,name=relation,proto3,oneof"`
+}
+
+func (*ImportRequest_Manifest) isImportRequest_Msg() {}
+
+func (*ImportRequest_Object) isImportRequest_Msg() {}
+
+func (*ImportRequest_Relation) isImportRequest_Msg() {}
+
+type ImportResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to Msg:
+	//
+	//	*ImportResponse_Status
+	//	*ImportResponse_Counter
+	Msg           isImportResponse_Msg `protobuf_oneof:"msg"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ImportResponse) Reset() {
+	*x = ImportResponse{}
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ImportResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ImportResponse) ProtoMessage() {}
+
+func (x *ImportResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ImportResponse.ProtoReflect.Descriptor instead.
+func (*ImportResponse) Descriptor() ([]byte, []int) {
+	return file_aserto_directory_writer_v3_writer_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *ImportResponse) GetMsg() isImportResponse_Msg {
+	if x != nil {
+		return x.Msg
+	}
+	return nil
+}
+
+func (x *ImportResponse) GetStatus() *ImportStatus {
+	if x != nil {
+		if x, ok := x.Msg.(*ImportResponse_Status); ok {
+			return x.Status
+		}
+	}
+	return nil
+}
+
+func (x *ImportResponse) GetCounter() *ImportCounter {
+	if x != nil {
+		if x, ok := x.Msg.(*ImportResponse_Counter); ok {
+			return x.Counter
+		}
+	}
+	return nil
+}
+
+type isImportResponse_Msg interface {
+	isImportResponse_Msg()
+}
+
+type ImportResponse_Status struct {
+	// import status message
+	Status *ImportStatus `protobuf:"bytes,4,opt,name=status,proto3,oneof"`
+}
+
+type ImportResponse_Counter struct {
+	// import counter per type
+	Counter *ImportCounter `protobuf:"bytes,5,opt,name=counter,proto3,oneof"`
+}
+
+func (*ImportResponse_Status) isImportResponse_Msg() {}
+
+func (*ImportResponse_Counter) isImportResponse_Msg() {}
+
+type ImportStatus struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// gRPC status code (google.golang.org/grpc/codes)
+	Code uint32 `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
+	// gRPC status message (google.golang.org/grpc/status)
+	Msg string `protobuf:"bytes,2,opt,name=msg,proto3" json:"msg,omitempty"`
+	// req contains the original import request message
+	Req           *ImportRequest `protobuf:"bytes,3,opt,name=req,proto3" json:"req,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ImportStatus) Reset() {
+	*x = ImportStatus{}
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ImportStatus) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ImportStatus) ProtoMessage() {}
+
+func (x *ImportStatus) ProtoReflect() protoreflect.Message {
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ImportStatus.ProtoReflect.Descriptor instead.
+func (*ImportStatus) Descriptor() ([]byte, []int) {
+	return file_aserto_directory_writer_v3_writer_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *ImportStatus) GetCode() uint32 {
+	if x != nil {
+		return x.Code
+	}
+	return 0
+}
+
+func (x *ImportStatus) GetMsg() string {
+	if x != nil {
+		return x.Msg
+	}
+	return ""
+}
+
+func (x *ImportStatus) GetReq() *ImportRequest {
+	if x != nil {
+		return x.Req
+	}
+	return nil
+}
+
+type ImportCounter struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// number of messages received
+	Recv uint64 `protobuf:"varint,1,opt,name=recv,proto3" json:"recv,omitempty"`
+	// number of messages with OPCODE_SET
+	Set uint64 `protobuf:"varint,2,opt,name=set,proto3" json:"set,omitempty"`
+	// number of messages with OPCODE_DELETE
+	Delete uint64 `protobuf:"varint,3,opt,name=delete,proto3" json:"delete,omitempty"`
+	// number of messages resulting in error
+	Error uint64 `protobuf:"varint,4,opt,name=error,proto3" json:"error,omitempty"`
+	// counter of type (object|relation)
+	Type          string `protobuf:"bytes,5,opt,name=type,proto3" json:"type,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ImportCounter) Reset() {
+	*x = ImportCounter{}
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ImportCounter) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ImportCounter) ProtoMessage() {}
+
+func (x *ImportCounter) ProtoReflect() protoreflect.Message {
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ImportCounter.ProtoReflect.Descriptor instead.
+func (*ImportCounter) Descriptor() ([]byte, []int) {
+	return file_aserto_directory_writer_v3_writer_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *ImportCounter) GetRecv() uint64 {
+	if x != nil {
+		return x.Recv
+	}
+	return 0
+}
+
+func (x *ImportCounter) GetSet() uint64 {
+	if x != nil {
+		return x.Set
+	}
+	return 0
+}
+
+func (x *ImportCounter) GetDelete() uint64 {
+	if x != nil {
+		return x.Delete
+	}
+	return 0
+}
+
+func (x *ImportCounter) GetError() uint64 {
+	if x != nil {
+		return x.Error
+	}
+	return 0
+}
+
+func (x *ImportCounter) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+type BatchRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Requests      []*BatchRequest        `protobuf:"bytes,1,rep,name=requests,proto3" json:"requests,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BatchRequest) Reset() {
+	*x = BatchRequest{}
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BatchRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BatchRequest) ProtoMessage() {}
+
+func (x *BatchRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BatchRequest.ProtoReflect.Descriptor instead.
+func (*BatchRequest) Descriptor() ([]byte, []int) {
+	return file_aserto_directory_writer_v3_writer_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *BatchRequest) GetRequests() []*BatchRequest {
+	if x != nil {
+		return x.Requests
+	}
+	return nil
+}
+
+type BatchResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Responses     []*BatchResponses      `protobuf:"bytes,1,rep,name=responses,proto3" json:"responses,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BatchResponse) Reset() {
+	*x = BatchResponse{}
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BatchResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BatchResponse) ProtoMessage() {}
+
+func (x *BatchResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BatchResponse.ProtoReflect.Descriptor instead.
+func (*BatchResponse) Descriptor() ([]byte, []int) {
+	return file_aserto_directory_writer_v3_writer_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *BatchResponse) GetResponses() []*BatchResponses {
+	if x != nil {
+		return x.Responses
+	}
+	return nil
+}
+
+type BatchRequests struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to Msg:
+	//
+	//	*BatchRequests_SetManifest
+	//	*BatchRequests_DeleteManifest
+	//	*BatchRequests_SetObject
+	//	*BatchRequests_DeleteObject
+	//	*BatchRequests_SetRelation
+	//	*BatchRequests_DeleteRelation
+	Msg           isBatchRequests_Msg `protobuf_oneof:"msg"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BatchRequests) Reset() {
+	*x = BatchRequests{}
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BatchRequests) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BatchRequests) ProtoMessage() {}
+
+func (x *BatchRequests) ProtoReflect() protoreflect.Message {
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BatchRequests.ProtoReflect.Descriptor instead.
+func (*BatchRequests) Descriptor() ([]byte, []int) {
+	return file_aserto_directory_writer_v3_writer_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *BatchRequests) GetMsg() isBatchRequests_Msg {
+	if x != nil {
+		return x.Msg
+	}
+	return nil
+}
+
+func (x *BatchRequests) GetSetManifest() *SetManifestRequest {
+	if x != nil {
+		if x, ok := x.Msg.(*BatchRequests_SetManifest); ok {
+			return x.SetManifest
+		}
+	}
+	return nil
+}
+
+func (x *BatchRequests) GetDeleteManifest() *DeleteManifestRequest {
+	if x != nil {
+		if x, ok := x.Msg.(*BatchRequests_DeleteManifest); ok {
+			return x.DeleteManifest
+		}
+	}
+	return nil
+}
+
+func (x *BatchRequests) GetSetObject() *SetObjectRequest {
+	if x != nil {
+		if x, ok := x.Msg.(*BatchRequests_SetObject); ok {
+			return x.SetObject
+		}
+	}
+	return nil
+}
+
+func (x *BatchRequests) GetDeleteObject() *DeleteObjectRequest {
+	if x != nil {
+		if x, ok := x.Msg.(*BatchRequests_DeleteObject); ok {
+			return x.DeleteObject
+		}
+	}
+	return nil
+}
+
+func (x *BatchRequests) GetSetRelation() *SetRelationRequest {
+	if x != nil {
+		if x, ok := x.Msg.(*BatchRequests_SetRelation); ok {
+			return x.SetRelation
+		}
+	}
+	return nil
+}
+
+func (x *BatchRequests) GetDeleteRelation() *DeleteRelationRequest {
+	if x != nil {
+		if x, ok := x.Msg.(*BatchRequests_DeleteRelation); ok {
+			return x.DeleteRelation
+		}
+	}
+	return nil
+}
+
+type isBatchRequests_Msg interface {
+	isBatchRequests_Msg()
+}
+
+type BatchRequests_SetManifest struct {
+	// set manifest request
+	SetManifest *SetManifestRequest `protobuf:"bytes,12,opt,name=set_manifest,proto3,oneof"`
+}
+
+type BatchRequests_DeleteManifest struct {
+	// delete manifest request
+	DeleteManifest *DeleteManifestRequest `protobuf:"bytes,13,opt,name=delete_manifest,proto3,oneof"`
+}
+
+type BatchRequests_SetObject struct {
+	// set object request
+	SetObject *SetObjectRequest `protobuf:"bytes,22,opt,name=set_object,proto3,oneof"`
+}
+
+type BatchRequests_DeleteObject struct {
+	// delete object request
+	DeleteObject *DeleteObjectRequest `protobuf:"bytes,23,opt,name=delete_object,proto3,oneof"`
+}
+
+type BatchRequests_SetRelation struct {
+	// set relation request
+	SetRelation *SetRelationRequest `protobuf:"bytes,32,opt,name=set_relation,proto3,oneof"`
+}
+
+type BatchRequests_DeleteRelation struct {
+	// delete relation request
+	DeleteRelation *DeleteRelationRequest `protobuf:"bytes,33,opt,name=delete_relation,proto3,oneof"`
+}
+
+func (*BatchRequests_SetManifest) isBatchRequests_Msg() {}
+
+func (*BatchRequests_DeleteManifest) isBatchRequests_Msg() {}
+
+func (*BatchRequests_SetObject) isBatchRequests_Msg() {}
+
+func (*BatchRequests_DeleteObject) isBatchRequests_Msg() {}
+
+func (*BatchRequests_SetRelation) isBatchRequests_Msg() {}
+
+func (*BatchRequests_DeleteRelation) isBatchRequests_Msg() {}
+
+type BatchResponses struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to Msg:
+	//
+	//	*BatchResponses_SetManifest
+	//	*BatchResponses_DeleteManifest
+	//	*BatchResponses_SetObject
+	//	*BatchResponses_DeleteObject
+	//	*BatchResponses_SetRelation
+	//	*BatchResponses_DeleteRelation
+	Msg           isBatchResponses_Msg `protobuf_oneof:"msg"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BatchResponses) Reset() {
+	*x = BatchResponses{}
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BatchResponses) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BatchResponses) ProtoMessage() {}
+
+func (x *BatchResponses) ProtoReflect() protoreflect.Message {
+	mi := &file_aserto_directory_writer_v3_writer_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BatchResponses.ProtoReflect.Descriptor instead.
+func (*BatchResponses) Descriptor() ([]byte, []int) {
+	return file_aserto_directory_writer_v3_writer_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *BatchResponses) GetMsg() isBatchResponses_Msg {
+	if x != nil {
+		return x.Msg
+	}
+	return nil
+}
+
+func (x *BatchResponses) GetSetManifest() *SetManifestResponse {
+	if x != nil {
+		if x, ok := x.Msg.(*BatchResponses_SetManifest); ok {
+			return x.SetManifest
+		}
+	}
+	return nil
+}
+
+func (x *BatchResponses) GetDeleteManifest() *DeleteManifestResponse {
+	if x != nil {
+		if x, ok := x.Msg.(*BatchResponses_DeleteManifest); ok {
+			return x.DeleteManifest
+		}
+	}
+	return nil
+}
+
+func (x *BatchResponses) GetSetObject() *SetObjectResponse {
+	if x != nil {
+		if x, ok := x.Msg.(*BatchResponses_SetObject); ok {
+			return x.SetObject
+		}
+	}
+	return nil
+}
+
+func (x *BatchResponses) GetDeleteObject() *DeleteObjectResponse {
+	if x != nil {
+		if x, ok := x.Msg.(*BatchResponses_DeleteObject); ok {
+			return x.DeleteObject
+		}
+	}
+	return nil
+}
+
+func (x *BatchResponses) GetSetRelation() *SetRelationResponse {
+	if x != nil {
+		if x, ok := x.Msg.(*BatchResponses_SetRelation); ok {
+			return x.SetRelation
+		}
+	}
+	return nil
+}
+
+func (x *BatchResponses) GetDeleteRelation() *DeleteRelationResponse {
+	if x != nil {
+		if x, ok := x.Msg.(*BatchResponses_DeleteRelation); ok {
+			return x.DeleteRelation
+		}
+	}
+	return nil
+}
+
+type isBatchResponses_Msg interface {
+	isBatchResponses_Msg()
+}
+
+type BatchResponses_SetManifest struct {
+	// set manifest response
+	SetManifest *SetManifestResponse `protobuf:"bytes,12,opt,name=set_manifest,proto3,oneof"`
+}
+
+type BatchResponses_DeleteManifest struct {
+	// delete manifest response
+	DeleteManifest *DeleteManifestResponse `protobuf:"bytes,13,opt,name=delete_manifest,proto3,oneof"`
+}
+
+type BatchResponses_SetObject struct {
+	// set object response
+	SetObject *SetObjectResponse `protobuf:"bytes,22,opt,name=set_object,proto3,oneof"`
+}
+
+type BatchResponses_DeleteObject struct {
+	// delete object response
+	DeleteObject *DeleteObjectResponse `protobuf:"bytes,23,opt,name=delete_object,proto3,oneof"`
+}
+
+type BatchResponses_SetRelation struct {
+	// set relation response
+	SetRelation *SetRelationResponse `protobuf:"bytes,32,opt,name=set_relation,proto3,oneof"`
+}
+
+type BatchResponses_DeleteRelation struct {
+	// delete relation response
+	DeleteRelation *DeleteRelationResponse `protobuf:"bytes,33,opt,name=delete_relation,proto3,oneof"`
+}
+
+func (*BatchResponses_SetManifest) isBatchResponses_Msg() {}
+
+func (*BatchResponses_DeleteManifest) isBatchResponses_Msg() {}
+
+func (*BatchResponses_SetObject) isBatchResponses_Msg() {}
+
+func (*BatchResponses_DeleteObject) isBatchResponses_Msg() {}
+
+func (*BatchResponses_SetRelation) isBatchResponses_Msg() {}
+
+func (*BatchResponses_DeleteRelation) isBatchResponses_Msg() {}
+
 var File_aserto_directory_writer_v3_writer_proto protoreflect.FileDescriptor
 
 const file_aserto_directory_writer_v3_writer_proto_rawDesc = "" +
 	"\n" +
-	"'aserto/directory/writer/v3/writer.proto\x12\x1aaserto.directory.writer.v3\x1a'aserto/directory/common/v3/common.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"S\n" +
-	"\x10SetObjectRequest\x12?\n" +
-	"\x06object\x18\x01 \x01(\v2\".aserto.directory.common.v3.ObjectB\x03\xe0A\x02R\x06object\"O\n" +
-	"\x11SetObjectResponse\x12:\n" +
-	"\x06result\x18\x01 \x01(\v2\".aserto.directory.common.v3.ObjectR\x06result\"\x89\x01\n" +
-	"\x13DeleteObjectRequest\x12$\n" +
-	"\vobject_type\x18\x01 \x01(\tB\x03\xe0A\x02R\n" +
-	"objectType\x12 \n" +
-	"\tobject_id\x18\x02 \x01(\tB\x03\xe0A\x02R\bobjectId\x12*\n" +
-	"\x0ewith_relations\x18\x03 \x01(\bB\x03\xe0A\x01R\rwithRelations\"F\n" +
-	"\x14DeleteObjectResponse\x12.\n" +
-	"\x06result\x18\x01 \x01(\v2\x16.google.protobuf.EmptyR\x06result\"[\n" +
-	"\x12SetRelationRequest\x12E\n" +
-	"\brelation\x18\x01 \x01(\v2$.aserto.directory.common.v3.RelationB\x03\xe0A\x02R\brelation\"S\n" +
-	"\x13SetRelationResponse\x12<\n" +
-	"\x06result\x18\x01 \x01(\v2$.aserto.directory.common.v3.RelationR\x06result\"\xfc\x01\n" +
-	"\x15DeleteRelationRequest\x12$\n" +
-	"\vobject_type\x18\x01 \x01(\tB\x03\xe0A\x02R\n" +
-	"objectType\x12 \n" +
-	"\tobject_id\x18\x02 \x01(\tB\x03\xe0A\x02R\bobjectId\x12\x1f\n" +
-	"\brelation\x18\x03 \x01(\tB\x03\xe0A\x02R\brelation\x12&\n" +
-	"\fsubject_type\x18\x04 \x01(\tB\x03\xe0A\x02R\vsubjectType\x12\"\n" +
+	"'aserto/directory/writer/v3/writer.proto\x12\x1aaserto.directory.writer.v3\x1a'aserto/directory/common/v3/common.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a.protoc-gen-openapiv3/options/annotations.proto\"Z\n" +
+	"\x12SetManifestRequest\x12D\n" +
+	"\bmanifest\x18\x01 \x01(\v2$.aserto.directory.common.v3.ManifestB\x02\x18\x00R\bmanifest\"[\n" +
+	"\x13SetManifestResponse\x12D\n" +
+	"\bmanifest\x18\x01 \x01(\v2$.aserto.directory.common.v3.ManifestB\x02\x18\x00R\bmanifest\"I\n" +
+	"\x15DeleteManifestRequest\x120\n" +
+	"\x05empty\x18\x01 \x01(\v2\x16.google.protobuf.EmptyB\x02\x18\x00R\x05empty\"L\n" +
+	"\x16DeleteManifestResponse\x122\n" +
+	"\x06result\x18\x01 \x01(\v2\x16.google.protobuf.EmptyB\x02\x18\x00R\x06result\"U\n" +
+	"\x10SetObjectRequest\x12A\n" +
+	"\x06object\x18\x01 \x01(\v2\".aserto.directory.common.v3.ObjectB\x05\xe0A\x02\x18\x00R\x06object\"S\n" +
+	"\x11SetObjectResponse\x12>\n" +
+	"\x06result\x18\x01 \x01(\v2\".aserto.directory.common.v3.ObjectB\x02\x18\x00R\x06result\"\x92\x01\n" +
+	"\x13DeleteObjectRequest\x12'\n" +
+	"\vobject_type\x18\x01 \x01(\tB\x05\xe0A\x02\x18\x00R\vobject_type\x12#\n" +
+	"\tobject_id\x18\x02 \x01(\tB\x05\xe0A\x02\x18\x00R\tobject_id\x12-\n" +
+	"\x0ewith_relations\x18\x03 \x01(\bB\x05\xe0A\x01\x18\x00R\x0ewith_relations\"J\n" +
+	"\x14DeleteObjectResponse\x122\n" +
+	"\x06result\x18\x01 \x01(\v2\x16.google.protobuf.EmptyB\x02\x18\x00R\x06result\"]\n" +
+	"\x12SetRelationRequest\x12G\n" +
+	"\brelation\x18\x01 \x01(\v2$.aserto.directory.common.v3.RelationB\x05\xe0A\x02\x18\x00R\brelation\"W\n" +
+	"\x13SetRelationResponse\x12@\n" +
+	"\x06result\x18\x01 \x01(\v2$.aserto.directory.common.v3.RelationB\x02\x18\x00R\x06result\"\x8d\x02\n" +
+	"\x15DeleteRelationRequest\x12'\n" +
+	"\vobject_type\x18\x01 \x01(\tB\x05\xe0A\x02\x18\x00R\vobject_type\x12#\n" +
+	"\tobject_id\x18\x02 \x01(\tB\x05\xe0A\x02\x18\x00R\tobject_id\x12!\n" +
+	"\brelation\x18\x03 \x01(\tB\x05\xe0A\x02\x18\x00R\brelation\x12)\n" +
+	"\fsubject_type\x18\x04 \x01(\tB\x05\xe0A\x02\x18\x00R\fsubject_type\x12%\n" +
 	"\n" +
-	"subject_id\x18\x05 \x01(\tB\x03\xe0A\x02R\tsubjectId\x12.\n" +
-	"\x10subject_relation\x18\x06 \x01(\tB\x03\xe0A\x01R\x0fsubjectRelation\"H\n" +
-	"\x16DeleteRelationResponse\x12.\n" +
-	"\x06result\x18\x01 \x01(\v2\x16.google.protobuf.EmptyR\x06result2\xa8\b\n" +
-	"\x06Writer\x12\xf0\x01\n" +
-	"\tSetObject\x12,.aserto.directory.writer.v3.SetObjectRequest\x1a-.aserto.directory.writer.v3.SetObjectResponse\"\x85\x01\x92A_\n" +
-	"\tdirectory\x12\n" +
-	"Set object\x1a\vSet object.*\x1edirectory.writer.v3.object.setb\x19\n" +
-	"\x17\n" +
-	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/api/v3/directory/object\x12\x99\x02\n" +
-	"\fDeleteObject\x12/.aserto.directory.writer.v3.DeleteObjectRequest\x1a0.aserto.directory.writer.v3.DeleteObjectResponse\"\xa5\x01\x92Ah\n" +
-	"\tdirectory\x12\rDelete object\x1a\x0eDelete object.*!directory.writer.v3.object.deleteb\x19\n" +
-	"\x17\n" +
-	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x024*2/api/v3/directory/object/{object_type}/{object_id}\x12\xfe\x01\n" +
-	"\vSetRelation\x12..aserto.directory.writer.v3.SetRelationRequest\x1a/.aserto.directory.writer.v3.SetRelationResponse\"\x8d\x01\x92Ae\n" +
-	"\tdirectory\x12\fSet relation\x1a\rSet relation.* directory.writer.v3.relation.setb\x19\n" +
-	"\x17\n" +
-	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02\x1f:\x01*\"\x1a/api/v3/directory/relation\x12\x8d\x02\n" +
-	"\x0eDeleteRelation\x121.aserto.directory.writer.v3.DeleteRelationRequest\x1a2.aserto.directory.writer.v3.DeleteRelationResponse\"\x93\x01\x92An\n" +
-	"\tdirectory\x12\x0fDelete relation\x1a\x10Delete relation.*#directory.writer.v3.relation.deleteb\x19\n" +
-	"\x17\n" +
-	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02\x1c*\x1a/api/v3/directory/relationBFZDgithub.com/aserto-dev/go-directory/aserto/directory/writer/v3;writerb\x06proto3"
+	"subject_id\x18\x05 \x01(\tB\x05\xe0A\x02\x18\x00R\n" +
+	"subject_id\x121\n" +
+	"\x10subject_relation\x18\x06 \x01(\tB\x05\xe0A\x01\x18\x00R\x10subject_relation\"L\n" +
+	"\x16DeleteRelationResponse\x122\n" +
+	"\x06result\x18\x01 \x01(\v2\x16.google.protobuf.EmptyB\x02\x18\x00R\x06result\"\xa5\x02\n" +
+	"\rImportRequest\x12;\n" +
+	"\aop_code\x18\x01 \x01(\x0e2\".aserto.directory.writer.v3.OpcodeR\x06opCode\x12F\n" +
+	"\bmanifest\x18\x02 \x01(\v2$.aserto.directory.common.v3.ManifestB\x02\x18\x00H\x00R\bmanifest\x12@\n" +
+	"\x06object\x18\x05 \x01(\v2\".aserto.directory.common.v3.ObjectB\x02\x18\x00H\x00R\x06object\x12F\n" +
+	"\brelation\x18\x06 \x01(\v2$.aserto.directory.common.v3.RelationB\x02\x18\x00H\x00R\brelationB\x05\n" +
+	"\x03msg\"\xaa\x01\n" +
+	"\x0eImportResponse\x12F\n" +
+	"\x06status\x18\x04 \x01(\v2(.aserto.directory.writer.v3.ImportStatusB\x02\x18\x00H\x00R\x06status\x12I\n" +
+	"\acounter\x18\x05 \x01(\v2).aserto.directory.writer.v3.ImportCounterB\x02\x18\x00H\x00R\acounterB\x05\n" +
+	"\x03msg\"q\n" +
+	"\fImportStatus\x12\x12\n" +
+	"\x04code\x18\x01 \x01(\rR\x04code\x12\x10\n" +
+	"\x03msg\x18\x02 \x01(\tR\x03msg\x12;\n" +
+	"\x03req\x18\x03 \x01(\v2).aserto.directory.writer.v3.ImportRequestR\x03req\"\x8b\x01\n" +
+	"\rImportCounter\x12\x16\n" +
+	"\x04recv\x18\x01 \x01(\x04B\x02\x18\x00R\x04recv\x12\x14\n" +
+	"\x03set\x18\x02 \x01(\x04B\x02\x18\x00R\x03set\x12\x1a\n" +
+	"\x06delete\x18\x03 \x01(\x04B\x02\x18\x00R\x06delete\x12\x18\n" +
+	"\x05error\x18\x04 \x01(\x04B\x02\x18\x00R\x05error\x12\x16\n" +
+	"\x04type\x18\x05 \x01(\tB\x02\x18\x00R\x04type\"X\n" +
+	"\fBatchRequest\x12H\n" +
+	"\brequests\x18\x01 \x03(\v2(.aserto.directory.writer.v3.BatchRequestB\x02\x18\x00R\brequests\"]\n" +
+	"\rBatchResponse\x12L\n" +
+	"\tresponses\x18\x01 \x03(\v2*.aserto.directory.writer.v3.BatchResponsesB\x02\x18\x00R\tresponses\"\xc1\x04\n" +
+	"\rBatchRequests\x12X\n" +
+	"\fset_manifest\x18\f \x01(\v2..aserto.directory.writer.v3.SetManifestRequestB\x02\x18\x00H\x00R\fset_manifest\x12a\n" +
+	"\x0fdelete_manifest\x18\r \x01(\v21.aserto.directory.writer.v3.DeleteManifestRequestB\x02\x18\x00H\x00R\x0fdelete_manifest\x12R\n" +
+	"\n" +
+	"set_object\x18\x16 \x01(\v2,.aserto.directory.writer.v3.SetObjectRequestB\x02\x18\x00H\x00R\n" +
+	"set_object\x12[\n" +
+	"\rdelete_object\x18\x17 \x01(\v2/.aserto.directory.writer.v3.DeleteObjectRequestB\x02\x18\x00H\x00R\rdelete_object\x12X\n" +
+	"\fset_relation\x18  \x01(\v2..aserto.directory.writer.v3.SetRelationRequestB\x02\x18\x00H\x00R\fset_relation\x12a\n" +
+	"\x0fdelete_relation\x18! \x01(\v21.aserto.directory.writer.v3.DeleteRelationRequestB\x02\x18\x00H\x00R\x0fdelete_relationB\x05\n" +
+	"\x03msg\"\xc8\x04\n" +
+	"\x0eBatchResponses\x12Y\n" +
+	"\fset_manifest\x18\f \x01(\v2/.aserto.directory.writer.v3.SetManifestResponseB\x02\x18\x00H\x00R\fset_manifest\x12b\n" +
+	"\x0fdelete_manifest\x18\r \x01(\v22.aserto.directory.writer.v3.DeleteManifestResponseB\x02\x18\x00H\x00R\x0fdelete_manifest\x12S\n" +
+	"\n" +
+	"set_object\x18\x16 \x01(\v2-.aserto.directory.writer.v3.SetObjectResponseB\x02\x18\x00H\x00R\n" +
+	"set_object\x12\\\n" +
+	"\rdelete_object\x18\x17 \x01(\v20.aserto.directory.writer.v3.DeleteObjectResponseB\x02\x18\x00H\x00R\rdelete_object\x12Y\n" +
+	"\fset_relation\x18  \x01(\v2/.aserto.directory.writer.v3.SetRelationResponseB\x02\x18\x00H\x00R\fset_relation\x12b\n" +
+	"\x0fdelete_relation\x18! \x01(\v22.aserto.directory.writer.v3.DeleteRelationResponseB\x02\x18\x00H\x00R\x0fdelete_relationB\x05\n" +
+	"\x03msg*a\n" +
+	"\x06Opcode\x12\x12\n" +
+	"\x0eOPCODE_UNKNOWN\x10\x00\x12\x0e\n" +
+	"\n" +
+	"OPCODE_SET\x10\x01\x12\x11\n" +
+	"\rOPCODE_DELETE\x10\x02\x12 \n" +
+	"\x1cOPCODE_DELETE_WITH_RELATIONS\x10\x032\xce\r\n" +
+	"\x06Writer\x12\xfb\x01\n" +
+	"\vSetManifest\x12..aserto.directory.writer.v3.SetManifestRequest\x1a/.aserto.directory.writer.v3.SetManifestResponse\"\x8a\x01\xfaPb\n" +
+	"\tdirectory\n" +
+	"\bmanifest\n" +
+	"\x03set\x12\fSet manifest\x1a\x17Set directory manifest.*\x1fdirectory.model.v3.manifest.set\x82\xd3\xe4\x93\x02\x1f:\x01*\"\x1a/api/v3/directory/manifest\x12\x8d\x02\n" +
+	"\x0eDeleteManifest\x121.aserto.directory.writer.v3.DeleteManifestRequest\x1a2.aserto.directory.writer.v3.DeleteManifestResponse\"\x93\x01\xfaPn\n" +
+	"\tdirectory\n" +
+	"\bmanifest\n" +
+	"\x06delete\x12\x0fDelete manifest\x1a\x1aDelete directory manifest.*\"directory.model.v3.manifest.delete\x82\xd3\xe4\x93\x02\x1c*\x1a/api/v3/directory/manifest\x12\xe1\x01\n" +
+	"\tSetObject\x12,.aserto.directory.writer.v3.SetObjectRequest\x1a-.aserto.directory.writer.v3.SetObjectResponse\"w\xfaPQ\n" +
+	"\tdirectory\n" +
+	"\x06object\n" +
+	"\x03set\x12\n" +
+	"Set object\x1a\vSet object.*\x1edirectory.writer.v3.object.set\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/api/v3/directory/object\x12\x8e\x02\n" +
+	"\fDeleteObject\x12/.aserto.directory.writer.v3.DeleteObjectRequest\x1a0.aserto.directory.writer.v3.DeleteObjectResponse\"\x9a\x01\xfaP]\n" +
+	"\tdirectory\n" +
+	"\x06object\n" +
+	"\x06delete\x12\rDelete object\x1a\x0eDelete object.*!directory.writer.v3.object.delete\x82\xd3\xe4\x93\x024*2/api/v3/directory/object/{object_type}/{object_id}\x12\xf2\x01\n" +
+	"\vSetRelation\x12..aserto.directory.writer.v3.SetRelationRequest\x1a/.aserto.directory.writer.v3.SetRelationResponse\"\x81\x01\xfaPY\n" +
+	"\tdirectory\n" +
+	"\brelation\n" +
+	"\x03set\x12\fSet relation\x1a\rSet relation.* directory.writer.v3.relation.set\x82\xd3\xe4\x93\x02\x1f:\x01*\"\x1a/api/v3/directory/relation\x12\x84\x02\n" +
+	"\x0eDeleteRelation\x121.aserto.directory.writer.v3.DeleteRelationRequest\x1a2.aserto.directory.writer.v3.DeleteRelationResponse\"\x8a\x01\xfaPe\n" +
+	"\tdirectory\n" +
+	"\brelation\n" +
+	"\x06delete\x12\x0fDelete relation\x1a\x10Delete relation.*#directory.writer.v3.relation.delete\x82\xd3\xe4\x93\x02\x1c*\x1a/api/v3/directory/relation\x12e\n" +
+	"\x06Import\x12).aserto.directory.writer.v3.ImportRequest\x1a*.aserto.directory.writer.v3.ImportResponse\"\x00(\x010\x01\x12^\n" +
+	"\x05Batch\x12(.aserto.directory.writer.v3.BatchRequest\x1a).aserto.directory.writer.v3.BatchResponse\"\x00B\xae\x04\xfaP\xe4\x03\n" +
+	"\xd1\x01\n" +
+	"\x17Topaz Directory Service*]\n" +
+	"\x1bTopaz Authorization Project\x12*https://github.com/aserto-dev/go-directory\x1a\x12support@aserto.com2R\n" +
+	"\x12Apache 2.0 License\x1a<https://github.com/aserto-dev/go-directory/blob/main/LICENSE:\x033.1\x122\n" +
+	"\x17{{.Scheme}}://{{.Host}}\x12\x17Topaz Directory service\x1af\n" +
+	"\x1eTopaz Directory API Reference.\x12Dhttps://github.com/aserto-dev/go-directory/blob/main/html/index.html\"\v\n" +
+	"\tdirectory\"\n" +
+	"\n" +
+	"\bmanifest\"\a\n" +
+	"\x05model\"\b\n" +
+	"\x06object\"\n" +
+	"\n" +
+	"\brelation\"\x05\n" +
+	"\x03get\"\x06\n" +
+	"\x04list\"\x05\n" +
+	"\x03set\"\a\n" +
+	"\x05graph\"\b\n" +
+	"\x06delete\"\a\n" +
+	"\x05check\"\b\n" +
+	"\x06checksZDgithub.com/aserto-dev/go-directory/aserto/directory/writer/v3;writerb\x06proto3"
 
 var (
 	file_aserto_directory_writer_v3_writer_proto_rawDescOnce sync.Once
@@ -510,40 +1557,88 @@ func file_aserto_directory_writer_v3_writer_proto_rawDescGZIP() []byte {
 	return file_aserto_directory_writer_v3_writer_proto_rawDescData
 }
 
-var file_aserto_directory_writer_v3_writer_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_aserto_directory_writer_v3_writer_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_aserto_directory_writer_v3_writer_proto_msgTypes = make([]protoimpl.MessageInfo, 20)
 var file_aserto_directory_writer_v3_writer_proto_goTypes = []any{
-	(*SetObjectRequest)(nil),       // 0: aserto.directory.writer.v3.SetObjectRequest
-	(*SetObjectResponse)(nil),      // 1: aserto.directory.writer.v3.SetObjectResponse
-	(*DeleteObjectRequest)(nil),    // 2: aserto.directory.writer.v3.DeleteObjectRequest
-	(*DeleteObjectResponse)(nil),   // 3: aserto.directory.writer.v3.DeleteObjectResponse
-	(*SetRelationRequest)(nil),     // 4: aserto.directory.writer.v3.SetRelationRequest
-	(*SetRelationResponse)(nil),    // 5: aserto.directory.writer.v3.SetRelationResponse
-	(*DeleteRelationRequest)(nil),  // 6: aserto.directory.writer.v3.DeleteRelationRequest
-	(*DeleteRelationResponse)(nil), // 7: aserto.directory.writer.v3.DeleteRelationResponse
-	(*v3.Object)(nil),              // 8: aserto.directory.common.v3.Object
-	(*emptypb.Empty)(nil),          // 9: google.protobuf.Empty
-	(*v3.Relation)(nil),            // 10: aserto.directory.common.v3.Relation
+	(Opcode)(0),                    // 0: aserto.directory.writer.v3.Opcode
+	(*SetManifestRequest)(nil),     // 1: aserto.directory.writer.v3.SetManifestRequest
+	(*SetManifestResponse)(nil),    // 2: aserto.directory.writer.v3.SetManifestResponse
+	(*DeleteManifestRequest)(nil),  // 3: aserto.directory.writer.v3.DeleteManifestRequest
+	(*DeleteManifestResponse)(nil), // 4: aserto.directory.writer.v3.DeleteManifestResponse
+	(*SetObjectRequest)(nil),       // 5: aserto.directory.writer.v3.SetObjectRequest
+	(*SetObjectResponse)(nil),      // 6: aserto.directory.writer.v3.SetObjectResponse
+	(*DeleteObjectRequest)(nil),    // 7: aserto.directory.writer.v3.DeleteObjectRequest
+	(*DeleteObjectResponse)(nil),   // 8: aserto.directory.writer.v3.DeleteObjectResponse
+	(*SetRelationRequest)(nil),     // 9: aserto.directory.writer.v3.SetRelationRequest
+	(*SetRelationResponse)(nil),    // 10: aserto.directory.writer.v3.SetRelationResponse
+	(*DeleteRelationRequest)(nil),  // 11: aserto.directory.writer.v3.DeleteRelationRequest
+	(*DeleteRelationResponse)(nil), // 12: aserto.directory.writer.v3.DeleteRelationResponse
+	(*ImportRequest)(nil),          // 13: aserto.directory.writer.v3.ImportRequest
+	(*ImportResponse)(nil),         // 14: aserto.directory.writer.v3.ImportResponse
+	(*ImportStatus)(nil),           // 15: aserto.directory.writer.v3.ImportStatus
+	(*ImportCounter)(nil),          // 16: aserto.directory.writer.v3.ImportCounter
+	(*BatchRequest)(nil),           // 17: aserto.directory.writer.v3.BatchRequest
+	(*BatchResponse)(nil),          // 18: aserto.directory.writer.v3.BatchResponse
+	(*BatchRequests)(nil),          // 19: aserto.directory.writer.v3.BatchRequests
+	(*BatchResponses)(nil),         // 20: aserto.directory.writer.v3.BatchResponses
+	(*v3.Manifest)(nil),            // 21: aserto.directory.common.v3.Manifest
+	(*emptypb.Empty)(nil),          // 22: google.protobuf.Empty
+	(*v3.Object)(nil),              // 23: aserto.directory.common.v3.Object
+	(*v3.Relation)(nil),            // 24: aserto.directory.common.v3.Relation
 }
 var file_aserto_directory_writer_v3_writer_proto_depIdxs = []int32{
-	8,  // 0: aserto.directory.writer.v3.SetObjectRequest.object:type_name -> aserto.directory.common.v3.Object
-	8,  // 1: aserto.directory.writer.v3.SetObjectResponse.result:type_name -> aserto.directory.common.v3.Object
-	9,  // 2: aserto.directory.writer.v3.DeleteObjectResponse.result:type_name -> google.protobuf.Empty
-	10, // 3: aserto.directory.writer.v3.SetRelationRequest.relation:type_name -> aserto.directory.common.v3.Relation
-	10, // 4: aserto.directory.writer.v3.SetRelationResponse.result:type_name -> aserto.directory.common.v3.Relation
-	9,  // 5: aserto.directory.writer.v3.DeleteRelationResponse.result:type_name -> google.protobuf.Empty
-	0,  // 6: aserto.directory.writer.v3.Writer.SetObject:input_type -> aserto.directory.writer.v3.SetObjectRequest
-	2,  // 7: aserto.directory.writer.v3.Writer.DeleteObject:input_type -> aserto.directory.writer.v3.DeleteObjectRequest
-	4,  // 8: aserto.directory.writer.v3.Writer.SetRelation:input_type -> aserto.directory.writer.v3.SetRelationRequest
-	6,  // 9: aserto.directory.writer.v3.Writer.DeleteRelation:input_type -> aserto.directory.writer.v3.DeleteRelationRequest
-	1,  // 10: aserto.directory.writer.v3.Writer.SetObject:output_type -> aserto.directory.writer.v3.SetObjectResponse
-	3,  // 11: aserto.directory.writer.v3.Writer.DeleteObject:output_type -> aserto.directory.writer.v3.DeleteObjectResponse
-	5,  // 12: aserto.directory.writer.v3.Writer.SetRelation:output_type -> aserto.directory.writer.v3.SetRelationResponse
-	7,  // 13: aserto.directory.writer.v3.Writer.DeleteRelation:output_type -> aserto.directory.writer.v3.DeleteRelationResponse
-	10, // [10:14] is the sub-list for method output_type
-	6,  // [6:10] is the sub-list for method input_type
-	6,  // [6:6] is the sub-list for extension type_name
-	6,  // [6:6] is the sub-list for extension extendee
-	0,  // [0:6] is the sub-list for field type_name
+	21, // 0: aserto.directory.writer.v3.SetManifestRequest.manifest:type_name -> aserto.directory.common.v3.Manifest
+	21, // 1: aserto.directory.writer.v3.SetManifestResponse.manifest:type_name -> aserto.directory.common.v3.Manifest
+	22, // 2: aserto.directory.writer.v3.DeleteManifestRequest.empty:type_name -> google.protobuf.Empty
+	22, // 3: aserto.directory.writer.v3.DeleteManifestResponse.result:type_name -> google.protobuf.Empty
+	23, // 4: aserto.directory.writer.v3.SetObjectRequest.object:type_name -> aserto.directory.common.v3.Object
+	23, // 5: aserto.directory.writer.v3.SetObjectResponse.result:type_name -> aserto.directory.common.v3.Object
+	22, // 6: aserto.directory.writer.v3.DeleteObjectResponse.result:type_name -> google.protobuf.Empty
+	24, // 7: aserto.directory.writer.v3.SetRelationRequest.relation:type_name -> aserto.directory.common.v3.Relation
+	24, // 8: aserto.directory.writer.v3.SetRelationResponse.result:type_name -> aserto.directory.common.v3.Relation
+	22, // 9: aserto.directory.writer.v3.DeleteRelationResponse.result:type_name -> google.protobuf.Empty
+	0,  // 10: aserto.directory.writer.v3.ImportRequest.op_code:type_name -> aserto.directory.writer.v3.Opcode
+	21, // 11: aserto.directory.writer.v3.ImportRequest.manifest:type_name -> aserto.directory.common.v3.Manifest
+	23, // 12: aserto.directory.writer.v3.ImportRequest.object:type_name -> aserto.directory.common.v3.Object
+	24, // 13: aserto.directory.writer.v3.ImportRequest.relation:type_name -> aserto.directory.common.v3.Relation
+	15, // 14: aserto.directory.writer.v3.ImportResponse.status:type_name -> aserto.directory.writer.v3.ImportStatus
+	16, // 15: aserto.directory.writer.v3.ImportResponse.counter:type_name -> aserto.directory.writer.v3.ImportCounter
+	13, // 16: aserto.directory.writer.v3.ImportStatus.req:type_name -> aserto.directory.writer.v3.ImportRequest
+	17, // 17: aserto.directory.writer.v3.BatchRequest.requests:type_name -> aserto.directory.writer.v3.BatchRequest
+	20, // 18: aserto.directory.writer.v3.BatchResponse.responses:type_name -> aserto.directory.writer.v3.BatchResponses
+	1,  // 19: aserto.directory.writer.v3.BatchRequests.set_manifest:type_name -> aserto.directory.writer.v3.SetManifestRequest
+	3,  // 20: aserto.directory.writer.v3.BatchRequests.delete_manifest:type_name -> aserto.directory.writer.v3.DeleteManifestRequest
+	5,  // 21: aserto.directory.writer.v3.BatchRequests.set_object:type_name -> aserto.directory.writer.v3.SetObjectRequest
+	7,  // 22: aserto.directory.writer.v3.BatchRequests.delete_object:type_name -> aserto.directory.writer.v3.DeleteObjectRequest
+	9,  // 23: aserto.directory.writer.v3.BatchRequests.set_relation:type_name -> aserto.directory.writer.v3.SetRelationRequest
+	11, // 24: aserto.directory.writer.v3.BatchRequests.delete_relation:type_name -> aserto.directory.writer.v3.DeleteRelationRequest
+	2,  // 25: aserto.directory.writer.v3.BatchResponses.set_manifest:type_name -> aserto.directory.writer.v3.SetManifestResponse
+	4,  // 26: aserto.directory.writer.v3.BatchResponses.delete_manifest:type_name -> aserto.directory.writer.v3.DeleteManifestResponse
+	6,  // 27: aserto.directory.writer.v3.BatchResponses.set_object:type_name -> aserto.directory.writer.v3.SetObjectResponse
+	8,  // 28: aserto.directory.writer.v3.BatchResponses.delete_object:type_name -> aserto.directory.writer.v3.DeleteObjectResponse
+	10, // 29: aserto.directory.writer.v3.BatchResponses.set_relation:type_name -> aserto.directory.writer.v3.SetRelationResponse
+	12, // 30: aserto.directory.writer.v3.BatchResponses.delete_relation:type_name -> aserto.directory.writer.v3.DeleteRelationResponse
+	1,  // 31: aserto.directory.writer.v3.Writer.SetManifest:input_type -> aserto.directory.writer.v3.SetManifestRequest
+	3,  // 32: aserto.directory.writer.v3.Writer.DeleteManifest:input_type -> aserto.directory.writer.v3.DeleteManifestRequest
+	5,  // 33: aserto.directory.writer.v3.Writer.SetObject:input_type -> aserto.directory.writer.v3.SetObjectRequest
+	7,  // 34: aserto.directory.writer.v3.Writer.DeleteObject:input_type -> aserto.directory.writer.v3.DeleteObjectRequest
+	9,  // 35: aserto.directory.writer.v3.Writer.SetRelation:input_type -> aserto.directory.writer.v3.SetRelationRequest
+	11, // 36: aserto.directory.writer.v3.Writer.DeleteRelation:input_type -> aserto.directory.writer.v3.DeleteRelationRequest
+	13, // 37: aserto.directory.writer.v3.Writer.Import:input_type -> aserto.directory.writer.v3.ImportRequest
+	17, // 38: aserto.directory.writer.v3.Writer.Batch:input_type -> aserto.directory.writer.v3.BatchRequest
+	2,  // 39: aserto.directory.writer.v3.Writer.SetManifest:output_type -> aserto.directory.writer.v3.SetManifestResponse
+	4,  // 40: aserto.directory.writer.v3.Writer.DeleteManifest:output_type -> aserto.directory.writer.v3.DeleteManifestResponse
+	6,  // 41: aserto.directory.writer.v3.Writer.SetObject:output_type -> aserto.directory.writer.v3.SetObjectResponse
+	8,  // 42: aserto.directory.writer.v3.Writer.DeleteObject:output_type -> aserto.directory.writer.v3.DeleteObjectResponse
+	10, // 43: aserto.directory.writer.v3.Writer.SetRelation:output_type -> aserto.directory.writer.v3.SetRelationResponse
+	12, // 44: aserto.directory.writer.v3.Writer.DeleteRelation:output_type -> aserto.directory.writer.v3.DeleteRelationResponse
+	14, // 45: aserto.directory.writer.v3.Writer.Import:output_type -> aserto.directory.writer.v3.ImportResponse
+	18, // 46: aserto.directory.writer.v3.Writer.Batch:output_type -> aserto.directory.writer.v3.BatchResponse
+	39, // [39:47] is the sub-list for method output_type
+	31, // [31:39] is the sub-list for method input_type
+	31, // [31:31] is the sub-list for extension type_name
+	31, // [31:31] is the sub-list for extension extendee
+	0,  // [0:31] is the sub-list for field type_name
 }
 
 func init() { file_aserto_directory_writer_v3_writer_proto_init() }
@@ -551,18 +1646,44 @@ func file_aserto_directory_writer_v3_writer_proto_init() {
 	if File_aserto_directory_writer_v3_writer_proto != nil {
 		return
 	}
+	file_aserto_directory_writer_v3_writer_proto_msgTypes[12].OneofWrappers = []any{
+		(*ImportRequest_Manifest)(nil),
+		(*ImportRequest_Object)(nil),
+		(*ImportRequest_Relation)(nil),
+	}
+	file_aserto_directory_writer_v3_writer_proto_msgTypes[13].OneofWrappers = []any{
+		(*ImportResponse_Status)(nil),
+		(*ImportResponse_Counter)(nil),
+	}
+	file_aserto_directory_writer_v3_writer_proto_msgTypes[18].OneofWrappers = []any{
+		(*BatchRequests_SetManifest)(nil),
+		(*BatchRequests_DeleteManifest)(nil),
+		(*BatchRequests_SetObject)(nil),
+		(*BatchRequests_DeleteObject)(nil),
+		(*BatchRequests_SetRelation)(nil),
+		(*BatchRequests_DeleteRelation)(nil),
+	}
+	file_aserto_directory_writer_v3_writer_proto_msgTypes[19].OneofWrappers = []any{
+		(*BatchResponses_SetManifest)(nil),
+		(*BatchResponses_DeleteManifest)(nil),
+		(*BatchResponses_SetObject)(nil),
+		(*BatchResponses_DeleteObject)(nil),
+		(*BatchResponses_SetRelation)(nil),
+		(*BatchResponses_DeleteRelation)(nil),
+	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_aserto_directory_writer_v3_writer_proto_rawDesc), len(file_aserto_directory_writer_v3_writer_proto_rawDesc)),
-			NumEnums:      0,
-			NumMessages:   8,
+			NumEnums:      1,
+			NumMessages:   20,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_aserto_directory_writer_v3_writer_proto_goTypes,
 		DependencyIndexes: file_aserto_directory_writer_v3_writer_proto_depIdxs,
+		EnumInfos:         file_aserto_directory_writer_v3_writer_proto_enumTypes,
 		MessageInfos:      file_aserto_directory_writer_v3_writer_proto_msgTypes,
 	}.Build()
 	File_aserto_directory_writer_v3_writer_proto = out.File
