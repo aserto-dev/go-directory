@@ -9,7 +9,7 @@ import (
 	"github.com/aserto-dev/go-directory/pkg/manifest"
 	"github.com/aserto-dev/go-directory/pkg/pb"
 	"github.com/go-http-utils/headers"
-	"github.com/grpc-ecosystem/go-grpc-middleware/util/metautils"
+	"github.com/grpc-ecosystem/go-grpc-middleware/v2/metadata"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/pkg/errors"
 	"google.golang.org/grpc"
@@ -99,7 +99,7 @@ func getManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient, mdOpt me
 		}
 
 		if mdOpt == MetadataOnly {
-			md := metautils.ExtractOutgoing(ctx).Clone()
+			md := metadata.ExtractOutgoing(ctx).Clone()
 			md.Set(manifest.HeaderAsertoManifestRequest, "metadata-only")
 			ctx = md.ToOutgoing(ctx)
 		}

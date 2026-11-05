@@ -1385,72 +1385,72 @@ var File_aserto_directory_reader_v3_reader_proto protoreflect.FileDescriptor
 
 const file_aserto_directory_reader_v3_reader_proto_rawDesc = "" +
 	"\n" +
-	"'aserto/directory/reader/v3/reader.proto\x12\x1aaserto.directory.reader.v3\x1a'aserto/directory/common/v3/common.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\x92\x01\n" +
-	"\x10GetObjectRequest\x12$\n" +
-	"\vobject_type\x18\x01 \x01(\tB\x03\xe0A\x02R\n" +
-	"objectType\x12 \n" +
-	"\tobject_id\x18\x02 \x01(\tB\x03\xe0A\x02R\bobjectId\x12*\n" +
-	"\x0ewith_relations\x18\x03 \x01(\bB\x03\xe0A\x01R\rwithRelationsJ\x04\b\t\x10\n" +
+	"'aserto/directory/reader/v3/reader.proto\x12\x1aaserto.directory.reader.v3\x1a'aserto/directory/common/v3/common.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\x95\x01\n" +
+	"\x10GetObjectRequest\x12%\n" +
+	"\vobject_type\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\n" +
+	"objectType\x12!\n" +
+	"\tobject_id\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\bobjectId\x12+\n" +
+	"\x0ewith_relations\x18\x03 \x01(\bB\x04\xe2A\x01\x01R\rwithRelationsJ\x04\b\t\x10\n" +
 	"R\x04page\"\x9f\x01\n" +
 	"\x11GetObjectResponse\x12:\n" +
 	"\x06result\x18\x01 \x01(\v2\".aserto.directory.common.v3.ObjectR\x06result\x12B\n" +
 	"\trelations\x18\x04 \x03(\v2$.aserto.directory.common.v3.RelationR\trelationsJ\x04\b\t\x10\n" +
-	"R\x04page\"_\n" +
-	"\x14GetObjectManyRequest\x12G\n" +
-	"\x05param\x18\x01 \x03(\v2,.aserto.directory.common.v3.ObjectIdentifierB\x03\xe0A\x02R\x05param\"U\n" +
+	"R\x04page\"`\n" +
+	"\x14GetObjectManyRequest\x12H\n" +
+	"\x05param\x18\x01 \x03(\v2,.aserto.directory.common.v3.ObjectIdentifierB\x04\xe2A\x01\x02R\x05param\"U\n" +
 	"\x15GetObjectManyResponse\x12<\n" +
-	"\aresults\x18\x01 \x03(\v2\".aserto.directory.common.v3.ObjectR\aresults\"\x81\x01\n" +
-	"\x11GetObjectsRequest\x12$\n" +
-	"\vobject_type\x18\x01 \x01(\tB\x03\xe0A\x01R\n" +
-	"objectType\x12F\n" +
-	"\x04page\x18\t \x01(\v2-.aserto.directory.common.v3.PaginationRequestB\x03\xe0A\x01R\x04page\"\x96\x01\n" +
+	"\aresults\x18\x01 \x03(\v2\".aserto.directory.common.v3.ObjectR\aresults\"\x83\x01\n" +
+	"\x11GetObjectsRequest\x12%\n" +
+	"\vobject_type\x18\x01 \x01(\tB\x04\xe2A\x01\x01R\n" +
+	"objectType\x12G\n" +
+	"\x04page\x18\t \x01(\v2-.aserto.directory.common.v3.PaginationRequestB\x04\xe2A\x01\x01R\x04page\"\x96\x01\n" +
 	"\x12GetObjectsResponse\x12<\n" +
 	"\aresults\x18\x01 \x03(\v2\".aserto.directory.common.v3.ObjectR\aresults\x12B\n" +
-	"\x04page\x18\t \x01(\v2..aserto.directory.common.v3.PaginationResponseR\x04page\"\xa1\x02\n" +
-	"\x12GetRelationRequest\x12$\n" +
-	"\vobject_type\x18\x01 \x01(\tB\x03\xe0A\x02R\n" +
-	"objectType\x12 \n" +
-	"\tobject_id\x18\x02 \x01(\tB\x03\xe0A\x02R\bobjectId\x12\x1f\n" +
-	"\brelation\x18\x03 \x01(\tB\x03\xe0A\x02R\brelation\x12&\n" +
-	"\fsubject_type\x18\x04 \x01(\tB\x03\xe0A\x02R\vsubjectType\x12\"\n" +
+	"\x04page\x18\t \x01(\v2..aserto.directory.common.v3.PaginationResponseR\x04page\"\xa8\x02\n" +
+	"\x12GetRelationRequest\x12%\n" +
+	"\vobject_type\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\n" +
+	"objectType\x12!\n" +
+	"\tobject_id\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\bobjectId\x12 \n" +
+	"\brelation\x18\x03 \x01(\tB\x04\xe2A\x01\x02R\brelation\x12'\n" +
+	"\fsubject_type\x18\x04 \x01(\tB\x04\xe2A\x01\x02R\vsubjectType\x12#\n" +
 	"\n" +
-	"subject_id\x18\x05 \x01(\tB\x03\xe0A\x02R\tsubjectId\x12.\n" +
-	"\x10subject_relation\x18\x06 \x01(\tB\x03\xe0A\x01R\x0fsubjectRelation\x12&\n" +
-	"\fwith_objects\x18\a \x01(\bB\x03\xe0A\x01R\vwithObjects\"\x8b\x02\n" +
+	"subject_id\x18\x05 \x01(\tB\x04\xe2A\x01\x02R\tsubjectId\x12/\n" +
+	"\x10subject_relation\x18\x06 \x01(\tB\x04\xe2A\x01\x01R\x0fsubjectRelation\x12'\n" +
+	"\fwith_objects\x18\a \x01(\bB\x04\xe2A\x01\x01R\vwithObjects\"\x8b\x02\n" +
 	"\x13GetRelationResponse\x12<\n" +
 	"\x06result\x18\x01 \x01(\v2$.aserto.directory.common.v3.RelationR\x06result\x12V\n" +
 	"\aobjects\x18\x02 \x03(\v2<.aserto.directory.reader.v3.GetRelationResponse.ObjectsEntryR\aobjects\x1a^\n" +
 	"\fObjectsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x128\n" +
-	"\x05value\x18\x02 \x01(\v2\".aserto.directory.common.v3.ObjectR\x05value:\x028\x01\"\xae\x03\n" +
-	"\x13GetRelationsRequest\x12$\n" +
-	"\vobject_type\x18\x01 \x01(\tB\x03\xe0A\x01R\n" +
-	"objectType\x12 \n" +
-	"\tobject_id\x18\x02 \x01(\tB\x03\xe0A\x01R\bobjectId\x12\x1f\n" +
-	"\brelation\x18\x03 \x01(\tB\x03\xe0A\x01R\brelation\x12&\n" +
-	"\fsubject_type\x18\x04 \x01(\tB\x03\xe0A\x01R\vsubjectType\x12\"\n" +
+	"\x05value\x18\x02 \x01(\v2\".aserto.directory.common.v3.ObjectR\x05value:\x028\x01\"\xb7\x03\n" +
+	"\x13GetRelationsRequest\x12%\n" +
+	"\vobject_type\x18\x01 \x01(\tB\x04\xe2A\x01\x01R\n" +
+	"objectType\x12!\n" +
+	"\tobject_id\x18\x02 \x01(\tB\x04\xe2A\x01\x01R\bobjectId\x12 \n" +
+	"\brelation\x18\x03 \x01(\tB\x04\xe2A\x01\x01R\brelation\x12'\n" +
+	"\fsubject_type\x18\x04 \x01(\tB\x04\xe2A\x01\x01R\vsubjectType\x12#\n" +
 	"\n" +
-	"subject_id\x18\x05 \x01(\tB\x03\xe0A\x01R\tsubjectId\x12.\n" +
-	"\x10subject_relation\x18\x06 \x01(\tB\x03\xe0A\x01R\x0fsubjectRelation\x12&\n" +
-	"\fwith_objects\x18\a \x01(\bB\x03\xe0A\x01R\vwithObjects\x12B\n" +
-	"\x1bwith_empty_subject_relation\x18\b \x01(\bB\x03\xe0A\x01R\x18withEmptySubjectRelation\x12F\n" +
-	"\x04page\x18\t \x01(\v2-.aserto.directory.common.v3.PaginationRequestB\x03\xe0A\x01R\x04page\"\xd3\x02\n" +
+	"subject_id\x18\x05 \x01(\tB\x04\xe2A\x01\x01R\tsubjectId\x12/\n" +
+	"\x10subject_relation\x18\x06 \x01(\tB\x04\xe2A\x01\x01R\x0fsubjectRelation\x12'\n" +
+	"\fwith_objects\x18\a \x01(\bB\x04\xe2A\x01\x01R\vwithObjects\x12C\n" +
+	"\x1bwith_empty_subject_relation\x18\b \x01(\bB\x04\xe2A\x01\x01R\x18withEmptySubjectRelation\x12G\n" +
+	"\x04page\x18\t \x01(\v2-.aserto.directory.common.v3.PaginationRequestB\x04\xe2A\x01\x01R\x04page\"\xd3\x02\n" +
 	"\x14GetRelationsResponse\x12>\n" +
 	"\aresults\x18\x01 \x03(\v2$.aserto.directory.common.v3.RelationR\aresults\x12W\n" +
 	"\aobjects\x18\x02 \x03(\v2=.aserto.directory.reader.v3.GetRelationsResponse.ObjectsEntryR\aobjects\x12B\n" +
 	"\x04page\x18\t \x01(\v2..aserto.directory.common.v3.PaginationResponseR\x04page\x1a^\n" +
 	"\fObjectsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x128\n" +
-	"\x05value\x18\x02 \x01(\v2\".aserto.directory.common.v3.ObjectR\x05value:\x028\x01\"\xde\x01\n" +
-	"\fCheckRequest\x12$\n" +
-	"\vobject_type\x18\x01 \x01(\tB\x03\xe0A\x02R\n" +
-	"objectType\x12 \n" +
-	"\tobject_id\x18\x02 \x01(\tB\x03\xe0A\x02R\bobjectId\x12\x1f\n" +
-	"\brelation\x18\x03 \x01(\tB\x03\xe0A\x02R\brelation\x12&\n" +
-	"\fsubject_type\x18\x04 \x01(\tB\x03\xe0A\x02R\vsubjectType\x12\"\n" +
+	"\x05value\x18\x02 \x01(\v2\".aserto.directory.common.v3.ObjectR\x05value:\x028\x01\"\xe4\x01\n" +
+	"\fCheckRequest\x12%\n" +
+	"\vobject_type\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\n" +
+	"objectType\x12!\n" +
+	"\tobject_id\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\bobjectId\x12 \n" +
+	"\brelation\x18\x03 \x01(\tB\x04\xe2A\x01\x02R\brelation\x12'\n" +
+	"\fsubject_type\x18\x04 \x01(\tB\x04\xe2A\x01\x02R\vsubjectType\x12#\n" +
 	"\n" +
-	"subject_id\x18\x05 \x01(\tB\x03\xe0A\x02R\tsubjectId\x12\x19\n" +
-	"\x05trace\x18\a \x01(\bB\x03\xe0A\x01R\x05trace\"n\n" +
+	"subject_id\x18\x05 \x01(\tB\x04\xe2A\x01\x02R\tsubjectId\x12\x1a\n" +
+	"\x05trace\x18\a \x01(\bB\x04\xe2A\x01\x01R\x05trace\"n\n" +
 	"\rCheckResponse\x12\x14\n" +
 	"\x05check\x18\x01 \x01(\bR\x05check\x12\x14\n" +
 	"\x05trace\x18\x02 \x03(\tR\x05trace\x121\n" +
@@ -1459,45 +1459,45 @@ const file_aserto_directory_reader_v3_reader_proto_rawDesc = "" +
 	"\adefault\x18\x01 \x01(\v2(.aserto.directory.reader.v3.CheckRequestR\adefault\x12@\n" +
 	"\x06checks\x18\x02 \x03(\v2(.aserto.directory.reader.v3.CheckRequestR\x06checks\"S\n" +
 	"\x0eChecksResponse\x12A\n" +
-	"\x06checks\x18\x01 \x03(\v2).aserto.directory.reader.v3.CheckResponseR\x06checks\"\xec\x01\n" +
-	"\x16CheckPermissionRequest\x12$\n" +
-	"\vobject_type\x18\x01 \x01(\tB\x03\xe0A\x02R\n" +
-	"objectType\x12 \n" +
-	"\tobject_id\x18\x02 \x01(\tB\x03\xe0A\x02R\bobjectId\x12#\n" +
+	"\x06checks\x18\x01 \x03(\v2).aserto.directory.reader.v3.CheckResponseR\x06checks\"\xf2\x01\n" +
+	"\x16CheckPermissionRequest\x12%\n" +
+	"\vobject_type\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\n" +
+	"objectType\x12!\n" +
+	"\tobject_id\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\bobjectId\x12$\n" +
 	"\n" +
-	"permission\x18\x03 \x01(\tB\x03\xe0A\x02R\n" +
-	"permission\x12&\n" +
-	"\fsubject_type\x18\x04 \x01(\tB\x03\xe0A\x02R\vsubjectType\x12\"\n" +
+	"permission\x18\x03 \x01(\tB\x04\xe2A\x01\x02R\n" +
+	"permission\x12'\n" +
+	"\fsubject_type\x18\x04 \x01(\tB\x04\xe2A\x01\x02R\vsubjectType\x12#\n" +
 	"\n" +
-	"subject_id\x18\x05 \x01(\tB\x03\xe0A\x02R\tsubjectId\x12\x19\n" +
-	"\x05trace\x18\a \x01(\bB\x03\xe0A\x01R\x05trace\"E\n" +
+	"subject_id\x18\x05 \x01(\tB\x04\xe2A\x01\x02R\tsubjectId\x12\x1a\n" +
+	"\x05trace\x18\a \x01(\bB\x04\xe2A\x01\x01R\x05trace\"E\n" +
 	"\x17CheckPermissionResponse\x12\x14\n" +
 	"\x05check\x18\x01 \x01(\bR\x05check\x12\x14\n" +
-	"\x05trace\x18\x02 \x03(\tR\x05trace\"\xe6\x01\n" +
-	"\x14CheckRelationRequest\x12$\n" +
-	"\vobject_type\x18\x01 \x01(\tB\x03\xe0A\x02R\n" +
-	"objectType\x12 \n" +
-	"\tobject_id\x18\x02 \x01(\tB\x03\xe0A\x02R\bobjectId\x12\x1f\n" +
-	"\brelation\x18\x03 \x01(\tB\x03\xe0A\x02R\brelation\x12&\n" +
-	"\fsubject_type\x18\x04 \x01(\tB\x03\xe0A\x02R\vsubjectType\x12\"\n" +
+	"\x05trace\x18\x02 \x03(\tR\x05trace\"\xec\x01\n" +
+	"\x14CheckRelationRequest\x12%\n" +
+	"\vobject_type\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\n" +
+	"objectType\x12!\n" +
+	"\tobject_id\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\bobjectId\x12 \n" +
+	"\brelation\x18\x03 \x01(\tB\x04\xe2A\x01\x02R\brelation\x12'\n" +
+	"\fsubject_type\x18\x04 \x01(\tB\x04\xe2A\x01\x02R\vsubjectType\x12#\n" +
 	"\n" +
-	"subject_id\x18\x05 \x01(\tB\x03\xe0A\x02R\tsubjectId\x12\x19\n" +
-	"\x05trace\x18\a \x01(\bB\x03\xe0A\x01R\x05trace\"C\n" +
+	"subject_id\x18\x05 \x01(\tB\x04\xe2A\x01\x02R\tsubjectId\x12\x1a\n" +
+	"\x05trace\x18\a \x01(\bB\x04\xe2A\x01\x01R\x05trace\"C\n" +
 	"\x15CheckRelationResponse\x12\x14\n" +
 	"\x05check\x18\x01 \x01(\bR\x05check\x12\x14\n" +
-	"\x05trace\x18\x02 \x03(\tR\x05trace\"\xd4\x02\n" +
-	"\x0fGetGraphRequest\x12$\n" +
-	"\vobject_type\x18\x03 \x01(\tB\x03\xe0A\x02R\n" +
-	"objectType\x12 \n" +
-	"\tobject_id\x18\x04 \x01(\tB\x03\xe0A\x01R\bobjectId\x12\x1f\n" +
-	"\brelation\x18\x05 \x01(\tB\x03\xe0A\x02R\brelation\x12&\n" +
-	"\fsubject_type\x18\x06 \x01(\tB\x03\xe0A\x02R\vsubjectType\x12\"\n" +
+	"\x05trace\x18\x02 \x03(\tR\x05trace\"\xdc\x02\n" +
+	"\x0fGetGraphRequest\x12%\n" +
+	"\vobject_type\x18\x03 \x01(\tB\x04\xe2A\x01\x02R\n" +
+	"objectType\x12!\n" +
+	"\tobject_id\x18\x04 \x01(\tB\x04\xe2A\x01\x01R\bobjectId\x12 \n" +
+	"\brelation\x18\x05 \x01(\tB\x04\xe2A\x01\x02R\brelation\x12'\n" +
+	"\fsubject_type\x18\x06 \x01(\tB\x04\xe2A\x01\x02R\vsubjectType\x12#\n" +
 	"\n" +
-	"subject_id\x18\a \x01(\tB\x03\xe0A\x01R\tsubjectId\x12.\n" +
-	"\x10subject_relation\x18\b \x01(\tB\x03\xe0A\x01R\x0fsubjectRelation\x12\x1d\n" +
-	"\aexplain\x18\t \x01(\bB\x03\xe0A\x01R\aexplain\x12\x19\n" +
+	"subject_id\x18\a \x01(\tB\x04\xe2A\x01\x01R\tsubjectId\x12/\n" +
+	"\x10subject_relation\x18\b \x01(\tB\x04\xe2A\x01\x01R\x0fsubjectRelation\x12\x1e\n" +
+	"\aexplain\x18\t \x01(\bB\x04\xe2A\x01\x01R\aexplain\x12\x1a\n" +
 	"\x05trace\x18\n" +
-	" \x01(\bB\x03\xe0A\x01R\x05traceJ\x04\b\x01\x10\x02J\x04\b\x02\x10\x03R\vanchor_typeR\tanchor_id\"\xb1\x01\n" +
+	" \x01(\bB\x04\xe2A\x01\x01R\x05traceJ\x04\b\x01\x10\x02J\x04\b\x02\x10\x03R\vanchor_typeR\tanchor_id\"\xb1\x01\n" +
 	"\x10GetGraphResponse\x12F\n" +
 	"\aresults\x18\x02 \x03(\v2,.aserto.directory.common.v3.ObjectIdentifierR\aresults\x129\n" +
 	"\vexplanation\x18\x03 \x01(\v2\x17.google.protobuf.StructR\vexplanation\x12\x14\n" +

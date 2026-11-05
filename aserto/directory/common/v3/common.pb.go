@@ -500,52 +500,52 @@ var File_aserto_directory_common_v3_common_proto protoreflect.FileDescriptor
 
 const file_aserto_directory_common_v3_common_proto_rawDesc = "" +
 	"\n" +
-	"'aserto/directory/common/v3/common.proto\x12\x1aaserto.directory.common.v3\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb9\x02\n" +
-	"\x06Object\x12\x17\n" +
-	"\x04type\x18\x01 \x01(\tB\x03\xe0A\x02R\x04type\x12\x13\n" +
-	"\x02id\x18\x02 \x01(\tB\x03\xe0A\x02R\x02id\x12(\n" +
-	"\fdisplay_name\x18\x03 \x01(\tB\x05\xe0A\x01\x18\x01R\vdisplayName\x12<\n" +
+	"'aserto/directory/common/v3/common.proto\x12\x1aaserto.directory.common.v3\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xc0\x02\n" +
+	"\x06Object\x12\x18\n" +
+	"\x04type\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\x04type\x12\x14\n" +
+	"\x02id\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\x02id\x12)\n" +
+	"\fdisplay_name\x18\x03 \x01(\tB\x06\xe2A\x01\x01\x18\x01R\vdisplayName\x12=\n" +
 	"\n" +
-	"properties\x18\x04 \x01(\v2\x17.google.protobuf.StructB\x03\xe0A\x01R\n" +
-	"properties\x12@\n" +
+	"properties\x18\x04 \x01(\v2\x17.google.protobuf.StructB\x04\xe2A\x01\x01R\n" +
+	"properties\x12A\n" +
 	"\n" +
-	"created_at\x18\x14 \x01(\v2\x1a.google.protobuf.TimestampB\x05\xe0A\x03\x18\x01R\tcreatedAt\x12>\n" +
+	"created_at\x18\x14 \x01(\v2\x1a.google.protobuf.TimestampB\x06\xe2A\x01\x03\x18\x01R\tcreatedAt\x12?\n" +
 	"\n" +
-	"updated_at\x18\x15 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\tupdatedAt\x12\x17\n" +
-	"\x04etag\x18\x17 \x01(\tB\x03\xe0A\x01R\x04etag\"\x8a\x03\n" +
-	"\bRelation\x12$\n" +
-	"\vobject_type\x18\x01 \x01(\tB\x03\xe0A\x02R\n" +
-	"objectType\x12 \n" +
-	"\tobject_id\x18\x02 \x01(\tB\x03\xe0A\x02R\bobjectId\x12\x1f\n" +
-	"\brelation\x18\x03 \x01(\tB\x03\xe0A\x02R\brelation\x12&\n" +
-	"\fsubject_type\x18\x04 \x01(\tB\x03\xe0A\x02R\vsubjectType\x12\"\n" +
+	"updated_at\x18\x15 \x01(\v2\x1a.google.protobuf.TimestampB\x04\xe2A\x01\x03R\tupdatedAt\x12\x18\n" +
+	"\x04etag\x18\x17 \x01(\tB\x04\xe2A\x01\x01R\x04etag\"\x93\x03\n" +
+	"\bRelation\x12%\n" +
+	"\vobject_type\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\n" +
+	"objectType\x12!\n" +
+	"\tobject_id\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\bobjectId\x12 \n" +
+	"\brelation\x18\x03 \x01(\tB\x04\xe2A\x01\x02R\brelation\x12'\n" +
+	"\fsubject_type\x18\x04 \x01(\tB\x04\xe2A\x01\x02R\vsubjectType\x12#\n" +
 	"\n" +
-	"subject_id\x18\x05 \x01(\tB\x03\xe0A\x02R\tsubjectId\x12.\n" +
-	"\x10subject_relation\x18\x06 \x01(\tB\x03\xe0A\x01R\x0fsubjectRelation\x12@\n" +
+	"subject_id\x18\x05 \x01(\tB\x04\xe2A\x01\x02R\tsubjectId\x12/\n" +
+	"\x10subject_relation\x18\x06 \x01(\tB\x04\xe2A\x01\x01R\x0fsubjectRelation\x12A\n" +
 	"\n" +
-	"created_at\x18\x14 \x01(\v2\x1a.google.protobuf.TimestampB\x05\xe0A\x03\x18\x01R\tcreatedAt\x12>\n" +
+	"created_at\x18\x14 \x01(\v2\x1a.google.protobuf.TimestampB\x06\xe2A\x01\x03\x18\x01R\tcreatedAt\x12?\n" +
 	"\n" +
-	"updated_at\x18\x15 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\tupdatedAt\x12\x17\n" +
-	"\x04etag\x18\x17 \x01(\tB\x03\xe0A\x01R\x04etag\"Z\n" +
-	"\x10ObjectIdentifier\x12$\n" +
-	"\vobject_type\x18\x01 \x01(\tB\x03\xe0A\x02R\n" +
-	"objectType\x12 \n" +
-	"\tobject_id\x18\x02 \x01(\tB\x03\xe0A\x02R\bobjectId\"\xf9\x01\n" +
-	"\x12RelationIdentifier\x12$\n" +
-	"\vobject_type\x18\x01 \x01(\tB\x03\xe0A\x02R\n" +
-	"objectType\x12 \n" +
-	"\tobject_id\x18\x02 \x01(\tB\x03\xe0A\x02R\bobjectId\x12\x1f\n" +
-	"\brelation\x18\x03 \x01(\tB\x03\xe0A\x02R\brelation\x12&\n" +
-	"\fsubject_type\x18\x04 \x01(\tB\x03\xe0A\x02R\vsubjectType\x12\"\n" +
+	"updated_at\x18\x15 \x01(\v2\x1a.google.protobuf.TimestampB\x04\xe2A\x01\x03R\tupdatedAt\x12\x18\n" +
+	"\x04etag\x18\x17 \x01(\tB\x04\xe2A\x01\x01R\x04etag\"\\\n" +
+	"\x10ObjectIdentifier\x12%\n" +
+	"\vobject_type\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\n" +
+	"objectType\x12!\n" +
+	"\tobject_id\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\bobjectId\"\xff\x01\n" +
+	"\x12RelationIdentifier\x12%\n" +
+	"\vobject_type\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\n" +
+	"objectType\x12!\n" +
+	"\tobject_id\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\bobjectId\x12 \n" +
+	"\brelation\x18\x03 \x01(\tB\x04\xe2A\x01\x02R\brelation\x12'\n" +
+	"\fsubject_type\x18\x04 \x01(\tB\x04\xe2A\x01\x02R\vsubjectType\x12#\n" +
 	"\n" +
-	"subject_id\x18\x05 \x01(\tB\x03\xe0A\x02R\tsubjectId\x12.\n" +
-	"\x10subject_relation\x18\x06 \x01(\tB\x03\xe0A\x01R\x0fsubjectRelation\"G\n" +
-	"\x11PaginationRequest\x12\x17\n" +
-	"\x04size\x18\x01 \x01(\x05B\x03\xe0A\x01R\x04size\x12\x19\n" +
-	"\x05token\x18\x02 \x01(\tB\x03\xe0A\x01R\x05token\"8\n" +
-	"\x12PaginationResponse\x12\"\n" +
+	"subject_id\x18\x05 \x01(\tB\x04\xe2A\x01\x02R\tsubjectId\x12/\n" +
+	"\x10subject_relation\x18\x06 \x01(\tB\x04\xe2A\x01\x01R\x0fsubjectRelation\"I\n" +
+	"\x11PaginationRequest\x12\x18\n" +
+	"\x04size\x18\x01 \x01(\x05B\x04\xe2A\x01\x01R\x04size\x12\x1a\n" +
+	"\x05token\x18\x02 \x01(\tB\x04\xe2A\x01\x01R\x05token\"9\n" +
+	"\x12PaginationResponse\x12#\n" +
 	"\n" +
-	"next_token\x18\x01 \x01(\tB\x03\xe0A\x03R\tnextTokenBFZDgithub.com/aserto-dev/go-directory/aserto/directory/common/v3;commonb\x06proto3"
+	"next_token\x18\x01 \x01(\tB\x04\xe2A\x01\x03R\tnextTokenBFZDgithub.com/aserto-dev/go-directory/aserto/directory/common/v3;commonb\x06proto3"
 
 var (
 	file_aserto_directory_common_v3_common_proto_rawDescOnce sync.Once

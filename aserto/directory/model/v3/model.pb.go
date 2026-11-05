@@ -495,11 +495,11 @@ const file_aserto_directory_model_v3_model_proto_rawDesc = "" +
 	"\x15DeleteManifestRequest\x12,\n" +
 	"\x05empty\x18\x01 \x01(\v2\x16.google.protobuf.EmptyR\x05empty\"H\n" +
 	"\x16DeleteManifestResponse\x12.\n" +
-	"\x06result\x18\x01 \x01(\v2\x16.google.protobuf.EmptyR\x06result\"c\n" +
-	"\bMetadata\x12>\n" +
+	"\x06result\x18\x01 \x01(\v2\x16.google.protobuf.EmptyR\x06result\"e\n" +
+	"\bMetadata\x12?\n" +
 	"\n" +
-	"updated_at\x18\x15 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\tupdatedAt\x12\x17\n" +
-	"\x04etag\x18\x17 \x01(\tB\x03\xe0A\x01R\x04etag\"\x1a\n" +
+	"updated_at\x18\x15 \x01(\v2\x1a.google.protobuf.TimestampB\x04\xe2A\x01\x03R\tupdatedAt\x12\x18\n" +
+	"\x04etag\x18\x17 \x01(\tB\x04\xe2A\x01\x01R\x04etag\"\x1a\n" +
 	"\x04Body\x12\x12\n" +
 	"\x04data\x18\x02 \x01(\fR\x04data2\x84\x04\n" +
 	"\x05Model\x12v\n" +
