@@ -4,9 +4,6 @@ name: ci
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-    inputs:
-      proto_ref:
-      proto_sha:
   push:
     branches:
       - main
@@ -17,22 +14,11 @@ on:
   pull_request:
 
 env:
-  BUF_REPO: "buf.build/aserto-dev/directory"
-  BUF_VERSION: 1.71.0
-  GO_VERSION: 1.26
-  GO_LANGCI_LINT_VERSION: 2.12.2
-  GO_TESTSUM_VERSION: 1.13.0
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      -
-        uses: actions/create-github-app-token@v2
-        id: app-token
-        with:
-          app-id: ${{ vars.CODEGEN_APP_ID }}
-          private-key: ${{ secrets.CODEGEN_APP_KEY }}
       -
         name: Checkout
         uses: actions/checkout@v7
@@ -41,47 +27,27 @@ jobs:
           token: ${{ steps.app-token.outputs.token }}
       -
         name: Setup Go
-        uses: actions/setup-go@v6
+        uses: actions/setup-go@v7
         with:
-          go-version: ${{ env.GO_VERSION }}
+          go-version-file: 'go.mod'
+          cache: true
       -
-        name: Setup buf
-        uses: bufbuild/buf-action@v1
-        with:
-          version: ${{ env.BUF_VERSION }}
-          setup_only: true
+        name: Setup Lint
+        run: |
+          make install-golangci-lint
       -
-        name: Test Setup
+        name: Setup Test
         run: |
           make install-gotestsum
       -
-        name: Delete generated code
-        run: |
-          rm -rf ./aserto
+      	name: Run go mod tidy
+	run: |
+	  make go-mod-tidy
       -
-        name: Get latest version tag from Buf Registry
-        id: buf-latest
-        run: |
-          echo "VERSION=$(buf registry module label list ${BUF_REPO} --format json | jq -r '.labels[0].name')" >> "$GITHUB_OUTPUT"
+      	name: Run Lint
+	run: |
+	  make lint
       -
-        name: Buf Generate
-        run: |
-          echo "${{ env.BUF_REPO }}:${{ steps.buf-latest.outputs.VERSION }}"
-          buf generate ${{ env.BUF_REPO }}:${{ steps.buf-latest.outputs.VERSION }}
-      -
-        name: Lint
-        uses: golangci/golangci-lint-action@v9
-        with:
-          version: v${{ env.GO_LANGCI_LINT_VERSION }}
-          args: --timeout=5m
-      -
-        name: Test
-        run: |
-          .ext/bin/gotestsum --format short-verbose -- -count=1 -parallel=1 -v -timeout=240s -coverprofile=cover.out -coverpkg=./... ./...
-      -
-        name: Commit changes
-        if: github.event_name == 'workflow_dispatch'
-        uses: EndBug/add-and-commit@v9
-        with:
-          default_author: github_actions
-          add: 'aserto'
+      	name: Run Test
+	run: |
+	  make test
