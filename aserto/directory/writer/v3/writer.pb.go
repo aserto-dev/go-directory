@@ -452,31 +452,31 @@ var File_aserto_directory_writer_v3_writer_proto protoreflect.FileDescriptor
 
 const file_aserto_directory_writer_v3_writer_proto_rawDesc = "" +
 	"\n" +
-	"'aserto/directory/writer/v3/writer.proto\x12\x1aaserto.directory.writer.v3\x1a'aserto/directory/common/v3/common.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"S\n" +
-	"\x10SetObjectRequest\x12?\n" +
-	"\x06object\x18\x01 \x01(\v2\".aserto.directory.common.v3.ObjectB\x03\xe0A\x02R\x06object\"O\n" +
+	"'aserto/directory/writer/v3/writer.proto\x12\x1aaserto.directory.writer.v3\x1a'aserto/directory/common/v3/common.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"T\n" +
+	"\x10SetObjectRequest\x12@\n" +
+	"\x06object\x18\x01 \x01(\v2\".aserto.directory.common.v3.ObjectB\x04\xe2A\x01\x02R\x06object\"O\n" +
 	"\x11SetObjectResponse\x12:\n" +
-	"\x06result\x18\x01 \x01(\v2\".aserto.directory.common.v3.ObjectR\x06result\"\x89\x01\n" +
-	"\x13DeleteObjectRequest\x12$\n" +
-	"\vobject_type\x18\x01 \x01(\tB\x03\xe0A\x02R\n" +
-	"objectType\x12 \n" +
-	"\tobject_id\x18\x02 \x01(\tB\x03\xe0A\x02R\bobjectId\x12*\n" +
-	"\x0ewith_relations\x18\x03 \x01(\bB\x03\xe0A\x01R\rwithRelations\"F\n" +
+	"\x06result\x18\x01 \x01(\v2\".aserto.directory.common.v3.ObjectR\x06result\"\x8c\x01\n" +
+	"\x13DeleteObjectRequest\x12%\n" +
+	"\vobject_type\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\n" +
+	"objectType\x12!\n" +
+	"\tobject_id\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\bobjectId\x12+\n" +
+	"\x0ewith_relations\x18\x03 \x01(\bB\x04\xe2A\x01\x01R\rwithRelations\"F\n" +
 	"\x14DeleteObjectResponse\x12.\n" +
-	"\x06result\x18\x01 \x01(\v2\x16.google.protobuf.EmptyR\x06result\"[\n" +
-	"\x12SetRelationRequest\x12E\n" +
-	"\brelation\x18\x01 \x01(\v2$.aserto.directory.common.v3.RelationB\x03\xe0A\x02R\brelation\"S\n" +
+	"\x06result\x18\x01 \x01(\v2\x16.google.protobuf.EmptyR\x06result\"\\\n" +
+	"\x12SetRelationRequest\x12F\n" +
+	"\brelation\x18\x01 \x01(\v2$.aserto.directory.common.v3.RelationB\x04\xe2A\x01\x02R\brelation\"S\n" +
 	"\x13SetRelationResponse\x12<\n" +
-	"\x06result\x18\x01 \x01(\v2$.aserto.directory.common.v3.RelationR\x06result\"\xfc\x01\n" +
-	"\x15DeleteRelationRequest\x12$\n" +
-	"\vobject_type\x18\x01 \x01(\tB\x03\xe0A\x02R\n" +
-	"objectType\x12 \n" +
-	"\tobject_id\x18\x02 \x01(\tB\x03\xe0A\x02R\bobjectId\x12\x1f\n" +
-	"\brelation\x18\x03 \x01(\tB\x03\xe0A\x02R\brelation\x12&\n" +
-	"\fsubject_type\x18\x04 \x01(\tB\x03\xe0A\x02R\vsubjectType\x12\"\n" +
+	"\x06result\x18\x01 \x01(\v2$.aserto.directory.common.v3.RelationR\x06result\"\x82\x02\n" +
+	"\x15DeleteRelationRequest\x12%\n" +
+	"\vobject_type\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\n" +
+	"objectType\x12!\n" +
+	"\tobject_id\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\bobjectId\x12 \n" +
+	"\brelation\x18\x03 \x01(\tB\x04\xe2A\x01\x02R\brelation\x12'\n" +
+	"\fsubject_type\x18\x04 \x01(\tB\x04\xe2A\x01\x02R\vsubjectType\x12#\n" +
 	"\n" +
-	"subject_id\x18\x05 \x01(\tB\x03\xe0A\x02R\tsubjectId\x12.\n" +
-	"\x10subject_relation\x18\x06 \x01(\tB\x03\xe0A\x01R\x0fsubjectRelation\"H\n" +
+	"subject_id\x18\x05 \x01(\tB\x04\xe2A\x01\x02R\tsubjectId\x12/\n" +
+	"\x10subject_relation\x18\x06 \x01(\tB\x04\xe2A\x01\x01R\x0fsubjectRelation\"H\n" +
 	"\x16DeleteRelationResponse\x12.\n" +
 	"\x06result\x18\x01 \x01(\v2\x16.google.protobuf.EmptyR\x06result2\xa8\b\n" +
 	"\x06Writer\x12\xf0\x01\n" +
