@@ -1,7 +1,5 @@
 github.com/aserto-dev/errors v0.34.2-0.20261006083714-760eef8e0b6c h1:N4+jXftVpH73j1H67si4hkq6XvSskl7NOT/02nld1XQ=
 github.com/aserto-dev/errors v0.34.2-0.20261006083714-760eef8e0b6c/go.mod h1:439P8EwyQ14DVSdKmIvyQo6hTWEDqGX/snNcAF78CPE=
-github.com/go-http-utils/headers v0.0.0-20181008091004-fed159eddc2a h1:v6zMvHuY9yue4+QkG/HQ/W67wvtQmWJ4SDo9aK/GIno=
-github.com/go-http-utils/headers v0.0.0-20181008091004-fed159eddc2a/go.mod h1:I79BieaU4fxrw4LMXby6q5OS9XnoR9UIKLOzDFjUmuw=
 github.com/golang/protobuf v1.5.4 h1:i7eJL8qZTpSEXOPTxNKhASYpMn+8e5Q6AdndVa1dWek=
 github.com/golang/protobuf v1.5.4/go.mod h1:lnTiLA8Wa4RWRcIUkrtSVa5nRhsEGBg48fD6rSs7xps=
 github.com/google/go-cmp v0.7.0 h1:wk8382ETsv4JYUZwIsn6YpYiWiBsYLSJiTsyBybVuN8=

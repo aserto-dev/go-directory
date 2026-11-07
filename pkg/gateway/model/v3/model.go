@@ -8,7 +8,6 @@ import (
 	dms3 "github.com/aserto-dev/go-directory/aserto/directory/model/v3"
 	"github.com/aserto-dev/go-directory/pkg/manifest"
 	"github.com/aserto-dev/go-directory/pkg/pb"
-	"github.com/go-http-utils/headers"
 	"github.com/grpc-ecosystem/go-grpc-middleware/v2/metadata"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/pkg/errors"
@@ -24,6 +23,12 @@ type metadataOption bool
 const (
 	WithBody     metadataOption = false
 	MetadataOnly metadataOption = true
+)
+
+const (
+	headersETag        string = "ETag"
+	headersContentType string = "Content-Type"
+	headersIfNoneMatch string = "If-None-Match"
 )
 
 func RegisterModelStreamHandlersFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) error {
@@ -127,7 +132,7 @@ func getManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient, mdOpt me
 
 			if md := msg.GetMetadata(); md != nil && md.GetEtag() != "" {
 				w.Header().Set(manifest.HeaderAsertoUpdatedAt, md.GetUpdatedAt().AsTime().Format(http.TimeFormat))
-				w.Header().Set(headers.ETag, md.GetEtag())
+				w.Header().Set(headersETag, md.GetEtag())
 
 				hasManifest = true
 			}
@@ -135,7 +140,7 @@ func getManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient, mdOpt me
 			if body := msg.GetBody(); body != nil {
 				hasBody = true
 
-				w.Header().Set(headers.ContentType, "application/yaml")
+				w.Header().Set(headersContentType, "application/yaml")
 
 				if _, err := w.Write(body.GetData()); err != nil {
 					runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -147,7 +152,7 @@ func getManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient, mdOpt me
 			if model := msg.GetModel(); model != nil && !hasBody {
 				hasModel = true
 
-				w.Header().Set(headers.ContentType, "application/json")
+				w.Header().Set(headersContentType, "application/json")
 
 				if err := pb.ProtoToBuf(w, model); err != nil {
 					runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -156,7 +161,7 @@ func getManifestHandler(mux *runtime.ServeMux, client dms3.ModelClient, mdOpt me
 			}
 		}
 
-		if hasManifest && !hasBody && !hasModel && req.Header.Get(headers.IfNoneMatch) != "" {
+		if hasManifest && !hasBody && !hasModel && req.Header.Get(headersIfNoneMatch) != "" {
 			w.WriteHeader(http.StatusNotModified)
 		}
 	}
