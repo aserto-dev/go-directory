@@ -269,15 +269,19 @@ ${TMP_OAI_DIR}:
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
 	@mkdir -p ${TMP_OAI_DIR}
 
+MODULES := aserto openapi pkg
+
 .PHONY: tag-release
 tag-release:
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
-	@echo -e "$(WARN_COLOR)release tag: ${NEXT_TAG}$(NO_COLOR)"
-	@git tag ${NEXT_TAG}
-	@git push origin ${NEXT_TAG}
-	@git tag aserto/${NEXT_TAG}
-	@git push origin aserto/${NEXT_TAG}
-	@git tag openapi/${NEXT_TAG}
-	@git push origin openapi/${NEXT_TAG}
-	@git tag pkg/${NEXT_TAG}
-	@git push origin pkg/${NEXT_TAG}
+	@if [ -z "$(TAG)" ]; then \
+		echo "Error: TAG is not set. Run with: make tag-release TAG=v0.1.23"; \
+		exit 1; \
+	fi
+	git tag -f $(TAG)
+	@for mod in $(MODULES); do \
+		echo "tag $$mod/$(TAG)..."; \
+		git tag -f $$mod/$(TAG); \
+	done
+	@echo "push tags to origin..."
+	git push origin "*/$(TAG)" --force
