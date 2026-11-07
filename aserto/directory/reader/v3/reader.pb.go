@@ -8,7 +8,7 @@ package reader
 
 import (
 	v3 "github.com/aserto-dev/go-directory/aserto/directory/common/v3"
-	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
+	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv3/options"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -28,11 +28,11 @@ const (
 type GetObjectRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// object type identifier
-	ObjectType string `protobuf:"bytes,1,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"`
+	ObjectType string `protobuf:"bytes,1,opt,name=object_type,proto3" json:"object_type,omitempty"`
 	// object instance identifier
-	ObjectId string `protobuf:"bytes,2,opt,name=object_id,json=objectId,proto3" json:"object_id,omitempty"`
+	ObjectId string `protobuf:"bytes,2,opt,name=object_id,proto3" json:"object_id,omitempty"`
 	// materialize the object relations objects (optional)
-	WithRelations bool `protobuf:"varint,3,opt,name=with_relations,json=withRelations,proto3" json:"with_relations,omitempty"`
+	WithRelations bool `protobuf:"varint,3,opt,name=with_relations,proto3" json:"with_relations,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -235,7 +235,7 @@ func (x *GetObjectManyResponse) GetResults() []*v3.Object {
 type GetObjectsRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// object type identifier (optional)
-	ObjectType string `protobuf:"bytes,1,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"`
+	ObjectType string `protobuf:"bytes,1,opt,name=object_type,proto3" json:"object_type,omitempty"`
 	// pagination request (optional)
 	Page          *v3.PaginationRequest `protobuf:"bytes,9,opt,name=page,proto3" json:"page,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -343,19 +343,19 @@ func (x *GetObjectsResponse) GetPage() *v3.PaginationResponse {
 type GetRelationRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// object type identifier
-	ObjectType string `protobuf:"bytes,1,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"`
+	ObjectType string `protobuf:"bytes,1,opt,name=object_type,proto3" json:"object_type,omitempty"`
 	// object instance identifier
-	ObjectId string `protobuf:"bytes,2,opt,name=object_id,json=objectId,proto3" json:"object_id,omitempty"`
+	ObjectId string `protobuf:"bytes,2,opt,name=object_id,proto3" json:"object_id,omitempty"`
 	// relation name
 	Relation string `protobuf:"bytes,3,opt,name=relation,proto3" json:"relation,omitempty"`
 	// subject type identifier
-	SubjectType string `protobuf:"bytes,4,opt,name=subject_type,json=subjectType,proto3" json:"subject_type,omitempty"`
+	SubjectType string `protobuf:"bytes,4,opt,name=subject_type,proto3" json:"subject_type,omitempty"`
 	// subject instance identifier
-	SubjectId string `protobuf:"bytes,5,opt,name=subject_id,json=subjectId,proto3" json:"subject_id,omitempty"`
+	SubjectId string `protobuf:"bytes,5,opt,name=subject_id,proto3" json:"subject_id,omitempty"`
 	// subject relation name (optional)
-	SubjectRelation string `protobuf:"bytes,6,opt,name=subject_relation,json=subjectRelation,proto3" json:"subject_relation,omitempty"`
+	SubjectRelation string `protobuf:"bytes,6,opt,name=subject_relation,proto3" json:"subject_relation,omitempty"`
 	// materialize relation objects (optional)
-	WithObjects   bool `protobuf:"varint,7,opt,name=with_objects,json=withObjects,proto3" json:"with_objects,omitempty"`
+	WithObjects   bool `protobuf:"varint,7,opt,name=with_objects,proto3" json:"with_objects,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -496,21 +496,21 @@ func (x *GetRelationResponse) GetObjects() map[string]*v3.Object {
 type GetRelationsRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// object type identifier (optional)
-	ObjectType string `protobuf:"bytes,1,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"`
+	ObjectType string `protobuf:"bytes,1,opt,name=object_type,proto3" json:"object_type,omitempty"`
 	// object instance identifier (optional)
-	ObjectId string `protobuf:"bytes,2,opt,name=object_id,json=objectId,proto3" json:"object_id,omitempty"`
+	ObjectId string `protobuf:"bytes,2,opt,name=object_id,proto3" json:"object_id,omitempty"`
 	// relation name (optional)
 	Relation string `protobuf:"bytes,3,opt,name=relation,proto3" json:"relation,omitempty"`
 	// subject type identifier (optional)
-	SubjectType string `protobuf:"bytes,4,opt,name=subject_type,json=subjectType,proto3" json:"subject_type,omitempty"`
+	SubjectType string `protobuf:"bytes,4,opt,name=subject_type,proto3" json:"subject_type,omitempty"`
 	// subject instance identifier (optional)
-	SubjectId string `protobuf:"bytes,5,opt,name=subject_id,json=subjectId,proto3" json:"subject_id,omitempty"`
+	SubjectId string `protobuf:"bytes,5,opt,name=subject_id,proto3" json:"subject_id,omitempty"`
 	// subject relation name (optional)
-	SubjectRelation string `protobuf:"bytes,6,opt,name=subject_relation,json=subjectRelation,proto3" json:"subject_relation,omitempty"`
+	SubjectRelation string `protobuf:"bytes,6,opt,name=subject_relation,proto3" json:"subject_relation,omitempty"`
 	// materialize relation objects (optional)
-	WithObjects bool `protobuf:"varint,7,opt,name=with_objects,json=withObjects,proto3" json:"with_objects,omitempty"`
+	WithObjects bool `protobuf:"varint,7,opt,name=with_objects,proto3" json:"with_objects,omitempty"`
 	// only return relations that do not have a subject relation  (optional)
-	WithEmptySubjectRelation bool `protobuf:"varint,8,opt,name=with_empty_subject_relation,json=withEmptySubjectRelation,proto3" json:"with_empty_subject_relation,omitempty"`
+	WithEmptySubjectRelation bool `protobuf:"varint,8,opt,name=with_empty_subject_relation,proto3" json:"with_empty_subject_relation,omitempty"`
 	// pagination request (optional)
 	Page          *v3.PaginationRequest `protobuf:"bytes,9,opt,name=page,proto3" json:"page,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -676,15 +676,15 @@ func (x *GetRelationsResponse) GetPage() *v3.PaginationResponse {
 type CheckRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// object type identifier
-	ObjectType string `protobuf:"bytes,1,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"`
+	ObjectType string `protobuf:"bytes,1,opt,name=object_type,proto3" json:"object_type,omitempty"`
 	// object instance identifier
-	ObjectId string `protobuf:"bytes,2,opt,name=object_id,json=objectId,proto3" json:"object_id,omitempty"`
+	ObjectId string `protobuf:"bytes,2,opt,name=object_id,proto3" json:"object_id,omitempty"`
 	// relation name
 	Relation string `protobuf:"bytes,3,opt,name=relation,proto3" json:"relation,omitempty"`
 	// subject type identifier
-	SubjectType string `protobuf:"bytes,4,opt,name=subject_type,json=subjectType,proto3" json:"subject_type,omitempty"`
+	SubjectType string `protobuf:"bytes,4,opt,name=subject_type,proto3" json:"subject_type,omitempty"`
 	// subject instance identifier
-	SubjectId string `protobuf:"bytes,5,opt,name=subject_id,json=subjectId,proto3" json:"subject_id,omitempty"`
+	SubjectId string `protobuf:"bytes,5,opt,name=subject_id,proto3" json:"subject_id,omitempty"`
 	// collect trace information (optional)
 	Trace         bool `protobuf:"varint,7,opt,name=trace,proto3" json:"trace,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -827,9 +827,11 @@ func (x *CheckResponse) GetContext() *structpb.Struct {
 }
 
 type ChecksRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Default       *CheckRequest          `protobuf:"bytes,1,opt,name=default,proto3" json:"default,omitempty"`
-	Checks        []*CheckRequest        `protobuf:"bytes,2,rep,name=checks,proto3" json:"checks,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// default check parameter values
+	Default *CheckRequest `protobuf:"bytes,1,opt,name=default,proto3" json:"default,omitempty"`
+	// collection of check requests
+	Checks        []*CheckRequest `protobuf:"bytes,2,rep,name=checks,proto3" json:"checks,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -879,8 +881,9 @@ func (x *ChecksRequest) GetChecks() []*CheckRequest {
 }
 
 type ChecksResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Checks        []*CheckResponse       `protobuf:"bytes,1,rep,name=checks,proto3" json:"checks,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// checks results array
+	Checks        []*CheckResponse `protobuf:"bytes,1,rep,name=checks,proto3" json:"checks,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -925,15 +928,15 @@ func (x *ChecksResponse) GetChecks() []*CheckResponse {
 type CheckPermissionRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// object type identifier
-	ObjectType string `protobuf:"bytes,1,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"`
+	ObjectType string `protobuf:"bytes,1,opt,name=object_type,proto3" json:"object_type,omitempty"`
 	// object instance identifier
-	ObjectId string `protobuf:"bytes,2,opt,name=object_id,json=objectId,proto3" json:"object_id,omitempty"`
+	ObjectId string `protobuf:"bytes,2,opt,name=object_id,proto3" json:"object_id,omitempty"`
 	// permission name
 	Permission string `protobuf:"bytes,3,opt,name=permission,proto3" json:"permission,omitempty"`
 	// subject type identifier
-	SubjectType string `protobuf:"bytes,4,opt,name=subject_type,json=subjectType,proto3" json:"subject_type,omitempty"`
+	SubjectType string `protobuf:"bytes,4,opt,name=subject_type,proto3" json:"subject_type,omitempty"`
 	// subject instance identifier
-	SubjectId string `protobuf:"bytes,5,opt,name=subject_id,json=subjectId,proto3" json:"subject_id,omitempty"`
+	SubjectId string `protobuf:"bytes,5,opt,name=subject_id,proto3" json:"subject_id,omitempty"`
 	// collect trace information (optional)
 	Trace         bool `protobuf:"varint,7,opt,name=trace,proto3" json:"trace,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -1069,15 +1072,15 @@ func (x *CheckPermissionResponse) GetTrace() []string {
 type CheckRelationRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// object type identifier
-	ObjectType string `protobuf:"bytes,1,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"`
+	ObjectType string `protobuf:"bytes,1,opt,name=object_type,proto3" json:"object_type,omitempty"`
 	// object instance identifier
-	ObjectId string `protobuf:"bytes,2,opt,name=object_id,json=objectId,proto3" json:"object_id,omitempty"`
+	ObjectId string `protobuf:"bytes,2,opt,name=object_id,proto3" json:"object_id,omitempty"`
 	// relation name
 	Relation string `protobuf:"bytes,3,opt,name=relation,proto3" json:"relation,omitempty"`
 	// subject type identifier
-	SubjectType string `protobuf:"bytes,4,opt,name=subject_type,json=subjectType,proto3" json:"subject_type,omitempty"`
+	SubjectType string `protobuf:"bytes,4,opt,name=subject_type,proto3" json:"subject_type,omitempty"`
 	// subject instance identifier
-	SubjectId string `protobuf:"bytes,5,opt,name=subject_id,json=subjectId,proto3" json:"subject_id,omitempty"`
+	SubjectId string `protobuf:"bytes,5,opt,name=subject_id,proto3" json:"subject_id,omitempty"`
 	// collect trace information (optional)
 	Trace         bool `protobuf:"varint,7,opt,name=trace,proto3" json:"trace,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -1213,17 +1216,17 @@ func (x *CheckRelationResponse) GetTrace() []string {
 type GetGraphRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// object type identifier
-	ObjectType string `protobuf:"bytes,3,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"`
+	ObjectType string `protobuf:"bytes,3,opt,name=object_type,proto3" json:"object_type,omitempty"`
 	// object instance identifier (optional)
-	ObjectId string `protobuf:"bytes,4,opt,name=object_id,json=objectId,proto3" json:"object_id,omitempty"`
+	ObjectId string `protobuf:"bytes,4,opt,name=object_id,proto3" json:"object_id,omitempty"`
 	// relation name
 	Relation string `protobuf:"bytes,5,opt,name=relation,proto3" json:"relation,omitempty"`
 	// subject type identifier
-	SubjectType string `protobuf:"bytes,6,opt,name=subject_type,json=subjectType,proto3" json:"subject_type,omitempty"`
+	SubjectType string `protobuf:"bytes,6,opt,name=subject_type,proto3" json:"subject_type,omitempty"`
 	// subject instance identifier (optional)
-	SubjectId string `protobuf:"bytes,7,opt,name=subject_id,json=subjectId,proto3" json:"subject_id,omitempty"`
+	SubjectId string `protobuf:"bytes,7,opt,name=subject_id,proto3" json:"subject_id,omitempty"`
 	// subject relation name (optional)
-	SubjectRelation string `protobuf:"bytes,8,opt,name=subject_relation,json=subjectRelation,proto3" json:"subject_relation,omitempty"`
+	SubjectRelation string `protobuf:"bytes,8,opt,name=subject_relation,proto3" json:"subject_relation,omitempty"`
 	// return graph paths for each result (optional)
 	Explain bool `protobuf:"varint,9,opt,name=explain,proto3" json:"explain,omitempty"`
 	// collect trace information (optional)
@@ -1385,166 +1388,182 @@ var File_aserto_directory_reader_v3_reader_proto protoreflect.FileDescriptor
 
 const file_aserto_directory_reader_v3_reader_proto_rawDesc = "" +
 	"\n" +
-	"'aserto/directory/reader/v3/reader.proto\x12\x1aaserto.directory.reader.v3\x1a'aserto/directory/common/v3/common.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\x95\x01\n" +
-	"\x10GetObjectRequest\x12%\n" +
-	"\vobject_type\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\n" +
-	"objectType\x12!\n" +
-	"\tobject_id\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\bobjectId\x12+\n" +
-	"\x0ewith_relations\x18\x03 \x01(\bB\x04\xe2A\x01\x01R\rwithRelationsJ\x04\b\t\x10\n" +
-	"R\x04page\"\x9f\x01\n" +
-	"\x11GetObjectResponse\x12:\n" +
-	"\x06result\x18\x01 \x01(\v2\".aserto.directory.common.v3.ObjectR\x06result\x12B\n" +
-	"\trelations\x18\x04 \x03(\v2$.aserto.directory.common.v3.RelationR\trelationsJ\x04\b\t\x10\n" +
-	"R\x04page\"`\n" +
-	"\x14GetObjectManyRequest\x12H\n" +
-	"\x05param\x18\x01 \x03(\v2,.aserto.directory.common.v3.ObjectIdentifierB\x04\xe2A\x01\x02R\x05param\"U\n" +
-	"\x15GetObjectManyResponse\x12<\n" +
-	"\aresults\x18\x01 \x03(\v2\".aserto.directory.common.v3.ObjectR\aresults\"\x83\x01\n" +
-	"\x11GetObjectsRequest\x12%\n" +
-	"\vobject_type\x18\x01 \x01(\tB\x04\xe2A\x01\x01R\n" +
-	"objectType\x12G\n" +
-	"\x04page\x18\t \x01(\v2-.aserto.directory.common.v3.PaginationRequestB\x04\xe2A\x01\x01R\x04page\"\x96\x01\n" +
-	"\x12GetObjectsResponse\x12<\n" +
-	"\aresults\x18\x01 \x03(\v2\".aserto.directory.common.v3.ObjectR\aresults\x12B\n" +
-	"\x04page\x18\t \x01(\v2..aserto.directory.common.v3.PaginationResponseR\x04page\"\xa8\x02\n" +
-	"\x12GetRelationRequest\x12%\n" +
-	"\vobject_type\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\n" +
-	"objectType\x12!\n" +
-	"\tobject_id\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\bobjectId\x12 \n" +
-	"\brelation\x18\x03 \x01(\tB\x04\xe2A\x01\x02R\brelation\x12'\n" +
-	"\fsubject_type\x18\x04 \x01(\tB\x04\xe2A\x01\x02R\vsubjectType\x12#\n" +
+	"'aserto/directory/reader/v3/reader.proto\x12\x1aaserto.directory.reader.v3\x1a'aserto/directory/common/v3/common.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a.protoc-gen-openapiv3/options/annotations.proto\"\x9e\x01\n" +
+	"\x10GetObjectRequest\x12(\n" +
+	"\vobject_type\x18\x01 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\vobject_type\x12$\n" +
+	"\tobject_id\x18\x02 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\tobject_id\x12.\n" +
+	"\x0ewith_relations\x18\x03 \x01(\bB\x06\xe2A\x01\x01\x18\x00R\x0ewith_relationsJ\x04\b\t\x10\n" +
+	"R\x04page\"\xaf\x01\n" +
+	"\x11GetObjectResponse\x12B\n" +
+	"\x06result\x18\x01 \x01(\v2\".aserto.directory.common.v3.ObjectB\x06\xe2A\x01\x03\x18\x00R\x06result\x12J\n" +
+	"\trelations\x18\x04 \x03(\v2$.aserto.directory.common.v3.RelationB\x06\xe2A\x01\x03\x18\x00R\trelationsJ\x04\b\t\x10\n" +
+	"R\x04page\"b\n" +
+	"\x14GetObjectManyRequest\x12J\n" +
+	"\x05param\x18\x01 \x03(\v2,.aserto.directory.common.v3.ObjectIdentifierB\x06\xe2A\x01\x02\x18\x00R\x05param\"]\n" +
+	"\x15GetObjectManyResponse\x12D\n" +
+	"\aresults\x18\x01 \x03(\v2\".aserto.directory.common.v3.ObjectB\x06\xe2A\x01\x03\x18\x00R\aresults\"\x88\x01\n" +
+	"\x11GetObjectsRequest\x12(\n" +
+	"\vobject_type\x18\x01 \x01(\tB\x06\xe2A\x01\x01\x18\x00R\vobject_type\x12I\n" +
+	"\x04page\x18\t \x01(\v2-.aserto.directory.common.v3.PaginationRequestB\x06\xe2A\x01\x01\x18\x00R\x04page\"\xa6\x01\n" +
+	"\x12GetObjectsResponse\x12D\n" +
+	"\aresults\x18\x01 \x03(\v2\".aserto.directory.common.v3.ObjectB\x06\xe2A\x01\x03\x18\x00R\aresults\x12J\n" +
+	"\x04page\x18\t \x01(\v2..aserto.directory.common.v3.PaginationResponseB\x06\xe2A\x01\x03\x18\x00R\x04page\"\xbc\x02\n" +
+	"\x12GetRelationRequest\x12(\n" +
+	"\vobject_type\x18\x01 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\vobject_type\x12$\n" +
+	"\tobject_id\x18\x02 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\tobject_id\x12\"\n" +
+	"\brelation\x18\x03 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\brelation\x12*\n" +
+	"\fsubject_type\x18\x04 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\fsubject_type\x12&\n" +
 	"\n" +
-	"subject_id\x18\x05 \x01(\tB\x04\xe2A\x01\x02R\tsubjectId\x12/\n" +
-	"\x10subject_relation\x18\x06 \x01(\tB\x04\xe2A\x01\x01R\x0fsubjectRelation\x12'\n" +
-	"\fwith_objects\x18\a \x01(\bB\x04\xe2A\x01\x01R\vwithObjects\"\x8b\x02\n" +
-	"\x13GetRelationResponse\x12<\n" +
-	"\x06result\x18\x01 \x01(\v2$.aserto.directory.common.v3.RelationR\x06result\x12V\n" +
-	"\aobjects\x18\x02 \x03(\v2<.aserto.directory.reader.v3.GetRelationResponse.ObjectsEntryR\aobjects\x1a^\n" +
+	"subject_id\x18\x05 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\n" +
+	"subject_id\x122\n" +
+	"\x10subject_relation\x18\x06 \x01(\tB\x06\xe2A\x01\x01\x18\x00R\x10subject_relation\x12*\n" +
+	"\fwith_objects\x18\a \x01(\bB\x06\xe2A\x01\x01\x18\x00R\fwith_objects\"\x9b\x02\n" +
+	"\x13GetRelationResponse\x12D\n" +
+	"\x06result\x18\x01 \x01(\v2$.aserto.directory.common.v3.RelationB\x06\xe2A\x01\x03\x18\x00R\x06result\x12^\n" +
+	"\aobjects\x18\x02 \x03(\v2<.aserto.directory.reader.v3.GetRelationResponse.ObjectsEntryB\x06\xe2A\x01\x03\x18\x00R\aobjects\x1a^\n" +
 	"\fObjectsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x128\n" +
-	"\x05value\x18\x02 \x01(\v2\".aserto.directory.common.v3.ObjectR\x05value:\x028\x01\"\xb7\x03\n" +
-	"\x13GetRelationsRequest\x12%\n" +
-	"\vobject_type\x18\x01 \x01(\tB\x04\xe2A\x01\x01R\n" +
-	"objectType\x12!\n" +
-	"\tobject_id\x18\x02 \x01(\tB\x04\xe2A\x01\x01R\bobjectId\x12 \n" +
-	"\brelation\x18\x03 \x01(\tB\x04\xe2A\x01\x01R\brelation\x12'\n" +
-	"\fsubject_type\x18\x04 \x01(\tB\x04\xe2A\x01\x01R\vsubjectType\x12#\n" +
+	"\x05value\x18\x02 \x01(\v2\".aserto.directory.common.v3.ObjectR\x05value:\x028\x01\"\xd2\x03\n" +
+	"\x13GetRelationsRequest\x12(\n" +
+	"\vobject_type\x18\x01 \x01(\tB\x06\xe2A\x01\x01\x18\x00R\vobject_type\x12$\n" +
+	"\tobject_id\x18\x02 \x01(\tB\x06\xe2A\x01\x01\x18\x00R\tobject_id\x12\"\n" +
+	"\brelation\x18\x03 \x01(\tB\x06\xe2A\x01\x01\x18\x00R\brelation\x12*\n" +
+	"\fsubject_type\x18\x04 \x01(\tB\x06\xe2A\x01\x01\x18\x00R\fsubject_type\x12&\n" +
 	"\n" +
-	"subject_id\x18\x05 \x01(\tB\x04\xe2A\x01\x01R\tsubjectId\x12/\n" +
-	"\x10subject_relation\x18\x06 \x01(\tB\x04\xe2A\x01\x01R\x0fsubjectRelation\x12'\n" +
-	"\fwith_objects\x18\a \x01(\bB\x04\xe2A\x01\x01R\vwithObjects\x12C\n" +
-	"\x1bwith_empty_subject_relation\x18\b \x01(\bB\x04\xe2A\x01\x01R\x18withEmptySubjectRelation\x12G\n" +
-	"\x04page\x18\t \x01(\v2-.aserto.directory.common.v3.PaginationRequestB\x04\xe2A\x01\x01R\x04page\"\xd3\x02\n" +
-	"\x14GetRelationsResponse\x12>\n" +
-	"\aresults\x18\x01 \x03(\v2$.aserto.directory.common.v3.RelationR\aresults\x12W\n" +
-	"\aobjects\x18\x02 \x03(\v2=.aserto.directory.reader.v3.GetRelationsResponse.ObjectsEntryR\aobjects\x12B\n" +
-	"\x04page\x18\t \x01(\v2..aserto.directory.common.v3.PaginationResponseR\x04page\x1a^\n" +
+	"subject_id\x18\x05 \x01(\tB\x06\xe2A\x01\x01\x18\x00R\n" +
+	"subject_id\x122\n" +
+	"\x10subject_relation\x18\x06 \x01(\tB\x06\xe2A\x01\x01\x18\x00R\x10subject_relation\x12*\n" +
+	"\fwith_objects\x18\a \x01(\bB\x06\xe2A\x01\x01\x18\x00R\fwith_objects\x12H\n" +
+	"\x1bwith_empty_subject_relation\x18\b \x01(\bB\x06\xe2A\x01\x01\x18\x00R\x1bwith_empty_subject_relation\x12I\n" +
+	"\x04page\x18\t \x01(\v2-.aserto.directory.common.v3.PaginationRequestB\x06\xe2A\x01\x01\x18\x00R\x04page\"\xeb\x02\n" +
+	"\x14GetRelationsResponse\x12F\n" +
+	"\aresults\x18\x01 \x03(\v2$.aserto.directory.common.v3.RelationB\x06\xe2A\x01\x03\x18\x00R\aresults\x12_\n" +
+	"\aobjects\x18\x02 \x03(\v2=.aserto.directory.reader.v3.GetRelationsResponse.ObjectsEntryB\x06\xe2A\x01\x03\x18\x00R\aobjects\x12J\n" +
+	"\x04page\x18\t \x01(\v2..aserto.directory.common.v3.PaginationResponseB\x06\xe2A\x01\x03\x18\x00R\x04page\x1a^\n" +
 	"\fObjectsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x128\n" +
-	"\x05value\x18\x02 \x01(\v2\".aserto.directory.common.v3.ObjectR\x05value:\x028\x01\"\xe4\x01\n" +
-	"\fCheckRequest\x12%\n" +
-	"\vobject_type\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\n" +
-	"objectType\x12!\n" +
-	"\tobject_id\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\bobjectId\x12 \n" +
-	"\brelation\x18\x03 \x01(\tB\x04\xe2A\x01\x02R\brelation\x12'\n" +
-	"\fsubject_type\x18\x04 \x01(\tB\x04\xe2A\x01\x02R\vsubjectType\x12#\n" +
+	"\x05value\x18\x02 \x01(\v2\".aserto.directory.common.v3.ObjectR\x05value:\x028\x01\"\xf4\x01\n" +
+	"\fCheckRequest\x12(\n" +
+	"\vobject_type\x18\x01 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\vobject_type\x12$\n" +
+	"\tobject_id\x18\x02 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\tobject_id\x12\"\n" +
+	"\brelation\x18\x03 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\brelation\x12*\n" +
+	"\fsubject_type\x18\x04 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\fsubject_type\x12&\n" +
 	"\n" +
-	"subject_id\x18\x05 \x01(\tB\x04\xe2A\x01\x02R\tsubjectId\x12\x1a\n" +
-	"\x05trace\x18\a \x01(\bB\x04\xe2A\x01\x01R\x05trace\"n\n" +
-	"\rCheckResponse\x12\x14\n" +
-	"\x05check\x18\x01 \x01(\bR\x05check\x12\x14\n" +
-	"\x05trace\x18\x02 \x03(\tR\x05trace\x121\n" +
-	"\acontext\x18\x03 \x01(\v2\x17.google.protobuf.StructR\acontext\"\x95\x01\n" +
-	"\rChecksRequest\x12B\n" +
-	"\adefault\x18\x01 \x01(\v2(.aserto.directory.reader.v3.CheckRequestR\adefault\x12@\n" +
-	"\x06checks\x18\x02 \x03(\v2(.aserto.directory.reader.v3.CheckRequestR\x06checks\"S\n" +
-	"\x0eChecksResponse\x12A\n" +
-	"\x06checks\x18\x01 \x03(\v2).aserto.directory.reader.v3.CheckResponseR\x06checks\"\xf2\x01\n" +
-	"\x16CheckPermissionRequest\x12%\n" +
-	"\vobject_type\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\n" +
-	"objectType\x12!\n" +
-	"\tobject_id\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\bobjectId\x12$\n" +
+	"subject_id\x18\x05 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\n" +
+	"subject_id\x12\x1c\n" +
+	"\x05trace\x18\a \x01(\bB\x06\xe2A\x01\x01\x18\x00R\x05trace\"\x86\x01\n" +
+	"\rCheckResponse\x12\x1c\n" +
+	"\x05check\x18\x01 \x01(\bB\x06\xe2A\x01\x03\x18\x00R\x05check\x12\x1c\n" +
+	"\x05trace\x18\x02 \x03(\tB\x06\xe2A\x01\x03\x18\x00R\x05trace\x129\n" +
+	"\acontext\x18\x03 \x01(\v2\x17.google.protobuf.StructB\x06\xe2A\x01\x03\x18\x00R\acontext\"\xa5\x01\n" +
+	"\rChecksRequest\x12J\n" +
+	"\adefault\x18\x01 \x01(\v2(.aserto.directory.reader.v3.CheckRequestB\x06\xe2A\x01\x01\x18\x00R\adefault\x12H\n" +
+	"\x06checks\x18\x02 \x03(\v2(.aserto.directory.reader.v3.CheckRequestB\x06\xe2A\x01\x01\x18\x00R\x06checks\"[\n" +
+	"\x0eChecksResponse\x12I\n" +
+	"\x06checks\x18\x01 \x03(\v2).aserto.directory.reader.v3.CheckResponseB\x06\xe2A\x01\x03\x18\x00R\x06checks\"\x82\x02\n" +
+	"\x16CheckPermissionRequest\x12(\n" +
+	"\vobject_type\x18\x01 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\vobject_type\x12$\n" +
+	"\tobject_id\x18\x02 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\tobject_id\x12&\n" +
 	"\n" +
-	"permission\x18\x03 \x01(\tB\x04\xe2A\x01\x02R\n" +
-	"permission\x12'\n" +
-	"\fsubject_type\x18\x04 \x01(\tB\x04\xe2A\x01\x02R\vsubjectType\x12#\n" +
+	"permission\x18\x03 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\n" +
+	"permission\x12*\n" +
+	"\fsubject_type\x18\x04 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\fsubject_type\x12&\n" +
 	"\n" +
-	"subject_id\x18\x05 \x01(\tB\x04\xe2A\x01\x02R\tsubjectId\x12\x1a\n" +
-	"\x05trace\x18\a \x01(\bB\x04\xe2A\x01\x01R\x05trace\"E\n" +
-	"\x17CheckPermissionResponse\x12\x14\n" +
-	"\x05check\x18\x01 \x01(\bR\x05check\x12\x14\n" +
-	"\x05trace\x18\x02 \x03(\tR\x05trace\"\xec\x01\n" +
-	"\x14CheckRelationRequest\x12%\n" +
-	"\vobject_type\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\n" +
-	"objectType\x12!\n" +
-	"\tobject_id\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\bobjectId\x12 \n" +
-	"\brelation\x18\x03 \x01(\tB\x04\xe2A\x01\x02R\brelation\x12'\n" +
-	"\fsubject_type\x18\x04 \x01(\tB\x04\xe2A\x01\x02R\vsubjectType\x12#\n" +
+	"subject_id\x18\x05 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\n" +
+	"subject_id\x12\x1c\n" +
+	"\x05trace\x18\a \x01(\bB\x06\xe2A\x01\x01\x18\x00R\x05trace\"U\n" +
+	"\x17CheckPermissionResponse\x12\x1c\n" +
+	"\x05check\x18\x01 \x01(\bB\x06\xe2A\x01\x03\x18\x00R\x05check\x12\x1c\n" +
+	"\x05trace\x18\x02 \x03(\tB\x06\xe2A\x01\x03\x18\x00R\x05trace\"\xfc\x01\n" +
+	"\x14CheckRelationRequest\x12(\n" +
+	"\vobject_type\x18\x01 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\vobject_type\x12$\n" +
+	"\tobject_id\x18\x02 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\tobject_id\x12\"\n" +
+	"\brelation\x18\x03 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\brelation\x12*\n" +
+	"\fsubject_type\x18\x04 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\fsubject_type\x12&\n" +
 	"\n" +
-	"subject_id\x18\x05 \x01(\tB\x04\xe2A\x01\x02R\tsubjectId\x12\x1a\n" +
-	"\x05trace\x18\a \x01(\bB\x04\xe2A\x01\x01R\x05trace\"C\n" +
-	"\x15CheckRelationResponse\x12\x14\n" +
-	"\x05check\x18\x01 \x01(\bR\x05check\x12\x14\n" +
-	"\x05trace\x18\x02 \x03(\tR\x05trace\"\xdc\x02\n" +
-	"\x0fGetGraphRequest\x12%\n" +
-	"\vobject_type\x18\x03 \x01(\tB\x04\xe2A\x01\x02R\n" +
-	"objectType\x12!\n" +
-	"\tobject_id\x18\x04 \x01(\tB\x04\xe2A\x01\x01R\bobjectId\x12 \n" +
-	"\brelation\x18\x05 \x01(\tB\x04\xe2A\x01\x02R\brelation\x12'\n" +
-	"\fsubject_type\x18\x06 \x01(\tB\x04\xe2A\x01\x02R\vsubjectType\x12#\n" +
+	"subject_id\x18\x05 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\n" +
+	"subject_id\x12\x1c\n" +
+	"\x05trace\x18\a \x01(\bB\x06\xe2A\x01\x01\x18\x00R\x05trace\"S\n" +
+	"\x15CheckRelationResponse\x12\x1c\n" +
+	"\x05check\x18\x01 \x01(\bB\x06\xe2A\x01\x03\x18\x00R\x05check\x12\x1c\n" +
+	"\x05trace\x18\x02 \x03(\tB\x06\xe2A\x01\x03\x18\x00R\x05trace\"\xf1\x02\n" +
+	"\x0fGetGraphRequest\x12(\n" +
+	"\vobject_type\x18\x03 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\vobject_type\x12$\n" +
+	"\tobject_id\x18\x04 \x01(\tB\x06\xe2A\x01\x01\x18\x00R\tobject_id\x12\"\n" +
+	"\brelation\x18\x05 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\brelation\x12*\n" +
+	"\fsubject_type\x18\x06 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\fsubject_type\x12&\n" +
 	"\n" +
-	"subject_id\x18\a \x01(\tB\x04\xe2A\x01\x01R\tsubjectId\x12/\n" +
-	"\x10subject_relation\x18\b \x01(\tB\x04\xe2A\x01\x01R\x0fsubjectRelation\x12\x1e\n" +
-	"\aexplain\x18\t \x01(\bB\x04\xe2A\x01\x01R\aexplain\x12\x1a\n" +
+	"subject_id\x18\a \x01(\tB\x06\xe2A\x01\x01\x18\x00R\n" +
+	"subject_id\x122\n" +
+	"\x10subject_relation\x18\b \x01(\tB\x06\xe2A\x01\x01\x18\x00R\x10subject_relation\x12 \n" +
+	"\aexplain\x18\t \x01(\bB\x06\xe2A\x01\x01\x18\x00R\aexplain\x12\x1c\n" +
 	"\x05trace\x18\n" +
-	" \x01(\bB\x04\xe2A\x01\x01R\x05traceJ\x04\b\x01\x10\x02J\x04\b\x02\x10\x03R\vanchor_typeR\tanchor_id\"\xb1\x01\n" +
-	"\x10GetGraphResponse\x12F\n" +
-	"\aresults\x18\x02 \x03(\v2,.aserto.directory.common.v3.ObjectIdentifierR\aresults\x129\n" +
-	"\vexplanation\x18\x03 \x01(\v2\x17.google.protobuf.StructR\vexplanation\x12\x14\n" +
-	"\x05trace\x18\x04 \x03(\tR\x05traceJ\x04\b\x01\x10\x022\xea\x15\n" +
-	"\x06Reader\x12\xdf\x02\n" +
-	"\tGetObject\x12,.aserto.directory.reader.v3.GetObjectRequest\x1a-.aserto.directory.reader.v3.GetObjectResponse\"\xf4\x01\x92A\xb6\x01\n" +
-	"\tdirectory\x12\x13Get object instance\x1a:Returns single object instance, optionally with relations.*\x1edirectory.reader.v3.object.getJ\x1d\n" +
-	"\x03304\x12\x16\n" +
-	"\x14Object not modified.b\x19\n" +
-	"\x17\n" +
-	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x024\x122/api/v3/directory/object/{object_type}/{object_id}\x12v\n" +
-	"\rGetObjectMany\x120.aserto.directory.reader.v3.GetObjectManyRequest\x1a1.aserto.directory.reader.v3.GetObjectManyResponse\"\x00\x12\x95\x02\n" +
+	" \x01(\bB\x06\xe2A\x01\x01\x18\x00R\x05traceJ\x04\b\x01\x10\x02J\x04\b\x02\x10\x03R\vanchor_typeR\tanchor_id\"\xc9\x01\n" +
+	"\x10GetGraphResponse\x12N\n" +
+	"\aresults\x18\x02 \x03(\v2,.aserto.directory.common.v3.ObjectIdentifierB\x06\xe2A\x01\x03\x18\x00R\aresults\x12A\n" +
+	"\vexplanation\x18\x03 \x01(\v2\x17.google.protobuf.StructB\x06\xe2A\x01\x03\x18\x00R\vexplanation\x12\x1c\n" +
+	"\x05trace\x18\x04 \x03(\tB\x06\xe2A\x01\x03\x18\x00R\x05traceJ\x04\b\x01\x10\x022\xdd\x14\n" +
+	"\x06Reader\x12\xb5\x02\n" +
+	"\tGetObject\x12,.aserto.directory.reader.v3.GetObjectRequest\x1a-.aserto.directory.reader.v3.GetObjectResponse\"\xca\x01\xfaP\x89\x01\n" +
+	"\tdirectory\n" +
+	"\x03get\n" +
+	"\x06object\x12\x13Get object instance\x1a:Returns single object instance, optionally with relations.*\x1edirectory.reader.v3.object.get\x82\xd3\xe4\x93\x024\x122/api/v3/directory/object/{object_type}/{object_id}\x88\x02\x00\x12y\n" +
+	"\rGetObjectMany\x120.aserto.directory.reader.v3.GetObjectManyRequest\x1a1.aserto.directory.reader.v3.GetObjectManyResponse\"\x03\x88\x02\x00\x12\x8a\x02\n" +
 	"\n" +
-	"GetObjects\x12-.aserto.directory.reader.v3.GetObjectsRequest\x1a..aserto.directory.reader.v3.GetObjectsResponse\"\xa7\x01\x92A\x82\x01\n" +
-	"\tdirectory\x12\x15List object instances\x1a!Returns list of object instances.* directory.reader.v3.objects.listb\x19\n" +
-	"\x17\n" +
-	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02\x1b\x12\x19/api/v3/directory/objects\x12\xd3\x02\n" +
-	"\vGetRelation\x12..aserto.directory.reader.v3.GetRelationRequest\x1a/.aserto.directory.reader.v3.GetRelationResponse\"\xe2\x01\x92A\xbc\x01\n" +
-	"\tdirectory\x12\x15Get relation instance\x1a:Returns single relation instance, optionally with objects.* directory.reader.v3.relation.getJ\x1f\n" +
-	"\x03304\x12\x18\n" +
-	"\x16Relation not modified.b\x19\n" +
-	"\x17\n" +
-	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02\x1c\x12\x1a/api/v3/directory/relation\x12\xa4\x02\n" +
-	"\fGetRelations\x12/.aserto.directory.reader.v3.GetRelationsRequest\x1a0.aserto.directory.reader.v3.GetRelationsResponse\"\xb0\x01\x92A\x89\x01\n" +
-	"\tdirectory\x12\x18List relations instances\x1a#Returns list of relation instances.*\"directory.reader.v3.relations.listb\x19\n" +
-	"\x17\n" +
-	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02\x1d\x12\x1b/api/v3/directory/relations\x12\xe4\x01\n" +
-	"\x05Check\x12(.aserto.directory.reader.v3.CheckRequest\x1a).aserto.directory.reader.v3.CheckResponse\"\x85\x01\x92A`\n" +
-	"\tdirectory\x12\x05Check\x1a\x16Returns check outcome.*\x19directory.reader.v3.checkb\x19\n" +
-	"\x17\n" +
-	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02\x1c:\x01*\"\x17/api/v3/directory/check\x12\xf4\x01\n" +
-	"\x06Checks\x12).aserto.directory.reader.v3.ChecksRequest\x1a*.aserto.directory.reader.v3.ChecksResponse\"\x92\x01\x92Al\n" +
-	"\tdirectory\x12\x06Checks\x1a Returns multiple check outcomes.*\x1adirectory.reader.v3.checksb\x19\n" +
-	"\x17\n" +
-	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/api/v3/directory/checks\x12\xb2\x02\n" +
-	"\x0fCheckPermission\x122.aserto.directory.reader.v3.CheckPermissionRequest\x1a3.aserto.directory.reader.v3.CheckPermissionResponse\"\xb5\x01\x92A\x81\x01\n" +
-	"\tdirectory\x12\x10Check permission\x1a!Returns check permission outcome.*$directory.reader.v3.check.permissionb\x19\n" +
-	"\x17\n" +
-	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02':\x01*\"\"/api/v3/directory/check/permission\x88\x02\x01\x12\xa3\x02\n" +
-	"\rCheckRelation\x120.aserto.directory.reader.v3.CheckRelationRequest\x1a1.aserto.directory.reader.v3.CheckRelationResponse\"\xac\x01\x92A{\n" +
-	"\tdirectory\x12\x0eCheck relation\x1a\x1fReturns check relation outcome.*\"directory.reader.v3.check.relationb\x19\n" +
-	"\x17\n" +
-	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02%:\x01*\" /api/v3/directory/check/relation\x88\x02\x01\x12\xb7\x02\n" +
-	"\bGetGraph\x12+.aserto.directory.reader.v3.GetGraphRequest\x1a,.aserto.directory.reader.v3.GetGraphResponse\"\xcf\x01\x92A\x84\x01\n" +
-	"\tdirectory\x12\tGet graph\x1a6Returns object graph from anchor to subject or object.*\x19directory.reader.v3.graphb\x19\n" +
-	"\x17\n" +
-	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02A\x12?/api/v3/directory/graph/{object_type}/{relation}/{subject_type}BFZDgithub.com/aserto-dev/go-directory/aserto/directory/reader/v3;readerb\x06proto3"
+	"GetObjects\x12-.aserto.directory.reader.v3.GetObjectsRequest\x1a..aserto.directory.reader.v3.GetObjectsResponse\"\x9c\x01\xfaPu\n" +
+	"\tdirectory\n" +
+	"\x04list\n" +
+	"\x06object\x12\x15List object instances\x1a!Returns list of object instances.* directory.reader.v3.objects.list\x82\xd3\xe4\x93\x02\x1b\x12\x19/api/v3/directory/objects\x88\x02\x00\x12\xa9\x02\n" +
+	"\vGetRelation\x12..aserto.directory.reader.v3.GetRelationRequest\x1a/.aserto.directory.reader.v3.GetRelationResponse\"\xb8\x01\xfaP\x8f\x01\n" +
+	"\tdirectory\n" +
+	"\x03get\n" +
+	"\brelation\x12\x15Get relation instance\x1a:Returns single relation instance, optionally with objects.* directory.reader.v3.relation.get\x82\xd3\xe4\x93\x02\x1c\x12\x1a/api/v3/directory/relation\x88\x02\x00\x12\x9b\x02\n" +
+	"\fGetRelations\x12/.aserto.directory.reader.v3.GetRelationsRequest\x1a0.aserto.directory.reader.v3.GetRelationsResponse\"\xa7\x01\xfaP~\n" +
+	"\tdirectory\n" +
+	"\x04list\n" +
+	"\brelation\x12\x18List relations instances\x1a#Returns list of relation instances.*\"directory.reader.v3.relations.list\x82\xd3\xe4\x93\x02\x1d\x12\x1b/api/v3/directory/relations\x88\x02\x00\x12\xdc\x01\n" +
+	"\x05Check\x12(.aserto.directory.reader.v3.CheckRequest\x1a).aserto.directory.reader.v3.CheckResponse\"~\xfaPV\n" +
+	"\tdirectory\n" +
+	"\x05check\n" +
+	"\brelation\x12\x05Check\x1a\x16Returns check outcome.*\x19directory.reader.v3.check\x82\xd3\xe4\x93\x02\x1c:\x01*\"\x17/api/v3/directory/check\x88\x02\x00\x12\xee\x01\n" +
+	"\x06Checks\x12).aserto.directory.reader.v3.ChecksRequest\x1a*.aserto.directory.reader.v3.ChecksResponse\"\x8c\x01\xfaPc\n" +
+	"\tdirectory\n" +
+	"\x06checks\n" +
+	"\brelation\x12\x06Checks\x1a Returns multiple check outcomes.*\x1adirectory.reader.v3.checks\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/api/v3/directory/checks\x88\x02\x00\x12\xab\x02\n" +
+	"\x0fCheckPermission\x122.aserto.directory.reader.v3.CheckPermissionRequest\x1a3.aserto.directory.reader.v3.CheckPermissionResponse\"\xae\x01\xfaP{\n" +
+	"\tdirectory\n" +
+	"\x05check\n" +
+	"\n" +
+	"permission\x12\x10Check permission\x1a!Returns check permission outcome.*$directory.reader.v3.check.permission0\x01\x82\xd3\xe4\x93\x02':\x01*\"\"/api/v3/directory/check/permission\x88\x02\x01\x12\x9b\x02\n" +
+	"\rCheckRelation\x120.aserto.directory.reader.v3.CheckRelationRequest\x1a1.aserto.directory.reader.v3.CheckRelationResponse\"\xa4\x01\xfaPs\n" +
+	"\tdirectory\n" +
+	"\x05check\n" +
+	"\brelation\x12\x0eCheck relation\x1a\x1fReturns check relation outcome.*\"directory.reader.v3.check.relation0\x01\x82\xd3\xe4\x93\x02%:\x01*\" /api/v3/directory/check/relation\x88\x02\x01\x12\xa7\x02\n" +
+	"\bGetGraph\x12+.aserto.directory.reader.v3.GetGraphRequest\x1a,.aserto.directory.reader.v3.GetGraphResponse\"\xbf\x01\xfaPu\n" +
+	"\tdirectory\n" +
+	"\x03get\n" +
+	"\x05graph\x12\tGet graph\x1a6Returns object graph from anchor to subject or object.*\x19directory.reader.v3.graph\x82\xd3\xe4\x93\x02A\x12?/api/v3/directory/graph/{object_type}/{relation}/{subject_type}\x1a\x03\x88\x02\x00B\xb7\x04\xfaP\xed\x03\n" +
+	"\xd3\x01\n" +
+	"\x17Topaz Directory Service*^\n" +
+	"\x1bTopaz Authorization Project\x12+https://github.com/aserto-dev/go-authorizer\x1a\x12support@aserto.com2S\n" +
+	"\x12Apache 2.0 License\x1a=https://github.com/aserto-dev/go-authorizer/blob/main/LICENSE:\x033.1\x122\n" +
+	"\x17{{.Scheme}}://{{.Host}}\x12\x17Topaz Directory service\x1ah\n" +
+	"\x1fTopaz Authorizer API Reference.\x12Ehttps://github.com/aserto-dev/go-authorizer/blob/main/html/index.html\"\v\n" +
+	"\tdirectory\"\x05\n" +
+	"\x03get\"\x06\n" +
+	"\x04list\"\x05\n" +
+	"\x03set\"\b\n" +
+	"\x06delete\"\a\n" +
+	"\x05graph\"\a\n" +
+	"\x05check\"\b\n" +
+	"\x06checks\"\n" +
+	"\n" +
+	"\bmanifest\"\b\n" +
+	"\x06object\"\f\n" +
+	"\n" +
+	"permission\"\n" +
+	"\n" +
+	"\brelationZDgithub.com/aserto-dev/go-directory/aserto/directory/reader/v3;readerb\x06proto3"
 
 var (
 	file_aserto_directory_reader_v3_reader_proto_rawDescOnce sync.Once

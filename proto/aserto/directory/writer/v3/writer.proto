@@ -6,9 +6,57 @@ import "aserto/directory/common/v3/common.proto";
 import "google/api/annotations.proto";
 import "google/api/field_behavior.proto";
 import "google/protobuf/empty.proto";
-import "protoc-gen-openapiv2/options/annotations.proto";
+import "protoc-gen-openapiv3/options/annotations.proto";
 
 option go_package = "github.com/aserto-dev/go-directory/aserto/directory/writer/v3;writer";
+option (grpc.gateway.protoc_gen_openapiv3.options.openapiv3_document) = {
+  info: {
+    title: "Topaz Directory Service"
+    // summary: ""
+    // description: ""
+    // terms_of_service: ""
+    contact: {
+      name: "Topaz Authorization Project"
+      url: "https://github.com/aserto-dev/go-authorizer"
+      email: "support@aserto.com"
+    }
+    license: {
+      name: "Apache 2.0 License"
+      url: "https://github.com/aserto-dev/go-authorizer/blob/main/LICENSE"
+    }
+    version: "3.1"
+    // extensions: {}
+  }
+
+  servers: [
+    {
+      url: "{{.Scheme}}://{{.Host}}"
+      description: "Topaz Directory service"
+    }
+  ]
+
+  tags: [
+    {name: "directory"},
+    {name: "get"},
+    {name: "list"},
+    {name: "set"},
+    {name: "delete"},
+    {name: "graph"},
+    {name: "check"},
+    {name: "checks"},
+    {name: "manifest"},
+    {name: "object"},
+    {name: "permission"},
+    {name: "relation"}
+  ]
+
+  external_docs: {
+    description: "Topaz Authorizer API Reference."
+    url: "https://github.com/aserto-dev/go-authorizer/blob/main/html/index.html"
+  }
+
+  // extensions: {}
+};
 
 service Writer {
   // set object instance
@@ -17,37 +65,41 @@ service Writer {
       post: "/api/v3/directory/object"
       body: "*"
     };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      tags: "directory"
+    option (grpc.gateway.protoc_gen_openapiv3.options.openapiv3_operation) = {
+      tags: [
+        "directory",
+        "set",
+        "object"
+      ]
       summary: "Set object"
       description: "Set object."
+      // external_docs: {}
       operation_id: "directory.writer.v3.object.set"
       deprecated: false
-      security: {
-        security_requirement: {
-          key: "AuthorizationHeader"
-          value: {}
-        }
-      }
+      // servers: {}
+      // extensions: {}
     };
+    option deprecated = false;
   }
 
   // delete object instance
   rpc DeleteObject(DeleteObjectRequest) returns (DeleteObjectResponse) {
     option (google.api.http) = {delete: "/api/v3/directory/object/{object_type}/{object_id}"};
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      tags: "directory"
+    option (grpc.gateway.protoc_gen_openapiv3.options.openapiv3_operation) = {
+      tags: [
+        "directory",
+        "delete",
+        "object"
+      ]
       summary: "Delete object"
       description: "Delete object."
+      // external_docs: {}
       operation_id: "directory.writer.v3.object.delete"
       deprecated: false
-      security: {
-        security_requirement: {
-          key: "AuthorizationHeader"
-          value: {}
-        }
-      }
+      // servers: {}
+      // extensions: {}
     };
+    option deprecated = false;
   }
 
   // set relation instance
@@ -56,90 +108,154 @@ service Writer {
       post: "/api/v3/directory/relation"
       body: "*"
     };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      tags: "directory"
+    option (grpc.gateway.protoc_gen_openapiv3.options.openapiv3_operation) = {
+      tags: [
+        "directory",
+        "set",
+        "relation"
+      ]
       summary: "Set relation"
       description: "Set relation."
+      // external_docs: {}
       operation_id: "directory.writer.v3.relation.set"
       deprecated: false
-      security: {
-        security_requirement: {
-          key: "AuthorizationHeader"
-          value: {}
-        }
-      }
+      // servers: {}
+      // extensions: {}
     };
+    option deprecated = false;
   }
 
   // delete relation instance
   rpc DeleteRelation(DeleteRelationRequest) returns (DeleteRelationResponse) {
     option (google.api.http) = {delete: "/api/v3/directory/relation"};
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      tags: "directory"
+    option (grpc.gateway.protoc_gen_openapiv3.options.openapiv3_operation) = {
+      tags: [
+        "directory",
+        "delete",
+        "relation"
+      ]
       summary: "Delete relation"
       description: "Delete relation."
+      // external_docs: {}
       operation_id: "directory.writer.v3.relation.delete"
       deprecated: false
-      security: {
-        security_requirement: {
-          key: "AuthorizationHeader"
-          value: {}
-        }
-      }
+      // servers: {}
+      // extensions: {}
     };
+    option deprecated = false;
   }
 }
 
 message SetObjectRequest {
   // object instance
-  aserto.directory.common.v3.Object object = 1 [(google.api.field_behavior) = REQUIRED];
+  aserto.directory.common.v3.Object object = 1 [
+    json_name = "object",
+    (google.api.field_behavior) = REQUIRED,
+    deprecated = false
+  ];
 }
 
 message SetObjectResponse {
   // object instance
-  aserto.directory.common.v3.Object result = 1;
+  aserto.directory.common.v3.Object result = 1 [
+    json_name = "result",
+    (google.api.field_behavior) = OUTPUT_ONLY,
+    deprecated = false
+  ];
 }
 
 message DeleteObjectRequest {
   // object type identifier
-  string object_type = 1 [(google.api.field_behavior) = REQUIRED];
+  string object_type = 1 [
+    json_name = "object_type",
+    (google.api.field_behavior) = REQUIRED,
+    deprecated = false
+  ];
   // object instance identifier
-  string object_id = 2 [(google.api.field_behavior) = REQUIRED];
+  string object_id = 2 [
+    json_name = "object_id",
+    (google.api.field_behavior) = REQUIRED,
+    deprecated = false
+  ];
   // delete object relations, both object and subject relations  (optional)
-  bool with_relations = 3 [(google.api.field_behavior) = OPTIONAL];
+  bool with_relations = 3 [
+    json_name = "with_relations",
+    (google.api.field_behavior) = OPTIONAL,
+    deprecated = false
+  ];
 }
 
 message DeleteObjectResponse {
   // empty result
-  google.protobuf.Empty result = 1;
+  google.protobuf.Empty result = 1 [
+    json_name = "result",
+    (google.api.field_behavior) = OUTPUT_ONLY,
+    deprecated = false
+  ];
 }
 
 message SetRelationRequest {
   // relation instance
-  aserto.directory.common.v3.Relation relation = 1 [(google.api.field_behavior) = REQUIRED];
+  aserto.directory.common.v3.Relation relation = 1 [
+    json_name = "relation",
+    (google.api.field_behavior) = REQUIRED,
+    deprecated = false
+  ];
 }
 
 message SetRelationResponse {
   // relation instance
-  aserto.directory.common.v3.Relation result = 1;
+  aserto.directory.common.v3.Relation result = 1 [
+    json_name = "result",
+    (google.api.field_behavior) = OUTPUT_ONLY,
+    deprecated = false
+  ];
 }
 
 message DeleteRelationRequest {
   // object type identifier
-  string object_type = 1 [(google.api.field_behavior) = REQUIRED];
+  string object_type = 1 [
+    json_name = "object_type",
+    (google.api.field_behavior) = REQUIRED,
+    deprecated = false
+  ];
   // object instance identifier
-  string object_id = 2 [(google.api.field_behavior) = REQUIRED];
+  string object_id = 2 [
+    json_name = "object_id",
+    (google.api.field_behavior) = REQUIRED,
+    deprecated = false
+  ];
   // object relation name
-  string relation = 3 [(google.api.field_behavior) = REQUIRED];
+  string relation = 3 [
+    json_name = "relation",
+    (google.api.field_behavior) = REQUIRED,
+    deprecated = false
+  ];
   // subject type identifier
-  string subject_type = 4 [(google.api.field_behavior) = REQUIRED];
+  string subject_type = 4 [
+    json_name = "subject_type",
+    (google.api.field_behavior) = REQUIRED,
+    deprecated = false
+  ];
   // subject instance identifier
-  string subject_id = 5 [(google.api.field_behavior) = REQUIRED];
+  string subject_id = 5 [
+    json_name = "subject_id",
+    (google.api.field_behavior) = REQUIRED,
+    deprecated = false
+  ];
   // subject relation name  (optional)
-  string subject_relation = 6 [(google.api.field_behavior) = OPTIONAL];
+  string subject_relation = 6 [
+    json_name = "subject_relation",
+    (google.api.field_behavior) = OPTIONAL,
+    deprecated = false
+  ];
 }
 
 message DeleteRelationResponse {
   // empty result
-  google.protobuf.Empty result = 1;
+  google.protobuf.Empty result = 1 [
+    json_name = "result",
+    (google.api.field_behavior) = OUTPUT_ONLY,
+    deprecated = false
+  ];
 }

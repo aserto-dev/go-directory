@@ -7,7 +7,7 @@
 package directory
 
 import (
-	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
+	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv3/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -25,15 +25,28 @@ var File_aserto_directory_openapi_v3_openapi_proto protoreflect.FileDescriptor
 
 const file_aserto_directory_openapi_v3_openapi_proto_rawDesc = "" +
 	"\n" +
-	")aserto/directory/openapi/v3/openapi.proto\x12\x13aserto.directory.v3\x1a.protoc-gen-openapiv2/options/annotations.protoB\xd9\x03\x92A\x93\x03\x12\xbc\x01\n" +
-	"\x11Directory Service\"N\n" +
-	"\fAserto, Inc.\x12*https://github.com/aserto-dev/pb-directory\x1a\x12support@aserto.com*R\n" +
-	"\x12Apache 2.0 License\x12<https://github.com/aserto-dev/pb-directory/blob/main/LICENSE2\x033.1*\x03\x01\x02\x042\x10application/json:\x10application/jsonZ,\n" +
-	"*\n" +
-	"\x13AuthorizationHeader\x12\x13\b\x02\x1a\rauthorization \x02b\x19\n" +
-	"\x17\n" +
-	"\x13AuthorizationHeader\x12\x00r`\n" +
-	"\x18Directory API Reference.\x12Dhttps://github.com/aserto-dev/pb-directory/blob/main/html/index.htmlZ@github.com/aserto-dev/go-directory/aserto/directory/v3;directoryb\x06proto3"
+	")aserto/directory/openapi/v3/openapi.proto\x12\x13aserto.directory.v3\x1a.protoc-gen-openapiv3/options/annotations.protoB\xb3\x04\xfaP\xed\x03\n" +
+	"\xd3\x01\n" +
+	"\x17Topaz Directory Service*^\n" +
+	"\x1bTopaz Authorization Project\x12+https://github.com/aserto-dev/go-authorizer\x1a\x12support@aserto.com2S\n" +
+	"\x12Apache 2.0 License\x1a=https://github.com/aserto-dev/go-authorizer/blob/main/LICENSE:\x033.1\x122\n" +
+	"\x17{{.Scheme}}://{{.Host}}\x12\x17Topaz Directory service\x1ah\n" +
+	"\x1fTopaz Authorizer API Reference.\x12Ehttps://github.com/aserto-dev/go-authorizer/blob/main/html/index.html\"\v\n" +
+	"\tdirectory\"\x05\n" +
+	"\x03get\"\x06\n" +
+	"\x04list\"\x05\n" +
+	"\x03set\"\b\n" +
+	"\x06delete\"\a\n" +
+	"\x05graph\"\a\n" +
+	"\x05check\"\b\n" +
+	"\x06checks\"\n" +
+	"\n" +
+	"\bmanifest\"\b\n" +
+	"\x06object\"\f\n" +
+	"\n" +
+	"permission\"\n" +
+	"\n" +
+	"\brelationZ@github.com/aserto-dev/go-directory/aserto/directory/v3;directoryb\x06proto3"
 
 var file_aserto_directory_openapi_v3_openapi_proto_goTypes = []any{}
 var file_aserto_directory_openapi_v3_openapi_proto_depIdxs = []int32{

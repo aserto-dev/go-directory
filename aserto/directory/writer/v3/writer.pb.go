@@ -8,7 +8,7 @@ package writer
 
 import (
 	v3 "github.com/aserto-dev/go-directory/aserto/directory/common/v3"
-	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
+	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv3/options"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -118,11 +118,11 @@ func (x *SetObjectResponse) GetResult() *v3.Object {
 type DeleteObjectRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// object type identifier
-	ObjectType string `protobuf:"bytes,1,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"`
+	ObjectType string `protobuf:"bytes,1,opt,name=object_type,proto3" json:"object_type,omitempty"`
 	// object instance identifier
-	ObjectId string `protobuf:"bytes,2,opt,name=object_id,json=objectId,proto3" json:"object_id,omitempty"`
+	ObjectId string `protobuf:"bytes,2,opt,name=object_id,proto3" json:"object_id,omitempty"`
 	// delete object relations, both object and subject relations  (optional)
-	WithRelations bool `protobuf:"varint,3,opt,name=with_relations,json=withRelations,proto3" json:"with_relations,omitempty"`
+	WithRelations bool `protobuf:"varint,3,opt,name=with_relations,proto3" json:"with_relations,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -316,17 +316,17 @@ func (x *SetRelationResponse) GetResult() *v3.Relation {
 type DeleteRelationRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// object type identifier
-	ObjectType string `protobuf:"bytes,1,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"`
+	ObjectType string `protobuf:"bytes,1,opt,name=object_type,proto3" json:"object_type,omitempty"`
 	// object instance identifier
-	ObjectId string `protobuf:"bytes,2,opt,name=object_id,json=objectId,proto3" json:"object_id,omitempty"`
+	ObjectId string `protobuf:"bytes,2,opt,name=object_id,proto3" json:"object_id,omitempty"`
 	// object relation name
 	Relation string `protobuf:"bytes,3,opt,name=relation,proto3" json:"relation,omitempty"`
 	// subject type identifier
-	SubjectType string `protobuf:"bytes,4,opt,name=subject_type,json=subjectType,proto3" json:"subject_type,omitempty"`
+	SubjectType string `protobuf:"bytes,4,opt,name=subject_type,proto3" json:"subject_type,omitempty"`
 	// subject instance identifier
-	SubjectId string `protobuf:"bytes,5,opt,name=subject_id,json=subjectId,proto3" json:"subject_id,omitempty"`
+	SubjectId string `protobuf:"bytes,5,opt,name=subject_id,proto3" json:"subject_id,omitempty"`
 	// subject relation name  (optional)
-	SubjectRelation string `protobuf:"bytes,6,opt,name=subject_relation,json=subjectRelation,proto3" json:"subject_relation,omitempty"`
+	SubjectRelation string `protobuf:"bytes,6,opt,name=subject_relation,proto3" json:"subject_relation,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -452,51 +452,71 @@ var File_aserto_directory_writer_v3_writer_proto protoreflect.FileDescriptor
 
 const file_aserto_directory_writer_v3_writer_proto_rawDesc = "" +
 	"\n" +
-	"'aserto/directory/writer/v3/writer.proto\x12\x1aaserto.directory.writer.v3\x1a'aserto/directory/common/v3/common.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"T\n" +
-	"\x10SetObjectRequest\x12@\n" +
-	"\x06object\x18\x01 \x01(\v2\".aserto.directory.common.v3.ObjectB\x04\xe2A\x01\x02R\x06object\"O\n" +
-	"\x11SetObjectResponse\x12:\n" +
-	"\x06result\x18\x01 \x01(\v2\".aserto.directory.common.v3.ObjectR\x06result\"\x8c\x01\n" +
-	"\x13DeleteObjectRequest\x12%\n" +
-	"\vobject_type\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\n" +
-	"objectType\x12!\n" +
-	"\tobject_id\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\bobjectId\x12+\n" +
-	"\x0ewith_relations\x18\x03 \x01(\bB\x04\xe2A\x01\x01R\rwithRelations\"F\n" +
-	"\x14DeleteObjectResponse\x12.\n" +
-	"\x06result\x18\x01 \x01(\v2\x16.google.protobuf.EmptyR\x06result\"\\\n" +
-	"\x12SetRelationRequest\x12F\n" +
-	"\brelation\x18\x01 \x01(\v2$.aserto.directory.common.v3.RelationB\x04\xe2A\x01\x02R\brelation\"S\n" +
-	"\x13SetRelationResponse\x12<\n" +
-	"\x06result\x18\x01 \x01(\v2$.aserto.directory.common.v3.RelationR\x06result\"\x82\x02\n" +
-	"\x15DeleteRelationRequest\x12%\n" +
-	"\vobject_type\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\n" +
-	"objectType\x12!\n" +
-	"\tobject_id\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\bobjectId\x12 \n" +
-	"\brelation\x18\x03 \x01(\tB\x04\xe2A\x01\x02R\brelation\x12'\n" +
-	"\fsubject_type\x18\x04 \x01(\tB\x04\xe2A\x01\x02R\vsubjectType\x12#\n" +
+	"'aserto/directory/writer/v3/writer.proto\x12\x1aaserto.directory.writer.v3\x1a'aserto/directory/common/v3/common.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a.protoc-gen-openapiv3/options/annotations.proto\"V\n" +
+	"\x10SetObjectRequest\x12B\n" +
+	"\x06object\x18\x01 \x01(\v2\".aserto.directory.common.v3.ObjectB\x06\xe2A\x01\x02\x18\x00R\x06object\"W\n" +
+	"\x11SetObjectResponse\x12B\n" +
+	"\x06result\x18\x01 \x01(\v2\".aserto.directory.common.v3.ObjectB\x06\xe2A\x01\x03\x18\x00R\x06result\"\x95\x01\n" +
+	"\x13DeleteObjectRequest\x12(\n" +
+	"\vobject_type\x18\x01 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\vobject_type\x12$\n" +
+	"\tobject_id\x18\x02 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\tobject_id\x12.\n" +
+	"\x0ewith_relations\x18\x03 \x01(\bB\x06\xe2A\x01\x01\x18\x00R\x0ewith_relations\"N\n" +
+	"\x14DeleteObjectResponse\x126\n" +
+	"\x06result\x18\x01 \x01(\v2\x16.google.protobuf.EmptyB\x06\xe2A\x01\x03\x18\x00R\x06result\"^\n" +
+	"\x12SetRelationRequest\x12H\n" +
+	"\brelation\x18\x01 \x01(\v2$.aserto.directory.common.v3.RelationB\x06\xe2A\x01\x02\x18\x00R\brelation\"[\n" +
+	"\x13SetRelationResponse\x12D\n" +
+	"\x06result\x18\x01 \x01(\v2$.aserto.directory.common.v3.RelationB\x06\xe2A\x01\x03\x18\x00R\x06result\"\x93\x02\n" +
+	"\x15DeleteRelationRequest\x12(\n" +
+	"\vobject_type\x18\x01 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\vobject_type\x12$\n" +
+	"\tobject_id\x18\x02 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\tobject_id\x12\"\n" +
+	"\brelation\x18\x03 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\brelation\x12*\n" +
+	"\fsubject_type\x18\x04 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\fsubject_type\x12&\n" +
 	"\n" +
-	"subject_id\x18\x05 \x01(\tB\x04\xe2A\x01\x02R\tsubjectId\x12/\n" +
-	"\x10subject_relation\x18\x06 \x01(\tB\x04\xe2A\x01\x01R\x0fsubjectRelation\"H\n" +
-	"\x16DeleteRelationResponse\x12.\n" +
-	"\x06result\x18\x01 \x01(\v2\x16.google.protobuf.EmptyR\x06result2\xa8\b\n" +
-	"\x06Writer\x12\xf0\x01\n" +
-	"\tSetObject\x12,.aserto.directory.writer.v3.SetObjectRequest\x1a-.aserto.directory.writer.v3.SetObjectResponse\"\x85\x01\x92A_\n" +
-	"\tdirectory\x12\n" +
-	"Set object\x1a\vSet object.*\x1edirectory.writer.v3.object.setb\x19\n" +
-	"\x17\n" +
-	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/api/v3/directory/object\x12\x99\x02\n" +
-	"\fDeleteObject\x12/.aserto.directory.writer.v3.DeleteObjectRequest\x1a0.aserto.directory.writer.v3.DeleteObjectResponse\"\xa5\x01\x92Ah\n" +
-	"\tdirectory\x12\rDelete object\x1a\x0eDelete object.*!directory.writer.v3.object.deleteb\x19\n" +
-	"\x17\n" +
-	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x024*2/api/v3/directory/object/{object_type}/{object_id}\x12\xfe\x01\n" +
-	"\vSetRelation\x12..aserto.directory.writer.v3.SetRelationRequest\x1a/.aserto.directory.writer.v3.SetRelationResponse\"\x8d\x01\x92Ae\n" +
-	"\tdirectory\x12\fSet relation\x1a\rSet relation.* directory.writer.v3.relation.setb\x19\n" +
-	"\x17\n" +
-	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02\x1f:\x01*\"\x1a/api/v3/directory/relation\x12\x8d\x02\n" +
-	"\x0eDeleteRelation\x121.aserto.directory.writer.v3.DeleteRelationRequest\x1a2.aserto.directory.writer.v3.DeleteRelationResponse\"\x93\x01\x92An\n" +
-	"\tdirectory\x12\x0fDelete relation\x1a\x10Delete relation.*#directory.writer.v3.relation.deleteb\x19\n" +
-	"\x17\n" +
-	"\x13AuthorizationHeader\x12\x00\x82\xd3\xe4\x93\x02\x1c*\x1a/api/v3/directory/relationBFZDgithub.com/aserto-dev/go-directory/aserto/directory/writer/v3;writerb\x06proto3"
+	"subject_id\x18\x05 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\n" +
+	"subject_id\x122\n" +
+	"\x10subject_relation\x18\x06 \x01(\tB\x06\xe2A\x01\x01\x18\x00R\x10subject_relation\"P\n" +
+	"\x16DeleteRelationResponse\x126\n" +
+	"\x06result\x18\x01 \x01(\v2\x16.google.protobuf.EmptyB\x06\xe2A\x01\x03\x18\x00R\x06result2\x85\b\n" +
+	"\x06Writer\x12\xe4\x01\n" +
+	"\tSetObject\x12,.aserto.directory.writer.v3.SetObjectRequest\x1a-.aserto.directory.writer.v3.SetObjectResponse\"z\xfaPQ\n" +
+	"\tdirectory\n" +
+	"\x03set\n" +
+	"\x06object\x12\n" +
+	"Set object\x1a\vSet object.*\x1edirectory.writer.v3.object.set\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/api/v3/directory/object\x88\x02\x00\x12\x91\x02\n" +
+	"\fDeleteObject\x12/.aserto.directory.writer.v3.DeleteObjectRequest\x1a0.aserto.directory.writer.v3.DeleteObjectResponse\"\x9d\x01\xfaP]\n" +
+	"\tdirectory\n" +
+	"\x06delete\n" +
+	"\x06object\x12\rDelete object\x1a\x0eDelete object.*!directory.writer.v3.object.delete\x82\xd3\xe4\x93\x024*2/api/v3/directory/object/{object_type}/{object_id}\x88\x02\x00\x12\xf5\x01\n" +
+	"\vSetRelation\x12..aserto.directory.writer.v3.SetRelationRequest\x1a/.aserto.directory.writer.v3.SetRelationResponse\"\x84\x01\xfaPY\n" +
+	"\tdirectory\n" +
+	"\x03set\n" +
+	"\brelation\x12\fSet relation\x1a\rSet relation.* directory.writer.v3.relation.set\x82\xd3\xe4\x93\x02\x1f:\x01*\"\x1a/api/v3/directory/relation\x88\x02\x00\x12\x87\x02\n" +
+	"\x0eDeleteRelation\x121.aserto.directory.writer.v3.DeleteRelationRequest\x1a2.aserto.directory.writer.v3.DeleteRelationResponse\"\x8d\x01\xfaPe\n" +
+	"\tdirectory\n" +
+	"\x06delete\n" +
+	"\brelation\x12\x0fDelete relation\x1a\x10Delete relation.*#directory.writer.v3.relation.delete\x82\xd3\xe4\x93\x02\x1c*\x1a/api/v3/directory/relation\x88\x02\x00B\xb7\x04\xfaP\xed\x03\n" +
+	"\xd3\x01\n" +
+	"\x17Topaz Directory Service*^\n" +
+	"\x1bTopaz Authorization Project\x12+https://github.com/aserto-dev/go-authorizer\x1a\x12support@aserto.com2S\n" +
+	"\x12Apache 2.0 License\x1a=https://github.com/aserto-dev/go-authorizer/blob/main/LICENSE:\x033.1\x122\n" +
+	"\x17{{.Scheme}}://{{.Host}}\x12\x17Topaz Directory service\x1ah\n" +
+	"\x1fTopaz Authorizer API Reference.\x12Ehttps://github.com/aserto-dev/go-authorizer/blob/main/html/index.html\"\v\n" +
+	"\tdirectory\"\x05\n" +
+	"\x03get\"\x06\n" +
+	"\x04list\"\x05\n" +
+	"\x03set\"\b\n" +
+	"\x06delete\"\a\n" +
+	"\x05graph\"\a\n" +
+	"\x05check\"\b\n" +
+	"\x06checks\"\n" +
+	"\n" +
+	"\bmanifest\"\b\n" +
+	"\x06object\"\f\n" +
+	"\n" +
+	"permission\"\n" +
+	"\n" +
+	"\brelationZDgithub.com/aserto-dev/go-directory/aserto/directory/writer/v3;writerb\x06proto3"
 
 var (
 	file_aserto_directory_writer_v3_writer_proto_rawDescOnce sync.Once

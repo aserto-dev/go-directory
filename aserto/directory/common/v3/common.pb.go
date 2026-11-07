@@ -33,15 +33,15 @@ type Object struct {
 	// display name object (optional) (DEPRECATED)
 	//
 	// Deprecated: Marked as deprecated in aserto/directory/common/v3/common.proto.
-	DisplayName string `protobuf:"bytes,3,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
+	DisplayName string `protobuf:"bytes,3,opt,name=display_name,proto3" json:"display_name,omitempty"`
 	// property bag (optional)
 	Properties *structpb.Struct `protobuf:"bytes,4,opt,name=properties,proto3" json:"properties,omitempty"`
 	// created at timestamp (UTC) (DEPRECATED)
 	//
 	// Deprecated: Marked as deprecated in aserto/directory/common/v3/common.proto.
-	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=created_at,proto3" json:"created_at,omitempty"`
 	// last updated timestamp (UTC)
-	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,21,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,21,opt,name=updated_at,proto3" json:"updated_at,omitempty"`
 	// object instance etag (optional)
 	Etag          string `protobuf:"bytes,23,opt,name=etag,proto3" json:"etag,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -132,23 +132,23 @@ func (x *Object) GetEtag() string {
 type Relation struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// object type identifier
-	ObjectType string `protobuf:"bytes,1,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"`
+	ObjectType string `protobuf:"bytes,1,opt,name=object_type,proto3" json:"object_type,omitempty"`
 	// object instance identifier
-	ObjectId string `protobuf:"bytes,2,opt,name=object_id,json=objectId,proto3" json:"object_id,omitempty"`
+	ObjectId string `protobuf:"bytes,2,opt,name=object_id,proto3" json:"object_id,omitempty"`
 	// object relation name
 	Relation string `protobuf:"bytes,3,opt,name=relation,proto3" json:"relation,omitempty"`
 	// subject type identifier
-	SubjectType string `protobuf:"bytes,4,opt,name=subject_type,json=subjectType,proto3" json:"subject_type,omitempty"`
+	SubjectType string `protobuf:"bytes,4,opt,name=subject_type,proto3" json:"subject_type,omitempty"`
 	// subject instance identifier
-	SubjectId string `protobuf:"bytes,5,opt,name=subject_id,json=subjectId,proto3" json:"subject_id,omitempty"`
+	SubjectId string `protobuf:"bytes,5,opt,name=subject_id,proto3" json:"subject_id,omitempty"`
 	// subject relation name (optional)
-	SubjectRelation string `protobuf:"bytes,6,opt,name=subject_relation,json=subjectRelation,proto3" json:"subject_relation,omitempty"`
+	SubjectRelation string `protobuf:"bytes,6,opt,name=subject_relation,proto3" json:"subject_relation,omitempty"`
 	// created at timestamp (UTC) (DEPRECATED)
 	//
 	// Deprecated: Marked as deprecated in aserto/directory/common/v3/common.proto.
-	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=created_at,proto3" json:"created_at,omitempty"`
 	// last updated timestamp (UTC)
-	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,21,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,21,opt,name=updated_at,proto3" json:"updated_at,omitempty"`
 	// object instance etag (optional)
 	Etag          string `protobuf:"bytes,23,opt,name=etag,proto3" json:"etag,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -253,9 +253,9 @@ func (x *Relation) GetEtag() string {
 type ObjectIdentifier struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// object type identifier
-	ObjectType string `protobuf:"bytes,1,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"`
+	ObjectType string `protobuf:"bytes,1,opt,name=object_type,proto3" json:"object_type,omitempty"`
 	// object instance identifier
-	ObjectId      string `protobuf:"bytes,2,opt,name=object_id,json=objectId,proto3" json:"object_id,omitempty"`
+	ObjectId      string `protobuf:"bytes,2,opt,name=object_id,proto3" json:"object_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -308,17 +308,17 @@ func (x *ObjectIdentifier) GetObjectId() string {
 type RelationIdentifier struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// object type identifier
-	ObjectType string `protobuf:"bytes,1,opt,name=object_type,json=objectType,proto3" json:"object_type,omitempty"`
+	ObjectType string `protobuf:"bytes,1,opt,name=object_type,proto3" json:"object_type,omitempty"`
 	// object instance identifier
-	ObjectId string `protobuf:"bytes,2,opt,name=object_id,json=objectId,proto3" json:"object_id,omitempty"`
+	ObjectId string `protobuf:"bytes,2,opt,name=object_id,proto3" json:"object_id,omitempty"`
 	// object relation name
 	Relation string `protobuf:"bytes,3,opt,name=relation,proto3" json:"relation,omitempty"`
 	// subject type identifier
-	SubjectType string `protobuf:"bytes,4,opt,name=subject_type,json=subjectType,proto3" json:"subject_type,omitempty"`
+	SubjectType string `protobuf:"bytes,4,opt,name=subject_type,proto3" json:"subject_type,omitempty"`
 	// subject instance identifier
-	SubjectId string `protobuf:"bytes,5,opt,name=subject_id,json=subjectId,proto3" json:"subject_id,omitempty"`
+	SubjectId string `protobuf:"bytes,5,opt,name=subject_id,proto3" json:"subject_id,omitempty"`
 	// subject relation name (optional)
-	SubjectRelation string `protobuf:"bytes,6,opt,name=subject_relation,json=subjectRelation,proto3" json:"subject_relation,omitempty"`
+	SubjectRelation string `protobuf:"bytes,6,opt,name=subject_relation,proto3" json:"subject_relation,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -454,7 +454,7 @@ func (x *PaginationRequest) GetToken() string {
 type PaginationResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// next page token, when empty there are no more pages to fetch
-	NextToken     string `protobuf:"bytes,1,opt,name=next_token,json=nextToken,proto3" json:"next_token,omitempty"`
+	NextToken     string `protobuf:"bytes,1,opt,name=next_token,proto3" json:"next_token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -500,52 +500,56 @@ var File_aserto_directory_common_v3_common_proto protoreflect.FileDescriptor
 
 const file_aserto_directory_common_v3_common_proto_rawDesc = "" +
 	"\n" +
-	"'aserto/directory/common/v3/common.proto\x12\x1aaserto.directory.common.v3\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xc0\x02\n" +
-	"\x06Object\x12\x18\n" +
-	"\x04type\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\x04type\x12\x14\n" +
-	"\x02id\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\x02id\x12)\n" +
-	"\fdisplay_name\x18\x03 \x01(\tB\x06\xe2A\x01\x01\x18\x01R\vdisplayName\x12=\n" +
+	"'aserto/directory/common/v3/common.proto\x12\x1aaserto.directory.common.v3\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xcd\x02\n" +
+	"\x06Object\x12\x1a\n" +
+	"\x04type\x18\x01 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\x04type\x12\x16\n" +
+	"\x02id\x18\x02 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\x02id\x12*\n" +
+	"\fdisplay_name\x18\x03 \x01(\tB\x06\xe2A\x01\x01\x18\x01R\fdisplay_name\x12?\n" +
 	"\n" +
-	"properties\x18\x04 \x01(\v2\x17.google.protobuf.StructB\x04\xe2A\x01\x01R\n" +
-	"properties\x12A\n" +
+	"properties\x18\x04 \x01(\v2\x17.google.protobuf.StructB\x06\xe2A\x01\x01\x18\x00R\n" +
+	"properties\x12B\n" +
 	"\n" +
-	"created_at\x18\x14 \x01(\v2\x1a.google.protobuf.TimestampB\x06\xe2A\x01\x03\x18\x01R\tcreatedAt\x12?\n" +
+	"created_at\x18\x14 \x01(\v2\x1a.google.protobuf.TimestampB\x06\xe2A\x01\x03\x18\x01R\n" +
+	"created_at\x12B\n" +
 	"\n" +
-	"updated_at\x18\x15 \x01(\v2\x1a.google.protobuf.TimestampB\x04\xe2A\x01\x03R\tupdatedAt\x12\x18\n" +
-	"\x04etag\x18\x17 \x01(\tB\x04\xe2A\x01\x01R\x04etag\"\x93\x03\n" +
-	"\bRelation\x12%\n" +
-	"\vobject_type\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\n" +
-	"objectType\x12!\n" +
-	"\tobject_id\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\bobjectId\x12 \n" +
-	"\brelation\x18\x03 \x01(\tB\x04\xe2A\x01\x02R\brelation\x12'\n" +
-	"\fsubject_type\x18\x04 \x01(\tB\x04\xe2A\x01\x02R\vsubjectType\x12#\n" +
+	"updated_at\x18\x15 \x01(\v2\x1a.google.protobuf.TimestampB\x06\xe2A\x01\x03\x18\x00R\n" +
+	"updated_at\x12\x1a\n" +
+	"\x04etag\x18\x17 \x01(\tB\x06\xe2A\x01\x01\x18\x00R\x04etag\"\xaa\x03\n" +
+	"\bRelation\x12(\n" +
+	"\vobject_type\x18\x01 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\vobject_type\x12$\n" +
+	"\tobject_id\x18\x02 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\tobject_id\x12\"\n" +
+	"\brelation\x18\x03 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\brelation\x12*\n" +
+	"\fsubject_type\x18\x04 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\fsubject_type\x12&\n" +
 	"\n" +
-	"subject_id\x18\x05 \x01(\tB\x04\xe2A\x01\x02R\tsubjectId\x12/\n" +
-	"\x10subject_relation\x18\x06 \x01(\tB\x04\xe2A\x01\x01R\x0fsubjectRelation\x12A\n" +
+	"subject_id\x18\x05 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\n" +
+	"subject_id\x122\n" +
+	"\x10subject_relation\x18\x06 \x01(\tB\x06\xe2A\x01\x01\x18\x00R\x10subject_relation\x12B\n" +
 	"\n" +
-	"created_at\x18\x14 \x01(\v2\x1a.google.protobuf.TimestampB\x06\xe2A\x01\x03\x18\x01R\tcreatedAt\x12?\n" +
+	"created_at\x18\x14 \x01(\v2\x1a.google.protobuf.TimestampB\x06\xe2A\x01\x03\x18\x01R\n" +
+	"created_at\x12B\n" +
 	"\n" +
-	"updated_at\x18\x15 \x01(\v2\x1a.google.protobuf.TimestampB\x04\xe2A\x01\x03R\tupdatedAt\x12\x18\n" +
-	"\x04etag\x18\x17 \x01(\tB\x04\xe2A\x01\x01R\x04etag\"\\\n" +
-	"\x10ObjectIdentifier\x12%\n" +
-	"\vobject_type\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\n" +
-	"objectType\x12!\n" +
-	"\tobject_id\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\bobjectId\"\xff\x01\n" +
-	"\x12RelationIdentifier\x12%\n" +
-	"\vobject_type\x18\x01 \x01(\tB\x04\xe2A\x01\x02R\n" +
-	"objectType\x12!\n" +
-	"\tobject_id\x18\x02 \x01(\tB\x04\xe2A\x01\x02R\bobjectId\x12 \n" +
-	"\brelation\x18\x03 \x01(\tB\x04\xe2A\x01\x02R\brelation\x12'\n" +
-	"\fsubject_type\x18\x04 \x01(\tB\x04\xe2A\x01\x02R\vsubjectType\x12#\n" +
+	"updated_at\x18\x15 \x01(\v2\x1a.google.protobuf.TimestampB\x06\xe2A\x01\x03\x18\x00R\n" +
+	"updated_at\x12\x1a\n" +
+	"\x04etag\x18\x17 \x01(\tB\x06\xe2A\x01\x01\x18\x00R\x04etag\"b\n" +
+	"\x10ObjectIdentifier\x12(\n" +
+	"\vobject_type\x18\x01 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\vobject_type\x12$\n" +
+	"\tobject_id\x18\x02 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\tobject_id\"\x90\x02\n" +
+	"\x12RelationIdentifier\x12(\n" +
+	"\vobject_type\x18\x01 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\vobject_type\x12$\n" +
+	"\tobject_id\x18\x02 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\tobject_id\x12\"\n" +
+	"\brelation\x18\x03 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\brelation\x12*\n" +
+	"\fsubject_type\x18\x04 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\fsubject_type\x12&\n" +
 	"\n" +
-	"subject_id\x18\x05 \x01(\tB\x04\xe2A\x01\x02R\tsubjectId\x12/\n" +
-	"\x10subject_relation\x18\x06 \x01(\tB\x04\xe2A\x01\x01R\x0fsubjectRelation\"I\n" +
-	"\x11PaginationRequest\x12\x18\n" +
-	"\x04size\x18\x01 \x01(\x05B\x04\xe2A\x01\x01R\x04size\x12\x1a\n" +
-	"\x05token\x18\x02 \x01(\tB\x04\xe2A\x01\x01R\x05token\"9\n" +
-	"\x12PaginationResponse\x12#\n" +
+	"subject_id\x18\x05 \x01(\tB\x06\xe2A\x01\x02\x18\x00R\n" +
+	"subject_id\x122\n" +
+	"\x10subject_relation\x18\x06 \x01(\tB\x06\xe2A\x01\x01\x18\x00R\x10subject_relation\"M\n" +
+	"\x11PaginationRequest\x12\x1a\n" +
+	"\x04size\x18\x01 \x01(\x05B\x06\xe2A\x01\x01\x18\x00R\x04size\x12\x1c\n" +
+	"\x05token\x18\x02 \x01(\tB\x06\xe2A\x01\x01\x18\x00R\x05token\"<\n" +
+	"\x12PaginationResponse\x12&\n" +
 	"\n" +
-	"next_token\x18\x01 \x01(\tB\x04\xe2A\x01\x03R\tnextTokenBFZDgithub.com/aserto-dev/go-directory/aserto/directory/common/v3;commonb\x06proto3"
+	"next_token\x18\x01 \x01(\tB\x06\xe2A\x01\x03\x18\x00R\n" +
+	"next_tokenBFZDgithub.com/aserto-dev/go-directory/aserto/directory/common/v3;commonb\x06proto3"
 
 var (
 	file_aserto_directory_common_v3_common_proto_rawDescOnce sync.Once
