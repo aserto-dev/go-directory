@@ -687,8 +687,8 @@ Relation identifier
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| default | [CheckRequest](#aserto-directory-reader-v3-CheckRequest) |  |  |
-| checks | [CheckRequest](#aserto-directory-reader-v3-CheckRequest) | repeated |  |
+| default | [CheckRequest](#aserto-directory-reader-v3-CheckRequest) |  | default check parameter values |
+| checks | [CheckRequest](#aserto-directory-reader-v3-CheckRequest) | repeated | collection of check requests |
 
 
 
@@ -703,7 +703,7 @@ Relation identifier
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| checks | [CheckResponse](#aserto-directory-reader-v3-CheckResponse) | repeated |  |
+| checks | [CheckResponse](#aserto-directory-reader-v3-CheckResponse) | repeated | checks results array |
 
 
 

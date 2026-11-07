@@ -8,6 +8,7 @@ package importer
 
 import (
 	v3 "github.com/aserto-dev/go-directory/aserto/directory/common/v3"
+	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -77,7 +78,7 @@ func (Opcode) EnumDescriptor() ([]byte, []int) {
 type ImportRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// operation Opcode enum value
-	OpCode Opcode `protobuf:"varint,1,opt,name=op_code,json=opCode,proto3,enum=aserto.directory.importer.v3.Opcode" json:"op_code,omitempty"`
+	OpCode Opcode `protobuf:"varint,1,opt,name=op_code,proto3,enum=aserto.directory.importer.v3.Opcode" json:"op_code,omitempty"`
 	// Types that are valid to be assigned to Msg:
 	//
 	//	*ImportRequest_Object
@@ -423,28 +424,28 @@ var File_aserto_directory_importer_v3_importer_proto protoreflect.FileDescriptor
 
 const file_aserto_directory_importer_v3_importer_proto_rawDesc = "" +
 	"\n" +
-	"+aserto/directory/importer/v3/importer.proto\x12\x1caserto.directory.importer.v3\x1a'aserto/directory/common/v3/common.proto\"\xd7\x01\n" +
-	"\rImportRequest\x12=\n" +
-	"\aop_code\x18\x01 \x01(\x0e2$.aserto.directory.importer.v3.OpcodeR\x06opCode\x12<\n" +
-	"\x06object\x18\x05 \x01(\v2\".aserto.directory.common.v3.ObjectH\x00R\x06object\x12B\n" +
-	"\brelation\x18\x06 \x01(\v2$.aserto.directory.common.v3.RelationH\x00R\brelationB\x05\n" +
-	"\x03msg\"\xbc\x02\n" +
-	"\x0eImportResponse\x12G\n" +
-	"\x06object\x18\x01 \x01(\v2+.aserto.directory.importer.v3.ImportCounterB\x02\x18\x01R\x06object\x12K\n" +
-	"\brelation\x18\x02 \x01(\v2+.aserto.directory.importer.v3.ImportCounterB\x02\x18\x01R\brelation\x12D\n" +
-	"\x06status\x18\x04 \x01(\v2*.aserto.directory.importer.v3.ImportStatusH\x00R\x06status\x12G\n" +
-	"\acounter\x18\x05 \x01(\v2+.aserto.directory.importer.v3.ImportCounterH\x00R\acounterB\x05\n" +
-	"\x03msg\"w\n" +
-	"\rImportCounter\x12\x12\n" +
-	"\x04recv\x18\x01 \x01(\x04R\x04recv\x12\x10\n" +
-	"\x03set\x18\x02 \x01(\x04R\x03set\x12\x16\n" +
-	"\x06delete\x18\x03 \x01(\x04R\x06delete\x12\x14\n" +
-	"\x05error\x18\x04 \x01(\x04R\x05error\x12\x12\n" +
-	"\x04type\x18\x05 \x01(\tR\x04type\"s\n" +
-	"\fImportStatus\x12\x12\n" +
-	"\x04code\x18\x01 \x01(\rR\x04code\x12\x10\n" +
-	"\x03msg\x18\x02 \x01(\tR\x03msg\x12=\n" +
-	"\x03req\x18\x03 \x01(\v2+.aserto.directory.importer.v3.ImportRequestR\x03req*a\n" +
+	"+aserto/directory/importer/v3/importer.proto\x12\x1caserto.directory.importer.v3\x1a'aserto/directory/common/v3/common.proto\x1a\x1fgoogle/api/field_behavior.proto\"\xf0\x01\n" +
+	"\rImportRequest\x12F\n" +
+	"\aop_code\x18\x01 \x01(\x0e2$.aserto.directory.importer.v3.OpcodeB\x06\xe2A\x01\x02\x18\x00R\aop_code\x12D\n" +
+	"\x06object\x18\x05 \x01(\v2\".aserto.directory.common.v3.ObjectB\x06\xe2A\x01\x01\x18\x00H\x00R\x06object\x12J\n" +
+	"\brelation\x18\x06 \x01(\v2$.aserto.directory.common.v3.RelationB\x06\xe2A\x01\x01\x18\x00H\x00R\brelationB\x05\n" +
+	"\x03msg\"\xd4\x02\n" +
+	"\x0eImportResponse\x12K\n" +
+	"\x06object\x18\x01 \x01(\v2+.aserto.directory.importer.v3.ImportCounterB\x06\xe2A\x01\x03\x18\x01R\x06object\x12O\n" +
+	"\brelation\x18\x02 \x01(\v2+.aserto.directory.importer.v3.ImportCounterB\x06\xe2A\x01\x03\x18\x01R\brelation\x12L\n" +
+	"\x06status\x18\x04 \x01(\v2*.aserto.directory.importer.v3.ImportStatusB\x06\xe2A\x01\x03\x18\x00H\x00R\x06status\x12O\n" +
+	"\acounter\x18\x05 \x01(\v2+.aserto.directory.importer.v3.ImportCounterB\x06\xe2A\x01\x03\x18\x00H\x00R\acounterB\x05\n" +
+	"\x03msg\"\x9f\x01\n" +
+	"\rImportCounter\x12\x1a\n" +
+	"\x04recv\x18\x01 \x01(\x04B\x06\xe2A\x01\x03\x18\x00R\x04recv\x12\x18\n" +
+	"\x03set\x18\x02 \x01(\x04B\x06\xe2A\x01\x03\x18\x00R\x03set\x12\x1e\n" +
+	"\x06delete\x18\x03 \x01(\x04B\x06\xe2A\x01\x03\x18\x00R\x06delete\x12\x1c\n" +
+	"\x05error\x18\x04 \x01(\x04B\x06\xe2A\x01\x03\x18\x00R\x05error\x12\x1a\n" +
+	"\x04type\x18\x05 \x01(\tB\x06\xe2A\x01\x03\x18\x00R\x04type\"\x8b\x01\n" +
+	"\fImportStatus\x12\x1a\n" +
+	"\x04code\x18\x01 \x01(\rB\x06\xe2A\x01\x03\x18\x00R\x04code\x12\x18\n" +
+	"\x03msg\x18\x02 \x01(\tB\x06\xe2A\x01\x03\x18\x00R\x03msg\x12E\n" +
+	"\x03req\x18\x03 \x01(\v2+.aserto.directory.importer.v3.ImportRequestB\x06\xe2A\x01\x03\x18\x00R\x03req*a\n" +
 	"\x06Opcode\x12\x12\n" +
 	"\x0eOPCODE_UNKNOWN\x10\x00\x12\x0e\n" +
 	"\n" +

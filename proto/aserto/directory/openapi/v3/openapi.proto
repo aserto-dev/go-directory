@@ -2,51 +2,54 @@ syntax = "proto3";
 
 package aserto.directory.v3;
 
-import "protoc-gen-openapiv2/options/annotations.proto";
+import "protoc-gen-openapiv3/options/annotations.proto";
 
 option go_package = "github.com/aserto-dev/go-directory/aserto/directory/v3;directory";
-option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+option (grpc.gateway.protoc_gen_openapiv3.options.openapiv3_document) = {
   info: {
-    title: "Directory Service"
-    version: "3.1"
+    title: "Topaz Directory Service"
+    // summary: ""
+    // description: ""
+    // terms_of_service: ""
     contact: {
-      name: "Aserto, Inc."
-      url: "https://github.com/aserto-dev/pb-directory"
+      name: "Topaz Authorization Project"
+      url: "https://github.com/aserto-dev/go-authorizer"
       email: "support@aserto.com"
     }
     license: {
       name: "Apache 2.0 License"
-      url: "https://github.com/aserto-dev/pb-directory/blob/main/LICENSE"
+      url: "https://github.com/aserto-dev/go-authorizer/blob/main/LICENSE"
     }
+    version: "3.1"
+    // extensions: {}
   }
+
+  servers: [
+    {
+      url: "{{.Scheme}}://{{.Host}}"
+      description: "Topaz Directory service"
+    }
+  ]
+
+  tags: [
+    {name: "directory"},
+    {name: "get"},
+    {name: "list"},
+    {name: "set"},
+    {name: "delete"},
+    {name: "graph"},
+    {name: "check"},
+    {name: "checks"},
+    {name: "manifest"},
+    {name: "object"},
+    {name: "permission"},
+    {name: "relation"}
+  ]
 
   external_docs: {
-    url: "https://github.com/aserto-dev/pb-directory/blob/main/html/index.html"
-    description: "Directory API Reference."
+    description: "Topaz Authorizer API Reference."
+    url: "https://github.com/aserto-dev/go-authorizer/blob/main/html/index.html"
   }
 
-  schemes: HTTP
-
-  schemes: HTTPS
-  schemes: WSS
-  consumes: "application/json"
-  produces: "application/json"
-
-  security_definitions: {
-    security: {
-      key: "AuthorizationHeader"
-      value: {
-        type: TYPE_API_KEY
-        in: IN_HEADER
-        name: "authorization"
-      }
-    }
-  }
-
-  security: {
-    security_requirement: {
-      key: "AuthorizationHeader"
-      value: {}
-    }
-  }
+  // extensions: {}
 };
