@@ -48,7 +48,7 @@ message Object {
   // object instance etag (optional)
   string etag = 23 [
     json_name = "etag",
-    (google.api.field_behavior) = OPTIONAL,
+    (google.api.field_behavior) = OUTPUT_ONLY,
     deprecated = false
   ];
 }
@@ -105,7 +105,7 @@ message Relation {
   // object instance etag (optional)
   string etag = 23 [
     json_name = "etag",
-    (google.api.field_behavior) = OPTIONAL,
+    (google.api.field_behavior) = OUTPUT_ONLY,
     deprecated = false
   ];
 }

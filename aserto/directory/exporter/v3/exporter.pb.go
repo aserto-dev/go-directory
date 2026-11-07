@@ -8,6 +8,7 @@ package exporter
 
 import (
 	v3 "github.com/aserto-dev/go-directory/aserto/directory/common/v3"
+	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	structpb "google.golang.org/protobuf/types/known/structpb"
@@ -89,7 +90,7 @@ type ExportRequest struct {
 	// data export options mask
 	Options uint32 `protobuf:"varint,1,opt,name=options,proto3" json:"options,omitempty"`
 	// start export from timestamp (UTC)
-	StartFrom     *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=start_from,json=startFrom,proto3" json:"start_from,omitempty"`
+	StartFrom     *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=start_from,proto3" json:"start_from,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -243,15 +244,16 @@ var File_aserto_directory_exporter_v3_exporter_proto protoreflect.FileDescriptor
 
 const file_aserto_directory_exporter_v3_exporter_proto_rawDesc = "" +
 	"\n" +
-	"+aserto/directory/exporter/v3/exporter.proto\x12\x1caserto.directory.exporter.v3\x1a'aserto/directory/common/v3/common.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"d\n" +
-	"\rExportRequest\x12\x18\n" +
-	"\aoptions\x18\x01 \x01(\rR\aoptions\x129\n" +
+	"+aserto/directory/exporter/v3/exporter.proto\x12\x1caserto.directory.exporter.v3\x1a'aserto/directory/common/v3/common.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"u\n" +
+	"\rExportRequest\x12 \n" +
+	"\aoptions\x18\x01 \x01(\rB\x06\xe2A\x01\x02\x18\x00R\aoptions\x12B\n" +
 	"\n" +
-	"start_from\x18\x14 \x01(\v2\x1a.google.protobuf.TimestampR\tstartFrom\"\xca\x01\n" +
-	"\x0eExportResponse\x12<\n" +
-	"\x06object\x18\x02 \x01(\v2\".aserto.directory.common.v3.ObjectH\x00R\x06object\x12B\n" +
-	"\brelation\x18\x04 \x01(\v2$.aserto.directory.common.v3.RelationH\x00R\brelation\x12/\n" +
-	"\x05stats\x18\b \x01(\v2\x17.google.protobuf.StructH\x00R\x05statsB\x05\n" +
+	"start_from\x18\x14 \x01(\v2\x1a.google.protobuf.TimestampB\x06\xe2A\x01\x01\x18\x00R\n" +
+	"start_from\"\xe2\x01\n" +
+	"\x0eExportResponse\x12D\n" +
+	"\x06object\x18\x02 \x01(\v2\".aserto.directory.common.v3.ObjectB\x06\xe2A\x01\x03\x18\x00H\x00R\x06object\x12J\n" +
+	"\brelation\x18\x04 \x01(\v2$.aserto.directory.common.v3.RelationB\x06\xe2A\x01\x03\x18\x00H\x00R\brelation\x127\n" +
+	"\x05stats\x18\b \x01(\v2\x17.google.protobuf.StructB\x06\xe2A\x01\x03\x18\x00H\x00R\x05statsB\x05\n" +
 	"\x03msg*s\n" +
 	"\x06Option\x12\x12\n" +
 	"\x0eOPTION_UNKNOWN\x10\x00\x12\x17\n" +

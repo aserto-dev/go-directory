@@ -499,7 +499,7 @@ const file_aserto_directory_model_v3_model_proto_rawDesc = "" +
 	"\bMetadata\x12?\n" +
 	"\n" +
 	"updated_at\x18\x15 \x01(\v2\x1a.google.protobuf.TimestampB\x04\xe2A\x01\x03R\tupdatedAt\x12\x18\n" +
-	"\x04etag\x18\x17 \x01(\tB\x04\xe2A\x01\x01R\x04etag\"\x1a\n" +
+	"\x04etag\x18\x17 \x01(\tB\x04\xe2A\x01\x03R\x04etag\"\x1a\n" +
 	"\x04Body\x12\x12\n" +
 	"\x04data\x18\x02 \x01(\fR\x04data2\xfb\x03\n" +
 	"\x05Model\x12v\n" +

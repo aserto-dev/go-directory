@@ -17,6 +17,7 @@
           },
           "etag": {
             "description": "object instance etag (optional)",
+            "readOnly": true,
             "type": "string"
           },
           "id": {
@@ -84,6 +85,7 @@
           },
           "etag": {
             "description": "object instance etag (optional)",
+            "readOnly": true,
             "type": "string"
           },
           "object_id": {
