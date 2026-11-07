@@ -273,11 +273,12 @@ ${TMP_OAI_DIR}:
 tag-release:
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
 	@echo -e "$(WARN_COLOR)release tag: ${NEXT_TAG}$(NO_COLOR)"
-	@git tag ${NEXT_TAG}
-	@git push origin ${NEXT_TAG}
-	@git tag aserto/${NEXT_TAG}
-	@git push origin aserto/${NEXT_TAG}
-	@git tag openapi/${NEXT_TAG}
-	@git push origin openapi/${NEXT_TAG}
-	@git tag pkg/${NEXT_TAG}
-	@git push origin pkg/${NEXT_TAG}
+	git tag $(svu patch)
+	svu current
+	git push origin $(svu current)
+	git tag aserto/$(svu current)
+	git push origin aserto/$(svu current)
+	git tag pkg/$(svu current)
+	git push origin pkg/$(svu current)
+	git tag openapi/$(svu current)
+	git push origin openapi/$(svu current)
