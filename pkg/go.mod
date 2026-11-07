@@ -9,7 +9,6 @@ replace github.com/aserto-dev/go-directory/aserto => ../aserto
 require (
 	github.com/aserto-dev/errors v0.34.2-0.20261006083714-760eef8e0b6c
 	github.com/aserto-dev/go-directory/aserto v0.0.0-00010101000000-000000000000
-	github.com/go-http-utils/headers v0.0.0-20181008091004-fed159eddc2a
 	github.com/grpc-ecosystem/go-grpc-middleware/v2 v2.3.4
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.33.0
 	github.com/pkg/errors v0.9.1
