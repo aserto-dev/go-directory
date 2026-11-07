@@ -34,6 +34,7 @@ BUF_LATEST         := $(shell ${EXT_BIN_DIR}/buf registry module label list ${BU
 BUF_DEV_IMAGE      := ${TMP_BUF_DIR}/${PROJECT}.bin
 
 RELEASE_TAG        := $$(${EXT_BIN_DIR}/svu current)
+NEXT_TAG           := $$(${EXT_BIN_DIR}/svu patch)
 
 .DEFAULT_GOAL      := build
 
@@ -197,6 +198,7 @@ info:
 	@echo "BUF_LATEST:    ${BUF_LATEST}"
 	@echo "BUF_DEV_IMAGE: ${BUF_DEV_IMAGE}"
 	@echo "RELEASE_TAG:   ${RELEASE_TAG}"
+	@echo "NEXT_TAG:      ${NEXT_TAG}"
 	
 .PHONY: install-buf
 install-buf: ${EXT_BIN_DIR}
@@ -266,3 +268,16 @@ ${TMP_BUF_DIR}:
 ${TMP_OAI_DIR}:
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
 	@mkdir -p ${TMP_OAI_DIR}
+
+.PHONY: tag-release
+tag-release:
+	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
+	@echo -e "$(WARN_COLOR)release tag: ${NEXT_TAG}$(NO_COLOR)"
+	@git tag ${NEXT_TAG}
+	@git push origin ${NEXT_TAG}
+	@git tag aserto/${NEXT_TAG}
+	@git push origin aserto/${NEXT_TAG}
+	@git tag openapi/${NEXT_TAG}
+	@git push origin openapi/${NEXT_TAG}
+	@git tag pkg/${NEXT_TAG}
+	@git push origin pkg/${NEXT_TAG}
