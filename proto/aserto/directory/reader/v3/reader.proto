@@ -6,6 +6,7 @@ import "aserto/directory/common/v3/common.proto";
 import "google/api/annotations.proto";
 import "google/api/field_behavior.proto";
 import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
 import "protoc-gen-openapiv3/options/annotations.proto";
 
 option go_package = "github.com/aserto-dev/go-directory/aserto/directory/reader/v3;reader";
@@ -41,10 +42,12 @@ option (grpc.gateway.protoc_gen_openapiv3.options.openapiv3_document) = {
     {name: "list"},
     {name: "set"},
     {name: "delete"},
+    {name: "batch"},
     {name: "graph"},
     {name: "check"},
     {name: "checks"},
     {name: "manifest"},
+    {name: "model"},
     {name: "object"},
     {name: "permission"},
     {name: "relation"}
@@ -59,6 +62,46 @@ option (grpc.gateway.protoc_gen_openapiv3.options.openapiv3_document) = {
 };
 
 service Reader {
+  // get manifest
+  rpc GetManifest(GetManifestRequest) returns (GetManifestResponse) {
+    option (google.api.http) = {get: "/api/v3/directory/manifest"};
+    option (grpc.gateway.protoc_gen_openapiv3.options.openapiv3_operation) = {
+      tags: [
+        "directory",
+        "get",
+        "manifest"
+      ]
+      summary: "Get manifest instance"
+      description: "Returns manifest instance."
+      // external_docs: {}
+      operation_id: "directory.reader.v3.manifest.get"
+      deprecated: false
+      // servers: {}
+      // extensions: {}
+    };
+    option deprecated = false;
+  }
+
+  // get model
+  rpc GetModel(GetModelRequest) returns (GetModelResponse) {
+    option (google.api.http) = {get: "/api/v3/directory/model"};
+    option (grpc.gateway.protoc_gen_openapiv3.options.openapiv3_operation) = {
+      tags: [
+        "directory",
+        "get",
+        "model"
+      ]
+      summary: "Get model instance"
+      description: "Returns model instance."
+      // external_docs: {}
+      operation_id: "directory.reader.v3.model.get"
+      deprecated: false
+      // servers: {}
+      // extensions: {}
+    };
+    option deprecated = false;
+  }
+
   // get object
   rpc GetObject(GetObjectRequest) returns (GetObjectResponse) {
     option (google.api.http) = {get: "/api/v3/directory/object/{object_type}/{object_id}"};
@@ -80,12 +123,19 @@ service Reader {
   }
 
   // get multiple objects
+  // Deprecated: use directory.reader.v3.Batch()
   rpc GetObjectMany(GetObjectManyRequest) returns (GetObjectManyResponse) {
-    option deprecated = false;
+    option deprecated = true;
   }
 
   // list objects
+  // Deprecated: use directory.reader.v3.ListObjects()
   rpc GetObjects(GetObjectsRequest) returns (GetObjectsResponse) {
+    option deprecated = true;
+  }
+
+  // list objects
+  rpc ListObjects(ListObjectsRequest) returns (ListObjectsResponse) {
     option (google.api.http) = {get: "/api/v3/directory/objects"};
     option (grpc.gateway.protoc_gen_openapiv3.options.openapiv3_operation) = {
       tags: [
@@ -125,7 +175,13 @@ service Reader {
   }
 
   // list relations
+  // Deprecated: use directory.reader.v3.ListRelations()
   rpc GetRelations(GetRelationsRequest) returns (GetRelationsResponse) {
+    option deprecated = true;
+  }
+
+  // list relations
+  rpc ListRelations(ListRelationsRequest) returns (ListRelationsResponse) {
     option (google.api.http) = {get: "/api/v3/directory/relations"};
     option (grpc.gateway.protoc_gen_openapiv3.options.openapiv3_operation) = {
       tags: [
@@ -193,48 +249,12 @@ service Reader {
   // check permission (deprecated, use the check method)
   // Deprecated: use directory.reader.v3.Check()
   rpc CheckPermission(CheckPermissionRequest) returns (CheckPermissionResponse) {
-    option (google.api.http) = {
-      post: "/api/v3/directory/check/permission"
-      body: "*"
-    };
-    option (grpc.gateway.protoc_gen_openapiv3.options.openapiv3_operation) = {
-      tags: [
-        "directory",
-        "check",
-        "permission"
-      ]
-      summary: "Check permission"
-      description: "Returns check permission outcome."
-      // external_docs: {}
-      operation_id: "directory.reader.v3.check.permission"
-      deprecated: true
-      // servers: {}
-      // extensions: {}
-    };
     option deprecated = true;
   }
 
   // check relation (deprecated, use the check method)
   // Deprecated: use directory.reader.v3.Check()
   rpc CheckRelation(CheckRelationRequest) returns (CheckRelationResponse) {
-    option (google.api.http) = {
-      post: "/api/v3/directory/check/relation"
-      body: "*"
-    };
-    option (grpc.gateway.protoc_gen_openapiv3.options.openapiv3_operation) = {
-      tags: [
-        "directory",
-        "check",
-        "relation"
-      ]
-      summary: "Check relation"
-      description: "Returns check relation outcome."
-      // external_docs: {}
-      operation_id: "directory.reader.v3.check.relation"
-      deprecated: true
-      // servers: {}
-      // extensions: {}
-    };
     option deprecated = true;
   }
 
@@ -255,8 +275,52 @@ service Reader {
       // servers: {}
       // extensions: {}
     };
+    option deprecated = false;
   }
-  option deprecated = false;
+
+  // batch reader requests
+  rpc Batch(BatchRequest) returns (BatchResponse) {
+    option (google.api.http) = {get: "/api/v3/directory/batch"};
+    option (grpc.gateway.protoc_gen_openapiv3.options.openapiv3_operation) = {
+      tags: [
+        "directory",
+        "batch"
+      ]
+      summary: "Batch reader"
+      description: "Read multiple request in a single round-trip."
+      // external_docs: {}
+      operation_id: "directory.reader.v3.batch"
+      deprecated: false
+      // servers: {}
+      // extensions: {}
+    };
+    option deprecated = false;
+  }
+
+  // export objects and relations as a stream
+  rpc Export(ExportRequest) returns (stream ExportResponse) {
+    option deprecated = false;
+  }
+}
+
+message GetManifestRequest {}
+
+message GetManifestResponse {
+  aserto.directory.common.v3.Manifest manifest = 1 [
+    json_name = "manifest",
+    (google.api.field_behavior) = OUTPUT_ONLY,
+    deprecated = false
+  ];
+}
+
+message GetModelRequest {}
+
+message GetModelResponse {
+  aserto.directory.common.v3.Model model = 1 [
+    json_name = "model",
+    (google.api.field_behavior) = OUTPUT_ONLY,
+    deprecated = false
+  ];
 }
 
 message GetObjectRequest {
@@ -333,6 +397,36 @@ message GetObjectsRequest {
 }
 
 message GetObjectsResponse {
+  // array of object instances
+  repeated aserto.directory.common.v3.Object results = 1 [
+    json_name = "results",
+    (google.api.field_behavior) = OUTPUT_ONLY,
+    deprecated = false
+  ];
+  // pagination response
+  aserto.directory.common.v3.PaginationResponse page = 9 [
+    json_name = "page",
+    (google.api.field_behavior) = OUTPUT_ONLY,
+    deprecated = false
+  ];
+}
+
+message ListObjectsRequest {
+  // object type identifier (optional)
+  string object_type = 1 [
+    json_name = "object_type",
+    (google.api.field_behavior) = OPTIONAL,
+    deprecated = false
+  ];
+  // pagination request (optional)
+  aserto.directory.common.v3.PaginationRequest page = 9 [
+    json_name = "page",
+    (google.api.field_behavior) = OPTIONAL,
+    deprecated = false
+  ];
+}
+
+message ListObjectsResponse {
   // array of object instances
   repeated aserto.directory.common.v3.Object results = 1 [
     json_name = "results",
@@ -465,6 +559,84 @@ message GetRelationsRequest {
 }
 
 message GetRelationsResponse {
+  // array of relation instances
+  repeated aserto.directory.common.v3.Relation results = 1 [
+    json_name = "results",
+    (google.api.field_behavior) = OUTPUT_ONLY,
+    deprecated = false
+  ];
+  // map of materialized relation objects
+  map<string, aserto.directory.common.v3.Object> objects = 2 [
+    json_name = "objects",
+    (google.api.field_behavior) = OUTPUT_ONLY,
+    deprecated = false
+  ];
+  // pagination response
+  aserto.directory.common.v3.PaginationResponse page = 9 [
+    json_name = "page",
+    (google.api.field_behavior) = OUTPUT_ONLY,
+    deprecated = false
+  ];
+}
+
+message ListRelationsRequest {
+  // object type identifier (optional)
+  string object_type = 1 [
+    json_name = "object_type",
+    (google.api.field_behavior) = OPTIONAL,
+    deprecated = false
+  ];
+  // object instance identifier (optional)
+  string object_id = 2 [
+    json_name = "object_id",
+    (google.api.field_behavior) = OPTIONAL,
+    deprecated = false
+  ];
+  // relation name (optional)
+  string relation = 3 [
+    json_name = "relation",
+    (google.api.field_behavior) = OPTIONAL,
+    deprecated = false
+  ];
+  // subject type identifier (optional)
+  string subject_type = 4 [
+    json_name = "subject_type",
+    (google.api.field_behavior) = OPTIONAL,
+    deprecated = false
+  ];
+  // subject instance identifier (optional)
+  string subject_id = 5 [
+    json_name = "subject_id",
+    (google.api.field_behavior) = OPTIONAL,
+    deprecated = false
+  ];
+  // subject relation name (optional)
+  string subject_relation = 6 [
+    json_name = "subject_relation",
+    (google.api.field_behavior) = OPTIONAL,
+    deprecated = false
+  ];
+  // materialize relation objects (optional)
+  bool with_objects = 7 [
+    json_name = "with_objects",
+    (google.api.field_behavior) = OPTIONAL,
+    deprecated = false
+  ];
+  // only return relations that do not have a subject relation  (optional)
+  bool with_empty_subject_relation = 8 [
+    json_name = "with_empty_subject_relation",
+    (google.api.field_behavior) = OPTIONAL,
+    deprecated = false
+  ];
+  // pagination request (optional)
+  aserto.directory.common.v3.PaginationRequest page = 9 [
+    json_name = "page",
+    (google.api.field_behavior) = OPTIONAL,
+    deprecated = false
+  ];
+}
+
+message ListRelationsResponse {
   // array of relation instances
   repeated aserto.directory.common.v3.Relation results = 1 [
     json_name = "results",
@@ -752,4 +924,99 @@ message GetGraphResponse {
     (google.api.field_behavior) = OUTPUT_ONLY,
     deprecated = false
   ];
+}
+
+message BatchRequest {
+  repeated BatchRequest requests = 1 [
+    json_name = "requests",
+    deprecated = false
+  ];
+}
+
+message BatchResponse {
+  repeated BatchResponses responses = 1 [
+    json_name = "responses",
+    deprecated = false
+  ];
+}
+
+message BatchRequests {
+  oneof msg {
+    // get object request
+    aserto.directory.reader.v3.GetObjectRequest get_object = 21 [
+      json_name = "get_object",
+      deprecated = false
+    ];
+    // get relation request
+    aserto.directory.reader.v3.GetRelationRequest get_relation = 31 [
+      json_name = "get_relation",
+      deprecated = false
+    ];
+  }
+}
+
+message BatchResponses {
+  oneof msg {
+    // get object response
+    aserto.directory.reader.v3.GetObjectResponse get_object = 21 [
+      json_name = "get_object",
+      deprecated = false
+    ];
+    // get relation response
+    aserto.directory.reader.v3.GetRelationResponse get_relation = 31 [
+      json_name = "get_relation",
+      deprecated = false
+    ];
+  }
+}
+
+message ExportRequest {
+  // data export options mask
+  uint32 options = 1 [
+    json_name = "options",
+    (google.api.field_behavior) = REQUIRED,
+    deprecated = false
+  ];
+  // start export from timestamp (UTC)
+  google.protobuf.Timestamp start_from = 20 [
+    json_name = "start_from",
+    (google.api.field_behavior) = OPTIONAL,
+    deprecated = false
+  ];
+}
+
+message ExportResponse {
+  oneof msg {
+    // object instance (data)
+    aserto.directory.common.v3.Object object = 2 [
+      json_name = "object",
+      (google.api.field_behavior) = OUTPUT_ONLY,
+      deprecated = false
+    ];
+    // relation instance (data)
+    aserto.directory.common.v3.Relation relation = 4 [
+      json_name = "relation",
+      (google.api.field_behavior) = OUTPUT_ONLY,
+      deprecated = false
+    ];
+    // object and/or relation stats (no data)
+    google.protobuf.Struct stats = 8 [
+      json_name = "stats",
+      (google.api.field_behavior) = OUTPUT_ONLY,
+      deprecated = false
+    ];
+  }
+}
+
+enum Option {
+  // nothing selected (default initialization value)
+  OPTION_UNKNOWN = 0x0;
+  // object instances
+  OPTION_DATA_OBJECTS = 0x8;
+  // relation instances
+  OPTION_DATA_RELATIONS = 0x10;
+  // all data = OPTION_DATA_OBJECTS | OPTION_DATA_RELATIONS
+  OPTION_DATA = 0x18;
+  // stats
+  OPTION_STATS = 0x40;
 }

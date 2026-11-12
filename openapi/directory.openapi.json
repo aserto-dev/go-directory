@@ -1,35 +1,16 @@
 {
   "components": {
     "schemas": {
-      "aserto.directory.common.v3.Object": {
+      "aserto.directory.common.v3.Manifest": {
         "properties": {
-          "created_at": {
-            "deprecated": true,
-            "description": "created at timestamp (UTC) (DEPRECATED)",
-            "format": "date-time",
-            "readOnly": true,
-            "type": "string"
-          },
-          "display_name": {
-            "deprecated": true,
-            "description": "display name object (optional) (DEPRECATED)",
+          "data": {
+            "description": "model data stream",
+            "format": "byte",
             "type": "string"
           },
           "etag": {
             "description": "object instance etag (optional)",
             "readOnly": true,
-            "type": "string"
-          },
-          "id": {
-            "description": "object instance identifier",
-            "type": "string"
-          },
-          "properties": {
-            "description": "property bag (optional)",
-            "type": "object"
-          },
-          "type": {
-            "description": "object type identifier",
             "type": "string"
           },
           "updated_at": {
@@ -40,8 +21,60 @@
           }
         },
         "required": [
-          "type",
-          "id"
+          "data"
+        ],
+        "type": "object"
+      },
+      "aserto.directory.common.v3.Model": {
+        "properties": {
+          "data": {
+            "description": "model data",
+            "readOnly": true,
+            "type": "object"
+          },
+          "etag": {
+            "description": "object instance etag (optional)",
+            "readOnly": true,
+            "type": "string"
+          },
+          "updated_at": {
+            "description": "last updated timestamp (UTC)",
+            "format": "date-time",
+            "readOnly": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "aserto.directory.common.v3.Object": {
+        "properties": {
+          "etag": {
+            "description": "object instance etag (optional)",
+            "readOnly": true,
+            "type": "string"
+          },
+          "object_id": {
+            "description": "object instance identifier",
+            "type": "string"
+          },
+          "object_type": {
+            "description": "object type identifier",
+            "type": "string"
+          },
+          "properties": {
+            "description": "property bag (optional)",
+            "type": "object"
+          },
+          "updated_at": {
+            "description": "last updated timestamp (UTC)",
+            "format": "date-time",
+            "readOnly": true,
+            "type": "string"
+          }
+        },
+        "required": [
+          "object_type",
+          "object_id"
         ],
         "type": "object"
       },
@@ -76,13 +109,6 @@
       },
       "aserto.directory.common.v3.Relation": {
         "properties": {
-          "created_at": {
-            "deprecated": true,
-            "description": "created at timestamp (UTC) (DEPRECATED)",
-            "format": "date-time",
-            "readOnly": true,
-            "type": "string"
-          },
           "etag": {
             "description": "object instance etag (optional)",
             "readOnly": true,
@@ -128,47 +154,67 @@
         ],
         "type": "object"
       },
-      "aserto.directory.model.v3.DeleteManifestResponse": {
+      "aserto.directory.reader.v3.BatchResponse": {
         "properties": {
-          "result": {
-            "description": "empty result",
+          "responses": {
+            "items": {
+              "$ref": "#/components/schemas/aserto.directory.reader.v3.BatchResponses"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "aserto.directory.reader.v3.BatchResponses": {
+        "oneOf": [
+          {
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "get_object"
+                  ]
+                },
+                {
+                  "required": [
+                    "get_relation"
+                  ]
+                }
+              ]
+            },
+            "type": "object"
+          },
+          {
+            "properties": {
+              "get_object": {
+                "$ref": "#/components/schemas/aserto.directory.reader.v3.GetObjectResponse"
+              }
+            },
+            "required": [
+              "get_object"
+            ],
+            "type": "object"
+          },
+          {
+            "properties": {
+              "get_relation": {
+                "$ref": "#/components/schemas/aserto.directory.reader.v3.GetRelationResponse"
+              }
+            },
+            "required": [
+              "get_relation"
+            ],
             "type": "object"
           }
-        },
-        "type": "object"
-      },
-      "aserto.directory.reader.v3.CheckPermissionResponse": {
+        ],
         "properties": {
-          "check": {
-            "description": "check result",
-            "readOnly": true,
-            "type": "boolean"
+          "get_object": {
+            "$ref": "#/components/schemas/aserto.directory.reader.v3.GetObjectResponse",
+            "description": "get object response"
           },
-          "trace": {
-            "description": "trace information",
-            "items": {
-              "type": "string"
-            },
-            "readOnly": true,
-            "type": "array"
-          }
-        },
-        "type": "object"
-      },
-      "aserto.directory.reader.v3.CheckRelationResponse": {
-        "properties": {
-          "check": {
-            "description": "check result",
-            "readOnly": true,
-            "type": "boolean"
-          },
-          "trace": {
-            "description": "trace information",
-            "items": {
-              "type": "string"
-            },
-            "readOnly": true,
-            "type": "array"
+          "get_relation": {
+            "$ref": "#/components/schemas/aserto.directory.reader.v3.GetRelationResponse",
+            "description": "get relation response"
           }
         },
         "type": "object"
@@ -271,6 +317,32 @@
         },
         "type": "object"
       },
+      "aserto.directory.reader.v3.GetManifestResponse": {
+        "properties": {
+          "manifest": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/aserto.directory.common.v3.Manifest"
+              }
+            ],
+            "readOnly": true
+          }
+        },
+        "type": "object"
+      },
+      "aserto.directory.reader.v3.GetModelResponse": {
+        "properties": {
+          "model": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/aserto.directory.common.v3.Model"
+              }
+            ],
+            "readOnly": true
+          }
+        },
+        "type": "object"
+      },
       "aserto.directory.reader.v3.GetObjectResponse": {
         "properties": {
           "relations": {
@@ -289,28 +361,6 @@
             ],
             "description": "object instance",
             "readOnly": true
-          }
-        },
-        "type": "object"
-      },
-      "aserto.directory.reader.v3.GetObjectsResponse": {
-        "properties": {
-          "page": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/aserto.directory.common.v3.PaginationResponse"
-              }
-            ],
-            "description": "pagination response",
-            "readOnly": true
-          },
-          "results": {
-            "description": "array of object instances",
-            "items": {
-              "$ref": "#/components/schemas/aserto.directory.common.v3.Object"
-            },
-            "readOnly": true,
-            "type": "array"
           }
         },
         "type": "object"
@@ -337,7 +387,29 @@
         },
         "type": "object"
       },
-      "aserto.directory.reader.v3.GetRelationsResponse": {
+      "aserto.directory.reader.v3.ListObjectsResponse": {
+        "properties": {
+          "page": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/aserto.directory.common.v3.PaginationResponse"
+              }
+            ],
+            "description": "pagination response",
+            "readOnly": true
+          },
+          "results": {
+            "description": "array of object instances",
+            "items": {
+              "$ref": "#/components/schemas/aserto.directory.common.v3.Object"
+            },
+            "readOnly": true,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "aserto.directory.reader.v3.ListRelationsResponse": {
         "properties": {
           "objects": {
             "additionalProperties": {
@@ -367,6 +439,114 @@
         },
         "type": "object"
       },
+      "aserto.directory.writer.v3.BatchResponse": {
+        "properties": {
+          "responses": {
+            "items": {
+              "$ref": "#/components/schemas/aserto.directory.writer.v3.BatchResponses"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "aserto.directory.writer.v3.BatchResponses": {
+        "oneOf": [
+          {
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "set_object"
+                  ]
+                },
+                {
+                  "required": [
+                    "delete_object"
+                  ]
+                },
+                {
+                  "required": [
+                    "set_relation"
+                  ]
+                },
+                {
+                  "required": [
+                    "delete_relation"
+                  ]
+                }
+              ]
+            },
+            "type": "object"
+          },
+          {
+            "properties": {
+              "set_object": {
+                "$ref": "#/components/schemas/aserto.directory.writer.v3.SetObjectResponse"
+              }
+            },
+            "required": [
+              "set_object"
+            ],
+            "type": "object"
+          },
+          {
+            "properties": {
+              "delete_object": {
+                "$ref": "#/components/schemas/aserto.directory.writer.v3.DeleteObjectResponse"
+              }
+            },
+            "required": [
+              "delete_object"
+            ],
+            "type": "object"
+          },
+          {
+            "properties": {
+              "set_relation": {
+                "$ref": "#/components/schemas/aserto.directory.writer.v3.SetRelationResponse"
+              }
+            },
+            "required": [
+              "set_relation"
+            ],
+            "type": "object"
+          },
+          {
+            "properties": {
+              "delete_relation": {
+                "$ref": "#/components/schemas/aserto.directory.writer.v3.DeleteRelationResponse"
+              }
+            },
+            "required": [
+              "delete_relation"
+            ],
+            "type": "object"
+          }
+        ],
+        "properties": {
+          "delete_object": {
+            "$ref": "#/components/schemas/aserto.directory.writer.v3.DeleteObjectResponse",
+            "description": "delete object response"
+          },
+          "delete_relation": {
+            "$ref": "#/components/schemas/aserto.directory.writer.v3.DeleteRelationResponse",
+            "description": "delete relation response"
+          },
+          "set_object": {
+            "$ref": "#/components/schemas/aserto.directory.writer.v3.SetObjectResponse",
+            "description": "set object response"
+          },
+          "set_relation": {
+            "$ref": "#/components/schemas/aserto.directory.writer.v3.SetRelationResponse",
+            "description": "set relation response"
+          }
+        },
+        "type": "object"
+      },
+      "aserto.directory.writer.v3.DeleteManifestResponse": {
+        "type": "object"
+      },
       "aserto.directory.writer.v3.DeleteObjectResponse": {
         "properties": {
           "result": {
@@ -383,6 +563,19 @@
             "description": "empty result",
             "readOnly": true,
             "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "aserto.directory.writer.v3.SetManifestResponse": {
+        "properties": {
+          "manifest": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/aserto.directory.common.v3.Manifest"
+              }
+            ],
+            "readOnly": true
           }
         },
         "type": "object"
@@ -464,6 +657,70 @@
   },
   "openapi": "3.1.0",
   "paths": {
+    "/api/v3/directory/batch": {
+      "get": {
+        "description": "Read multiple request in a single round-trip.",
+        "operationId": "directory.reader.v3.batch",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/aserto.directory.reader.v3.BatchResponse"
+                }
+              }
+            },
+            "description": "A successful response."
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/google.rpc.Status"
+                }
+              }
+            },
+            "description": "An unexpected error response."
+          }
+        },
+        "summary": "Batch reader",
+        "tags": [
+          "directory",
+          "batch"
+        ]
+      },
+      "post": {
+        "description": "Write multiple requests in a single round-trip.",
+        "operationId": "directory.writer.v3.batch",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/aserto.directory.writer.v3.BatchResponse"
+                }
+              }
+            },
+            "description": "A successful response."
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/google.rpc.Status"
+                }
+              }
+            },
+            "description": "An unexpected error response."
+          }
+        },
+        "summary": "Batch writer",
+        "tags": [
+          "directory",
+          "batch"
+        ]
+      }
+    },
     "/api/v3/directory/check": {
       "post": {
         "description": "Returns check outcome.",
@@ -534,162 +791,6 @@
           }
         },
         "summary": "Check",
-        "tags": [
-          "directory",
-          "check",
-          "relation"
-        ]
-      }
-    },
-    "/api/v3/directory/check/permission": {
-      "post": {
-        "deprecated": true,
-        "description": "Returns check permission outcome.",
-        "operationId": "directory.reader.v3.check.permission",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "properties": {
-                  "object_id": {
-                    "description": "object instance identifier",
-                    "type": "string"
-                  },
-                  "object_type": {
-                    "description": "object type identifier",
-                    "type": "string"
-                  },
-                  "permission": {
-                    "description": "permission name",
-                    "type": "string"
-                  },
-                  "subject_id": {
-                    "description": "subject instance identifier",
-                    "type": "string"
-                  },
-                  "subject_type": {
-                    "description": "subject type identifier",
-                    "type": "string"
-                  },
-                  "trace": {
-                    "description": "collect trace information (optional)",
-                    "type": "boolean"
-                  }
-                },
-                "required": [
-                  "object_type",
-                  "object_id",
-                  "permission",
-                  "subject_type",
-                  "subject_id"
-                ],
-                "type": "object"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/aserto.directory.reader.v3.CheckPermissionResponse"
-                }
-              }
-            },
-            "description": "A successful response."
-          },
-          "default": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/google.rpc.Status"
-                }
-              }
-            },
-            "description": "An unexpected error response."
-          }
-        },
-        "summary": "Check permission",
-        "tags": [
-          "directory",
-          "check",
-          "permission"
-        ]
-      }
-    },
-    "/api/v3/directory/check/relation": {
-      "post": {
-        "deprecated": true,
-        "description": "Returns check relation outcome.",
-        "operationId": "directory.reader.v3.check.relation",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "properties": {
-                  "object_id": {
-                    "description": "object instance identifier",
-                    "type": "string"
-                  },
-                  "object_type": {
-                    "description": "object type identifier",
-                    "type": "string"
-                  },
-                  "relation": {
-                    "description": "relation name",
-                    "type": "string"
-                  },
-                  "subject_id": {
-                    "description": "subject instance identifier",
-                    "type": "string"
-                  },
-                  "subject_type": {
-                    "description": "subject type identifier",
-                    "type": "string"
-                  },
-                  "trace": {
-                    "description": "collect trace information (optional)",
-                    "type": "boolean"
-                  }
-                },
-                "required": [
-                  "object_type",
-                  "object_id",
-                  "relation",
-                  "subject_type",
-                  "subject_id"
-                ],
-                "type": "object"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/aserto.directory.reader.v3.CheckRelationResponse"
-                }
-              }
-            },
-            "description": "A successful response."
-          },
-          "default": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/google.rpc.Status"
-                }
-              }
-            },
-            "description": "An unexpected error response."
-          }
-        },
-        "summary": "Check relation",
         "tags": [
           "directory",
           "check",
@@ -860,23 +961,13 @@
     "/api/v3/directory/manifest": {
       "delete": {
         "description": "Delete manifest.",
-        "operationId": "directory.model.v3.manifest.delete",
-        "parameters": [
-          {
-            "description": "empty request",
-            "in": "query",
-            "name": "empty",
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
+        "operationId": "directory.writer.v3.manifest.delete",
         "responses": {
           "200": {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/aserto.directory.model.v3.DeleteManifestResponse"
+                  "$ref": "#/components/schemas/aserto.directory.writer.v3.DeleteManifestResponse"
                 }
               }
             },
@@ -898,6 +989,122 @@
           "directory",
           "delete",
           "manifest"
+        ]
+      },
+      "get": {
+        "description": "Returns manifest instance.",
+        "operationId": "directory.reader.v3.manifest.get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/aserto.directory.reader.v3.GetManifestResponse"
+                }
+              }
+            },
+            "description": "A successful response."
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/google.rpc.Status"
+                }
+              }
+            },
+            "description": "An unexpected error response."
+          }
+        },
+        "summary": "Get manifest instance",
+        "tags": [
+          "directory",
+          "get",
+          "manifest"
+        ]
+      },
+      "post": {
+        "description": "Set manifest.",
+        "operationId": "directory.writer.v3.manifest.set",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "manifest": {
+                    "$ref": "#/components/schemas/aserto.directory.common.v3.Manifest"
+                  }
+                },
+                "required": [
+                  "manifest"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/aserto.directory.writer.v3.SetManifestResponse"
+                }
+              }
+            },
+            "description": "A successful response."
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/google.rpc.Status"
+                }
+              }
+            },
+            "description": "An unexpected error response."
+          }
+        },
+        "summary": "Set manifest",
+        "tags": [
+          "directory",
+          "set",
+          "manifest"
+        ]
+      }
+    },
+    "/api/v3/directory/model": {
+      "get": {
+        "description": "Returns model instance.",
+        "operationId": "directory.reader.v3.model.get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/aserto.directory.reader.v3.GetModelResponse"
+                }
+              }
+            },
+            "description": "A successful response."
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/google.rpc.Status"
+                }
+              }
+            },
+            "description": "An unexpected error response."
+          }
+        },
+        "summary": "Get model instance",
+        "tags": [
+          "directory",
+          "get",
+          "model"
         ]
       }
     },
@@ -1112,7 +1319,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/aserto.directory.reader.v3.GetObjectsResponse"
+                  "$ref": "#/components/schemas/aserto.directory.reader.v3.ListObjectsResponse"
                 }
               }
             },
@@ -1464,7 +1671,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/aserto.directory.reader.v3.GetRelationsResponse"
+                  "$ref": "#/components/schemas/aserto.directory.reader.v3.ListRelationsResponse"
                 }
               }
             },
@@ -1513,6 +1720,9 @@
       "name": "delete"
     },
     {
+      "name": "batch"
+    },
+    {
       "name": "graph"
     },
     {
@@ -1523,6 +1733,9 @@
     },
     {
       "name": "manifest"
+    },
+    {
+      "name": "model"
     },
     {
       "name": "object"

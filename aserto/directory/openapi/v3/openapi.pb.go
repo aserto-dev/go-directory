@@ -25,7 +25,7 @@ var File_aserto_directory_openapi_v3_openapi_proto protoreflect.FileDescriptor
 
 const file_aserto_directory_openapi_v3_openapi_proto_rawDesc = "" +
 	"\n" +
-	")aserto/directory/openapi/v3/openapi.proto\x12\x13aserto.directory.v3\x1a.protoc-gen-openapiv3/options/annotations.protoB\xb3\x04\xfaP\xed\x03\n" +
+	")aserto/directory/openapi/v3/openapi.proto\x12\x13aserto.directory.v3\x1a.protoc-gen-openapiv3/options/annotations.protoB\xc5\x04\xfaP\xff\x03\n" +
 	"\xd3\x01\n" +
 	"\x17Topaz Directory Service*^\n" +
 	"\x1bTopaz Authorization Project\x12+https://github.com/aserto-dev/go-authorizer\x1a\x12support@aserto.com2S\n" +
@@ -37,11 +37,13 @@ const file_aserto_directory_openapi_v3_openapi_proto_rawDesc = "" +
 	"\x04list\"\x05\n" +
 	"\x03set\"\b\n" +
 	"\x06delete\"\a\n" +
+	"\x05batch\"\a\n" +
 	"\x05graph\"\a\n" +
 	"\x05check\"\b\n" +
 	"\x06checks\"\n" +
 	"\n" +
-	"\bmanifest\"\b\n" +
+	"\bmanifest\"\a\n" +
+	"\x05model\"\b\n" +
 	"\x06object\"\f\n" +
 	"\n" +
 	"permission\"\n" +

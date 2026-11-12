@@ -28,10 +28,13 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ModelClient interface {
+	// Deprecated: Do not use.
 	// get manifest instance
 	GetManifest(ctx context.Context, in *GetManifestRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[GetManifestResponse], error)
+	// Deprecated: Do not use.
 	// set manifest instance
 	SetManifest(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[SetManifestRequest, SetManifestResponse], error)
+	// Deprecated: Do not use.
 	// delete manifest instance
 	DeleteManifest(ctx context.Context, in *DeleteManifestRequest, opts ...grpc.CallOption) (*DeleteManifestResponse, error)
 }
@@ -44,6 +47,7 @@ func NewModelClient(cc grpc.ClientConnInterface) ModelClient {
 	return &modelClient{cc}
 }
 
+// Deprecated: Do not use.
 func (c *modelClient) GetManifest(ctx context.Context, in *GetManifestRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[GetManifestResponse], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	stream, err := c.cc.NewStream(ctx, &Model_ServiceDesc.Streams[0], Model_GetManifest_FullMethodName, cOpts...)
@@ -63,6 +67,7 @@ func (c *modelClient) GetManifest(ctx context.Context, in *GetManifestRequest, o
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type Model_GetManifestClient = grpc.ServerStreamingClient[GetManifestResponse]
 
+// Deprecated: Do not use.
 func (c *modelClient) SetManifest(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[SetManifestRequest, SetManifestResponse], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	stream, err := c.cc.NewStream(ctx, &Model_ServiceDesc.Streams[1], Model_SetManifest_FullMethodName, cOpts...)
@@ -76,6 +81,7 @@ func (c *modelClient) SetManifest(ctx context.Context, opts ...grpc.CallOption) 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type Model_SetManifestClient = grpc.ClientStreamingClient[SetManifestRequest, SetManifestResponse]
 
+// Deprecated: Do not use.
 func (c *modelClient) DeleteManifest(ctx context.Context, in *DeleteManifestRequest, opts ...grpc.CallOption) (*DeleteManifestResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DeleteManifestResponse)
@@ -90,10 +96,13 @@ func (c *modelClient) DeleteManifest(ctx context.Context, in *DeleteManifestRequ
 // All implementations should embed UnimplementedModelServer
 // for forward compatibility.
 type ModelServer interface {
+	// Deprecated: Do not use.
 	// get manifest instance
 	GetManifest(*GetManifestRequest, grpc.ServerStreamingServer[GetManifestResponse]) error
+	// Deprecated: Do not use.
 	// set manifest instance
 	SetManifest(grpc.ClientStreamingServer[SetManifestRequest, SetManifestResponse]) error
+	// Deprecated: Do not use.
 	// delete manifest instance
 	DeleteManifest(context.Context, *DeleteManifestRequest) (*DeleteManifestResponse, error)
 }

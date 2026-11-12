@@ -11,17 +11,17 @@ func Object(msg *dsc3.Object) error {
 		return nil
 	}
 
-	if err := TypeIdentifier(fieldType, msg.GetType()); err != nil {
+	if err := TypeIdentifier(fieldType, msg.GetObjectType()); err != nil {
 		return err
 	}
 
-	if err := InstanceIdentifier(fieldID, msg.GetId()); err != nil {
+	if err := InstanceIdentifier(fieldID, msg.GetObjectId()); err != nil {
 		return err
 	}
 
-	if err := DisplayName(fieldDisplayName, msg.GetDisplayName()); err != nil { //nolint:staticcheck
-		return err
-	}
+	// if err := DisplayName(fieldDisplayName, msg.GetDisplayName()); err != nil { //nolint:staticcheck
+	// 	return err
+	// }
 
 	if err := Etag(fieldETag, msg.GetEtag()); err != nil {
 		return err

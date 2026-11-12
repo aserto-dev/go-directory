@@ -146,7 +146,8 @@ buf-lint:
 .PHONY: buf-breaking
 buf-breaking:
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
-	@${EXT_BIN_DIR}/buf breaking --against "github.com/aserto-dev/pb-authorizer.git#branch=main"
+	@${EXT_BIN_DIR}/buf breaking --against-registry 
+# 	--against "github.com/aserto-dev/pb-authorizer.git#branch=main"
 
 .PHONY: buf-push
 buf-push:
@@ -174,8 +175,7 @@ merge-json:
 	@echo -e "$(ATTN_COLOR)==> $@ $(NO_COLOR)"
 	@${EXT_BIN_DIR}/merge-json -output ./openapi/directory.openapi.json \
 	.tmp/openapi/aserto/directory/reader/v3/reader.openapi.json \
-	.tmp/openapi/aserto/directory/writer/v3/writer.openapi.json \
-	.tmp/openapi/aserto/directory/model/v3/model.openapi.json
+	.tmp/openapi/aserto/directory/writer/v3/writer.openapi.json
 
 .PHONY: buf-clean
 buf-clean:

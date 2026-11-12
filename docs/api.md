@@ -4,6 +4,8 @@
 ## Table of Contents
 
 - [aserto/directory/common/v3/common.proto](#aserto_directory_common_v3_common-proto)
+    - [Manifest](#aserto-directory-common-v3-Manifest)
+    - [Model](#aserto-directory-common-v3-Model)
     - [Object](#aserto-directory-common-v3-Object)
     - [ObjectIdentifier](#aserto-directory-common-v3-ObjectIdentifier)
     - [PaginationRequest](#aserto-directory-common-v3-PaginationRequest)
@@ -29,6 +31,9 @@
   
     - [Importer](#aserto-directory-importer-v3-Importer)
   
+- [aserto/directory/migrate/v33/migrate.proto](#aserto_directory_migrate_v33_migrate-proto)
+    - [Object](#aserto-directory-migrate-v33-Object)
+  
 - [aserto/directory/model/v3/model.proto](#aserto_directory_model_v3_model-proto)
     - [Body](#aserto-directory-model-v3-Body)
     - [DeleteManifestRequest](#aserto-directory-model-v3-DeleteManifestRequest)
@@ -43,6 +48,10 @@
   
 - [aserto/directory/openapi/v3/openapi.proto](#aserto_directory_openapi_v3_openapi-proto)
 - [aserto/directory/reader/v3/reader.proto](#aserto_directory_reader_v3_reader-proto)
+    - [BatchRequest](#aserto-directory-reader-v3-BatchRequest)
+    - [BatchRequests](#aserto-directory-reader-v3-BatchRequests)
+    - [BatchResponse](#aserto-directory-reader-v3-BatchResponse)
+    - [BatchResponses](#aserto-directory-reader-v3-BatchResponses)
     - [CheckPermissionRequest](#aserto-directory-reader-v3-CheckPermissionRequest)
     - [CheckPermissionResponse](#aserto-directory-reader-v3-CheckPermissionResponse)
     - [CheckRelationRequest](#aserto-directory-reader-v3-CheckRelationRequest)
@@ -51,8 +60,14 @@
     - [CheckResponse](#aserto-directory-reader-v3-CheckResponse)
     - [ChecksRequest](#aserto-directory-reader-v3-ChecksRequest)
     - [ChecksResponse](#aserto-directory-reader-v3-ChecksResponse)
+    - [ExportRequest](#aserto-directory-reader-v3-ExportRequest)
+    - [ExportResponse](#aserto-directory-reader-v3-ExportResponse)
     - [GetGraphRequest](#aserto-directory-reader-v3-GetGraphRequest)
     - [GetGraphResponse](#aserto-directory-reader-v3-GetGraphResponse)
+    - [GetManifestRequest](#aserto-directory-reader-v3-GetManifestRequest)
+    - [GetManifestResponse](#aserto-directory-reader-v3-GetManifestResponse)
+    - [GetModelRequest](#aserto-directory-reader-v3-GetModelRequest)
+    - [GetModelResponse](#aserto-directory-reader-v3-GetModelResponse)
     - [GetObjectManyRequest](#aserto-directory-reader-v3-GetObjectManyRequest)
     - [GetObjectManyResponse](#aserto-directory-reader-v3-GetObjectManyResponse)
     - [GetObjectRequest](#aserto-directory-reader-v3-GetObjectRequest)
@@ -65,18 +80,39 @@
     - [GetRelationsRequest](#aserto-directory-reader-v3-GetRelationsRequest)
     - [GetRelationsResponse](#aserto-directory-reader-v3-GetRelationsResponse)
     - [GetRelationsResponse.ObjectsEntry](#aserto-directory-reader-v3-GetRelationsResponse-ObjectsEntry)
+    - [ListObjectsRequest](#aserto-directory-reader-v3-ListObjectsRequest)
+    - [ListObjectsResponse](#aserto-directory-reader-v3-ListObjectsResponse)
+    - [ListRelationsRequest](#aserto-directory-reader-v3-ListRelationsRequest)
+    - [ListRelationsResponse](#aserto-directory-reader-v3-ListRelationsResponse)
+    - [ListRelationsResponse.ObjectsEntry](#aserto-directory-reader-v3-ListRelationsResponse-ObjectsEntry)
+  
+    - [Option](#aserto-directory-reader-v3-Option)
   
     - [Reader](#aserto-directory-reader-v3-Reader)
   
 - [aserto/directory/writer/v3/writer.proto](#aserto_directory_writer_v3_writer-proto)
+    - [BatchRequest](#aserto-directory-writer-v3-BatchRequest)
+    - [BatchRequests](#aserto-directory-writer-v3-BatchRequests)
+    - [BatchResponse](#aserto-directory-writer-v3-BatchResponse)
+    - [BatchResponses](#aserto-directory-writer-v3-BatchResponses)
+    - [DeleteManifestRequest](#aserto-directory-writer-v3-DeleteManifestRequest)
+    - [DeleteManifestResponse](#aserto-directory-writer-v3-DeleteManifestResponse)
     - [DeleteObjectRequest](#aserto-directory-writer-v3-DeleteObjectRequest)
     - [DeleteObjectResponse](#aserto-directory-writer-v3-DeleteObjectResponse)
     - [DeleteRelationRequest](#aserto-directory-writer-v3-DeleteRelationRequest)
     - [DeleteRelationResponse](#aserto-directory-writer-v3-DeleteRelationResponse)
+    - [ImportCounter](#aserto-directory-writer-v3-ImportCounter)
+    - [ImportRequest](#aserto-directory-writer-v3-ImportRequest)
+    - [ImportResponse](#aserto-directory-writer-v3-ImportResponse)
+    - [ImportStatus](#aserto-directory-writer-v3-ImportStatus)
+    - [SetManifestRequest](#aserto-directory-writer-v3-SetManifestRequest)
+    - [SetManifestResponse](#aserto-directory-writer-v3-SetManifestResponse)
     - [SetObjectRequest](#aserto-directory-writer-v3-SetObjectRequest)
     - [SetObjectResponse](#aserto-directory-writer-v3-SetObjectResponse)
     - [SetRelationRequest](#aserto-directory-writer-v3-SetRelationRequest)
     - [SetRelationResponse](#aserto-directory-writer-v3-SetRelationResponse)
+  
+    - [Opcode](#aserto-directory-writer-v3-Opcode)
   
     - [Writer](#aserto-directory-writer-v3-Writer)
   
@@ -91,6 +127,40 @@
 
 
 
+<a name="aserto-directory-common-v3-Manifest"></a>
+
+### Manifest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| data | [bytes](#bytes) |  | model data stream |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | last updated timestamp (UTC) |
+| etag | [string](#string) |  | object instance etag (optional) |
+
+
+
+
+
+
+<a name="aserto-directory-common-v3-Model"></a>
+
+### Model
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| data | [google.protobuf.Struct](#google-protobuf-Struct) |  | model data |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | last updated timestamp (UTC) |
+| etag | [string](#string) |  | object instance etag (optional) |
+
+
+
+
+
+
 <a name="aserto-directory-common-v3-Object"></a>
 
 ### Object
@@ -99,11 +169,9 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [string](#string) |  | object type identifier |
-| id | [string](#string) |  | object instance identifier |
-| display_name | [string](#string) |  | **Deprecated.** display name object (optional) (DEPRECATED) |
+| object_type | [string](#string) |  | object type identifier |
+| object_id | [string](#string) |  | object instance identifier |
 | properties | [google.protobuf.Struct](#google-protobuf-Struct) |  | property bag (optional) |
-| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | **Deprecated.** created at timestamp (UTC) (DEPRECATED) |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | last updated timestamp (UTC) |
 | etag | [string](#string) |  | object instance etag (optional) |
 
@@ -173,7 +241,6 @@ Pagination response
 | subject_type | [string](#string) |  | subject type identifier |
 | subject_id | [string](#string) |  | subject instance identifier |
 | subject_relation | [string](#string) |  | subject relation name (optional) |
-| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | **Deprecated.** created at timestamp (UTC) (DEPRECATED) |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | last updated timestamp (UTC) |
 | etag | [string](#string) |  | object instance etag (optional) |
 
@@ -396,6 +463,43 @@ Relation identifier
 
 
 
+<a name="aserto_directory_migrate_v33_migrate-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## aserto/directory/migrate/v33/migrate.proto
+
+
+
+<a name="aserto-directory-migrate-v33-Object"></a>
+
+### Object
+Object v33
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| type | [string](#string) |  | object type identifier |
+| id | [string](#string) |  | object instance identifier |
+| display_name | [string](#string) |  | display name object (optional) (DEPRECATED) |
+| properties | [google.protobuf.Struct](#google-protobuf-Struct) |  | property bag (optional) |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | created at timestamp (UTC) (DEPRECATED) |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | last updated timestamp (UTC) |
+| etag | [string](#string) |  | object instance etag |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
 <a name="aserto_directory_model_v3_model-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
@@ -570,6 +674,68 @@ Relation identifier
 
 
 
+<a name="aserto-directory-reader-v3-BatchRequest"></a>
+
+### BatchRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| requests | [BatchRequest](#aserto-directory-reader-v3-BatchRequest) | repeated |  |
+
+
+
+
+
+
+<a name="aserto-directory-reader-v3-BatchRequests"></a>
+
+### BatchRequests
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| get_object | [GetObjectRequest](#aserto-directory-reader-v3-GetObjectRequest) |  | get object request |
+| get_relation | [GetRelationRequest](#aserto-directory-reader-v3-GetRelationRequest) |  | get relation request |
+
+
+
+
+
+
+<a name="aserto-directory-reader-v3-BatchResponse"></a>
+
+### BatchResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| responses | [BatchResponses](#aserto-directory-reader-v3-BatchResponses) | repeated |  |
+
+
+
+
+
+
+<a name="aserto-directory-reader-v3-BatchResponses"></a>
+
+### BatchResponses
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| get_object | [GetObjectResponse](#aserto-directory-reader-v3-GetObjectResponse) |  | get object response |
+| get_relation | [GetRelationResponse](#aserto-directory-reader-v3-GetRelationResponse) |  | get relation response |
+
+
+
+
+
+
 <a name="aserto-directory-reader-v3-CheckPermissionRequest"></a>
 
 ### CheckPermissionRequest
@@ -710,6 +876,39 @@ Relation identifier
 
 
 
+<a name="aserto-directory-reader-v3-ExportRequest"></a>
+
+### ExportRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| options | [uint32](#uint32) |  | data export options mask |
+| start_from | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | start export from timestamp (UTC) |
+
+
+
+
+
+
+<a name="aserto-directory-reader-v3-ExportResponse"></a>
+
+### ExportResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| object | [aserto.directory.common.v3.Object](#aserto-directory-common-v3-Object) |  | object instance (data) |
+| relation | [aserto.directory.common.v3.Relation](#aserto-directory-common-v3-Relation) |  | relation instance (data) |
+| stats | [google.protobuf.Struct](#google-protobuf-Struct) |  | object and/or relation stats (no data) |
+
+
+
+
+
+
 <a name="aserto-directory-reader-v3-GetGraphRequest"></a>
 
 ### GetGraphRequest
@@ -743,6 +942,56 @@ Relation identifier
 | results | [aserto.directory.common.v3.ObjectIdentifier](#aserto-directory-common-v3-ObjectIdentifier) | repeated | matching object identifiers |
 | explanation | [google.protobuf.Struct](#google-protobuf-Struct) |  | explanation of results |
 | trace | [string](#string) | repeated | trace information |
+
+
+
+
+
+
+<a name="aserto-directory-reader-v3-GetManifestRequest"></a>
+
+### GetManifestRequest
+
+
+
+
+
+
+
+<a name="aserto-directory-reader-v3-GetManifestResponse"></a>
+
+### GetManifestResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| manifest | [aserto.directory.common.v3.Manifest](#aserto-directory-common-v3-Manifest) |  |  |
+
+
+
+
+
+
+<a name="aserto-directory-reader-v3-GetModelRequest"></a>
+
+### GetModelRequest
+
+
+
+
+
+
+
+<a name="aserto-directory-reader-v3-GetModelResponse"></a>
+
+### GetModelResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| model | [aserto.directory.common.v3.Model](#aserto-directory-common-v3-Model) |  |  |
 
 
 
@@ -952,7 +1201,110 @@ Relation identifier
 
 
 
+
+<a name="aserto-directory-reader-v3-ListObjectsRequest"></a>
+
+### ListObjectsRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| object_type | [string](#string) |  | object type identifier (optional) |
+| page | [aserto.directory.common.v3.PaginationRequest](#aserto-directory-common-v3-PaginationRequest) |  | pagination request (optional) |
+
+
+
+
+
+
+<a name="aserto-directory-reader-v3-ListObjectsResponse"></a>
+
+### ListObjectsResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| results | [aserto.directory.common.v3.Object](#aserto-directory-common-v3-Object) | repeated | array of object instances |
+| page | [aserto.directory.common.v3.PaginationResponse](#aserto-directory-common-v3-PaginationResponse) |  | pagination response |
+
+
+
+
+
+
+<a name="aserto-directory-reader-v3-ListRelationsRequest"></a>
+
+### ListRelationsRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| object_type | [string](#string) |  | object type identifier (optional) |
+| object_id | [string](#string) |  | object instance identifier (optional) |
+| relation | [string](#string) |  | relation name (optional) |
+| subject_type | [string](#string) |  | subject type identifier (optional) |
+| subject_id | [string](#string) |  | subject instance identifier (optional) |
+| subject_relation | [string](#string) |  | subject relation name (optional) |
+| with_objects | [bool](#bool) |  | materialize relation objects (optional) |
+| with_empty_subject_relation | [bool](#bool) |  | only return relations that do not have a subject relation (optional) |
+| page | [aserto.directory.common.v3.PaginationRequest](#aserto-directory-common-v3-PaginationRequest) |  | pagination request (optional) |
+
+
+
+
+
+
+<a name="aserto-directory-reader-v3-ListRelationsResponse"></a>
+
+### ListRelationsResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| results | [aserto.directory.common.v3.Relation](#aserto-directory-common-v3-Relation) | repeated | array of relation instances |
+| objects | [ListRelationsResponse.ObjectsEntry](#aserto-directory-reader-v3-ListRelationsResponse-ObjectsEntry) | repeated | map of materialized relation objects |
+| page | [aserto.directory.common.v3.PaginationResponse](#aserto-directory-common-v3-PaginationResponse) |  | pagination response |
+
+
+
+
+
+
+<a name="aserto-directory-reader-v3-ListRelationsResponse-ObjectsEntry"></a>
+
+### ListRelationsResponse.ObjectsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [aserto.directory.common.v3.Object](#aserto-directory-common-v3-Object) |  |  |
+
+
+
+
+
  
+
+
+<a name="aserto-directory-reader-v3-Option"></a>
+
+### Option
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| OPTION_UNKNOWN | 0 | nothing selected (default initialization value) |
+| OPTION_DATA_OBJECTS | 8 | object instances |
+| OPTION_DATA_RELATIONS | 16 | relation instances |
+| OPTION_DATA | 24 | all data = OPTION_DATA_OBJECTS | OPTION_DATA_RELATIONS |
+| OPTION_STATS | 64 | stats |
+
 
  
 
@@ -966,16 +1318,22 @@ Relation identifier
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
+| GetManifest | [GetManifestRequest](#aserto-directory-reader-v3-GetManifestRequest) | [GetManifestResponse](#aserto-directory-reader-v3-GetManifestResponse) | get manifest |
+| GetModel | [GetModelRequest](#aserto-directory-reader-v3-GetModelRequest) | [GetModelResponse](#aserto-directory-reader-v3-GetModelResponse) | get model |
 | GetObject | [GetObjectRequest](#aserto-directory-reader-v3-GetObjectRequest) | [GetObjectResponse](#aserto-directory-reader-v3-GetObjectResponse) | get object |
-| GetObjectMany | [GetObjectManyRequest](#aserto-directory-reader-v3-GetObjectManyRequest) | [GetObjectManyResponse](#aserto-directory-reader-v3-GetObjectManyResponse) | get multiple objects |
-| GetObjects | [GetObjectsRequest](#aserto-directory-reader-v3-GetObjectsRequest) | [GetObjectsResponse](#aserto-directory-reader-v3-GetObjectsResponse) | list objects |
+| GetObjectMany | [GetObjectManyRequest](#aserto-directory-reader-v3-GetObjectManyRequest) | [GetObjectManyResponse](#aserto-directory-reader-v3-GetObjectManyResponse) | get multiple objects Deprecated: use directory.reader.v3.Batch() |
+| GetObjects | [GetObjectsRequest](#aserto-directory-reader-v3-GetObjectsRequest) | [GetObjectsResponse](#aserto-directory-reader-v3-GetObjectsResponse) | list objects Deprecated: use directory.reader.v3.ListObjects() |
+| ListObjects | [ListObjectsRequest](#aserto-directory-reader-v3-ListObjectsRequest) | [ListObjectsResponse](#aserto-directory-reader-v3-ListObjectsResponse) | list objects |
 | GetRelation | [GetRelationRequest](#aserto-directory-reader-v3-GetRelationRequest) | [GetRelationResponse](#aserto-directory-reader-v3-GetRelationResponse) | get relation |
-| GetRelations | [GetRelationsRequest](#aserto-directory-reader-v3-GetRelationsRequest) | [GetRelationsResponse](#aserto-directory-reader-v3-GetRelationsResponse) | list relations |
+| GetRelations | [GetRelationsRequest](#aserto-directory-reader-v3-GetRelationsRequest) | [GetRelationsResponse](#aserto-directory-reader-v3-GetRelationsResponse) | list relations Deprecated: use directory.reader.v3.ListRelations() |
+| ListRelations | [ListRelationsRequest](#aserto-directory-reader-v3-ListRelationsRequest) | [ListRelationsResponse](#aserto-directory-reader-v3-ListRelationsResponse) | list relations |
 | Check | [CheckRequest](#aserto-directory-reader-v3-CheckRequest) | [CheckResponse](#aserto-directory-reader-v3-CheckResponse) | check if subject has relation or permission with object |
 | Checks | [ChecksRequest](#aserto-directory-reader-v3-ChecksRequest) | [ChecksResponse](#aserto-directory-reader-v3-ChecksResponse) | checks validates a set of check requests in a single roundtrip |
 | CheckPermission | [CheckPermissionRequest](#aserto-directory-reader-v3-CheckPermissionRequest) | [CheckPermissionResponse](#aserto-directory-reader-v3-CheckPermissionResponse) | check permission (deprecated, use the check method) Deprecated: use directory.reader.v3.Check() |
 | CheckRelation | [CheckRelationRequest](#aserto-directory-reader-v3-CheckRelationRequest) | [CheckRelationResponse](#aserto-directory-reader-v3-CheckRelationResponse) | check relation (deprecated, use the check method) Deprecated: use directory.reader.v3.Check() |
 | GetGraph | [GetGraphRequest](#aserto-directory-reader-v3-GetGraphRequest) | [GetGraphResponse](#aserto-directory-reader-v3-GetGraphResponse) | get object relationship graph |
+| Batch | [BatchRequest](#aserto-directory-reader-v3-BatchRequest) | [BatchResponse](#aserto-directory-reader-v3-BatchResponse) | batch reader requests |
+| Export | [ExportRequest](#aserto-directory-reader-v3-ExportRequest) | [ExportResponse](#aserto-directory-reader-v3-ExportResponse) stream | export objects and relations as a stream |
 
  
 
@@ -985,6 +1343,92 @@ Relation identifier
 <p align="right"><a href="#top">Top</a></p>
 
 ## aserto/directory/writer/v3/writer.proto
+
+
+
+<a name="aserto-directory-writer-v3-BatchRequest"></a>
+
+### BatchRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| requests | [BatchRequest](#aserto-directory-writer-v3-BatchRequest) | repeated |  |
+
+
+
+
+
+
+<a name="aserto-directory-writer-v3-BatchRequests"></a>
+
+### BatchRequests
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| set_object | [SetObjectRequest](#aserto-directory-writer-v3-SetObjectRequest) |  | set object request |
+| delete_object | [DeleteObjectRequest](#aserto-directory-writer-v3-DeleteObjectRequest) |  | delete object request |
+| set_relation | [SetRelationRequest](#aserto-directory-writer-v3-SetRelationRequest) |  | set relation request |
+| delete_relation | [DeleteRelationRequest](#aserto-directory-writer-v3-DeleteRelationRequest) |  | delete relation request |
+
+
+
+
+
+
+<a name="aserto-directory-writer-v3-BatchResponse"></a>
+
+### BatchResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| responses | [BatchResponses](#aserto-directory-writer-v3-BatchResponses) | repeated |  |
+
+
+
+
+
+
+<a name="aserto-directory-writer-v3-BatchResponses"></a>
+
+### BatchResponses
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| set_object | [SetObjectResponse](#aserto-directory-writer-v3-SetObjectResponse) |  | set object response |
+| delete_object | [DeleteObjectResponse](#aserto-directory-writer-v3-DeleteObjectResponse) |  | delete object response |
+| set_relation | [SetRelationResponse](#aserto-directory-writer-v3-SetRelationResponse) |  | set relation response |
+| delete_relation | [DeleteRelationResponse](#aserto-directory-writer-v3-DeleteRelationResponse) |  | delete relation response |
+
+
+
+
+
+
+<a name="aserto-directory-writer-v3-DeleteManifestRequest"></a>
+
+### DeleteManifestRequest
+
+
+
+
+
+
+
+<a name="aserto-directory-writer-v3-DeleteManifestResponse"></a>
+
+### DeleteManifestResponse
+
+
+
+
 
 
 
@@ -1055,6 +1499,107 @@ Relation identifier
 
 
 
+<a name="aserto-directory-writer-v3-ImportCounter"></a>
+
+### ImportCounter
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| recv | [uint64](#uint64) |  | number of messages received |
+| set | [uint64](#uint64) |  | number of messages with OPCODE_SET |
+| delete | [uint64](#uint64) |  | number of messages with OPCODE_DELETE |
+| error | [uint64](#uint64) |  | number of messages resulting in error |
+| type | [string](#string) |  | counter of type (object|relation) |
+
+
+
+
+
+
+<a name="aserto-directory-writer-v3-ImportRequest"></a>
+
+### ImportRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| op_code | [Opcode](#aserto-directory-writer-v3-Opcode) |  | operation Opcode enum value |
+| object | [aserto.directory.common.v3.Object](#aserto-directory-common-v3-Object) |  | object import message |
+| relation | [aserto.directory.common.v3.Relation](#aserto-directory-common-v3-Relation) |  | relation import message |
+
+
+
+
+
+
+<a name="aserto-directory-writer-v3-ImportResponse"></a>
+
+### ImportResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| object | [ImportCounter](#aserto-directory-writer-v3-ImportCounter) |  | object import counter |
+| relation | [ImportCounter](#aserto-directory-writer-v3-ImportCounter) |  | relation import counter |
+| status | [ImportStatus](#aserto-directory-writer-v3-ImportStatus) |  | import status message |
+| counter | [ImportCounter](#aserto-directory-writer-v3-ImportCounter) |  | import counter per type |
+
+
+
+
+
+
+<a name="aserto-directory-writer-v3-ImportStatus"></a>
+
+### ImportStatus
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| code | [uint32](#uint32) |  | gRPC status code (google.golang.org/grpc/codes) |
+| msg | [string](#string) |  | gRPC status message (google.golang.org/grpc/status) |
+| req | [ImportRequest](#aserto-directory-writer-v3-ImportRequest) |  | req contains the original import request message |
+
+
+
+
+
+
+<a name="aserto-directory-writer-v3-SetManifestRequest"></a>
+
+### SetManifestRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| manifest | [aserto.directory.common.v3.Manifest](#aserto-directory-common-v3-Manifest) |  |  |
+
+
+
+
+
+
+<a name="aserto-directory-writer-v3-SetManifestResponse"></a>
+
+### SetManifestResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| manifest | [aserto.directory.common.v3.Manifest](#aserto-directory-common-v3-Manifest) |  |  |
+
+
+
+
+
+
 <a name="aserto-directory-writer-v3-SetObjectRequest"></a>
 
 ### SetObjectRequest
@@ -1116,6 +1661,20 @@ Relation identifier
 
  
 
+
+<a name="aserto-directory-writer-v3-Opcode"></a>
+
+### Opcode
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| OPCODE_UNKNOWN | 0 |  |
+| OPCODE_SET | 1 |  |
+| OPCODE_DELETE | 2 |  |
+| OPCODE_DELETE_WITH_RELATIONS | 3 |  |
+
+
  
 
  
@@ -1128,10 +1687,14 @@ Relation identifier
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
+| SetManifest | [SetManifestRequest](#aserto-directory-writer-v3-SetManifestRequest) | [SetManifestResponse](#aserto-directory-writer-v3-SetManifestResponse) | set manifest instance |
+| DeleteManifest | [DeleteManifestRequest](#aserto-directory-writer-v3-DeleteManifestRequest) | [DeleteManifestResponse](#aserto-directory-writer-v3-DeleteManifestResponse) | delete manifest instance |
 | SetObject | [SetObjectRequest](#aserto-directory-writer-v3-SetObjectRequest) | [SetObjectResponse](#aserto-directory-writer-v3-SetObjectResponse) | set object instance |
 | DeleteObject | [DeleteObjectRequest](#aserto-directory-writer-v3-DeleteObjectRequest) | [DeleteObjectResponse](#aserto-directory-writer-v3-DeleteObjectResponse) | delete object instance |
 | SetRelation | [SetRelationRequest](#aserto-directory-writer-v3-SetRelationRequest) | [SetRelationResponse](#aserto-directory-writer-v3-SetRelationResponse) | set relation instance |
 | DeleteRelation | [DeleteRelationRequest](#aserto-directory-writer-v3-DeleteRelationRequest) | [DeleteRelationResponse](#aserto-directory-writer-v3-DeleteRelationResponse) | delete relation instance |
+| Batch | [BatchRequest](#aserto-directory-writer-v3-BatchRequest) | [BatchResponse](#aserto-directory-writer-v3-BatchResponse) |  |
+| Import | [ImportRequest](#aserto-directory-writer-v3-ImportRequest) stream | [ImportResponse](#aserto-directory-writer-v3-ImportResponse) stream |  |
 
  
 

@@ -37,10 +37,12 @@ option (grpc.gateway.protoc_gen_openapiv3.options.openapiv3_document) = {
     {name: "list"},
     {name: "set"},
     {name: "delete"},
+    {name: "batch"},
     {name: "graph"},
     {name: "check"},
     {name: "checks"},
     {name: "manifest"},
+    {name: "model"},
     {name: "object"},
     {name: "permission"},
     {name: "relation"}

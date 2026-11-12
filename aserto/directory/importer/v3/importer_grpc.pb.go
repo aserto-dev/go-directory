@@ -26,6 +26,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ImporterClient interface {
+	// Deprecated: Do not use.
 	// import stream of objects and relations
 	Import(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[ImportRequest, ImportResponse], error)
 }
@@ -38,6 +39,7 @@ func NewImporterClient(cc grpc.ClientConnInterface) ImporterClient {
 	return &importerClient{cc}
 }
 
+// Deprecated: Do not use.
 func (c *importerClient) Import(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[ImportRequest, ImportResponse], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	stream, err := c.cc.NewStream(ctx, &Importer_ServiceDesc.Streams[0], Importer_Import_FullMethodName, cOpts...)
@@ -55,6 +57,7 @@ type Importer_ImportClient = grpc.BidiStreamingClient[ImportRequest, ImportRespo
 // All implementations should embed UnimplementedImporterServer
 // for forward compatibility.
 type ImporterServer interface {
+	// Deprecated: Do not use.
 	// import stream of objects and relations
 	Import(grpc.BidiStreamingServer[ImportRequest, ImportResponse]) error
 }
